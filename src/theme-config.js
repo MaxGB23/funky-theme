@@ -12,33 +12,46 @@ const palette = {
 
   // === Claros (Foreground principal) ===
   fgBase: "#f8f8f2",       // fg-base (Reemplaza los 5 "blancos cian": '#eeffff', '#f7f7f7', '#eefcfe', etc.)
-  
+  fgWhite: "#ffffff",      // fg-white - Blanco puro para meta tags, clases y html tags
+  fgMuted: "#d8d8d8",      // fg-muted - Comentarios en el nuevo estilo sin cursiva
+
   // === Grises de UI e Invisibles ===
   comments: "#555555",     // comment (Reemplaza a '#666666') - Exclusivo para código comentado en cursiva
   uiMuted: "#606685",      // ui-muted (Reemplaza a '#5a657c','#65737e','#546e7a') - Bordes, guías y tokens secundarios
+  greyLight: "#cbcbcb",    // grey-light - Delimitadores de code blocks de Markdown
+  purpleGrey: "#a9b1de",   // purple-grey - Puntuación y meta de Markdown
 
   // === Colores de Sintaxis (Accents Tiered Palette) ===
-  
+
   // Cyans (Attributes, Numbers)
   cyanDim: "#80ecff",      // cyan-dim (Reemplaza a '#8ceaff') - Tokens numéricos o attributes secundarios
   cyanBase: "#8be9fd",     // cyan-base (Reemplaza a '#96e7ff', '#89ddff') - Atributos de React, props, variables
-  
+  cyanAccent: "#96e7ff",   // cyan-accent - Functions, git modified, regex, escapes
+  cyanVibrant: "#6df5fa",  // cyan-vibrant - Markdown bold, italic e interfaces
+
   // Rojos (Errors, Tags de cierre, Variables mutadas)
   redBase: "#ff5555",      // red-base (Reemplaza a '#ff6e6e', '#f07178', '#ff5370')
-  
+
   // Rosas (Keywords, Control Flow, Parameters)
   pinkBase: "#ff8bee",     // pink-base (Reemplaza la masacre de 5 rosas: '#ffacf5', '#feb3e8', '#ffa6f9', '#ff92df', '#ff78f8')
-  
+  pinkLight: "#ffa8e6",    // pink-light - Git ignored, constantes numéricas y parámetros
+  pinkAccent: "#ff87c5",   // pink-accent - Tags HTML/SGM y git deleted markers
+  pinkVibrant: "#ff8ddb",  // pink-vibrant - Headings de Markdown
+
+  // Morados (Operators, Imports/Exports, Support Classes)
+  purpleDim: "#c792ea",    // purple-dim (Reemplaza a '#d6acff') - Operadores matemáticos o lógicos
+  purpleBase: "#bd93f9",   // purple-base (Reemplaza a '#cca2e8') - Keywords de importación y exportación
+  purpleBright: "#eaa9fc", // purple-bright - Clases de soporte (support.class)
+
   // Naranjas & Amarillos (Strings, Functions, Warnings)
   orangeBase: "#ffb86c",   // orange-base (Reemplaza a '#ffcb6b') - Usado para strings y warnings moderados
+  orangeAccent: "#ffc061", // orange-accent - keyword.operator.new.tsx
   yellowBase: "#f6ff98",   // yellow-base (Reemplaza a '#ffffa5', '#ffffa3') - Nombres de funciones (Methods)
-  
+  yellowLight: "#fff9ba",  // yellow-light - Entity types y attribute names
+
   // Verdes (Classes, RegEx, Strings exitosos)
   greenBase: "#8bffa8",    // green-base (Reemplaza a '#8affc4', '#c7ffc8', '#b9ffba')
-  
-  // Morados (Operators, Imports/Exports)
-  purpleDim: "#c792ea",    // purple-dim (Reemplaza a '#d6acff') - Operadores matemáticos o lógicos
-  purpleBase: "#bd93f9"    // purple-base (Reemplaza a '#cca2e8') - Keywords de importación y exportación
+  greenAccent: "#b9ffba",  // green-accent - Strings, unquoted labels y git untracked
 };
 
 // ==========================================
@@ -64,27 +77,27 @@ module.exports = {
     "tab.inactiveForeground": "#B0B0B0",
     "tab.hoverBackground": palette.bgElevated,
     "tab.hoverForeground": "#FFFFFF",
-    "gitDecoration.modifiedResourceForeground": palette.cyanBase,
+    "gitDecoration.modifiedResourceForeground": palette.cyanAccent,
     "gitDecoration.deletedResourceForeground": "#ff55a4",
-    "gitDecoration.untrackedResourceForeground": palette.greenBase,
-    "gitDecoration.ignoredResourceForeground": palette.pinkBase,
+    "gitDecoration.untrackedResourceForeground": palette.greenAccent,
+    "gitDecoration.ignoredResourceForeground": palette.pinkLight,
     "gitDecoration.conflictingResourceForeground": palette.orangeBase,
     "terminal.background": palette.bgDeep,
     "terminal.foreground": palette.fgBase,
     "terminal.ansiBrightBlack": "#6272A4",
     "terminal.ansiBrightRed": palette.redBase,
-    "terminal.ansiBrightGreen": palette.pinkBase,
+    "terminal.ansiBrightGreen": palette.pinkLight,
     "terminal.ansiBrightYellow": palette.yellowBase,
     "terminal.ansiBrightBlue": palette.purpleDim,
-    "terminal.ansiBrightMagenta": palette.pinkBase,
+    "terminal.ansiBrightMagenta": palette.pinkLight,
     "terminal.ansiBrightCyan": "#A4FFFF",
     "terminal.ansiBrightWhite": "#FFFFFF",
     "terminal.ansiBlack": palette.bgDeep,
     "terminal.ansiRed": palette.redBase,
-    "terminal.ansiGreen": palette.greenBase,
+    "terminal.ansiGreen": palette.greenAccent,
     "terminal.ansiYellow": palette.yellowBase,
     "terminal.ansiBlue": palette.purpleBase,
-    "terminal.ansiMagenta": palette.pinkBase,
+    "terminal.ansiMagenta": palette.pinkLight,
     "terminal.ansiCyan": "#A4FFFF",
     "terminal.ansiWhite": palette.fgBase
   },
@@ -92,8 +105,8 @@ module.exports = {
     {
       "scope": "comment, punctuation.definition.comment",
       "settings": {
-        "foreground": palette.uiMuted,
-        "fontStyle": "italic"
+        "foreground": palette.fgMuted,
+        "fontStyle": ""
       }
     },
     {
@@ -105,25 +118,25 @@ module.exports = {
     {
       "scope": "constant.other.color",
       "settings": {
-        "foreground": "#ffffff"
+        "foreground": palette.fgWhite
       }
     },
     {
       "scope": "invalid, invalid.illegal, invalid.broken",
       "settings": {
-        "foreground": "#ffffff"
+        "foreground": palette.fgWhite
       }
     },
     {
       "scope": "invalid.unimplemented",
       "settings": {
-        "foreground": "#ffffff"
+        "foreground": palette.fgWhite
       }
     },
     {
       "scope": "invalid.deprecated",
       "settings": {
-        "foreground": "#ffffff"
+        "foreground": palette.fgWhite
       }
     },
     {
@@ -133,7 +146,7 @@ module.exports = {
       }
     },
     {
-      "scope": "constant.other.color, punctuation, punctuation.definition.tag, punctuation.separator.inheritance.php, punctuation.definition.tag.html, punctuation.definition.tag.begin.html, punctuation.definition.tag.end.html, punctuation.section.embedded, keyword.other.template, keyword.other.substitution",
+      "scope": "constant.other.color, punctuation, punctuation.definition.tag, punctuation.separator.inheritance.php, punctuation.section.embedded, keyword.other.template, keyword.other.substitution",
       "settings": {
         "foreground": palette.cyanDim
       }
@@ -145,9 +158,15 @@ module.exports = {
       }
     },
     {
+      "scope": "keyword.operator.new.tsx",
+      "settings": {
+        "foreground": palette.orangeAccent
+      }
+    },
+    {
       "scope": "entity.name.tag, meta.tag.sgml, markup.deleted.git_gutter",
       "settings": {
-        "foreground": palette.pinkBase
+        "foreground": palette.pinkAccent
       }
     },
     {
@@ -159,13 +178,13 @@ module.exports = {
     {
       "scope": "meta.tag",
       "settings": {
-        "foreground": "#c9fbff"
+        "foreground": palette.fgWhite
       }
     },
     {
       "scope": "entity.name.function, meta.function-call, variable.function, support.function, keyword.other.special-method, meta.block-level",
       "settings": {
-        "foreground": palette.cyanBase
+        "foreground": palette.cyanAccent
       }
     },
     {
@@ -177,13 +196,13 @@ module.exports = {
     {
       "scope": "constant.numeric, constant.language, support.constant, constant.character, variable.parameter, keyword.other.unit",
       "settings": {
-        "foreground": palette.pinkBase
+        "foreground": palette.pinkLight
       }
     },
     {
       "scope": "string, constant.other.symbol, constant.other.key, entity.other.inherited-class, markup.heading, markup.inserted.git_gutter, meta.group.braces.curly constant.other.object.key.js string.unquoted.label.js",
       "settings": {
-        "foreground": palette.greenBase
+        "foreground": palette.greenAccent
       }
     },
     {
@@ -207,13 +226,25 @@ module.exports = {
     {
       "scope": "meta.object-literal.key, meta.property-name, variable.object.property",
       "settings": {
-        "foreground": "#FFFFFF"
+        "foreground": palette.fgWhite
       }
     },
     {
-      "scope": "entity.name.type, entity.name.class, support.class",
+      "scope": "support.class",
       "settings": {
-        "foreground": "#FFFFFF"
+        "foreground": palette.purpleBright
+      }
+    },
+    {
+      "scope": "entity.name.type",
+      "settings": {
+        "foreground": palette.yellowLight
+      }
+    },
+    {
+      "scope": "entity.name.class",
+      "settings": {
+        "foreground": palette.fgWhite
       }
     },
     {
@@ -241,7 +272,7 @@ module.exports = {
     {
       "scope": "entity.other.attribute-name",
       "settings": {
-        "foreground": palette.purpleBase
+        "foreground": palette.yellowLight
       }
     },
     {
@@ -289,13 +320,13 @@ module.exports = {
     {
       "scope": "string.regexp",
       "settings": {
-        "foreground": palette.cyanBase
+        "foreground": palette.cyanAccent
       }
     },
     {
       "scope": "constant.character.escape",
       "settings": {
-        "foreground": palette.cyanBase
+        "foreground": palette.cyanAccent
       }
     },
     {
@@ -382,58 +413,88 @@ module.exports = {
         "foreground": palette.fgBase
       }
     },
+    // ── Markdown: Headings ───────────────────────────────────────────────────
     {
-      "scope": "text.html.markdown markup.raw.inline",
+      "scope": "markup.heading.markdown, entity.name.section.markdown, markdown.heading, markup.heading, markup.heading entity.name",
       "settings": {
-        "foreground": palette.purpleDim
+        "foreground": palette.pinkVibrant,
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "scope": "markup.heading.markdown punctuation.definition.heading.markdown",
+      "settings": {
+        "foreground": palette.pinkVibrant,
+        "fontStyle": "bold"
+      }
+    },
+    // ── Markdown: Bold & Italic ──────────────────────────────────────────────
+    {
+      "scope": "markup.bold.markdown, markup.bold, markup.bold string",
+      "settings": {
+        "foreground": palette.cyanVibrant,
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "scope": "punctuation.definition.bold.markdown",
+      "settings": {
+        "foreground": palette.cyanVibrant,
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "scope": "markup.italic.markdown, markup.italic",
+      "settings": {
+        "foreground": palette.cyanVibrant,
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "scope": "punctuation.definition.italic.markdown",
+      "settings": {
+        "foreground": palette.cyanVibrant,
+        "fontStyle": "italic"
+      }
+    },
+    // ── Markdown: Inline code ────────────────────────────────────────────────
+    {
+      "scope": "markup.inline.raw.string.markdown, text.html.markdown markup.raw.inline",
+      "settings": {
+        "foreground": palette.greenAccent,
+        "fontStyle": "italic"
       }
     },
     {
       "scope": "text.html.markdown punctuation.definition.raw.markdown",
       "settings": {
-        "foreground": palette.uiMuted
+        "foreground": palette.greenAccent
       }
     },
+    // ── Markdown: Links ──────────────────────────────────────────────────────
     {
-      "scope": "markdown.heading, markup.heading | markup.heading entity.name, markup.heading.markdown punctuation.definition.heading.markdown",
+      "scope": "meta.link.inline.markdown punctuation.definition.link.title.begin.markdown, meta.link.inline.markdown punctuation.definition.link.title.end.markdown, meta.link.inline.markdown punctuation.definition.metadata.markdown, punctuation.definition.link.title.begin.markdown, punctuation.definition.link.title.end.markdown, punctuation.definition.metadata.markdown",
       "settings": {
-        "foreground": "#C3E88D"
-      }
-    },
-    {
-      "scope": "markup.italic",
-      "settings": {
-        "foreground": palette.redBase
-      }
-    },
-    {
-      "scope": "markup.bold, markup.bold string",
-      "settings": {
-        "foreground": palette.redBase
-      }
-    },
-    {
-      "scope": "markup.underline",
-      "settings": {
-        "foreground": "#F78C6C"
-      }
-    },
-    {
-      "scope": "markup.quote punctuation.definition.blockquote.markdown",
-      "settings": {
-        "foreground": palette.uiMuted
+        "foreground": palette.cyanVibrant
       }
     },
     {
       "scope": "string.other.link.title.markdown",
       "settings": {
-        "foreground": "#82AAFF"
+        "foreground": palette.yellowBase
+      }
+    },
+    {
+      "scope": "markup.underline.link.markdown, markup.underline.link",
+      "settings": {
+        "foreground": palette.greenAccent,
+        "fontStyle": "italic"
       }
     },
     {
       "scope": "string.other.link.description.title.markdown",
       "settings": {
-        "foreground": palette.purpleDim
+        "foreground": palette.yellowBase
       }
     },
     {
@@ -442,14 +503,41 @@ module.exports = {
         "foreground": palette.orangeBase
       }
     },
+    // ── Markdown: Blockquotes ────────────────────────────────────────────────
     {
-      "scope": "markup.raw.block",
+      "scope": "markup.quote.markdown, punctuation.definition.quote.begin.markdown, markup.quote",
       "settings": {
-        "foreground": palette.purpleDim
+        "foreground": palette.greenAccent
       }
     },
     {
-      "scope": "markup.raw.block.fenced.markdown, variable.language.fenced.markdown, punctuation.section.class.end",
+      "scope": "markup.quote punctuation.definition.blockquote.markdown",
+      "settings": {
+        "foreground": palette.greenAccent
+      }
+    },
+    // ── Markdown: Lists ──────────────────────────────────────────────────────
+    {
+      "scope": "beginning.punctuation.definition.list, punctuation.definition.list.begin.markdown",
+      "settings": {
+        "foreground": palette.yellowBase
+      }
+    },
+    {
+      "scope": "markup.list.numbered.markdown, markup.list.unnumbered.markdown",
+      "settings": {
+        "foreground": palette.fgBase
+      }
+    },
+    // ── Markdown: Code blocks (fenced) ───────────────────────────────────────
+    {
+      "scope": "markup.raw.block",
+      "settings": {
+        "foreground": palette.fgBase
+      }
+    },
+    {
+      "scope": "markup.raw.block.fenced.markdown, markup.fenced_code.block.markdown, markup.raw.block.markdown, punctuation.section.class.end",
       "settings": {
         "foreground": palette.fgBase
       }
@@ -457,27 +545,42 @@ module.exports = {
     {
       "scope": "variable.language.fenced.markdown",
       "settings": {
-        "foreground": palette.uiMuted
+        "foreground": palette.fgBase
       }
     },
     {
+      "scope": "markup.fenced_code.block.markdown punctuation.definition.markdown, markup.fenced_code.block.markdown punctuation, punctuation.definition.fenced.markdown, markup.raw.block.fenced.markdown punctuation",
+      "settings": {
+        "foreground": palette.greyLight
+      }
+    },
+    // ── Markdown: Underline / misc ───────────────────────────────────────────
+    {
+      "scope": "markup.underline",
+      "settings": {
+        "foreground": "#F78C6C"
+      }
+    },
+    // ── Markdown: Punctuation & separators ───────────────────────────────────
+    {
       "scope": "text.html.markdown punctuation.definition",
       "settings": {
-        "foreground": palette.uiMuted
+        "foreground": palette.purpleGrey
       }
     },
     {
       "scope": "text.html.markdown meta.disable-markdown punctuation.definition",
       "settings": {
-        "foreground": palette.cyanBase
+        "foreground": "#A4FFFF"
       }
     },
     {
-      "scope": "meta.separator",
+      "scope": "meta.separator, meta.separator.markdown",
       "settings": {
-        "foreground": palette.uiMuted
+        "foreground": palette.fgBase
       }
     },
+    // ── Markdown: Tables ─────────────────────────────────────────────────────
     {
       "scope": "markup.table",
       "settings": {
@@ -487,25 +590,25 @@ module.exports = {
     {
       "scope": "acejump.label.blue",
       "settings": {
-        "foreground": "#ffffff"
+        "foreground": palette.fgWhite
       }
     },
     {
       "scope": "acejump.label.green",
       "settings": {
-        "foreground": "#ffffff"
+        "foreground": palette.fgWhite
       }
     },
     {
       "scope": "acejump.label.orange",
       "settings": {
-        "foreground": "#ffffff"
+        "foreground": palette.fgWhite
       }
     },
     {
       "scope": "acejump.label.purple",
       "settings": {
-        "foreground": "#ffffff"
+        "foreground": palette.fgWhite
       }
     },
     {
@@ -517,7 +620,7 @@ module.exports = {
     {
       "scope": "sublimelinter.gutter-mark",
       "settings": {
-        "foreground": "#ffffff"
+        "foreground": palette.fgWhite
       }
     },
     {
@@ -572,6 +675,32 @@ module.exports = {
       "scope": "brackethighlighter.unmatched",
       "settings": {
         "foreground": palette.redBase
+      }
+    },
+    {
+      "scope": "punctuation.definition.tag.html, punctuation.definition.tag.begin.html, punctuation.definition.tag.end.html, punctuation.definition.tag.begin.tsx, punctuation.definition.tag.end.tsx, punctuation.definition.tag.begin.jsx, punctuation.definition.tag.end.jsx",
+      "settings": {
+        "foreground": palette.fgWhite
+      }
+    },
+    {
+      "scope": "variable.other.readwrite.alias.js",
+      "settings": {
+        "foreground": palette.redBase,
+        "fontStyle": "italic"
+      }
+    },
+    // PYTHON, cs, go, java
+    {
+      "scope": "meta.function-call.generic.python, entity.name.function.cs, entity.name.function.support.go",
+      "settings": {
+        "foreground": palette.fgWhite
+      }
+    },
+    {
+      "scope": "meta.function-call.arguments.python, keyword.type.string.cs, keyword.type.int.cs, keyword.type.bool.cs",
+      "settings": {
+        "foreground": palette.pinkLight
       }
     }
   ],

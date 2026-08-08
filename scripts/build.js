@@ -61,9 +61,30 @@ variants.forEach(variant => {
       let styles = [];
       
       // Reglas Globales
-      if (scope.match(/comment/i)) styles.push('italic');
+      if (scope.match(/comment/i) && !scope.match(/markup\.heading/i)) styles.push('italic');
       if (scope.match(/entity\.other\.attribute-name\.(jsx|tsx)/i)) styles.push('italic');
       if (scope.match(/variable\.language\.(this|self|super)/i)) styles.push('italic');
+      // Markdown: Headings siempre en bold (solo scopes dedicados, no los combinados de strings)
+      const isOnlyHeadingScope = scope.match(/^markup\.heading/) || scope.match(/^markdown\.heading/) || scope.match(/^entity\.name\.section\.markdown/) || scope.match(/markup\.heading\.markdown[, $]/);
+      if (isOnlyHeadingScope) {
+        if (!styles.includes('bold')) styles.push('bold');
+      }
+      if (scope.match(/^punctuation\.definition\.heading\.markdown/)) {
+        if (!styles.includes('bold')) styles.push('bold');
+      }
+      // Markdown: Bold y su puntuación
+      if (scope.match(/markup\.bold\.markdown/i) || scope.match(/^markup\.bold[, $]/i) || scope.match(/punctuation\.definition\.bold\.markdown/i)) {
+        if (!styles.includes('bold')) styles.push('bold');
+      }
+      // Markdown: Italic y su puntuación
+      if (scope.match(/markup\.italic\.markdown/i) || scope.match(/^markup\.italic[, $]/i) || scope.match(/punctuation\.definition\.italic\.markdown/i)) {
+        if (!styles.includes('italic')) styles.push('italic');
+      }
+      // Markdown: Inline code e items con fontStyle italic
+      if (scope.match(/markup\.inline\.raw\.string\.markdown/i)) styles.push('italic');
+      if (scope.match(/markup\.underline\.link/i)) styles.push('italic');
+      // JS: variable alias en italic
+      if (scope.match(/variable\.other\.readwrite\.alias\.js/i)) styles.push('italic');
 
       // Reglas Expresivas (Solamente en la variante Italic)
       if (variant.profile === 'expressive') {
