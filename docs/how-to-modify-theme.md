@@ -1,0 +1,89 @@
+# Manual de Mantenimiento: Maxiano Theme
+
+Este documento detalla el flujo de trabajo (Workflow) arquitectónico para mantener, modificar o extender la paleta de colores del Tema Maxiano.
+
+**🚨 Regla de Oro:** NUNCA modifiques manualmente los archivos `.json` dentro de la carpeta `/themes/`. Estos son archivos compilados. Si lo hacés, tus cambios se sobrescribirán en la próxima compilación.
+
+---
+
+## 🏗️ La Arquitectura Básica
+
+Toda tu atención debe centrarse en dos lugares:
+1. **Source of Truth:** `src/theme-config.js` (Acá viven tus variables y reglas semánticas).
+2. **El Compilador:** `scripts/build.js` (El script que lee tu Source of Truth y escupe las variantes).
+
+---
+
+## 🎨 Escenario 1: Cómo modificar un color existente
+
+Supongamos que el rosa (`pinkBase`) actual de tu tema te parece muy saturado y lo querés apagar un poco.
+
+1. Abrí el archivo `src/theme-config.js`.
+2. Buscá el objeto `const palette` en la parte superior.
+3. Ubicá la variable deseada y modificá su string hexadecimal. De paso, ¡podés dejar un comentario del por qué cambiaste el color!
+   ```javascript
+   // Antes
+   pinkBase: "#ff8bee",
+   
+   // Después
+   pinkBase: "#e87ea5", // Lo apagué un poco porque cansaba la vista en jornadas largas
+   ```
+4. **Compilar:** Abrí la terminal en la raíz del proyecto y ejecutá:
+   ```bash
+   node scripts/build.js
+   ```
+5. ¡Listo! Automáticamente las 4 variantes de tus temas (`/themes/*.json`) van a heredar este nuevo rosa exacto en los lugares correspondientes.
+
+---
+
+## 🛠️ Escenario 2: Cómo agregar un color NUEVO a la paleta
+
+Supongamos que querés introducir un color Naranja brillante (`orangeBright`) exclusivamente para resaltar los *warnings* severos del editor porque el naranja base se queda corto.
+
+### Paso 2.1: Registrar el Nuevo Token en la Paleta
+Agregá la variable al principio de `src/theme-config.js`:
+```javascript
+const palette = {
+  // ... (colores existentes)
+  orangeBase: "#ffb86c",
+  orangeBright: "#ff9133", // Nuevo token específico para alertas severas
+};
+```
+
+### Paso 2.2: Aplicar la Variable en el Tema
+Bajá en el mismo archivo hasta el `module.exports`, donde está la configuración final.
+Si es para la **UI del editor**, agregalo en `colors`:
+```javascript
+colors: {
+  // ...
+  "editorWarning.foreground": palette.orangeBright, // Acá inyectás tu nuevo color
+},
+```
+
+Si es para la **sintaxis del código**, buscalo o agregalo en `tokenColors`:
+```javascript
+tokenColors: [
+  // ...
+  {
+    name: "Severe Warnings Output",
+    scope: ["log.warning.severe"],
+    settings: {
+      foreground: palette.orangeBright
+    }
+  }
+]
+```
+
+### Paso 2.3: Compilar el Tema
+En la terminal ejecutás:
+```bash
+node scripts/build.js
+```
+El script leerá la nueva llave `orangeBright` y la volcará compilada a los 4 temas como `"#ff9133"`.
+
+---
+
+## 🚀 Cheatsheet de Comandos
+- Para compilar el tema tras CUALQUIER cambio:
+  `node scripts/build.js`
+- Para previsualizar los cambios en VS Code, tenés que recargar la ventana (`Ctrl + Shift + P` -> `Developer: Reload Window`) o tener la extensión corriendo en modo *Debug* (F5).
