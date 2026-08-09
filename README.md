@@ -42,16 +42,34 @@ Tested and tuned for:
 
 ---
 
-## Installation
+## 📦 Installation
 
-1. Download the latest `.vsix` file from the [Releases](https://github.com/maxgb23/funky-theme/releases) page
-2. In VS Code: `Ctrl+Shift+P` → **Extensions: Install from VSIX...**
-3. Select the downloaded file
-4. Press `Ctrl+Shift+P` → **Preferences: Color Theme** → Select a **Funky** variant
+This theme **is not published on the Marketplace**. Being store-agnostic, it is distributed directly via a `.vsix` file. This ensures universal compatibility with any VS Code-based editor (VS Code, Cursor, Windsurf, etc.).
+
+You can install it in two ways:
+
+### Option A: Editor UI (Recommended)
+
+1. Download the latest `.vsix` file from the [Releases](https://github.com/maxgb23/funky-theme/releases) page.
+2. Open your editor and open the Command Palette (`Ctrl+Shift+P` on Windows/Linux or `Cmd+Shift+P` on Mac).
+3. Type and select **`Extensions: Install from VSIX...`**.
+4. Browse and select the downloaded `.vsix` file.
+5. To activate it, open the Command Palette again, type **`Preferences: Color Theme`**, and select your favorite **Funky** variant.
+
+### Option B: Terminal (Hacker Mode)
+
+If you have already downloaded the `.vsix` file, you can install it via CLI:
+
+```bash
+code --install-extension path/to/funky-theme-x.x.x.vsix
+```
+*(Note: Replace `code` with your editor's CLI command if you are not using VS Code, e.g., `cursor --install-extension ...`)*
 
 ---
 
 ## Build from source
+
+> **Note**: You can use `npm` to install dependencies and run scripts, but **`pnpm` is highly recommended** for better security, stricter dependency resolution, and to avoid lockfile conflicts.
 
 ```bash
 # Clone the repo

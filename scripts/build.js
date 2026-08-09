@@ -61,7 +61,7 @@ variants.forEach(variant => {
       let styles = [];
       
       // Reglas Globales
-      if (scope.match(/comment/i) && !scope.match(/markup\.heading/i)) styles.push('italic');
+      // Comments: sin italic (fontStyle: "" explícito en theme-config)
       if (scope.match(/entity\.other\.attribute-name\.(jsx|tsx)/i)) styles.push('italic');
       if (scope.match(/variable\.language\.(this|self|super)/i)) styles.push('italic');
       // Markdown: Headings siempre en bold (solo scopes dedicados, no los combinados de strings)
