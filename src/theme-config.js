@@ -227,7 +227,13 @@ module.exports = {
     {
       "scope": "source.css support.type, source.sass support.type, source.scss support.type, source.less support.type, source.stylus support.type",
       "settings": {
-        "foreground": "#B2CCD6"
+        "foreground": palette.fgWhite
+      }
+    },
+    {
+      "scope": "entity.other.attribute-name.class.css",
+      "settings": {
+        "foreground": palette.yellowBase
       }
     },
     {
