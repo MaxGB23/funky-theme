@@ -70,11 +70,6 @@
         "label": "Funky High Contrast",
         "uiTheme": "hc-black",
         "path": "./themes/maxiano-high-contrast.json"
-      },
-      {
-        "label": "Funky Dark Backup",
-        "uiTheme": "hc-black",
-        "path": "./backup/maxiano-dark-copy.json"
       }
     ]
   },
