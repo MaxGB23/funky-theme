@@ -1,4 +1,4 @@
-# Funky Theme
+# Funky Theme 👻
 
 > A vibrant, semantically-driven dark theme for Visual Studio Code — crafted for long coding sessions without sacrificing personality.
 
