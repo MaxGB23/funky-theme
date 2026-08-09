@@ -70,11 +70,11 @@
       {
         "label": "Funky Dark Backup",
         "uiTheme": "hc-black",
-        "path": "./themes/maxiano-dark-copy.json"
+        "path": "./backup/maxiano-dark-copy.json"
       }
     ]
   },
-  "dependencies": {
+  "devDependencies": {
     "json5": "^2.2.3"
   }
 }

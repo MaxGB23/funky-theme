@@ -1,0 +1,10 @@
+# Excluir todo por defecto y luego incluir solo lo necesario
+**
+
+# Lo que SÍ va en el VSIX
+!package.json
+!LICENSE
+!icon.png
+!README.md
+!themes/
+!themes/*.json
