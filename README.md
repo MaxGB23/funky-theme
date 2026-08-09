@@ -31,14 +31,13 @@ Funky Theme is built around a **semantic, tiered color palette** defined in a si
 
 ## Language Support
 
-Tested and tuned for:
+While primarily dedicated to and optimized for **web development** (specifically for workflows using **React, HTML, CSS, JavaScript, TypeScript, Next.js, and Markdown**), it has also been tested and tuned for other backend and scripting languages.
 
-- TypeScript / JavaScript / JSX / TSX
-- HTML / CSS / SCSS / SASS / Less
-- JSON / JSON5
-- Markdown (headings, bold, italic, links, blockquotes, code blocks)
-- Python / C# / Go
-- Regular Expressions
+- **Web & Frontend**: TypeScript / JavaScript / JSX / TSX (React, Next.js), HTML / CSS / SCSS / SASS / Less, JSON / JSON5
+- **Content & Documentation**: Markdown (headings, bold, italic, links, blockquotes, code blocks)
+- **Backend & Scripts**: Java, Python, C#, Go
+- **Utilities**: Regular Expressions
+
 
 ---
 
