@@ -44,17 +44,29 @@ Tested and tuned for:
 
 ## Installation
 
-### Via VS Code Marketplace
-1. Open VS Code
-2. Go to **Extensions** (`Ctrl+Shift+X`)
-3. Search for **Funky Theme**
-4. Click **Install**
-5. Press `Ctrl+Shift+P` → **Preferences: Color Theme** → Select a Funky variant
-
-### Via VSIX (manual)
-1. Download the `.vsix` file from the [Releases](https://github.com/maxgb23/funky-theme/releases) page
+1. Download the latest `.vsix` file from the [Releases](https://github.com/maxgb23/funky-theme/releases) page
 2. In VS Code: `Ctrl+Shift+P` → **Extensions: Install from VSIX...**
 3. Select the downloaded file
+4. Press `Ctrl+Shift+P` → **Preferences: Color Theme** → Select a **Funky** variant
+
+---
+
+## Build from source
+
+```bash
+# Clone the repo
+git clone https://github.com/maxgb23/funky-theme
+cd funky-theme
+
+# Install dependencies
+pnpm install
+
+# Compile the theme JSON files
+pnpm build
+
+# Generate the .vsix package
+pnpm package
+```
 
 ---
 

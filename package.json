@@ -45,6 +45,10 @@
   "bugs": {
     "url": "https://github.com/maxgb23/funky-theme/issues"
   },
+  "scripts": {
+    "build": "node scripts/build.js",
+    "package": "node scripts/build.js && vsce package --no-dependencies"
+  },
   "contributes": {
     "themes": [
       {
@@ -75,6 +79,7 @@
     ]
   },
   "devDependencies": {
+    "@vscode/vsce": "^3.9.2",
     "json5": "^2.2.3"
   }
 }
