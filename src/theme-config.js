@@ -99,7 +99,19 @@ module.exports = {
     "terminal.ansiBlue": palette.purpleBase,
     "terminal.ansiMagenta": palette.pinkLight,
     "terminal.ansiCyan": "#A4FFFF",
-    "terminal.ansiWhite": palette.fgBase
+    "terminal.ansiWhite": palette.fgBase,
+    "titleBar.activeBackground": palette.bgDeep,
+    "titleBar.activeForeground": palette.fgWhite,
+    "titleBar.inactiveBackground": palette.bgDeep + "d9",
+    "titleBar.inactiveForeground": palette.fgWhite + "99",
+    "menubar.selectionForeground": palette.fgWhite,
+    "menubar.selectionBackground": palette.bgElevated,
+    "statusBar.background": palette.bgBase,
+    "statusBar.foreground": palette.fgWhite,
+    "statusBar.noFolderBackground": palette.bgDeep,
+    "statusBar.debuggingBackground": palette.redBase,
+    "statusBarItem.hoverBackground": palette.fgWhite + "33",
+    "statusBarItem.activeBackground": palette.fgWhite + "80"
   },
   "tokenColors": [
     {

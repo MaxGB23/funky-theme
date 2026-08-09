@@ -41,9 +41,23 @@
     "terminal.ansiMagenta": "#ffa8e6",
     "terminal.ansiCyan": "#A4FFFF",
     "terminal.ansiWhite": "#f8f8f2",
+    "titleBar.activeBackground": "#211e2b",
+    "titleBar.activeForeground": "#ffffff",
+    "titleBar.inactiveBackground": "#211e2bd9",
+    "titleBar.inactiveForeground": "#ffffff99",
+    "menubar.selectionForeground": "#ffffff",
+    "menubar.selectionBackground": "#2e2a3a",
+    "statusBar.background": "#24212e",
+    "statusBar.foreground": "#ffffff",
+    "statusBar.noFolderBackground": "#211e2b",
+    "statusBar.debuggingBackground": "#ff5555",
+    "statusBarItem.hoverBackground": "#ffffff33",
+    "statusBarItem.activeBackground": "#ffffff80",
     "contrastBorder": "#ffffff25",
     "activityBar.border": "#ffffff25",
-    "editorGroup.border": "#ffffff25"
+    "editorGroup.border": "#ffffff25",
+    "titleBar.border": "#ffffff25",
+    "statusBar.border": "#ffffff25"
   },
   "tokenColors": [
     {

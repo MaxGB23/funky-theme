@@ -28,10 +28,11 @@ variants.forEach(variant => {
   // Perfil: Darker (Oscurecer fondos drásticamente)
   if (variant.profile === 'ultra-nocturno') {
     Object.keys(theme.colors || {}).forEach(k => {
+      let color = theme.colors[k].toLowerCase();
       // Backgrounds del config original (#24212e, #211e2b, #2e2a3a)
-      if (theme.colors[k].toLowerCase() === '#24212e') theme.colors[k] = '#181520';
-      if (theme.colors[k].toLowerCase() === '#211e2b') theme.colors[k] = '#121018';
-      if (theme.colors[k].toLowerCase() === '#2e2a3a') theme.colors[k] = '#201d2a';
+      if (color.startsWith('#24212e')) theme.colors[k] = '#181520' + color.slice(7);
+      if (color.startsWith('#211e2b')) theme.colors[k] = '#121018' + color.slice(7);
+      if (color.startsWith('#2e2a3a')) theme.colors[k] = '#201d2a' + color.slice(7);
     });
   }
   
@@ -41,6 +42,8 @@ variants.forEach(variant => {
     theme.colors['activityBar.border'] = '#ffffff25';
     theme.colors['sideBar.border'] = '#ffffff25';
     theme.colors['editorGroup.border'] = '#ffffff25';
+    theme.colors['titleBar.border'] = '#ffffff25';
+    theme.colors['statusBar.border'] = '#ffffff25';
     
     if (theme.tokenColors) {
       theme.tokenColors.forEach(token => {

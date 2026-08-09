@@ -1,7 +1,7 @@
 {
   "name": "Maxiano Darker",
   "colors": {
-    "sideBar.background": "#24212ed3",
+    "sideBar.background": "#181520d3",
     "sideBar.foreground": "#FFFFFF",
     "editor.background": "#181520",
     "editorCursor.foreground": "#ffde25",
@@ -40,7 +40,19 @@
     "terminal.ansiBlue": "#bd93f9",
     "terminal.ansiMagenta": "#ffa8e6",
     "terminal.ansiCyan": "#A4FFFF",
-    "terminal.ansiWhite": "#f8f8f2"
+    "terminal.ansiWhite": "#f8f8f2",
+    "titleBar.activeBackground": "#121018",
+    "titleBar.activeForeground": "#ffffff",
+    "titleBar.inactiveBackground": "#121018d9",
+    "titleBar.inactiveForeground": "#ffffff99",
+    "menubar.selectionForeground": "#ffffff",
+    "menubar.selectionBackground": "#201d2a",
+    "statusBar.background": "#181520",
+    "statusBar.foreground": "#ffffff",
+    "statusBar.noFolderBackground": "#121018",
+    "statusBar.debuggingBackground": "#ff5555",
+    "statusBarItem.hoverBackground": "#ffffff33",
+    "statusBarItem.activeBackground": "#ffffff80"
   },
   "tokenColors": [
     {
