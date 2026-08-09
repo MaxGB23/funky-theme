@@ -47,7 +47,7 @@
   },
   "scripts": {
     "build": "node scripts/build.js",
-    "package": "node scripts/build.js && vsce package --no-dependencies"
+    "package": "node scripts/build.js && node_modules/.bin/vsce.CMD package --no-dependencies"
   },
   "contributes": {
     "themes": [
@@ -81,5 +81,8 @@
   "devDependencies": {
     "@vscode/vsce": "^3.9.2",
     "json5": "^2.2.3"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": ["@vscode/vsce-sign", "keytar"]
   }
 }
