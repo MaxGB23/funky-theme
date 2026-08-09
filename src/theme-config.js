@@ -111,7 +111,8 @@ module.exports = {
     "statusBar.noFolderBackground": palette.bgDeep,
     "statusBar.debuggingBackground": palette.redBase,
     "statusBarItem.hoverBackground": palette.fgWhite + "33",
-    "statusBarItem.activeBackground": palette.fgWhite + "80"
+    "statusBarItem.activeBackground": palette.fgWhite + "80",
+    "editorGroupHeader.tabsBackground": palette.bgDeep
   },
   "tokenColors": [
     {

@@ -52,7 +52,8 @@
     "statusBar.noFolderBackground": "#121018",
     "statusBar.debuggingBackground": "#ff5555",
     "statusBarItem.hoverBackground": "#ffffff33",
-    "statusBarItem.activeBackground": "#ffffff80"
+    "statusBarItem.activeBackground": "#ffffff80",
+    "editorGroupHeader.tabsBackground": "#121018"
   },
   "tokenColors": [
     {

@@ -53,6 +53,7 @@
     "statusBar.debuggingBackground": "#ff5555",
     "statusBarItem.hoverBackground": "#ffffff33",
     "statusBarItem.activeBackground": "#ffffff80",
+    "editorGroupHeader.tabsBackground": "#211e2b",
     "contrastBorder": "#ffffff25",
     "activityBar.border": "#ffffff25",
     "editorGroup.border": "#ffffff25",
