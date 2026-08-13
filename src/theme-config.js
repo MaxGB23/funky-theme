@@ -52,6 +52,10 @@ const palette = {
   // Verdes (Classes, RegEx, Strings exitosos)
   greenBase: "#8bffa8",    // green-base (Reemplaza a '#8affc4', '#c7ffc8', '#b9ffba')
   greenAccent: "#b9ffba",  // green-accent - Strings, unquoted labels y git untracked
+
+  // === UI Accent & Surfaces ===
+  uiAccent: "#8c8eff",     // ui-accent - Botones, focusBorder y activityBarBadge
+  bgScrollbar: "#4e4b59",  // bg-scrollbar - Slider del scrollbar (rest/hover/active)
 };
 
 // ==========================================
@@ -64,7 +68,8 @@ module.exports = {
     "sideBar.foreground": "#FFFFFF",
     "editor.background": palette.bgBase,
     "editorCursor.foreground": "#ffde25",
-    "editor.lineHighlightBackground": palette.bgBase,
+    "editor.lineHighlightBackground": palette.bgElevated,
+    "editor.lineHighlightBorder": palette.bgElevated,
     "activityBar.background": palette.bgDeep,
     "activityBar.foreground": "#ffffff",
     "sideBar.border": palette.bgBase,
@@ -112,7 +117,53 @@ module.exports = {
     "statusBar.debuggingBackground": palette.redBase,
     "statusBarItem.hoverBackground": palette.fgWhite + "33",
     "statusBarItem.activeBackground": palette.fgWhite + "80",
-    "editorGroupHeader.tabsBackground": palette.bgDeep
+    "editorGroupHeader.tabsBackground": palette.bgDeep,
+
+    // ── Widgets / Find ────────────────────────────────────────────────────────
+    "editorWidget.background": palette.bgBase + "d3",
+    "editorWidget.border": palette.bgDeep,
+    "widget.shadow": "#00000030",
+    "editorFindWidget.background": palette.bgBase,
+    "editorFindWidget.foreground": palette.fgWhite,
+    "editorFindWidget.border": palette.bgDeep,
+
+    // ── Inputs ────────────────────────────────────────────────────────────────
+    "input.background": palette.bgDeep,
+    "input.foreground": palette.fgWhite,
+    "input.border": palette.comments,
+
+    // ── Menús y Listas ────────────────────────────────────────────────────────
+    "menu.background": palette.bgBase,
+    "menu.foreground": palette.fgWhite,
+    "menu.selectionForeground": palette.fgWhite,
+    "menu.separatorBackground": palette.comments,
+    "list.activeSelectionBackground": palette.bgElevated,
+    "list.hoverBackground": palette.bgElevated + "80",
+    "list.inactiveSelectionBackground": palette.bgBase,
+
+    // ── Scrollbar ─────────────────────────────────────────────────────────────
+    "scrollbar.background": palette.bgBase + "ea",
+    "scrollbar.shadow": palette.bgBase + "ea",
+    "scrollbarSlider.background": palette.bgScrollbar + "80",
+    "scrollbarSlider.hoverBackground": palette.bgScrollbar + "a0",
+    "scrollbarSlider.activeBackground": palette.bgScrollbar + "c0",
+
+    // ── Diff Editor ───────────────────────────────────────────────────────────
+    "diffEditor.insertedLineBackground": palette.uiAccent + "46",
+    "diffEditor.removedLineBackground": "#ff000049",
+    "diffEditor.insertedTextBackground": palette.uiAccent + "8e",
+    "diffEditor.removedTextBackground": "#ff000052",
+
+    // ── Botones / Focus / Badges ──────────────────────────────────────────────
+    "button.background": palette.uiAccent + "d2",
+    "button.foreground": palette.fgWhite,
+    "button.hoverBackground": palette.uiAccent + "b6",
+    "focusBorder": palette.uiAccent + "d2",
+    "activityBarBadge.background": palette.uiAccent + "d2",
+
+    // ── Sticky Scroll ─────────────────────────────────────────────────────────
+    "editorStickyScroll.background": palette.bgDeep,
+    "editorStickyScrollHover.background": palette.bgElevated
   },
   "tokenColors": [
     {
@@ -301,7 +352,7 @@ module.exports = {
       }
     },
     {
-      "scope": "text.html, meta.tag.inline.any.html, source",
+      "scope": "text.html, meta.tag.inline.any.html, source, text.xml",
       "settings": {
         "foreground": palette.fgBase
       }

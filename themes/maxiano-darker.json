@@ -5,7 +5,8 @@
     "sideBar.foreground": "#FFFFFF",
     "editor.background": "#181520",
     "editorCursor.foreground": "#ffde25",
-    "editor.lineHighlightBackground": "#181520",
+    "editor.lineHighlightBackground": "#201d2a",
+    "editor.lineHighlightBorder": "#201d2a",
     "activityBar.background": "#121018",
     "activityBar.foreground": "#ffffff",
     "sideBar.border": "#181520",
@@ -53,7 +54,39 @@
     "statusBar.debuggingBackground": "#ff5555",
     "statusBarItem.hoverBackground": "#ffffff33",
     "statusBarItem.activeBackground": "#ffffff80",
-    "editorGroupHeader.tabsBackground": "#121018"
+    "editorGroupHeader.tabsBackground": "#121018",
+    "editorWidget.background": "#181520d3",
+    "editorWidget.border": "#121018",
+    "widget.shadow": "#00000030",
+    "editorFindWidget.background": "#181520",
+    "editorFindWidget.foreground": "#ffffff",
+    "editorFindWidget.border": "#121018",
+    "input.background": "#121018",
+    "input.foreground": "#ffffff",
+    "input.border": "#555555",
+    "menu.background": "#181520",
+    "menu.foreground": "#ffffff",
+    "menu.selectionForeground": "#ffffff",
+    "menu.separatorBackground": "#555555",
+    "list.activeSelectionBackground": "#201d2a",
+    "list.hoverBackground": "#201d2a80",
+    "list.inactiveSelectionBackground": "#181520",
+    "scrollbar.background": "#181520ea",
+    "scrollbar.shadow": "#181520ea",
+    "scrollbarSlider.background": "#4e4b5980",
+    "scrollbarSlider.hoverBackground": "#4e4b59a0",
+    "scrollbarSlider.activeBackground": "#4e4b59c0",
+    "diffEditor.insertedLineBackground": "#8c8eff46",
+    "diffEditor.removedLineBackground": "#ff000049",
+    "diffEditor.insertedTextBackground": "#8c8eff8e",
+    "diffEditor.removedTextBackground": "#ff000052",
+    "button.background": "#8c8effd2",
+    "button.foreground": "#ffffff",
+    "button.hoverBackground": "#8c8effb6",
+    "focusBorder": "#8c8effd2",
+    "activityBarBadge.background": "#8c8effd2",
+    "editorStickyScroll.background": "#121018",
+    "editorStickyScrollHover.background": "#201d2a"
   },
   "tokenColors": [
     {
@@ -241,7 +274,7 @@
       }
     },
     {
-      "scope": "text.html, meta.tag.inline.any.html, source",
+      "scope": "text.html, meta.tag.inline.any.html, source, text.xml",
       "settings": {
         "foreground": "#f8f8f2"
       }
