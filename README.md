@@ -87,6 +87,16 @@ pnpm package
 
 ---
 
+## Maintenance & Contributing
+
+Want to tweak colors, add new tokens, or build your own variant on top of Funky Theme?
+
+👉 Read the **[Guía de Mantenimiento](./docs/how-to-modify-theme.md)** — a step-by-step guide covering the architecture, how to modify existing colors, and how to add new palette tokens.
+
+> The guide is written in Spanish, as most contributors and maintainers of this project are Spanish-speaking developers.
+
+---
+
 ## License
 
 [MIT](./LICENSE) © maxgb23

@@ -149,10 +149,12 @@ module.exports = {
     "scrollbarSlider.activeBackground": palette.bgScrollbar + "c0",
 
     // ── Diff Editor ───────────────────────────────────────────────────────────
-    "diffEditor.insertedLineBackground": palette.uiAccent + "46",
-    "diffEditor.removedLineBackground": "#ff000049",
-    "diffEditor.insertedTextBackground": palette.uiAccent + "8e",
-    "diffEditor.removedTextBackground": "#ff000052",
+    // Opacidades reducidas para evitar stacking en diffs inline de Antigravity AI.
+    // Valores previos: inserted 46/8e, removed 49/52.
+    "diffEditor.insertedLineBackground": palette.uiAccent + "25",
+    "diffEditor.removedLineBackground": "#ff000025",
+    "diffEditor.insertedTextBackground": palette.uiAccent + "40",
+    "diffEditor.removedTextBackground": "#ff000040",
 
     // ── Botones / Focus / Badges ──────────────────────────────────────────────
     "button.background": palette.uiAccent + "d2",

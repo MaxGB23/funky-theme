@@ -2,7 +2,7 @@
 
 Este documento detalla el flujo de trabajo (Workflow) arquitectónico para mantener, modificar o extender la paleta de colores del Tema Maxiano.
 
-**🚨 Regla de Oro:** NUNCA modifiques manualmente los archivos `.json` dentro de la carpeta `/themes/`. Estos son archivos compilados. Si lo hacés, tus cambios se sobrescribirán en la próxima compilación.
+**🚨 Regla de Oro:** NUNCA modifiques manualmente los archivos `.json` dentro de la carpeta `/themes/`. Estos son archivos compilados. Si lo haces, tus cambios se sobrescribirán en la próxima compilación.
 
 ---
 
@@ -16,11 +16,11 @@ Toda tu atención debe centrarse en dos lugares:
 
 ## 🎨 Escenario 1: Cómo modificar un color existente
 
-Supongamos que el rosa (`pinkBase`) actual de tu tema te parece muy saturado y lo querés apagar un poco.
+Supongamos que el rosa (`pinkBase`) actual de tu tema te parece muy saturado y lo quieres apagar un poco.
 
-1. Abrí el archivo `src/theme-config.js`.
-2. Buscá el objeto `const palette` en la parte superior.
-3. Ubicá la variable deseada y modificá su string hexadecimal. De paso, ¡podés dejar un comentario del por qué cambiaste el color!
+1. Abre el archivo `src/theme-config.js`.
+2. Busca el objeto `const palette` en la parte superior.
+3. Ubica la variable deseada y modifica su string hexadecimal. De paso, ¡puedes dejar un comentario del por qué cambiaste el color!
    ```javascript
    // Antes
    pinkBase: "#ff8bee",
@@ -28,7 +28,7 @@ Supongamos que el rosa (`pinkBase`) actual de tu tema te parece muy saturado y l
    // Después
    pinkBase: "#e87ea5", // Lo apagué un poco porque cansaba la vista en jornadas largas
    ```
-4. **Compilar:** Abrí la terminal en la raíz del proyecto y ejecutá:
+4. **Compilar:** Abre la terminal en la raíz del proyecto y ejecuta:
    ```bash
    node scripts/build.js
    ```
@@ -38,10 +38,10 @@ Supongamos que el rosa (`pinkBase`) actual de tu tema te parece muy saturado y l
 
 ## 🛠️ Escenario 2: Cómo agregar un color NUEVO a la paleta
 
-Supongamos que querés introducir un color Naranja brillante (`orangeBright`) exclusivamente para resaltar los *warnings* severos del editor porque el naranja base se queda corto.
+Supongamos que quieres introducir un color Naranja brillante (`orangeBright`) exclusivamente para resaltar los *warnings* severos del editor porque el naranja base se queda corto.
 
 ### Paso 2.1: Registrar el Nuevo Token en la Paleta
-Agregá la variable al principio de `src/theme-config.js`:
+Agrega la variable al principio de `src/theme-config.js`:
 ```javascript
 const palette = {
   // ... (colores existentes)
@@ -51,8 +51,8 @@ const palette = {
 ```
 
 ### Paso 2.2: Aplicar la Variable en el Tema
-Bajá en el mismo archivo hasta el `module.exports`, donde está la configuración final.
-Si es para la **UI del editor**, agregalo en `colors`:
+Baja en el mismo archivo hasta el `module.exports`, donde está la configuración final.
+Si es para la **UI del editor**, agrégalo en `colors`:
 ```javascript
 colors: {
   // ...
@@ -60,7 +60,7 @@ colors: {
 },
 ```
 
-Si es para la **sintaxis del código**, buscalo o agregalo en `tokenColors`:
+Si es para la **sintaxis del código**, búscalo o agrégalo en `tokenColors`:
 ```javascript
 tokenColors: [
   // ...
@@ -75,7 +75,7 @@ tokenColors: [
 ```
 
 ### Paso 2.3: Compilar el Tema
-En la terminal ejecutás:
+En la terminal ejecuta:
 ```bash
 node scripts/build.js
 ```
@@ -86,4 +86,4 @@ El script leerá la nueva llave `orangeBright` y la volcará compilada a los 4 t
 ## 🚀 Cheatsheet de Comandos
 - Para compilar el tema tras CUALQUIER cambio:
   `node scripts/build.js`
-- Para previsualizar los cambios en VS Code, tenés que recargar la ventana (`Ctrl + Shift + P` -> `Developer: Reload Window`) o tener la extensión corriendo en modo *Debug* (F5).
+- Para previsualizar los cambios en VS Code, tienes que recargar la ventana (`Ctrl + Shift + P` -> `Developer: Reload Window`) o tener la extensión corriendo en modo *Debug* (F5).
