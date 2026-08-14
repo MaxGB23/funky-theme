@@ -34,6 +34,12 @@ variants.forEach(variant => {
       if (color.startsWith('#211e2b')) theme.colors[k] = '#121018' + color.slice(7);
       if (color.startsWith('#2e2a3a')) theme.colors[k] = '#201d2a' + color.slice(7);
     });
+    
+    // Bajar opacidad de diffs aún más porque el fondo es más oscuro
+    theme.colors['diffEditor.insertedLineBackground'] = '#8c8eff18';
+    theme.colors['diffEditor.removedLineBackground'] = '#ff000018';
+    theme.colors['diffEditor.insertedTextBackground'] = '#8c8eff28';
+    theme.colors['diffEditor.removedTextBackground'] = '#ff000028';
   }
   
   // Perfil: High Contrast (Accesibilidad visual)
