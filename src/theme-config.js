@@ -37,6 +37,7 @@ const palette = {
   pinkLight: "#ffa8e6",    // pink-light - Git ignored, constantes numéricas y parámetros
   pinkAccent: "#ff87c5",   // pink-accent - Tags HTML/SGM y git deleted markers
   pinkVibrant: "#ff8ddb",  // pink-vibrant - Headings de Markdown
+  pinkTerminal: "#ff55a4", // pink-terminal - ANSI red/bright-red de terminal y git deleted (unifica el rojo de estado)
 
   // Morados (Operators, Imports/Exports, Support Classes)
   purpleDim: "#c792ea",    // purple-dim (Reemplaza a '#d6acff') - Operadores matemáticos o lógicos
@@ -83,14 +84,14 @@ module.exports = {
     "tab.hoverBackground": palette.bgElevated,
     "tab.hoverForeground": "#FFFFFF",
     "gitDecoration.modifiedResourceForeground": palette.cyanVibrant,
-    "gitDecoration.deletedResourceForeground": "#ff55a4",
+    "gitDecoration.deletedResourceForeground": palette.pinkTerminal,
     "gitDecoration.untrackedResourceForeground": palette.greenBase,
     "gitDecoration.ignoredResourceForeground": palette.pinkLight,
     "gitDecoration.conflictingResourceForeground": palette.orangeBase,
     "terminal.background": palette.bgDeep,
     "terminal.foreground": palette.fgBase,
     "terminal.ansiBrightBlack": "#6272A4",
-    "terminal.ansiBrightRed": palette.redBase,
+    "terminal.ansiBrightRed": palette.pinkTerminal,
     "terminal.ansiBrightGreen": palette.pinkLight,
     "terminal.ansiBrightYellow": palette.yellowBase,
     "terminal.ansiBrightBlue": palette.purpleDim,
@@ -98,7 +99,7 @@ module.exports = {
     "terminal.ansiBrightCyan": "#A4FFFF",
     "terminal.ansiBrightWhite": "#FFFFFF",
     "terminal.ansiBlack": palette.bgDeep,
-    "terminal.ansiRed": palette.redBase,
+    "terminal.ansiRed": palette.pinkTerminal,
     "terminal.ansiGreen": palette.greenAccent,
     "terminal.ansiYellow": palette.yellowBase,
     "terminal.ansiBlue": palette.purpleBase,
