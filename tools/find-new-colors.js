@@ -1,4 +1,4 @@
-// Uso: node src/find-new-colors.js
+// Uso: node tools/find-new-colors.js
 // Este script encuentra los colores que están en el tema pero no están en el archivo de configuración.
 
 const fs = require('fs');
