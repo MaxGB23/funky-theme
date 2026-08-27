@@ -679,8 +679,7 @@
     {
       "scope": "variable.other.readwrite.alias.js",
       "settings": {
-        "foreground": "#ff5555",
-        "fontStyle": "italic"
+        "foreground": "#ffffff"
       }
     },
     {

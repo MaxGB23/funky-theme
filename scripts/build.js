@@ -97,11 +97,12 @@ variants.forEach(variant => {
       // Markdown: Inline code e items con fontStyle italic
       if (scope.match(/markup\.inline\.raw\.string\.markdown/i)) styles.push('italic');
       if (scope.match(/markup\.underline\.link/i)) styles.push('italic');
-      // JS: variable alias en italic
-      if (scope.match(/variable\.other\.readwrite\.alias\.js/i)) styles.push('italic');
+      // JS: variable alias — el italic se aplica SOLO en la variante Italic (abajo), normal en el resto
 
       // Reglas Expresivas (Solamente en la variante Italic)
       if (variant.profile === 'expressive') {
+        // JS: variable alias -> italic
+        if (scope.match(/variable\.other\.readwrite\.alias\.js/i)) styles.push('italic');
         if (scope.match(/variable\.parameter/i) || 
             scope.match(/storage\.type/i) || 
             scope.match(/meta\.decorator/i) || 

@@ -767,11 +767,12 @@ module.exports = {
         "foreground": palette.fgWhite
       }
     },
+    // variable.other.readwrite.alias.js — foreground compartido; el italic lo pone build.js SOLO en la variante Italic (bloque expressive)
     {
       "scope": "variable.other.readwrite.alias.js",
       "settings": {
-        "foreground": palette.redBase,
-        "fontStyle": "italic"
+        "foreground": palette.fgWhite,
+        "fontStyle": ""
       }
     },
     // PYTHON, cs, go, java
