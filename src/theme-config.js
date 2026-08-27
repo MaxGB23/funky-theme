@@ -71,6 +71,7 @@ module.exports = {
     "editorCursor.foreground": "#ffde25",
     "editor.lineHighlightBackground": palette.bgElevated,
     "editor.lineHighlightBorder": palette.bgElevated,
+    "editor.selectionBackground": palette.uiAccent + "40",
     "activityBar.background": palette.bgDeep,
     "activityBar.foreground": "#ffffff",
     "sideBar.border": palette.bgBase,
@@ -488,6 +489,12 @@ module.exports = {
         "foreground": palette.fgBase
       }
     },
+    {
+      "scope": "punctuation.definition.constant.markdown",
+      "settings": {
+        "foreground": palette.fgMuted
+      }
+    },
     // ── Markdown: Headings ───────────────────────────────────────────────────
     {
       "scope": "markup.heading.markdown, entity.name.section.markdown, markdown.heading, markup.heading, markup.heading entity.name",
@@ -548,7 +555,7 @@ module.exports = {
     },
     // ── Markdown: Links ──────────────────────────────────────────────────────
     {
-      "scope": "meta.link.inline.markdown punctuation.definition.link.title.begin.markdown, meta.link.inline.markdown punctuation.definition.link.title.end.markdown, meta.link.inline.markdown punctuation.definition.metadata.markdown, punctuation.definition.link.title.begin.markdown, punctuation.definition.link.title.end.markdown, punctuation.definition.metadata.markdown",
+      "scope": "meta.link.inline.markdown, meta.link.inline.markdown punctuation.definition.link.title.end.markdown, meta.link.inline.markdown punctuation.definition.metadata.markdown, punctuation.definition.link.title.begin.markdown, punctuation.definition.link.title.end.markdown, punctuation.definition.metadata.markdown",
       "settings": {
         "foreground": palette.cyanVibrant
       }

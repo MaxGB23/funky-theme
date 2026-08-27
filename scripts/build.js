@@ -51,6 +51,11 @@ variants.forEach(variant => {
     theme.colors['titleBar.border'] = '#ffffff25';
     theme.colors['statusBar.border'] = '#ffffff25';
     
+    theme.colors['editor.selectionBackground'] = '#8c8effd2';
+    theme.colors['editor.selectionForeground'] = '#ffffff';
+    theme.colors['editorLineNumber.foreground'] = '#606685';
+    theme.colors['editorLineNumber.activeForeground'] = '#c792ea';
+    
     if (theme.tokenColors) {
       theme.tokenColors.forEach(token => {
         if (token.settings && token.settings.foreground === '#555555') {

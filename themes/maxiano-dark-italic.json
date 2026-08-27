@@ -7,6 +7,7 @@
     "editorCursor.foreground": "#ffde25",
     "editor.lineHighlightBackground": "#2e2a3a",
     "editor.lineHighlightBorder": "#2e2a3a",
+    "editor.selectionBackground": "#8c8eff40",
     "activityBar.background": "#211e2b",
     "activityBar.foreground": "#ffffff",
     "sideBar.border": "#24212e",
@@ -418,6 +419,12 @@
       }
     },
     {
+      "scope": "punctuation.definition.constant.markdown",
+      "settings": {
+        "foreground": "#d8d8d8"
+      }
+    },
+    {
       "scope": "markup.heading.markdown, entity.name.section.markdown, markdown.heading, markup.heading, markup.heading entity.name",
       "settings": {
         "foreground": "#ff8ddb",
@@ -473,7 +480,7 @@
       }
     },
     {
-      "scope": "meta.link.inline.markdown punctuation.definition.link.title.begin.markdown, meta.link.inline.markdown punctuation.definition.link.title.end.markdown, meta.link.inline.markdown punctuation.definition.metadata.markdown, punctuation.definition.link.title.begin.markdown, punctuation.definition.link.title.end.markdown, punctuation.definition.metadata.markdown",
+      "scope": "meta.link.inline.markdown, meta.link.inline.markdown punctuation.definition.link.title.end.markdown, meta.link.inline.markdown punctuation.definition.metadata.markdown, punctuation.definition.link.title.begin.markdown, punctuation.definition.link.title.end.markdown, punctuation.definition.metadata.markdown",
       "settings": {
         "foreground": "#6df5fa"
       }
