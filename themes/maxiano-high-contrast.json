@@ -90,14 +90,14 @@
     "activityBarBadge.background": "#8c8effd2",
     "editorStickyScroll.background": "#211e2b",
     "editorStickyScrollHover.background": "#2e2a3a",
+    "editorLineNumber.foreground": "#606685",
+    "editorLineNumber.activeForeground": "#c792ea",
     "contrastBorder": "#ffffff25",
     "activityBar.border": "#ffffff25",
     "editorGroup.border": "#ffffff25",
     "titleBar.border": "#ffffff25",
     "statusBar.border": "#ffffff25",
-    "editor.selectionForeground": "#ffffff",
-    "editorLineNumber.foreground": "#606685",
-    "editorLineNumber.activeForeground": "#c792ea"
+    "editor.selectionForeground": "#ffffff"
   },
   "tokenColors": [
     {
@@ -505,7 +505,7 @@
     {
       "scope": "constant.other.reference.link.markdown",
       "settings": {
-        "foreground": "#ffb86c"
+        "foreground": "#ffc061"
       }
     },
     {

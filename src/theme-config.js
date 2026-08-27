@@ -169,7 +169,9 @@ module.exports = {
 
     // ── Sticky Scroll ─────────────────────────────────────────────────────────
     "editorStickyScroll.background": palette.bgDeep,
-    "editorStickyScrollHover.background": palette.bgElevated
+    "editorStickyScrollHover.background": palette.bgElevated,
+    "editorLineNumber.foreground": "#707381",
+    "editorLineNumber.activeForeground": palette.purpleDim
   },
   "tokenColors": [
     {
@@ -582,7 +584,7 @@ module.exports = {
     {
       "scope": "constant.other.reference.link.markdown",
       "settings": {
-        "foreground": palette.orangeBase
+        "foreground": palette.orangeAccent
       }
     },
     // ── Markdown: Blockquotes ────────────────────────────────────────────────
