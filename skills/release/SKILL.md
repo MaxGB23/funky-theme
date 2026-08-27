@@ -30,16 +30,27 @@ Use when the user asks to release, publish, package a new version, generate a `.
 ## Execution Steps
 
 1. Ensure working tree changes are backported to `src/theme-config.js` (use palette tokens for repeated colors).
-2. Bump `version` in `package.json`.
-3. Canonical flow: `pnpm install && pnpm build && pnpm package`. Minimum viable: `pnpm run package` (builds all 4 variants into `/themes`, then packs `funky-theme-vscode-<ver>.vsix`).
-4. Verify output: build logs list 4 variants; spot-check generated JSONs (e.g. changed keys) before packaging.
-5. Commit with conventional messages (`feat(theme): ...`, `chore: ...`), then `git push`.
-6. Create the release with the vsix attached:
+2. **Determine version bump**
+   - **Release boundary:** el corte SIEMPRE es el último tag (`git tag --sort=-creatordate | Select-Object -First 1`). Enumerar `git log --oneline <último-tag>..HEAD` ANTES de decidir el bump y redactar las notas — la plantilla no elimina este paso. Todo lo que esté en el rango entra en la release, incluidos merges/PRs de sesiones anteriores nunca liberados.
+   - Leer `package.json` y determinar el tipo de bump:
+
+     | Change type | Bump | Example |
+     |-------------|------|---------|
+     | New feature | MINOR | 2.5.1 → 2.6.0 |
+     | Breaking change | MAJOR | 2.5.1 → 3.0.0 |
+     | Bug fix | PATCH | 2.5.1 → 2.5.2 |
+
+   - Preguntar al usuario para confirmar si es ambiguo.
+3. Bump `version` en `package.json` según el bump determinado.
+4. Canonical flow: `pnpm install && pnpm build && pnpm package`. Minimum viable: `pnpm run package` (builds all 4 variants into `/themes`, then packs `funky-theme-vscode-<ver>.vsix`).
+5. Verify output: build logs list 4 variants; spot-check generated JSONs (e.g. changed keys) before packaging.
+6. Commit with conventional messages (`feat(theme): ...`, `chore: ...`), then `git push`.
+7. Create the release with the vsix attached:
    ```bash
    gh release create v<version> funky-theme-vscode-<version>.vsix \
      --title "v<version>" --notes "<bullet changelog + known issues>"
    ```
-7. Report the release URL and the commit hashes included.
+8. Report the release URL and the commit hashes included.
 
 ## Output Contract
 
