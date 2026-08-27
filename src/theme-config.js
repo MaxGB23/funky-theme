@@ -494,7 +494,7 @@ module.exports = {
     {
       "scope": "punctuation.definition.constant.markdown",
       "settings": {
-        "foreground": palette.fgMuted
+        "foreground": palette.fgWhite
       }
     },
     // ── Markdown: Headings ───────────────────────────────────────────────────
