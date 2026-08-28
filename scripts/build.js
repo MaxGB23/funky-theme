@@ -64,6 +64,13 @@ variants.forEach(variant => {
 
     theme.colors['textPreformat.background'] = '#8c8effd2';
     theme.colors['textPreformat.foreground'] = '#ffffff';
+
+    // HC queda con findMatch por defecto de VS Code (se eliminan los compartidos)
+    delete theme.colors['editor.findMatchBackground'];
+    delete theme.colors['editor.findMatchBorder'];
+    delete theme.colors['editor.findMatchForeground'];
+    delete theme.colors['editor.findMatchHighlightBackground'];
+    delete theme.colors['editor.findMatchHighlightForeground'];
     
     if (theme.tokenColors) {
       theme.tokenColors.forEach(token => {
