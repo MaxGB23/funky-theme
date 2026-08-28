@@ -102,7 +102,9 @@
     "welcomePage.tileBackground": "#2e2a3a",
     "welcomePage.tileHoverBackground": "#383347",
     "welcomePage.tileBorder": "#ffffff15",
-    "welcomePage.progress.background": "#8c8effd2"
+    "welcomePage.progress.background": "#8c8effd2",
+    "textPreformat.background": "#8c8effd2",
+    "textPreformat.foreground": "#ffffff"
   },
   "tokenColors": [
     {

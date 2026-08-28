@@ -61,6 +61,9 @@ variants.forEach(variant => {
     theme.colors['welcomePage.tileHoverBackground'] = '#383347';
     theme.colors['welcomePage.tileBorder'] = '#ffffff15';
     theme.colors['welcomePage.progress.background'] = '#8c8effd2';
+
+    theme.colors['textPreformat.background'] = '#8c8effd2';
+    theme.colors['textPreformat.foreground'] = '#ffffff';
     
     if (theme.tokenColors) {
       theme.tokenColors.forEach(token => {
