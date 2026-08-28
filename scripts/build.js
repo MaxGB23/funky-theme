@@ -55,6 +55,12 @@ variants.forEach(variant => {
     theme.colors['editor.selectionForeground'] = '#ffffff';
     theme.colors['editorLineNumber.foreground'] = '#606685';
     theme.colors['editorLineNumber.activeForeground'] = '#c792ea';
+
+    theme.colors['list.highlightForeground'] = '#18A3FF';
+    theme.colors['welcomePage.tileBackground'] = '#2e2a3a';
+    theme.colors['welcomePage.tileHoverBackground'] = '#383347';
+    theme.colors['welcomePage.tileBorder'] = '#ffffff15';
+    theme.colors['welcomePage.progress.background'] = '#8c8effd2';
     
     if (theme.tokenColors) {
       theme.tokenColors.forEach(token => {

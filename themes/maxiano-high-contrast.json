@@ -97,7 +97,12 @@
     "editorGroup.border": "#ffffff25",
     "titleBar.border": "#ffffff25",
     "statusBar.border": "#ffffff25",
-    "editor.selectionForeground": "#ffffff"
+    "editor.selectionForeground": "#ffffff",
+    "list.highlightForeground": "#18A3FF",
+    "welcomePage.tileBackground": "#2e2a3a",
+    "welcomePage.tileHoverBackground": "#383347",
+    "welcomePage.tileBorder": "#ffffff15",
+    "welcomePage.progress.background": "#8c8effd2"
   },
   "tokenColors": [
     {
