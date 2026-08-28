@@ -12,7 +12,7 @@ Flujo de testeo manual ANTES de tocar el Source of Truth:
 
 ### Commits
 - Conventional commits siempre en inglés.
-- Un commit = una work unit (behavior, fix o docs). Nunca separar por tipo de archivo. Consultar `~/.config/opencode/skills/work-unit-commits/SKILL.md` para planificar los commits.
+- Un commit = una work unit (behavior, fix o docs). Nunca separar por tipo de archivo. Consultar la skill `work-unit-commits` para planificar los commits.
 
 ## Project Skills
 - `skills/release/SKILL.md` — Full release pipeline: version bump, build 4 variants, vsix packaging with pnpm, GitHub release with attached vsix. Trigger on "release", "publicar versión", "generar vsix".
