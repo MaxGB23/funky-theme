@@ -63,6 +63,11 @@ variants.forEach(variant => {
     theme.colors['editorSuggestWidget.selectedBackground'] = '#8c8eff33';
     theme.colors['editorSuggestWidget.selectedForeground'] = '#ffffff';
     theme.colors['editorSuggestWidget.selectedIconForeground'] = '#ff87c5';
+    // Sticky Scroll HC: bordes y resaltado de hover
+    theme.colors['editorStickyScroll.border'] = '#ffffff';
+    theme.colors['terminalStickyScroll.background'] = '#211e2b';
+    theme.colors['terminalStickyScrollHover.background'] = '#8c8effd2';
+    theme.colors['terminalStickyScroll.border'] = '#ffffff';
 
     theme.colors['list.highlightForeground'] = '#18A3FF';
     theme.colors['welcomePage.tileBackground'] = '#2e2a3a';
