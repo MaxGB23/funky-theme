@@ -91,7 +91,7 @@
     "activityBarBadge.background": "#8c8effd2",
     "editorStickyScroll.background": "#211e2b",
     "editorStickyScrollHover.background": "#2e2a3a",
-    "editorLineNumber.foreground": "#fff",
+    "editorLineNumber.foreground": "#ffffff",
     "editorLineNumber.activeForeground": "#e055ff",
     "contrastBorder": "#ffffff25",
     "activityBar.border": "#ffffff25",

@@ -53,7 +53,7 @@ variants.forEach(variant => {
     
     theme.colors['editor.selectionBackground'] = '#8c8effd2';
     theme.colors['editor.selectionForeground'] = '#ffffff';
-    theme.colors['editorLineNumber.foreground'] = '#fff';
+    theme.colors['editorLineNumber.foreground'] = '#ffffff';
     theme.colors['editorLineNumber.activeForeground'] = '#e055ff';
     // Diffs: borde de línea/texto insertado (magenta) solo en HC
     theme.colors['diffEditor.insertedTextBorder'] = '#e055ff';
