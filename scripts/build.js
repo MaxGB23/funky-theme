@@ -53,8 +53,16 @@ variants.forEach(variant => {
     
     theme.colors['editor.selectionBackground'] = '#8c8effd2';
     theme.colors['editor.selectionForeground'] = '#ffffff';
-    theme.colors['editorLineNumber.foreground'] = '#606685';
-    theme.colors['editorLineNumber.activeForeground'] = '#c792ea';
+    theme.colors['editorLineNumber.foreground'] = '#fff';
+    theme.colors['editorLineNumber.activeForeground'] = '#e055ff';
+    // Diffs: borde de línea/texto insertado (magenta) solo en HC
+    theme.colors['diffEditor.insertedTextBorder'] = '#e055ff';
+    theme.colors['diffEditor.insertedLineBorder'] = '#e055ff';
+    // Suggest widget HC: borde e item seleccionado (anula el icono compartido #c792ea)
+    theme.colors['editorSuggestWidget.border'] = '#ffffff';
+    theme.colors['editorSuggestWidget.selectedBackground'] = '#8c8eff33';
+    theme.colors['editorSuggestWidget.selectedForeground'] = '#ffffff';
+    theme.colors['editorSuggestWidget.selectedIconForeground'] = '#ff87c5';
 
     theme.colors['list.highlightForeground'] = '#18A3FF';
     theme.colors['welcomePage.tileBackground'] = '#2e2a3a';

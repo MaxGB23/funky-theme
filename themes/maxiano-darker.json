@@ -61,8 +61,9 @@
     "statusBarItem.hoverBackground": "#ffffff33",
     "statusBarItem.activeBackground": "#ffffff80",
     "editorGroupHeader.tabsBackground": "#121018",
-    "editorWidget.background": "#181520d3",
+    "editorWidget.background": "#181520",
     "editorWidget.border": "#121018",
+    "editorSuggestWidget.selectedIconForeground": "#c792ea",
     "widget.shadow": "#00000030",
     "editorFindWidget.background": "#181520",
     "editorFindWidget.foreground": "#ffffff",
@@ -156,7 +157,7 @@
     {
       "scope": "keyword.operator.new.tsx",
       "settings": {
-        "foreground": "#ffc061"
+        "foreground": "#ffcb7d"
       }
     },
     {
@@ -504,7 +505,7 @@
     {
       "scope": "constant.other.reference.link.markdown",
       "settings": {
-        "foreground": "#ffc061"
+        "foreground": "#ffcb7d"
       }
     },
     {

@@ -46,7 +46,7 @@ const palette = {
 
   // Naranjas & Amarillos (Strings, Functions, Warnings)
   orangeBase: "#ffb86c",   // orange-base (Reemplaza a '#ffcb6b') - Usado para strings y warnings moderados
-  orangeAccent: "#ffc061", // orange-accent - keyword.operator.new.tsx
+  orangeAccent: "#ffcb7d", // orange-accent - keyword.operator.new.tsx
   yellowBase: "#f6ff98",   // yellow-base (Reemplaza a '#ffffa5', '#ffffa3') - Nombres de funciones (Methods)
   yellowLight: "#fff9ba",  // yellow-light - Entity types y attribute names
 
@@ -127,8 +127,9 @@ module.exports = {
     "editorGroupHeader.tabsBackground": palette.bgDeep,
 
     // ── Widgets / Find ────────────────────────────────────────────────────────
-    "editorWidget.background": palette.bgBase + "d3",
+    "editorWidget.background": palette.bgBase,
     "editorWidget.border": palette.bgDeep,
+    "editorSuggestWidget.selectedIconForeground": palette.purpleDim,
     "widget.shadow": "#00000030",
     "editorFindWidget.background": palette.bgBase,
     "editorFindWidget.foreground": palette.fgWhite,

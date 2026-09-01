@@ -56,8 +56,9 @@
     "statusBarItem.hoverBackground": "#ffffff33",
     "statusBarItem.activeBackground": "#ffffff80",
     "editorGroupHeader.tabsBackground": "#211e2b",
-    "editorWidget.background": "#24212ed3",
+    "editorWidget.background": "#24212e",
     "editorWidget.border": "#211e2b",
+    "editorSuggestWidget.selectedIconForeground": "#ff87c5",
     "widget.shadow": "#00000030",
     "editorFindWidget.background": "#24212e",
     "editorFindWidget.foreground": "#ffffff",
@@ -90,14 +91,19 @@
     "activityBarBadge.background": "#8c8effd2",
     "editorStickyScroll.background": "#211e2b",
     "editorStickyScrollHover.background": "#2e2a3a",
-    "editorLineNumber.foreground": "#606685",
-    "editorLineNumber.activeForeground": "#c792ea",
+    "editorLineNumber.foreground": "#fff",
+    "editorLineNumber.activeForeground": "#e055ff",
     "contrastBorder": "#ffffff25",
     "activityBar.border": "#ffffff25",
     "editorGroup.border": "#ffffff25",
     "titleBar.border": "#ffffff25",
     "statusBar.border": "#ffffff25",
     "editor.selectionForeground": "#ffffff",
+    "diffEditor.insertedTextBorder": "#e055ff",
+    "diffEditor.insertedLineBorder": "#e055ff",
+    "editorSuggestWidget.border": "#ffffff",
+    "editorSuggestWidget.selectedBackground": "#8c8eff33",
+    "editorSuggestWidget.selectedForeground": "#ffffff",
     "list.highlightForeground": "#18A3FF",
     "welcomePage.tileBackground": "#2e2a3a",
     "welcomePage.tileHoverBackground": "#383347",
@@ -164,7 +170,7 @@
     {
       "scope": "keyword.operator.new.tsx",
       "settings": {
-        "foreground": "#ffc061"
+        "foreground": "#ffcb7d"
       }
     },
     {
@@ -512,7 +518,7 @@
     {
       "scope": "constant.other.reference.link.markdown",
       "settings": {
-        "foreground": "#ffc061"
+        "foreground": "#ffcb7d"
       }
     },
     {
