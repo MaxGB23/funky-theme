@@ -15,7 +15,7 @@
     "activityBar.background": "#211e2b",
     "activityBar.foreground": "#ffffff",
     "sideBar.background": "#24212ed3",
-    "sideBar.foreground": "#FFFFFF",
+    "sideBar.foreground": "#ffffff",
     "sideBar.border": "#24212e",
     "tree.indentGuidesStroke": "#555555",
     "tree.tableColumnsBorder": "#555555",
@@ -25,7 +25,7 @@
     "tab.inactiveBackground": "#24212e",
     "tab.inactiveForeground": "#B0B0B0",
     "tab.hoverBackground": "#2e2a3a",
-    "tab.hoverForeground": "#FFFFFF",
+    "tab.hoverForeground": "#ffffff",
     "gitDecoration.modifiedResourceForeground": "#6df5fa",
     "gitDecoration.deletedResourceForeground": "#ff55a4",
     "gitDecoration.untrackedResourceForeground": "#8bffa8",
@@ -40,7 +40,7 @@
     "terminal.ansiBrightBlue": "#c792ea",
     "terminal.ansiBrightMagenta": "#ffa8e6",
     "terminal.ansiBrightCyan": "#A4FFFF",
-    "terminal.ansiBrightWhite": "#FFFFFF",
+    "terminal.ansiBrightWhite": "#ffffff",
     "terminal.ansiBlack": "#211e2b",
     "terminal.ansiRed": "#ff87c5",
     "terminal.ansiGreen": "#b9ffba",
@@ -186,7 +186,7 @@
     {
       "scope": "source.sass keyword.control",
       "settings": {
-        "foreground": "#82AAFF"
+        "foreground": "#82aaff"
       }
     },
     {
@@ -198,19 +198,13 @@
     {
       "scope": "entity.name.method.js",
       "settings": {
-        "foreground": "#82AAFF"
+        "foreground": "#82aaff"
       }
     },
     {
       "scope": "meta.class-method.js entity.name.function.js, variable.function.constructor",
       "settings": {
-        "foreground": "#82AAFF"
-      }
-    },
-    {
-      "scope": "support.class",
-      "settings": {
-        "foreground": "#f8f8f2"
+        "foreground": "#82aaff"
       }
     },
     {
@@ -312,7 +306,7 @@
     {
       "scope": "tag.decorator.js entity.name.tag.js, tag.decorator.js punctuation.definition.tag.js",
       "settings": {
-        "foreground": "#82AAFF"
+        "foreground": "#82aaff"
       }
     },
     {
@@ -324,7 +318,7 @@
     {
       "scope": "source.json meta meta meta meta meta meta meta meta meta meta meta meta meta meta meta meta.structure.dictionary.json string.quoted.double.json - meta meta meta meta meta meta meta meta meta meta meta meta meta meta meta meta.structure.dictionary.json meta.structure.dictionary.value.json string.quoted.double.json, source.json meta meta meta meta meta meta meta meta meta meta meta meta meta meta meta meta.structure.dictionary.json punctuation.definition.string - meta meta meta meta meta meta meta meta meta meta meta meta meta meta meta meta.structure.dictionary.json meta.structure.dictionary.value.json punctuation.definition.string",
       "settings": {
-        "foreground": "#C3E88D"
+        "foreground": "#c3e88d"
       }
     },
     {
@@ -342,13 +336,13 @@
     {
       "scope": "source.json meta meta meta meta meta meta meta meta meta meta.structure.dictionary.json string.quoted.double.json - meta meta meta meta meta meta meta meta meta meta.structure.dictionary.json meta.structure.dictionary.value.json string.quoted.double.json, source.json meta meta meta meta meta meta meta meta meta meta.structure.dictionary.json punctuation.definition.string - meta meta meta meta meta meta meta meta meta meta.structure.dictionary.json meta.structure.dictionary.value.json punctuation.definition.string",
       "settings": {
-        "foreground": "#82AAFF"
+        "foreground": "#82aaff"
       }
     },
     {
       "scope": "source.json meta meta meta meta meta meta meta meta.structure.dictionary.json string.quoted.double.json - meta meta meta meta meta meta meta meta.structure.dictionary.json meta.structure.dictionary.value.json string.quoted.double.json, source.json meta meta meta meta meta meta meta meta.structure.dictionary.json punctuation.definition.string - meta meta meta meta meta meta meta meta.structure.dictionary.json meta.structure.dictionary.value.json punctuation.definition.string",
       "settings": {
-        "foreground": "#C17E70"
+        "foreground": "#c17e70"
       }
     },
     {
@@ -360,7 +354,7 @@
     {
       "scope": "source.json meta meta meta meta.structure.dictionary.json string.quoted.double.json - meta meta meta meta.structure.dictionary.json meta.structure.dictionary.value.json string.quoted.double.json, source.json meta meta meta meta.structure.dictionary.json punctuation.definition.string - meta meta meta meta.structure.dictionary.json meta.structure.dictionary.value.json punctuation.definition.string",
       "settings": {
-        "foreground": "#F78C6C"
+        "foreground": "#f78c6c"
       }
     },
     {
@@ -524,7 +518,7 @@
     {
       "scope": "markup.underline",
       "settings": {
-        "foreground": "#F78C6C"
+        "foreground": "#f78c6c"
       }
     },
     {
@@ -554,7 +548,7 @@
     {
       "scope": "markup.inserted",
       "settings": {
-        "foreground": "#C3E88D"
+        "foreground": "#c3e88d"
       }
     },
     {
@@ -584,7 +578,7 @@
     {
       "scope": "markup.inserted.git_gutter",
       "settings": {
-        "foreground": "#C3E88D"
+        "foreground": "#c3e88d"
       }
     },
     {
@@ -632,13 +626,13 @@
     {
       "scope": "constant.numeric.line-number.find-in-files - match",
       "settings": {
-        "foreground": "#C17E70"
+        "foreground": "#c17e70"
       }
     },
     {
       "scope": "entity.name.filename.find-in-files",
       "settings": {
-        "foreground": "#C3E88D"
+        "foreground": "#c3e88d"
       }
     },
     {
@@ -692,7 +686,7 @@
     {
       "scope": "brackethighlighter.quote",
       "settings": {
-        "foreground": "#C3E88D"
+        "foreground": "#c3e88d"
       }
     },
     {
