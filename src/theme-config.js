@@ -176,6 +176,8 @@ module.exports = {
     // ── Sticky Scroll ─────────────────────────────────────────────────────────
     "editorStickyScroll.background": palette.bgDeep,
     "editorStickyScrollHover.background": palette.bgElevated,
+    // Terminal sticky: background elevado (#201d2a en Darker vía build ultra-nocturno)
+    "terminalStickyScrollHover.background": palette.bgElevated,
     "editorLineNumber.foreground": "#707381",
     "editorLineNumber.activeForeground": palette.purpleDim
   },
@@ -183,7 +185,8 @@ module.exports = {
     {
       "scope": "comment, punctuation.definition.comment",
       "settings": {
-        "foreground": palette.fgMuted,
+        // Comentarios apagados: alfa e9 para que no resalten y no confundan con texto normal
+        "foreground": "#d8d8d8e9",
         "fontStyle": ""
       }
     },

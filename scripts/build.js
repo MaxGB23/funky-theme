@@ -44,30 +44,41 @@ variants.forEach(variant => {
   
   // Perfil: High Contrast (Accesibilidad visual)
   if (variant.profile === 'high-contrast') {
-    theme.colors['contrastBorder'] = '#ffffff25';
-    theme.colors['activityBar.border'] = '#ffffff25';
+    theme.colors['contrastBorder'] = '#8c8effd2';
+    theme.colors['activityBar.border'] = '#8c8effd2';
     theme.colors['sideBar.border'] = '#ffffff25';
-    theme.colors['editorGroup.border'] = '#ffffff25';
-    theme.colors['titleBar.border'] = '#ffffff25';
-    theme.colors['statusBar.border'] = '#ffffff25';
+    theme.colors['editorGroup.border'] = '#8c8effd2';
+    theme.colors['titleBar.border'] = '#8c8effd2';
+    theme.colors['statusBar.border'] = '#8c8effd2';
     
     theme.colors['editor.selectionBackground'] = '#8c8effd2';
     theme.colors['editor.selectionForeground'] = '#ffffff';
     theme.colors['editorLineNumber.foreground'] = '#ffffff';
-    theme.colors['editorLineNumber.activeForeground'] = '#e055ff';
+    theme.colors['editorLineNumber.activeForeground'] = '#e881ff';
+    // Bordes de la línea actual: todos los bordes del editor visibles en HC
+    theme.colors['editor.lineHighlightBackground'] = '#24212ed3';
+    theme.colors['editor.lineHighlightBorder'] = '#8c8effd2';
+    // Find Match: resaltado fuerte y distinguible en HC
+    theme.colors['editor.findMatchBackground'] = '#a599efff';
+    theme.colors['editor.findMatchBorder'] = '#a599efff';
+    theme.colors['editor.findMatchForeground'] = '#ffffff';
+    theme.colors['editor.findMatchHighlightBackground'] = '#5f569580';
+    theme.colors['editor.findMatchHighlightForeground'] = '#ffffff';
     // Diffs: borde de línea/texto insertado (magenta) solo en HC
-    theme.colors['diffEditor.insertedTextBorder'] = '#e055ff';
-    theme.colors['diffEditor.insertedLineBorder'] = '#e055ff';
+    theme.colors['diffEditor.insertedTextBorder'] = '#e881ff';
+    theme.colors['diffEditor.insertedLineBorder'] = '#e881ff';
     // Suggest widget HC: borde e item seleccionado (anula el icono compartido #c792ea)
     theme.colors['editorSuggestWidget.border'] = '#ffffff';
     theme.colors['editorSuggestWidget.selectedBackground'] = '#8c8eff33';
     theme.colors['editorSuggestWidget.selectedForeground'] = '#ffffff';
     theme.colors['editorSuggestWidget.selectedIconForeground'] = '#ff87c5';
     // Sticky Scroll HC: bordes y resaltado de hover
-    theme.colors['editorStickyScroll.border'] = '#ffffff';
+    theme.colors['editorStickyScroll.border'] = '#8c8effd2';
     theme.colors['terminalStickyScroll.background'] = '#211e2b';
-    theme.colors['terminalStickyScrollHover.background'] = '#8c8effd2';
-    theme.colors['terminalStickyScroll.border'] = '#ffffff';
+    theme.colors['terminalStickyScrollHover.background'] = '#2e2a3a';
+    theme.colors['terminalStickyScroll.border'] = '#8c8effd2';
+    // Guías de indentación de árbol claras en HC
+    theme.colors['tree.indentGuidesStroke'] = '#8c8effd2';
 
     theme.colors['list.highlightForeground'] = '#18A3FF';
     theme.colors['welcomePage.tileBackground'] = '#2e2a3a';
@@ -77,21 +88,6 @@ variants.forEach(variant => {
 
     theme.colors['textPreformat.background'] = '#8c8effd2';
     theme.colors['textPreformat.foreground'] = '#ffffff';
-
-    // HC queda con findMatch por defecto de VS Code (se eliminan los compartidos)
-    delete theme.colors['editor.findMatchBackground'];
-    delete theme.colors['editor.findMatchBorder'];
-    delete theme.colors['editor.findMatchForeground'];
-    delete theme.colors['editor.findMatchHighlightBackground'];
-    delete theme.colors['editor.findMatchHighlightForeground'];
-    
-    if (theme.tokenColors) {
-      theme.tokenColors.forEach(token => {
-        if (token.settings && token.settings.foreground === '#555555') {
-          token.settings.foreground = '#A0AAB0'; 
-        }
-      });
-    }
   }
 
   // Perfiles Tipográficos (FontStyles)

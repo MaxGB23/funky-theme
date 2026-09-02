@@ -96,6 +96,7 @@
     "activityBarBadge.background": "#8c8effd2",
     "editorStickyScroll.background": "#121018",
     "editorStickyScrollHover.background": "#201d2a",
+    "terminalStickyScrollHover.background": "#201d2a",
     "editorLineNumber.foreground": "#707381",
     "editorLineNumber.activeForeground": "#c792ea"
   },
@@ -103,7 +104,7 @@
     {
       "scope": "comment, punctuation.definition.comment",
       "settings": {
-        "foreground": "#d8d8d8"
+        "foreground": "#d8d8d8e9"
       }
     },
     {
