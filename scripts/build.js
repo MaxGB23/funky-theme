@@ -126,6 +126,8 @@ variants.forEach(variant => {
 
       // Reglas Expresivas (Solamente en la variante Italic)
       if (variant.profile === 'expressive') {
+        // Comments -> italic (solo en la variante Italic)
+        if (scope.match(/^(comment|.*\.comment)[,\s$]/i) || scope === 'comment, punctuation.definition.comment') styles.push('italic');
         // JS: variable alias -> italic
         if (scope.match(/variable\.other\.readwrite\.alias\.js/i)) styles.push('italic');
         if (scope.match(/variable\.parameter/i) || 
