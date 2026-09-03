@@ -66,7 +66,7 @@
     "statusBarItem.activeBackground": "#ffffff80",
     "editorWidget.background": "#181520",
     "editorWidget.border": "#121018",
-    "editorSuggestWidget.selectedIconForeground": "#c792ea",
+    "editorSuggestWidget.selectedIconForeground": "#ffa8e6",
     "widget.shadow": "#00000030",
     "editorFindWidget.background": "#181520",
     "editorFindWidget.foreground": "#ffffff",
@@ -84,7 +84,8 @@
     "list.inactiveSelectionBackground": "#201d2a",
     "list.inactiveSelectionForeground": "#ffffff",
     "list.warningForeground": "#f6ff98",
-    "list.errorForeground": "#ff5555",
+    "list.errorForeground": "#ff8282",
+    "list.highlightForeground": "#ffa8e6",
     "scrollbar.background": "#181520ea",
     "scrollbar.shadow": "#181520ea",
     "scrollbarSlider.background": "#4e4b5980",
@@ -99,6 +100,21 @@
     "button.hoverBackground": "#8c8effb6",
     "focusBorder": "#8c8effd2",
     "activityBarBadge.background": "#8c8effd2",
+    "textLink.foreground": "#b2b3ff",
+    "textLink.activeForeground": "#8c8eff",
+    "symbolIcon.propertyForeground": "#ffffff",
+    "symbolIcon.classForeground": "#ffffff",
+    "symbolIcon.functionForeground": "#ffffff",
+    "symbolIcon.methodForeground": "#ffffff",
+    "symbolIcon.variableForeground": "#ffffff",
+    "symbolIcon.typeParameterForeground": "#ffffff",
+    "symbolIcon.snippetForeground": "#ffffff",
+    "symbolIcon.eventForeground": "#ffffff",
+    "symbolIcon.fieldForeground": "#ffffff",
+    "symbolIcon.keywordForeground": "#ffffff",
+    "symbolIcon.valueForeground": "#ffffff",
+    "symbolIcon.constantForeground": "#ffffff",
+    "symbolIcon.interfaceForeground": "#ffffff",
     "editorStickyScroll.background": "#121018",
     "editorStickyScrollHover.background": "#201d2a",
     "terminalStickyScrollHover.background": "#201d2a",
@@ -141,7 +157,7 @@
     {
       "scope": "variable.language",
       "settings": {
-        "foreground": "#ff5555"
+        "foreground": "#eaa9fc"
       }
     },
     {

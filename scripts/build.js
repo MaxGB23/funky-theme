@@ -57,7 +57,7 @@ variants.forEach(variant => {
     theme.colors['editor.selectionBackground'] = '#8c8effd2';
     theme.colors['editor.selectionForeground'] = '#ffffff';
     theme.colors['editorLineNumber.foreground'] = '#ffffff';
-    theme.colors['editorLineNumber.activeForeground'] = '#e881ff';
+    theme.colors['editorLineNumber.activeForeground'] = '#eaa9fc';
     // Bordes de la línea actual: todos los bordes del editor visibles en HC
     theme.colors['editor.lineHighlightBackground'] = '#24212ed3';
     theme.colors['editor.lineHighlightBorder'] = '#8c8effd2';
@@ -71,10 +71,10 @@ variants.forEach(variant => {
     theme.colors['diffEditor.insertedTextBorder'] = '#e881ff';
     theme.colors['diffEditor.insertedLineBorder'] = '#e881ff';
     // Suggest widget HC: borde e item seleccionado (anula el icono compartido #c792ea)
-    theme.colors['editorSuggestWidget.border'] = '#ffffff';
+    theme.colors['editorSuggestWidget.border'] = '#8c8effd2';
     theme.colors['editorSuggestWidget.selectedBackground'] = '#8c8eff33';
     theme.colors['editorSuggestWidget.selectedForeground'] = '#ffffff';
-    theme.colors['editorSuggestWidget.selectedIconForeground'] = '#ff87c5';
+    theme.colors['editorSuggestWidget.selectedIconForeground'] = '#c792ea';
     // Sticky Scroll HC: bordes y resaltado de hover
     theme.colors['editorStickyScroll.border'] = '#8c8effd2';
     theme.colors['terminalStickyScroll.background'] = '#211e2b';
@@ -83,7 +83,6 @@ variants.forEach(variant => {
     // Guías de indentación de árbol claras en HC
     theme.colors['tree.indentGuidesStroke'] = '#8c8effd2';
 
-    theme.colors['list.highlightForeground'] = '#18A3FF';
     theme.colors['welcomePage.tileBackground'] = '#2e2a3a';
     theme.colors['welcomePage.tileHoverBackground'] = '#383347';
     theme.colors['welcomePage.tileBorder'] = '#ffffff15';

@@ -155,7 +155,7 @@ module.exports = {
     // ── Widgets / Find ─────────────────────────────────────────────────────────────────
     "editorWidget.background": palette.bgBase,
     "editorWidget.border": palette.bgDeep,
-    "editorSuggestWidget.selectedIconForeground": palette.purpleDim,
+    "editorSuggestWidget.selectedIconForeground": palette.pinkLight,
     "widget.shadow": "#00000030",
     "editorFindWidget.background": palette.bgBase,
     "editorFindWidget.foreground": palette.fgWhite,
@@ -177,7 +177,8 @@ module.exports = {
     "list.inactiveSelectionBackground": palette.bgElevated,
     "list.inactiveSelectionForeground": palette.fgWhite,
     "list.warningForeground": palette.yellowBase,
-    "list.errorForeground": palette.redBase,
+    "list.errorForeground": "#ff8282",
+    "list.highlightForeground": palette.pinkLight,
 
     // ── Scrollbar ─────────────────────────────────────────────────────────────────────
     "scrollbar.background": "#24212eea",
@@ -200,6 +201,25 @@ module.exports = {
     "button.hoverBackground": "#8c8effb6",
     "focusBorder": "#8c8effd2",
     "activityBarBadge.background": "#8c8effd2",
+
+    // ── Links ─────────────────────────────────────────────────────────────────────────
+    "textLink.foreground": "#b2b3ff",
+    "textLink.activeForeground": palette.uiAccent,
+
+    // ── Symbol Icons ──────────────────────────────────────────────────────────────────
+    "symbolIcon.propertyForeground": palette.fgWhite,
+    "symbolIcon.classForeground": palette.fgWhite,
+    "symbolIcon.functionForeground": palette.fgWhite,
+    "symbolIcon.methodForeground": palette.fgWhite,
+    "symbolIcon.variableForeground": palette.fgWhite,
+    "symbolIcon.typeParameterForeground": palette.fgWhite,
+    "symbolIcon.snippetForeground": palette.fgWhite,
+    "symbolIcon.eventForeground": palette.fgWhite,
+    "symbolIcon.fieldForeground": palette.fgWhite,
+    "symbolIcon.keywordForeground": palette.fgWhite,
+    "symbolIcon.valueForeground": palette.fgWhite,
+    "symbolIcon.constantForeground": palette.fgWhite,
+    "symbolIcon.interfaceForeground": palette.fgWhite,
 
     // ── Sticky Scroll ─────────────────────────────────────────────────────────────────
     "editorStickyScroll.background": palette.bgDeep,
@@ -250,7 +270,7 @@ module.exports = {
     {
       "scope": "variable.language",
       "settings": {
-        "foreground": palette.redBase
+        "foreground": palette.purpleBright
       }
     },
     {
