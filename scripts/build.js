@@ -40,6 +40,9 @@ variants.forEach(variant => {
     theme.colors['diffEditor.removedLineBackground'] = '#ff000018';
     theme.colors['diffEditor.insertedTextBackground'] = '#8c8eff28';
     theme.colors['diffEditor.removedTextBackground'] = '#ff000028';
+    // QuickInput (Command Palette / Quick Open) Darker
+    theme.colors['quickInput.foreground'] = '#ffffff';
+    theme.colors['quickInputTitle.background'] = '#121018';
   }
   
   // Perfil: High Contrast (Accesibilidad visual)
@@ -88,6 +91,26 @@ variants.forEach(variant => {
 
     theme.colors['textPreformat.background'] = '#8c8effd2';
     theme.colors['textPreformat.foreground'] = '#ffffff';
+
+    // QuickInput (Command Palette / Quick Open) HC — fondo profundo, texto blanco
+    theme.colors['quickInput.foreground'] = '#ffffff';
+    theme.colors['quickInputTitle.background'] = '#211e2b';
+    // Picker Group: separadores y bordes HC
+    theme.colors['pickerGroup.border'] = '#8c8effd2';
+    // Checkbox HC: caja oscura con borde, texto blanco
+    theme.colors['checkbox.background'] = '#211e2b';
+    theme.colors['checkbox.foreground'] = '#ffffff';
+    theme.colors['checkbox.border'] = '#555555';
+    // Dropdown HC: fondo oscuro, lista elevada, borde
+    theme.colors['dropdown.background'] = '#211e2b';
+    theme.colors['dropdown.foreground'] = '#ffffff';
+    theme.colors['dropdown.listBackground'] = '#24212e';
+    theme.colors['dropdown.border'] = '#555555';
+    // Keybinding Label HC: fondo oscuro aislado, texto blanco, borde accent
+    theme.colors['keybindingLabel.background'] = '#1e1a29';
+    theme.colors['keybindingLabel.foreground'] = '#ffffff';
+    theme.colors['keybindingLabel.border'] = '#8c8effd2';
+    theme.colors['keybindingLabel.bottomBorder'] = '#8c8effd2';
   }
 
   // Perfiles Tipográficos (FontStyles)

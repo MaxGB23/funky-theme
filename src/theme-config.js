@@ -111,6 +111,11 @@ module.exports = {
     "gitDecoration.ignoredResourceForeground": palette.pinkLight,
     "gitDecoration.conflictingResourceForeground": palette.orangeBase,
 
+    // ── Editor Gutter (Git decorations) ───────────────────────────────────────────────
+    "editorGutter.addedBackground": palette.greenBase,
+    "editorGutter.modifiedBackground": palette.cyanVibrant,
+    "editorGutter.deletedBackground": palette.pinkAccent,
+
     // ── Terminal (ANSI) ───────────────────────────────────────────────────────────────
     "terminal.background": palette.bgDeep,
     "terminal.foreground": palette.fgBase,
@@ -171,6 +176,8 @@ module.exports = {
     "list.hoverBackground": "#2e2a3a80",
     "list.inactiveSelectionBackground": palette.bgElevated,
     "list.inactiveSelectionForeground": palette.fgWhite,
+    "list.warningForeground": palette.yellowBase,
+    "list.errorForeground": palette.redBase,
 
     // ── Scrollbar ─────────────────────────────────────────────────────────────────────
     "scrollbar.background": "#24212eea",

@@ -31,6 +31,9 @@
     "gitDecoration.untrackedResourceForeground": "#8bffa8",
     "gitDecoration.ignoredResourceForeground": "#ffa8e6",
     "gitDecoration.conflictingResourceForeground": "#ffb86c",
+    "editorGutter.addedBackground": "#8bffa8",
+    "editorGutter.modifiedBackground": "#6df5fa",
+    "editorGutter.deletedBackground": "#ff87c5",
     "terminal.background": "#121018",
     "terminal.foreground": "#f8f8f2",
     "terminal.ansiBrightBlack": "#6272A4",
@@ -80,6 +83,8 @@
     "list.hoverBackground": "#201d2a80",
     "list.inactiveSelectionBackground": "#201d2a",
     "list.inactiveSelectionForeground": "#ffffff",
+    "list.warningForeground": "#f6ff98",
+    "list.errorForeground": "#ff5555",
     "scrollbar.background": "#181520ea",
     "scrollbar.shadow": "#181520ea",
     "scrollbarSlider.background": "#4e4b5980",
@@ -98,7 +103,9 @@
     "editorStickyScrollHover.background": "#201d2a",
     "terminalStickyScrollHover.background": "#201d2a",
     "editorLineNumber.foreground": "#707381",
-    "editorLineNumber.activeForeground": "#c792ea"
+    "editorLineNumber.activeForeground": "#c792ea",
+    "quickInput.foreground": "#ffffff",
+    "quickInputTitle.background": "#121018"
   },
   "tokenColors": [
     {
