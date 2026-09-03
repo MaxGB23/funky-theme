@@ -125,7 +125,7 @@
     {
       "scope": "comment, punctuation.definition.comment",
       "settings": {
-        "foreground": "#d8d8d8e9"
+        "foreground": "#d8d8d8f1"
       }
     },
     {

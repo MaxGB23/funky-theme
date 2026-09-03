@@ -206,11 +206,11 @@ module.exports = {
   },
   "tokenColors": [
     // ── Comentarios ────────────────────────────────────────────────────────────────────
-    // Comentarios apagados: alfa e9 para que no resalten y no confundan con texto normal
+    // Comentarios apagados: alfa f1 para que no resalten pero sigan siendo legibles
     {
       "scope": "comment, punctuation.definition.comment",
       "settings": {
-        "foreground": "#d8d8d8e9",
+        "foreground": "#d8d8d8f1",
         "fontStyle": ""
       }
     },
