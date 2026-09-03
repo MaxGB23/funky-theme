@@ -14,6 +14,34 @@ Toda tu atención debe centrarse en dos lugares:
 
 ---
 
+## 🗂️ Estructura del Source of Truth
+
+`src/theme-config.js` está organizado por **zonas semánticas** (no al azar). Antes de agregar o modificar un color, ubica su sección correspondiente:
+
+- **`colors`** → agrupado en ~15 secciones (Editor, Terminal, Git, Barra de estado, etc.), cada una delimitada por comentarios.
+- **`tokenColors`** → agrupado en ~14 secciones de sintaxis (Comentarios, Variables, Funciones, Palabras clave, etc.).
+
+**Regla:** cuando agregues un color, colócalo **dentro de su sección semántica**, no suelto al final. Esto mantiene el archivo navegable a medida que crece.
+
+### 🎨 Tokens de paleta disponibles
+
+Los colores reutilizados viven como variables en `const palette` al inicio del archivo. Además de los tokens base, existen estos usos frecuentes:
+
+| Token | Valor | Uso principal |
+|---|---|---|
+| `blueMethod` | `#82aaff` | Métodos, propiedades, atributos de JS/TS |
+| `greenMaterial` | `#c3e88d` | Strings, marcas de inserción, subrayados |
+| `orangeScarlet` | `#f78c6c` | Advertencias, números, acentos de operador |
+| `terracotta` | `#c17e70` | Verificación de números, find-in-files |
+
+**Regla de paleta:** crea una variable **solo** para valores que se repiten (≥2 usos) o que tienen identidad semántica clara. Los valores de un solo uso se dejan **literales** en su regla.
+
+### 🔢 Colores con alpha (8 dígitos hex)
+
+Los colores con **alpha** (formato `#rrggbbaa`, ej. `#d8d8d8f1`) son mezclas de opacidad, no "colores puros" de la paleta. **Regla:** estos **NO se resuelven a tokens de paleta** — se escriben literales en su regla (ej. el color de los comentarios). No intentes convertirlos a una variable si ves uno.
+
+---
+
 ## 🎨 Escenario 1: Cómo modificar un color existente
 
 Supongamos que el rosa (`pinkBase`) actual de tu tema te parece muy saturado y lo quieres apagar un poco.
