@@ -120,6 +120,8 @@
     "activityBarBadge.background": "#8c8effd2",
     "textLink.foreground": "#b2b3ff",
     "textLink.activeForeground": "#8c8eff",
+    "textBlockQuote.background": "#24212e",
+    "textBlockQuote.border": "#8c8eff",
     "symbolIcon.propertyForeground": "#ffffff",
     "symbolIcon.classForeground": "#ffffff",
     "symbolIcon.functionForeground": "#ffffff",

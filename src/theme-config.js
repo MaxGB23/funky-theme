@@ -229,6 +229,10 @@ module.exports = {
     "textLink.foreground": palette.linkPurple,
     "textLink.activeForeground": palette.uiAccent,
 
+    // ── Markdown Preview (Blockquotes) ────────────────────────────────────────────────
+    "textBlockQuote.background": palette.bgBase,
+    "textBlockQuote.border": palette.uiAccent,
+
     // ── Symbol Icons ──────────────────────────────────────────────────────────────────
     "symbolIcon.propertyForeground": palette.fgWhite,
     "symbolIcon.classForeground": palette.fgWhite,
