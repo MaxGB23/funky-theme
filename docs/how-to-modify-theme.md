@@ -33,6 +33,7 @@ Los colores reutilizados viven como variables en `const palette` al inicio del a
 | `greenMaterial` | `#c3e88d` | Strings, marcas de inserción, subrayados |
 | `orangeScarlet` | `#f78c6c` | Advertencias, números, acentos de operador |
 | `terracotta` | `#c17e70` | Verificación de números, find-in-files |
+| `uiBorder` | `#5d4e69` | Bordes de checkbox, dropdown e inputs |
 
 **Regla de paleta:** crea una variable **solo** para valores que se repiten (≥2 usos) o que tienen identidad semántica clara. Los valores de un solo uso se dejan **literales** en su regla.
 
@@ -108,6 +109,30 @@ En la terminal ejecuta:
 node scripts/build.js
 ```
 El script leerá la nueva llave `orangeBright` y la volcará compilada a los 4 temas como `"#ff9133"`.
+
+---
+
+## 🗂️ Escenario 3: Agregar un color SOLO en una variante (vía build.js)
+
+A veces un color aplica únicamente a una variante (p.ej. `quickInput.*` que difiere entre Dark/Italic y Darker, o `editorLineNumber.activeForeground` que solo resalta más en High Contrast). Esto NO va en `src/theme-config.js` (compartido), sino en `scripts/build.js`, dentro del bloque de perfil de esa variante.
+
+1. Abre `scripts/build.js` y localiza el bloque de la variante:
+   - `ultra-nocturno` → Maxiano Darker
+   - `high-contrast` → Maxiano High Contrast
+   - `flat` / `expressive` → Maxiano Dark / Dark Italic
+
+2. Agrega el color dentro de ese bloque con un comentario que explique qué hace:
+   ```javascript
+   // Perfil: Dark & Italic (QuickInput con fondo profundo y texto blanco)
+   if (variant.profile === 'flat' || variant.profile === 'expressive') {
+     theme.colors['quickInput.foreground'] = '#ffffff';
+     theme.colors['quickInputTitle.background'] = '#211e2b';
+   }
+   ```
+
+3. Compila con `node scripts/build.js`. El override se aplicará **solamente** a esa variante; el resto mantiene el valor compartido o por defecto.
+
+**Regla:** si un color aplica a varias variantes pero con valores distintos, define el valor base en `theme-config.js` (compartido) y solo overrides por variante en `build.js`. Así evitas duplicar el valor en cada bloque.
 
 ---
 
