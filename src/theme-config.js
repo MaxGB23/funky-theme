@@ -81,6 +81,7 @@ module.exports = {
     "editor.lineHighlightBackground": palette.bgElevated,
     "editor.lineHighlightBorder": palette.bgElevated,
     "editor.selectionBackground": "#8c8eff40",
+    "selection.background": "#8c8effd2",
     "editor.selectionHighlightBackground": "#5f569580",
     "editor.selectionHighlightBorder": "#8c8eff56",
     "editor.wordHighlightBackground": "#5f569580",
