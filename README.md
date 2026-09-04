@@ -62,7 +62,7 @@ You can install it in two ways:
 If you have already downloaded the `.vsix` file, you can install it via CLI:
 
 ```bash
-code --install-extension path/to/funky-theme-x.x.x.vsix
+code --install-extension path/to/funky-theme-vscode-x.x.x.vsix
 ```
 *(Note: Replace `code` with your editor's CLI command if you are not using VS Code, e.g., `cursor --install-extension ...`)*
 
