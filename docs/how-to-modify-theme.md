@@ -40,7 +40,9 @@ Los colores reutilizados viven como variables en `const palette` al inicio del a
 
 ### 🔢 Colores con alpha (8 dígitos hex)
 
-Los colores con **alpha** (formato `#rrggbbaa`, ej. `#d8d8d8f1`) son mezclas de opacidad, no "colores puros" de la paleta. **Regla:** estos **NO se resuelven a tokens de paleta** — se escriben literales en su regla (ej. el color de los comentarios). No intentes convertirlos a una variable si ves uno.
+Los colores con **alpha** (formato `#rrggbbaa`, ej. `#d8d8d8f1`) son **mezclas de opacidad con el fondo**, no "colores puros" de la paleta. Un alpha como `#8c8eff7e` no es un color con identidad propia — es el tono `#8c8eff` a un 49% de opacidad sobre lo que haya detrás. El resultado visual final depende del fondo, y por eso no encaja en un token de paleta.
+
+**Regla:** estos **NO se resuelven a tokens de paleta** — se escriben **literales** en su regla. Aunque el tono base se repita (p.ej. `#5f569580`, `#8c8eff40`, `#8c8effd2`), cada opacidad distinta es deliberadamente un valor distinto: cambiarla en un token rompería los demás. Los tokens son para **colores opacos puros** con identidad estable (p.ej. `fgWhite`, `bgDeep`); el alpha es la única categoría que rompe la regla de "≥2 usos → token". No intentes convertir un alpha en variable.
 
 ---
 
