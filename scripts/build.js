@@ -80,6 +80,8 @@ variants.forEach(variant => {
     theme.colors['editorSuggestWidget.border'] = '#8c8effd2';
     theme.colors['editorSuggestWidget.selectedBackground'] = '#8c8eff33';
     theme.colors['editorSuggestWidget.selectedForeground'] = '#ffffff';
+    // Hover widget HC: borde con el accent del tema
+    theme.colors['editorHoverWidget.border'] = '#8c8effd2';
     // Sticky Scroll HC: bordes y resaltado de hover
     theme.colors['editorStickyScroll.border'] = '#8c8effd2';
     theme.colors['terminalStickyScroll.background'] = '#211e2b';
