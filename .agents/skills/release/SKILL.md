@@ -19,6 +19,42 @@ Use when the user asks to release, publish, package a new version, generate a `.
 - Never release uncommitted changes: commit first, push, then tag the release on pushed HEAD.
 - Conventional Commits only, no AI attribution in commits.
 - Confirm the version bump number with the user if ambiguous (patch/minor/major).
+- **Release notes are written in English** (GitHub facing), regardless of the author's conversation language.
+
+## Release Notes Format (MANDATORY)
+
+Every release `--notes` MUST follow this exact structure. Do not improvise headings, order, or wording.
+
+```
+## v<version> — <Short meaningful title>
+
+<One-sentence summary of the release intent (what changed and for whom).>
+
+### Added
+- <bullet describing a new feature/color, with `backticked` keys where relevant>
+- (one bullet per added color/key, grouped)
+
+### Changed
+- <bullet describing a value refinement or behavior tweak, with `backticked` keys>
+- (omit this section entirely if there are no changes)
+
+### Fixed
+- <bullet describing a bug fix, if any>
+- (omit this section entirely if there are no fixes)
+
+### Docs
+- <bullet describing any documentation updates>
+- (omit this section entirely if there are no doc changes)
+```
+
+**Rules:**
+- Title is short and meaningful (describes the theme area touched), NOT the version taxonomic label.
+- Headings are always `### Added`, `### Changed`, `### Fixed`, `### Docs` — in that order. Omit a heading (and its bullets) when that category is empty; never emit a heading with `(none)`.
+- Bullets are concrete and technical: name the actual `colorKey` and value, or the actual doc/section changed.
+- Group related keys in one bullet when they share a purpose (e.g. `editor.wordHighlightBackground`/`...Border`).
+- Use backticks around code identifiers (`editor.*` keys, tokens, file paths).
+- End with a known-issues or "no issues found" line only when relevant: `No issues found after extended testing.`
+- No emojis. No AI attribution. Match the version number exactly.
 
 ## Decision Gates
 
@@ -45,10 +81,10 @@ Use when the user asks to release, publish, package a new version, generate a `.
 4. Canonical flow: `pnpm install && pnpm build && pnpm package`. Minimum viable: `pnpm run package` (builds all 4 variants into `/themes`, then packs `funky-theme-vscode-<ver>.vsix`).
 5. Verify output: build logs list 4 variants; spot-check generated JSONs (e.g. changed keys) before packaging.
 6. Commit with conventional messages (`feat(theme): ...`, `chore: ...`), then `git push`.
-7. Create the release with the vsix attached:
+7. Create the release with the vsix attached, using the **Release Notes Format** above:
    ```bash
    gh release create v<version> funky-theme-vscode-<version>.vsix \
-     --title "v<version>" --notes "<bullet changelog + known issues>"
+     --title "v<version>" --notes "<notes per the Release Notes Format>"
    ```
 8. Report the release URL and the commit hashes included.
 
