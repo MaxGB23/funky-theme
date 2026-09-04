@@ -103,6 +103,8 @@ variants.forEach(variant => {
     theme.colors['quickInputTitle.background'] = '#211e2b';
     // Picker Group: separadores y bordes HC
     theme.colors['pickerGroup.border'] = '#8c8effd2';
+    // inputOption.activeBorder no aplica en HC
+    delete theme.colors['inputOption.activeBorder'];
   }
 
   // Perfiles Tipográficos (FontStyles)

@@ -176,6 +176,7 @@ module.exports = {
     "input.background": palette.bgDeep,
     "input.foreground": palette.fgWhite,
     "input.border": palette.uiBorder,
+    "inputOption.activeBorder": "#8c8effd2",
 
     // ── Checkbox / Dropdown ───────────────────────────────────────────────────────────
     "checkbox.background": palette.bgDeep,

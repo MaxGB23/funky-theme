@@ -83,6 +83,7 @@
     "input.background": "#211e2b",
     "input.foreground": "#ffffff",
     "input.border": "#5d4e69",
+    "inputOption.activeBorder": "#8c8effd2",
     "checkbox.background": "#211e2b",
     "checkbox.foreground": "#ffffff",
     "checkbox.border": "#5d4e69",
