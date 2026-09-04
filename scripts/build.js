@@ -45,11 +45,17 @@ variants.forEach(variant => {
     theme.colors['quickInputTitle.background'] = '#121018';
   }
   
+  // Perfil: Dark & Italic (QuickInput con fondo profundo y texto blanco)
+  if (variant.profile === 'flat' || variant.profile === 'expressive') {
+    theme.colors['quickInput.foreground'] = '#ffffff';
+    theme.colors['quickInputTitle.background'] = '#211e2b';
+  }
+  
   // Perfil: High Contrast (Accesibilidad visual)
   if (variant.profile === 'high-contrast') {
     theme.colors['contrastBorder'] = '#8c8effd2';
     theme.colors['activityBar.border'] = '#8c8effd2';
-    theme.colors['sideBar.border'] = '#ffffff25';
+    theme.colors['sideBar.border'] = '#8c8effd2';
     theme.colors['editorGroup.border'] = '#8c8effd2';
     theme.colors['titleBar.border'] = '#8c8effd2';
     theme.colors['statusBar.border'] = '#8c8effd2';
@@ -70,11 +76,10 @@ variants.forEach(variant => {
     // Diffs: borde de línea/texto insertado (magenta) solo en HC
     theme.colors['diffEditor.insertedTextBorder'] = '#e881ff';
     theme.colors['diffEditor.insertedLineBorder'] = '#e881ff';
-    // Suggest widget HC: borde e item seleccionado (anula el icono compartido #c792ea)
+    // Suggest widget HC: borde, fondo e item seleccionado (icono hereda el compartido #ffa8e6)
     theme.colors['editorSuggestWidget.border'] = '#8c8effd2';
     theme.colors['editorSuggestWidget.selectedBackground'] = '#8c8eff33';
     theme.colors['editorSuggestWidget.selectedForeground'] = '#ffffff';
-    theme.colors['editorSuggestWidget.selectedIconForeground'] = '#c792ea';
     // Sticky Scroll HC: bordes y resaltado de hover
     theme.colors['editorStickyScroll.border'] = '#8c8effd2';
     theme.colors['terminalStickyScroll.background'] = '#211e2b';
@@ -96,20 +101,6 @@ variants.forEach(variant => {
     theme.colors['quickInputTitle.background'] = '#211e2b';
     // Picker Group: separadores y bordes HC
     theme.colors['pickerGroup.border'] = '#8c8effd2';
-    // Checkbox HC: caja oscura con borde, texto blanco
-    theme.colors['checkbox.background'] = '#211e2b';
-    theme.colors['checkbox.foreground'] = '#ffffff';
-    theme.colors['checkbox.border'] = '#555555';
-    // Dropdown HC: fondo oscuro, lista elevada, borde
-    theme.colors['dropdown.background'] = '#211e2b';
-    theme.colors['dropdown.foreground'] = '#ffffff';
-    theme.colors['dropdown.listBackground'] = '#24212e';
-    theme.colors['dropdown.border'] = '#555555';
-    // Keybinding Label HC: fondo oscuro aislado, texto blanco, borde accent
-    theme.colors['keybindingLabel.background'] = '#1e1a29';
-    theme.colors['keybindingLabel.foreground'] = '#ffffff';
-    theme.colors['keybindingLabel.border'] = '#8c8effd2';
-    theme.colors['keybindingLabel.bottomBorder'] = '#8c8effd2';
   }
 
   // Perfiles Tipográficos (FontStyles)

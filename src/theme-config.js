@@ -20,6 +20,7 @@ const palette = {
   uiMuted: "#606685",      // ui-muted (Reemplaza a '#5a657c','#65737e','#546e7a') - Bordes, guías y tokens secundarios
   greyLight: "#cbcbcb",    // grey-light - Delimitadores de code blocks de Markdown
   purpleGrey: "#a9b1de",   // purple-grey - Puntuación y meta de Markdown
+  uiBorder: "#5d4e69",     // ui-border - Bordes de checkbox, dropdown e inputs
 
   // === Colores de Sintaxis (Accents Tiered Palette) ===
 
@@ -164,7 +165,16 @@ module.exports = {
     // ── Inputs ────────────────────────────────────────────────────────────────────────
     "input.background": palette.bgDeep,
     "input.foreground": palette.fgWhite,
-    "input.border": palette.comments,
+    "input.border": palette.uiBorder,
+
+    // ── Checkbox / Dropdown ───────────────────────────────────────────────────────────
+    "checkbox.background": palette.bgDeep,
+    "checkbox.foreground": palette.fgWhite,
+    "checkbox.border": palette.uiBorder,
+    "dropdown.background": palette.bgDeep,
+    "dropdown.foreground": palette.fgWhite,
+    "dropdown.listBackground": palette.bgBase,
+    "dropdown.border": palette.uiBorder,
 
     // ── Menús y Listas ─────────────────────────────────────────────────────────────────
     "menu.background": palette.bgBase,
@@ -220,6 +230,12 @@ module.exports = {
     "symbolIcon.valueForeground": palette.fgWhite,
     "symbolIcon.constantForeground": palette.fgWhite,
     "symbolIcon.interfaceForeground": palette.fgWhite,
+
+    // ── Keybinding Labels ─────────────────────────────────────────────────────────────
+    "keybindingLabel.background": "#1e1a29",
+    "keybindingLabel.foreground": palette.fgWhite,
+    "keybindingLabel.border": "#8c8effd2",
+    "keybindingLabel.bottomBorder": "#8c8effd2",
 
     // ── Sticky Scroll ─────────────────────────────────────────────────────────────────
     "editorStickyScroll.background": palette.bgDeep,
