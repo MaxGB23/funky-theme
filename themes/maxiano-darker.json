@@ -93,6 +93,7 @@
     "list.warningForeground": "#f6ff98",
     "list.errorForeground": "#ff8282",
     "list.highlightForeground": "#ffa8e6",
+    "pickerGroup.foreground": "#b2b3ff",
     "scrollbar.background": "#181520ea",
     "scrollbar.shadow": "#181520ea",
     "scrollbarSlider.background": "#4e4b5980",

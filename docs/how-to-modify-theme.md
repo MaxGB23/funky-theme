@@ -34,6 +34,7 @@ Los colores reutilizados viven como variables en `const palette` al inicio del a
 | `orangeScarlet` | `#f78c6c` | Advertencias, números, acentos de operador |
 | `terracotta` | `#c17e70` | Verificación de números, find-in-files |
 | `uiBorder` | `#5d4e69` | Bordes de checkbox, dropdown e inputs |
+| `linkPurple` | `#b2b3ff` | Links y `pickerGroup.foreground` |
 
 **Regla de paleta:** crea una variable **solo** para valores que se repiten (≥2 usos) o que tienen identidad semántica clara. Los valores de un solo uso se dejan **literales** en su regla.
 

@@ -21,6 +21,7 @@ const palette = {
   greyLight: "#cbcbcb",    // grey-light - Delimitadores de code blocks de Markdown
   purpleGrey: "#a9b1de",   // purple-grey - Puntuación y meta de Markdown
   uiBorder: "#5d4e69",     // ui-border - Bordes de checkbox, dropdown e inputs
+  linkPurple: "#b2b3ff",   // link-purple - Links y pickerGroup foreground
 
   // === Colores de Sintaxis (Accents Tiered Palette) ===
 
@@ -189,6 +190,7 @@ module.exports = {
     "list.warningForeground": palette.yellowBase,
     "list.errorForeground": "#ff8282",
     "list.highlightForeground": palette.pinkLight,
+    "pickerGroup.foreground": palette.linkPurple,
 
     // ── Scrollbar ─────────────────────────────────────────────────────────────────────
     "scrollbar.background": "#24212eea",
@@ -213,7 +215,7 @@ module.exports = {
     "activityBarBadge.background": "#8c8effd2",
 
     // ── Links ─────────────────────────────────────────────────────────────────────────
-    "textLink.foreground": "#b2b3ff",
+    "textLink.foreground": palette.linkPurple,
     "textLink.activeForeground": palette.uiAccent,
 
     // ── Symbol Icons ──────────────────────────────────────────────────────────────────
