@@ -20,7 +20,6 @@ const palette = {
   uiMuted: "#606685",      // ui-muted (Reemplaza a '#5a657c','#65737e','#546e7a') - Bordes, guías y tokens secundarios
   greyLight: "#cbcbcb",    // grey-light - Delimitadores de code blocks de Markdown
   purpleGrey: "#a9b1de",   // purple-grey - Puntuación y meta de Markdown
-  uiBorder: "#5d4e69",     // ui-border - Bordes de checkbox, dropdown e inputs
   linkPurple: "#b2b3ff",   // link-purple - Links y pickerGroup foreground
 
   // === Colores de Sintaxis (Accents Tiered Palette) ===
@@ -80,15 +79,16 @@ module.exports = {
     "editorCursor.foreground": "#ffde25",
     "editor.lineHighlightBackground": palette.bgElevated,
     "editor.lineHighlightBorder": palette.bgElevated,
-    "editor.selectionBackground": "#8c8eff40",
+    "editor.selectionBackground": "#8c8eff45",
     "selection.background": "#8c8effd2",
-    "editor.selectionHighlightBackground": "#5f569580",
-    "editor.selectionHighlightBorder": "#8c8eff56",
-    "editor.wordHighlightBackground": "#5f569580",
-    "editor.wordHighlightBorder": "#8c8eff56",
-    "editor.wordHighlightStrongBackground": "#5f569580",
-    "editor.wordHighlightStrongBorder": "#8c8eff56",
-    "editorBracketMatch.background": "#5f569580",
+    // Highlights de selección/palabras: alpha sobre el accent para distinguirlos del selection real (#8c8eff45) y de brackets/tags (#8c8eff2a); Darker sube los fdos a #8c8eff30 (build.js)
+    "editor.selectionHighlightBackground": "#8c8eff45",
+    "editor.selectionHighlightBorder": "#8c8eff5e",
+    "editor.wordHighlightBackground": "#8c8eff2a",
+    "editor.wordHighlightBorder": "#8c8eff5e",
+    "editor.wordHighlightStrongBackground": "#8c8eff2a",
+    "editor.wordHighlightStrongBorder": "#8c8eff5e",
+    "editorBracketMatch.background": "#8c8eff2a",
     "editorBracketMatch.border": "#a599efff",
     "editor.hoverHighlightBackground": "#5f569580",
     "editor.findMatchBackground": "#5f569580",
@@ -155,6 +155,7 @@ module.exports = {
     "titleBar.inactiveForeground": "#ffffff99",
     "menubar.selectionForeground": palette.fgWhite,
     "menubar.selectionBackground": palette.bgElevated,
+    "toolbar.hoverBackground": palette.bgElevated,
 
     // ── Status Bar ────────────────────────────────────────────────────────────────────
     "statusBar.background": palette.bgBase,
@@ -176,17 +177,17 @@ module.exports = {
     // ── Inputs ────────────────────────────────────────────────────────────────────────
     "input.background": palette.bgDeep,
     "input.foreground": palette.fgWhite,
-    "input.border": palette.uiBorder,
+    "input.border": "#4f435ad2",
     "inputOption.activeBorder": "#8c8effd2",
 
     // ── Checkbox / Dropdown ───────────────────────────────────────────────────────────
     "checkbox.background": palette.bgDeep,
     "checkbox.foreground": palette.fgWhite,
-    "checkbox.border": palette.uiBorder,
+    "checkbox.border": "#4f435ad2",
     "dropdown.background": palette.bgDeep,
     "dropdown.foreground": palette.fgWhite,
     "dropdown.listBackground": palette.bgBase,
-    "dropdown.border": palette.uiBorder,
+    "dropdown.border": "#4f435ad2",
 
     // ── Menús y Listas ─────────────────────────────────────────────────────────────────
     "menu.background": palette.bgBase,
@@ -222,6 +223,9 @@ module.exports = {
     "button.background": "#8c8effd2",
     "button.foreground": palette.fgWhite,
     "button.hoverBackground": "#8c8effb6",
+    "button.secondaryBackground": "#313244",
+    "button.secondaryForeground": palette.fgWhite,
+    "button.secondaryHoverBackground": "#45475a",
     "focusBorder": "#8c8effd2",
     "activityBarBadge.background": "#8c8effd2",
 

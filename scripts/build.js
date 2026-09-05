@@ -40,6 +40,10 @@ variants.forEach(variant => {
     theme.colors['diffEditor.removedLineBackground'] = '#ff000018';
     theme.colors['diffEditor.insertedTextBackground'] = '#8c8eff28';
     theme.colors['diffEditor.removedTextBackground'] = '#ff000028';
+    // Darker: highlights de palabras y brackets un punto más visibles sobre el fondo más oscuro
+    theme.colors['editor.wordHighlightBackground'] = '#8c8eff30';
+    theme.colors['editor.wordHighlightStrongBackground'] = '#8c8eff30';
+    theme.colors['editorBracketMatch.background'] = '#8c8eff30';
     // QuickInput (Command Palette / Quick Open) Darker
     theme.colors['quickInput.foreground'] = '#ffffff';
     theme.colors['quickInputTitle.background'] = '#121018';
@@ -62,6 +66,11 @@ variants.forEach(variant => {
     
     theme.colors['editor.selectionBackground'] = '#8c8effd2';
     theme.colors['editor.selectionForeground'] = '#ffffff';
+    // Highlights HC: bordes con el accent completo y backgrounds más visibles que en las variantes oscuras
+    theme.colors['editor.selectionHighlightBackground'] = '#8c8eff73';
+    theme.colors['editor.selectionHighlightBorder'] = '#8c8effd2';
+    theme.colors['editor.wordHighlightBorder'] = '#8c8effd2';
+    theme.colors['editor.wordHighlightStrongBorder'] = '#8c8effd2';
     theme.colors['editorLineNumber.foreground'] = '#ffffff';
     theme.colors['editorLineNumber.activeForeground'] = '#eaa9fc';
     // Bordes de la línea actual: todos los bordes del editor visibles en HC
@@ -105,6 +114,10 @@ variants.forEach(variant => {
     theme.colors['pickerGroup.border'] = '#8c8effd2';
     // inputOption.activeBorder no aplica en HC
     delete theme.colors['inputOption.activeBorder'];
+    // Secondary buttons: no aplican en HC (defaults de VS Code con contraste máximo)
+    delete theme.colors['button.secondaryBackground'];
+    delete theme.colors['button.secondaryForeground'];
+    delete theme.colors['button.secondaryHoverBackground'];
   }
 
   // Perfiles Tipográficos (FontStyles)
