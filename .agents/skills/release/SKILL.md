@@ -4,7 +4,7 @@ description: "Trigger: release, publicar versión, generar vsix, crear GitHub re
 license: MIT
 metadata:
   author: maxgb23
-  version: "1.0"
+  version: "1.1"
 ---
 
 # Release Pipeline (funky-theme)
@@ -72,10 +72,11 @@ Every release `--notes` MUST follow this exact structure. Do not improvise headi
 
      | Change type | Bump | Example |
      |-------------|------|---------|
-     | New feature | MINOR | 2.5.1 → 2.6.0 |
-     | Breaking change | MAJOR | 2.5.1 → 3.0.0 |
-     | Bug fix | PATCH | 2.5.1 → 2.5.2 |
+     | New theme keys/scopes (previously undefined → VS Code default) | MINOR | add `textBlockQuote.*`, `toolbar.hoverBackground`; 2.5.1 → 2.6.0 |
+     | Only value tweaks on existing keys | PATCH | refine highlight alphas; 2.5.1 → 2.5.2 |
+     | Breaking visual change to the overall style | MAJOR | 2.5.1 → 3.0.0 |
 
+   - If the notes will have an `### Added` section, the bump cannot be PATCH: new keys change behavior that previously used VS Code defaults.
    - Preguntar al usuario para confirmar si es ambiguo.
 3. Bump `version` en `package.json` según el bump determinado.
 4. Canonical flow: `pnpm install && pnpm build && pnpm package`. Minimum viable: `pnpm run package` (builds all 4 variants into `/themes`, then packs `funky-theme-vscode-<ver>.vsix`).
