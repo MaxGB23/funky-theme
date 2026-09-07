@@ -23,7 +23,7 @@ Flujo de testeo manual ANTES de tocar el Source of Truth:
 
 ## Versioning & Releases (estrategia acordada)
 
-- **SemVer estricto:** `MAJOR` solo para un cambio visual rompedor grande; `MINOR` para features/refactors con cambio de comportamiento; `PATCH` para fixes.
+- **SemVer estricto:** consultar la skill para más detalles.
 - **NO borrar releases/tags anteriores**, aunque el repo tenga pocas visitas. Mantienen trazabilidad.
 - **Releases por lote, no por commit:** agrupar varios cambios en un solo vsix cuando haya un grupo coherente. NO publicar un vsix por cada micro-commit (eso satura el feed de releases).
 - **Pre-release de GitHub** (`-beta.x` / `-rc.x`) reservado SOLO para cambios de paleta grandes o MAJOR que requieran feedback antes de fijar una versión estable. Para cambios menores no hace falta candidate — release estable directa cuando el lote esté listo.
