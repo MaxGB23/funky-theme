@@ -158,12 +158,23 @@ module.exports = {
     "toolbar.hoverBackground": palette.bgElevated,
 
     // ── Status Bar ────────────────────────────────────────────────────────────────────
-    "statusBar.background": palette.bgBase,
+    "statusBar.background": palette.bgDeep,
     "statusBar.foreground": palette.fgWhite,
+    "statusBar.border": palette.bgDeep,
     "statusBar.noFolderBackground": palette.bgDeep,
     "statusBar.debuggingBackground": palette.redBase,
-    "statusBarItem.hoverBackground": "#ffffff33",
-    "statusBarItem.activeBackground": "#ffffff80",
+    "statusBar.debuggingForeground": palette.fgWhite,
+    "statusBarItem.prominentBackground": palette.bgDeep,
+    "statusBarItem.prominentHoverBackground": palette.bgElevated,
+    "statusBarItem.hoverBackground": palette.bgElevated,
+    "statusBarItem.activeBackground": "#8c8eff5e",
+    "statusBarItem.remoteBackground": "#8c8effd2",
+    "statusBarItem.remoteForeground": palette.fgWhite,
+    "statusBarItem.warningBackground": palette.bgDeep,
+    "statusBarItem.warningHoverBackground": palette.bgElevated,
+    "statusBarItem.errorBackground": palette.bgDeep,
+    "statusBarItem.errorHoverBackground": palette.bgElevated,
+    "statusBarItem.compactHoverBackground": "#363143",
 
     // ── Widgets / Find ─────────────────────────────────────────────────────────────────
     "editorWidget.background": palette.bgBase,
@@ -233,9 +244,12 @@ module.exports = {
     "textLink.foreground": palette.linkPurple,
     "textLink.activeForeground": palette.uiAccent,
 
-    // ── Markdown Preview (Blockquotes) ────────────────────────────────────────────────
+    // ── Markdown Preview (Blockquotes / Preformatted) ─────────────────────────────────
+    // textPreformat: compartido; High Contrast maneja los suyos (build.js los sobreescribe)
     "textBlockQuote.background": palette.bgBase,
     "textBlockQuote.border": palette.uiAccent,
+    "textPreformat.background": "#8c8eff33",
+    "textPreformat.foreground": "#cacbff",
 
     // ── Symbol Icons ──────────────────────────────────────────────────────────────────
     "symbolIcon.propertyForeground": palette.fgWhite,

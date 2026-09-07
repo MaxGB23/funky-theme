@@ -33,6 +33,7 @@ variants.forEach(variant => {
       if (color.startsWith('#24212e')) theme.colors[k] = '#181520' + color.slice(7);
       if (color.startsWith('#211e2b')) theme.colors[k] = '#121018' + color.slice(7);
       if (color.startsWith('#2e2a3a')) theme.colors[k] = '#201d2a' + color.slice(7);
+      if (color.startsWith('#363143')) theme.colors[k] = '#26222f' + color.slice(7); // statusBarItem.compactHoverBackground
     });
     
     // Bajar opacidad de diffs aún más porque el fondo es más oscuro
