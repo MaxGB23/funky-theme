@@ -4,7 +4,7 @@ description: "Trigger: release, publicar versión, generar vsix, crear GitHub re
 license: MIT
 metadata:
   author: maxgb23
-  version: "1.2"
+  version: "1.3"
 ---
 
 # Release Pipeline (funky-theme)
@@ -83,11 +83,12 @@ Every release `--notes` MUST follow this exact structure. Do not improvise headi
 4. Canonical flow: `pnpm install && pnpm build && pnpm package`. Minimum viable: `pnpm run package` (builds all 4 variants into `/themes`, then packs `funky-theme-vscode-<ver>.vsix`).
 5. Verify output: build logs list 4 variants; spot-check generated JSONs (e.g. changed keys) before packaging.
 6. Commit with conventional messages (`feat(theme): ...`, `chore: ...`), then `git push`.
-7. Create the release with the vsix attached, using the **Release Notes Format** above:
+7. Write the notes to `RELEASE_NOTES.md` per the **Release Notes Format**, then create the release:
    ```bash
    gh release create v<version> funky-theme-vscode-<version>.vsix \
-     --title "v<version>" --notes "<notes per the Release Notes Format>"
+     --title "v<version>" --notes-file RELEASE_NOTES.md
    ```
+   > Use `--notes-file`, never inline `--notes`: both Windows and Unix shells corrupt Markdown backticks (PowerShell `` `t ``/`` `n ``; bash command substitution). The file bypasses the shell, so notes are byte-identical on any OS. Write `RELEASE_NOTES.md` raw (`Set-Content -Raw` on PowerShell) so backticks survive verbatim.
 8. Report the release URL and the commit hashes included.
 
 ## Output Contract
