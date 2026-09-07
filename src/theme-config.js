@@ -96,6 +96,10 @@ module.exports = {
     "editor.findMatchForeground": palette.fgWhite,
     "editor.findMatchHighlightBackground": "#5f569580",
     "editor.findMatchHighlightForeground": palette.fgWhite,
+    // Minimap / Overview Ruler: resaltados consistentes entre editores basados en VS Code (HC los sube a d2 vía build.js)
+    "minimap.findMatchHighlight": "#8c8eff80",
+    "editorOverviewRuler.findMatchForeground": "#8c8eff45",
+    "minimap.selectionHighlight": "#8c8eff45",
     "editorGroupHeader.tabsBackground": palette.bgDeep,
 
     // ── Activity Bar / Sidebar / Tree ─────────────────────────────────────────────────
@@ -155,7 +159,7 @@ module.exports = {
     "titleBar.inactiveForeground": "#ffffff99",
     "menubar.selectionForeground": palette.fgWhite,
     "menubar.selectionBackground": palette.bgElevated,
-    "toolbar.hoverBackground": palette.bgElevated,
+    "toolbar.hoverBackground": "#2e2a3a80",
 
     // ── Status Bar ────────────────────────────────────────────────────────────────────
     "statusBar.background": palette.bgDeep,
@@ -188,17 +192,17 @@ module.exports = {
     // ── Inputs ────────────────────────────────────────────────────────────────────────
     "input.background": palette.bgDeep,
     "input.foreground": palette.fgWhite,
-    "input.border": "#4f435ad2",
+    "input.border": "#473c52a5",
     "inputOption.activeBorder": "#8c8effd2",
 
     // ── Checkbox / Dropdown ───────────────────────────────────────────────────────────
     "checkbox.background": palette.bgDeep,
     "checkbox.foreground": palette.fgWhite,
-    "checkbox.border": "#4f435ad2",
+    "checkbox.border": "#473c52a5",
     "dropdown.background": palette.bgDeep,
     "dropdown.foreground": palette.fgWhite,
     "dropdown.listBackground": palette.bgBase,
-    "dropdown.border": "#4f435ad2",
+    "dropdown.border": "#473c52a5",
 
     // ── Menús y Listas ─────────────────────────────────────────────────────────────────
     "menu.background": palette.bgBase,
@@ -359,7 +363,7 @@ module.exports = {
       }
     },
     {
-      "scope": "keyword.operator.new.tsx",
+      "scope": "keyword.operator.new, keyword.operator.new.tsx",
       "settings": {
         "foreground": palette.orangeAccent
       }

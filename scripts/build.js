@@ -45,6 +45,10 @@ variants.forEach(variant => {
     theme.colors['editor.wordHighlightBackground'] = '#8c8eff30';
     theme.colors['editor.wordHighlightStrongBackground'] = '#8c8eff30';
     theme.colors['editorBracketMatch.background'] = '#8c8eff30';
+    // Darker: bordes de checkbox/input/dropdown adaptados al fondo ultra-oscuro (toolbar.hoverBackground se deriva solo del transform #2e2a3a -> #201d2a)
+    theme.colors['input.border'] = '#372e3eb1';
+    theme.colors['dropdown.border'] = '#372e3eb1';
+    theme.colors['checkbox.border'] = '#372e3eb1';
     // QuickInput (Command Palette / Quick Open) Darker
     theme.colors['quickInput.foreground'] = '#ffffff';
     theme.colors['quickInputTitle.background'] = '#121018';
@@ -83,6 +87,10 @@ variants.forEach(variant => {
     theme.colors['editor.findMatchForeground'] = '#ffffff';
     theme.colors['editor.findMatchHighlightBackground'] = '#5f569580';
     theme.colors['editor.findMatchHighlightForeground'] = '#ffffff';
+    // Minimap / Overview Ruler HC: resaltados con el accent completo
+    theme.colors['minimap.findMatchHighlight'] = '#8c8effd2';
+    theme.colors['editorOverviewRuler.findMatchForeground'] = '#8c8effd2';
+    theme.colors['minimap.selectionHighlight'] = '#8c8effd2';
     // Diffs: borde de línea/texto insertado (magenta) solo en HC
     theme.colors['diffEditor.insertedTextBorder'] = '#e881ff';
     theme.colors['diffEditor.insertedLineBorder'] = '#e881ff';

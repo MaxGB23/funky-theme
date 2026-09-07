@@ -21,6 +21,9 @@
     "editor.findMatchForeground": "#ffffff",
     "editor.findMatchHighlightBackground": "#5f569580",
     "editor.findMatchHighlightForeground": "#ffffff",
+    "minimap.findMatchHighlight": "#8c8eff80",
+    "editorOverviewRuler.findMatchForeground": "#8c8eff45",
+    "minimap.selectionHighlight": "#8c8eff45",
     "editorGroupHeader.tabsBackground": "#121018",
     "activityBar.background": "#121018",
     "activityBar.foreground": "#ffffff",
@@ -68,7 +71,7 @@
     "titleBar.inactiveForeground": "#ffffff99",
     "menubar.selectionForeground": "#ffffff",
     "menubar.selectionBackground": "#201d2a",
-    "toolbar.hoverBackground": "#201d2a",
+    "toolbar.hoverBackground": "#201d2a80",
     "statusBar.background": "#121018",
     "statusBar.foreground": "#ffffff",
     "statusBar.border": "#121018",
@@ -95,15 +98,15 @@
     "editorFindWidget.border": "#121018",
     "input.background": "#121018",
     "input.foreground": "#ffffff",
-    "input.border": "#4f435ad2",
+    "input.border": "#372e3eb1",
     "inputOption.activeBorder": "#8c8effd2",
     "checkbox.background": "#121018",
     "checkbox.foreground": "#ffffff",
-    "checkbox.border": "#4f435ad2",
+    "checkbox.border": "#372e3eb1",
     "dropdown.background": "#121018",
     "dropdown.foreground": "#ffffff",
     "dropdown.listBackground": "#181520",
-    "dropdown.border": "#4f435ad2",
+    "dropdown.border": "#372e3eb1",
     "menu.background": "#181520",
     "menu.foreground": "#ffffff",
     "menu.selectionForeground": "#ffffff",
@@ -233,7 +236,7 @@
       }
     },
     {
-      "scope": "keyword.operator.new.tsx",
+      "scope": "keyword.operator.new, keyword.operator.new.tsx",
       "settings": {
         "foreground": "#ffcb7d"
       }
