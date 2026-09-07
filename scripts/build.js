@@ -14,6 +14,7 @@ if (!fs.existsSync(THEMES_DIR)){
 const variants = [
   { file: 'maxiano-dark.json', name: 'Maxiano Dark', profile: 'flat' },
   { file: 'maxiano-dark-italic.json', name: 'Maxiano Dark Italic', profile: 'expressive' },
+  { file: 'maxiano-dark-mix.json', name: 'Maxiano Dark Mix', profile: 'mix' },
   { file: 'maxiano-darker.json', name: 'Maxiano Darker', profile: 'ultra-nocturno' },
   { file: 'maxiano-high-contrast.json', name: 'Maxiano High Contrast', profile: 'high-contrast' }
 ];
@@ -55,7 +56,7 @@ variants.forEach(variant => {
   }
   
   // Perfil: Dark & Italic (QuickInput con fondo profundo y texto blanco)
-  if (variant.profile === 'flat' || variant.profile === 'expressive') {
+  if (variant.profile === 'flat' || variant.profile === 'expressive' || variant.profile === 'mix') {
     theme.colors['quickInput.foreground'] = '#ffffff';
     theme.colors['quickInputTitle.background'] = '#211e2b';
   }
@@ -164,21 +165,37 @@ variants.forEach(variant => {
       // JS: variable alias — el italic se aplica SOLO en la variante Italic (abajo), normal en el resto
 
       // Reglas Expresivas (Solamente en la variante Italic)
+      // La Italic es dark regular adaptada a italic: NI un solo bold (release.md bloque 4).
+      // Su capa de italic es EXACTAMENTE la misma que Dark Mix; Mix añade además las anclas en bold.
       if (variant.profile === 'expressive') {
-        // Comments -> italic (solo en la variante Italic)
+        // italic — documentación y metadata
         if (scope.match(/^(comment|.*\.comment)[,\s$]/i) || scope === 'comment, punctuation.definition.comment') styles.push('italic');
-        // JS: variable alias -> italic
+        if (scope.match(/variable\.parameter/i)) styles.push('italic');
+        if (scope.match(/entity\.other\.attribute-name/i)) styles.push('italic');
+        if (scope.match(/variable\.language/i)) styles.push('italic');
         if (scope.match(/variable\.other\.readwrite\.alias\.js/i)) styles.push('italic');
-        if (scope.match(/variable\.parameter/i) || 
-            scope.match(/storage\.type/i) || 
-            scope.match(/meta\.decorator/i) || 
-            (scope.match(/entity\.other\.attribute-name/i) && !scope.match(/jsx|tsx/i))
-            ) {
-          if (!styles.includes('italic')) styles.push('italic');
-        }
-        if (scope.match(/keyword\.control/i) || scope.match(/keyword\.operator\.new/i)) {
-          styles.push('bold');
-        }
+        // italic — modificadores de comportamiento (sin bold: prohibido en esta variante)
+        if (scope.match(/storage\.modifier/i)) styles.push('italic');
+        // C2 — señal fuerte tipo Operator Mono: control flow (if/else/return...) y storage types (function/class/const/let/var/interface/type)
+        // Decisión de portfolio: esta es la variante cursiva completa; números y keywords genéricas quedan normales
+        if (scope.match(/keyword\.control/i)) styles.push('italic');
+        if (scope.match(/storage\.type/i)) styles.push('italic');
+      }
+
+      // Reglas de Dark Mix: bold/italic dirigidos por escopo (anti-fatiga visual)
+      if (variant.profile === 'mix') {
+        // italic — documentación y metadata
+        if (scope.match(/^(comment|.*\.comment)[,\s$]/i) || scope === 'comment, punctuation.definition.comment') styles.push('italic');
+        if (scope.match(/variable\.parameter/i)) styles.push('italic');
+        if (scope.match(/entity\.other\.attribute-name/i)) styles.push('italic');
+        if (scope.match(/variable\.language/i)) styles.push('italic');
+        if (scope.match(/variable\.other\.readwrite\.alias\.js/i)) styles.push('italic');
+        // bold — anclas estructurales (types, imports/exports/return, new)
+        if (scope.match(/storage\.type/i)) styles.push('bold');
+        if (scope.match(/keyword\.control\.(import|from|export|return)/i)) styles.push('bold');
+        if (scope.match(/keyword\.operator\.new/i)) styles.push('bold');
+        // italic bold — modificadores de comportamiento
+        if (scope.match(/storage\.modifier/i)) { styles.push('italic'); styles.push('bold'); }
       }
 
       if (styles.length > 0) {

@@ -63,7 +63,7 @@ Supongamos que el rosa (`pinkBase`) actual de tu tema te parece muy saturado y l
    ```bash
    node scripts/build.js
    ```
-5. ¡Listo! Automáticamente las 4 variantes de tus temas (`/themes/*.json`) van a heredar este nuevo rosa exacto en los lugares correspondientes.
+5. ¡Listo! Automáticamente las 5 variantes de tus temas (`/themes/*.json`) van a heredar este nuevo rosa exacto en los lugares correspondientes.
 
 ---
 
@@ -110,7 +110,7 @@ En la terminal ejecuta:
 ```bash
 node scripts/build.js
 ```
-El script leerá la nueva llave `orangeBright` y la volcará compilada a los 4 temas como `"#ff9133"`.
+El script leerá la nueva llave `orangeBright` y la volcará compilada a los 5 temas como `"#ff9133"`.
 
 ---
 
@@ -122,6 +122,9 @@ A veces un color aplica únicamente a una variante (p.ej. `quickInput.*` que dif
    - `ultra-nocturno` → Maxiano Darker
    - `high-contrast` → Maxiano High Contrast
    - `flat` / `expressive` → Maxiano Dark / Dark Italic
+   - `mix` → Maxiano Dark Mix (tipografía dirigida: bold en anclas estructurales, italic en metadata)
+
+La variante Italic (`expressive`) parte de la MISMA capa de italic de Mix (comments, params, attributes, `variable.language`, alias y `storage.modifier`) y la extiende con `keyword.control` (if/else/return…) y `storage.type` (function/class/const/let/var…): la estética cursiva completa tipo Operator Mono. En esta variante NO hay bold de tipografía (solo los bold de markdown `**negrita**` y headings, igual que en la variante regular); números y keywords genéricas quedan normales.
 
 2. Agrega el color dentro de ese bloque con un comentario que explique qué hace:
    ```javascript

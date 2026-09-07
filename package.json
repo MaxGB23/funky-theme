@@ -62,6 +62,11 @@
         "path": "./themes/maxiano-dark-italic.json"
       },
       {
+        "label": "Funky Dark Mix",
+        "uiTheme": "vs-dark",
+        "path": "./themes/maxiano-dark-mix.json"
+      },
+      {
         "label": "Funky Darker",
         "uiTheme": "vs-dark",
         "path": "./themes/maxiano-darker.json"

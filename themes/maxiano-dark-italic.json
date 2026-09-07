@@ -203,7 +203,8 @@
     {
       "scope": "variable.language",
       "settings": {
-        "foreground": "#eaa9fc"
+        "foreground": "#eaa9fc",
+        "fontStyle": "italic"
       }
     },
     {
@@ -220,7 +221,20 @@
       }
     },
     {
-      "scope": "keyword, storage.type, storage.modifier",
+      "scope": "keyword",
+      "settings": {
+        "foreground": "#c792ea"
+      }
+    },
+    {
+      "scope": "storage.type",
+      "settings": {
+        "foreground": "#c792ea",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "scope": "storage.modifier",
       "settings": {
         "foreground": "#c792ea",
         "fontStyle": "italic"
@@ -241,8 +255,7 @@
     {
       "scope": "keyword.operator.new, keyword.operator.new.tsx",
       "settings": {
-        "foreground": "#ffcb7d",
-        "fontStyle": "bold"
+        "foreground": "#ffcb7d"
       }
     },
     {
@@ -252,16 +265,16 @@
       }
     },
     {
-      "scope": "keyword.control.import, keyword.control.from, storage.modifier, keyword.control.export, storage.type",
+      "scope": "keyword.control.import, keyword.control.from, keyword.control.export, keyword.control.return",
       "settings": {
-        "fontStyle": "italic bold"
+        "fontStyle": "italic"
       }
     },
     {
       "scope": "source.sass keyword.control",
       "settings": {
         "foreground": "#82aaff",
-        "fontStyle": "bold"
+        "fontStyle": "italic"
       }
     },
     {
@@ -331,7 +344,13 @@
       }
     },
     {
-      "scope": "constant.numeric, constant.language, support.constant, constant.character, variable.parameter, keyword.other.unit",
+      "scope": "constant.numeric, constant.language, support.constant, constant.character, keyword.other.unit",
+      "settings": {
+        "foreground": "#ffa8e6"
+      }
+    },
+    {
+      "scope": "variable.parameter",
       "settings": {
         "foreground": "#ffa8e6",
         "fontStyle": "italic"
@@ -586,7 +605,8 @@
     {
       "scope": "variable.language.fenced.markdown",
       "settings": {
-        "foreground": "#f8f8f2"
+        "foreground": "#f8f8f2",
+        "fontStyle": "italic"
       }
     },
     {

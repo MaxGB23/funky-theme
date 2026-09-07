@@ -233,7 +233,19 @@
       }
     },
     {
-      "scope": "keyword, storage.type, storage.modifier",
+      "scope": "keyword",
+      "settings": {
+        "foreground": "#c792ea"
+      }
+    },
+    {
+      "scope": "storage.type",
+      "settings": {
+        "foreground": "#c792ea"
+      }
+    },
+    {
+      "scope": "storage.modifier",
       "settings": {
         "foreground": "#c792ea"
       }
@@ -263,7 +275,7 @@
       }
     },
     {
-      "scope": "keyword.control.import, keyword.control.from, storage.modifier, keyword.control.export, storage.type",
+      "scope": "keyword.control.import, keyword.control.from, keyword.control.export, keyword.control.return",
       "settings": {}
     },
     {
@@ -339,7 +351,13 @@
       }
     },
     {
-      "scope": "constant.numeric, constant.language, support.constant, constant.character, variable.parameter, keyword.other.unit",
+      "scope": "constant.numeric, constant.language, support.constant, constant.character, keyword.other.unit",
+      "settings": {
+        "foreground": "#ffa8e6"
+      }
+    },
+    {
+      "scope": "variable.parameter",
       "settings": {
         "foreground": "#ffa8e6"
       }

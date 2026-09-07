@@ -334,7 +334,7 @@ module.exports = {
         "foreground": palette.redBase
       }
     },
-    // variable.other.readwrite.alias.js — foreground compartido; el italic lo pone build.js SOLO en la variante Italic (bloque expressive)
+    // variable.other.readwrite.alias.js — foreground compartido; el italic lo pone build.js (bloque expressive y bloque mix)
     {
       "scope": "variable.other.readwrite.alias.js",
       "settings": {
@@ -345,7 +345,19 @@ module.exports = {
 
     // ── Keywords / control / imports ───────────────────────────────────────────────────
     {
-      "scope": "keyword, storage.type, storage.modifier",
+      "scope": "keyword",
+      "settings": {
+        "foreground": palette.purpleDim
+      }
+    },
+    {
+      "scope": "storage.type",
+      "settings": {
+        "foreground": palette.purpleDim
+      }
+    },
+    {
+      "scope": "storage.modifier",
       "settings": {
         "foreground": palette.purpleDim
       }
@@ -375,7 +387,7 @@ module.exports = {
       }
     },
     {
-      "scope": "keyword.control.import, keyword.control.from, storage.modifier, keyword.control.export, storage.type",
+      "scope": "keyword.control.import, keyword.control.from, keyword.control.export, keyword.control.return",
       "settings": {
 
       }
@@ -463,7 +475,13 @@ module.exports = {
 
     // ── Números y constantes numéricas / parámetros ────────────────────────────────────
     {
-      "scope": "constant.numeric, constant.language, support.constant, constant.character, variable.parameter, keyword.other.unit",
+      "scope": "constant.numeric, constant.language, support.constant, constant.character, keyword.other.unit",
+      "settings": {
+        "foreground": palette.pinkLight
+      }
+    },
+    {
+      "scope": "variable.parameter",
       "settings": {
         "foreground": palette.pinkLight
       }

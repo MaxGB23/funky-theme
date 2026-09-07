@@ -1,5 +1,5 @@
 {
-  "name": "Maxiano Dark",
+  "name": "Maxiano Dark Mix",
   "colors": {
     "editor.background": "#24212e",
     "editorCursor.foreground": "#ffde25",
@@ -172,7 +172,8 @@
     {
       "scope": "comment, punctuation.definition.comment",
       "settings": {
-        "foreground": "#d8d8d8f1"
+        "foreground": "#d8d8d8f1",
+        "fontStyle": "italic"
       }
     },
     {
@@ -202,7 +203,8 @@
     {
       "scope": "variable.language",
       "settings": {
-        "foreground": "#eaa9fc"
+        "foreground": "#eaa9fc",
+        "fontStyle": "italic"
       }
     },
     {
@@ -214,7 +216,8 @@
     {
       "scope": "variable.other.readwrite.alias.js",
       "settings": {
-        "foreground": "#ffffff"
+        "foreground": "#ffffff",
+        "fontStyle": "italic"
       }
     },
     {
@@ -226,13 +229,15 @@
     {
       "scope": "storage.type",
       "settings": {
-        "foreground": "#c792ea"
+        "foreground": "#c792ea",
+        "fontStyle": "bold"
       }
     },
     {
       "scope": "storage.modifier",
       "settings": {
-        "foreground": "#c792ea"
+        "foreground": "#c792ea",
+        "fontStyle": "italic bold"
       }
     },
     {
@@ -250,7 +255,8 @@
     {
       "scope": "keyword.operator.new, keyword.operator.new.tsx",
       "settings": {
-        "foreground": "#ffcb7d"
+        "foreground": "#ffcb7d",
+        "fontStyle": "bold"
       }
     },
     {
@@ -261,7 +267,9 @@
     },
     {
       "scope": "keyword.control.import, keyword.control.from, keyword.control.export, keyword.control.return",
-      "settings": {}
+      "settings": {
+        "fontStyle": "bold"
+      }
     },
     {
       "scope": "source.sass keyword.control",
@@ -344,31 +352,36 @@
     {
       "scope": "variable.parameter",
       "settings": {
-        "foreground": "#ffa8e6"
+        "foreground": "#ffa8e6",
+        "fontStyle": "italic"
       }
     },
     {
       "scope": "entity.other.attribute-name.class.css",
       "settings": {
-        "foreground": "#f6ff98"
+        "foreground": "#f6ff98",
+        "fontStyle": "italic"
       }
     },
     {
       "scope": "entity.other.attribute-name",
       "settings": {
-        "foreground": "#fff9ba"
+        "foreground": "#fff9ba",
+        "fontStyle": "italic"
       }
     },
     {
       "scope": "text.html.basic entity.other.attribute-name.html, text.html.basic entity.other.attribute-name",
       "settings": {
-        "foreground": "#ffb86c"
+        "foreground": "#ffb86c",
+        "fontStyle": "italic"
       }
     },
     {
       "scope": "entity.other.attribute-name.class",
       "settings": {
-        "foreground": "#ffb86c"
+        "foreground": "#ffb86c",
+        "fontStyle": "italic"
       }
     },
     {
@@ -592,7 +605,8 @@
     {
       "scope": "variable.language.fenced.markdown",
       "settings": {
-        "foreground": "#f8f8f2"
+        "foreground": "#f8f8f2",
+        "fontStyle": "italic"
       }
     },
     {
