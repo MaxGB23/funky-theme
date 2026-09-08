@@ -276,6 +276,11 @@ module.exports = {
     "keybindingLabel.border": "#8c8effd2",
     "keybindingLabel.bottomBorder": "#8c8effd2",
 
+    // ── Settings Editor ────────────────────────────────────────────────────────────────
+    // Indicador de configuración modificada (punto junto al setting). Alpha literal:
+    // es una mezcla de opacidad sobre el fondo, no un color puro de paleta.
+    "settings.modifiedItemIndicator": "#8c8effd2",
+
     // ── Sticky Scroll ─────────────────────────────────────────────────────────────────
     "editorStickyScroll.background": palette.bgDeep,
     "editorStickyScrollHover.background": palette.bgElevated,

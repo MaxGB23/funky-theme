@@ -160,6 +160,7 @@
     "keybindingLabel.foreground": "#ffffff",
     "keybindingLabel.border": "#8c8effd2",
     "keybindingLabel.bottomBorder": "#8c8effd2",
+    "settings.modifiedItemIndicator": "#8c8effd2",
     "editorStickyScroll.background": "#121018",
     "editorStickyScrollHover.background": "#201d2a",
     "terminalStickyScrollHover.background": "#201d2a",
