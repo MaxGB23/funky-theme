@@ -190,12 +190,12 @@ variants.forEach(variant => {
         if (scope.match(/entity\.other\.attribute-name/i)) styles.push('italic');
         if (scope.match(/variable\.language/i)) styles.push('italic');
         if (scope.match(/variable\.other\.readwrite\.alias\.js/i)) styles.push('italic');
-        // bold — anclas estructurales (types, imports/exports/return, new)
+        // bold — anclas estructurales (types, imports/exports, new)
         if (scope.match(/storage\.type/i)) styles.push('bold');
-        if (scope.match(/keyword\.control\.(import|from|export|return)/i)) styles.push('bold');
+        if (scope.match(/keyword\.control\.(import|from|export)/i)) styles.push('bold');
         if (scope.match(/keyword\.operator\.new/i)) styles.push('bold');
-        // italic bold — modificadores de comportamiento
-        if (scope.match(/storage\.modifier/i)) { styles.push('italic'); styles.push('bold'); }
+        // italic — modificadores de comportamiento (sin bold: misma capa italic que la Italic)
+        if (scope.match(/storage\.modifier/i)) styles.push('italic');
       }
 
       if (styles.length > 0) {

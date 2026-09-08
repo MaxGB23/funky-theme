@@ -32,7 +32,7 @@ Two things make this lineup original:
 Funky Theme is built around a **semantic, tiered color palette** defined in a single source-of-truth config file. Every color has a name and a reason to exist:
 
 - 🩷 **Pinks** — Tags, parameters, numeric constants
-- 🟣 **Purples** — Keywords, operators, support classes  
+- 🟣 **Purples** — Keywords, operators, support classes (flow keywords in a lighter purple)  
 - 🔵 **Cyans** — Functions, attributes, regex, escape characters
 - 🟡 **Yellows** — Class names, type names, attribute names  
 - 🟢 **Greens** — Strings, git untracked, inline code  

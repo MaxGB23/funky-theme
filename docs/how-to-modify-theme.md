@@ -141,6 +141,25 @@ La variante Italic (`expressive`) parte de la MISMA capa de italic de Mix (comme
 
 ---
 
+## 🎨 Estrategia cromática: separación por rol
+
+Los colores siguen una estrategia semántica: **el rol del token en el código decide su familia cromática**. Es una GUÍA — no una ley — y admite excepciones cuando el contexto lo pide.
+
+| Rol | Qué es | Familia cromática | Ejemplos |
+|---|---|---|---|
+| **Flujo** | Verbos que controlan la ejecución | Morado claro (`#eaa9fc`) | `if`, `else`, `for`, `while`, `return`, `switch`, `import`, `export` |
+| **Declaración** | Sustantivos que definen estructura | Morado (`#c792ea`) | `type`, `interface`, `class`, `const`, `let`, `var`, `private`, `function` |
+| **Referencia** | Punteros al contexto actual | Morado claro (`#eaa9fc`) | `this`, `super`, `self` |
+| **Creación** | Operadores de instanciación | Naranja (`#ffcb7d`) | `new` |
+
+La meta es la legibilidad por escaneo: el ojo distingue de un vistazo *dónde pasa algo* (flujo) de *dónde se declara algo* (estructura) — por luminosidad dentro de la misma familia morada, no por cambio de color. Flujo y Referencia comparten tono a propósito: ambos son "tokens activos", a diferencia de la estructura estática.
+
+**Excepciones legítimas:** la estrategia es una sugerencia, no un contrato rígido. Un caso particular (lenguaje, contexto o necesidad de énfasis) puede romperla si la excepción mejora la legibilidad. Si rompes la regla, documenta la excepción con un comentario junto a la regla en `theme-config.js`, para que no parezca un error accidental.
+
+**Estado actual:** la separación está **aplicada en el source of truth** (`src/theme-config.js`): `keyword.control` → `#eaa9fc` (morado claro) y `source.sass keyword.control` unificado al mismo tono — ya no hay excepción azul. Las 5 variantes la heredan vía build; el README refleja la filosofía de color. La separación es una **guía**, no una ley: si un caso particular la rompe, documenta la excepción con un comentario junto a la regla en `theme-config.js`.
+
+---
+
 ## 🚀 Cheatsheet de Comandos
 - Para compilar el tema tras CUALQUIER cambio:
   `node scripts/build.js`

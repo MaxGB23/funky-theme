@@ -40,10 +40,10 @@ const palette = {
   pinkVibrant: "#ff8ddb",  // pink-vibrant - Headings de Markdown
   pinkTerminal: "#ff55a4", // pink-terminal - ANSI red/bright-red de terminal y git deleted (unifica el rojo de estado)
 
-  // Morados (Operators, Imports/Exports, Support Classes)
+  // Morados (Operators, Support Classes, Flujo/Control)
   purpleDim: "#c792ea",    // purple-dim (Reemplaza a '#d6acff') - Operadores matemáticos o lógicos
-  purpleBase: "#bd93f9",   // purple-base (Reemplaza a '#cca2e8') - Keywords de importación y exportación
-  purpleBright: "#eaa9fc", // purple-bright - Clases de soporte (support.class)
+  purpleBase: "#bd93f9",   // purple-base (Reemplaza a '#cca2e8') - terminal.ansiBlue
+  purpleBright: "#eaa9fc", // purple-bright - support.class, variable.language (this) y keyword.control (flujo)
 
   // Naranjas & Amarillos (Strings, Functions, Warnings)
   orangeBase: "#ffb86c",   // orange-base (Reemplaza a '#ffcb6b') - Usado para strings y warnings moderados
@@ -60,7 +60,7 @@ const palette = {
   bgScrollbar: "#4e4b59",  // bg-scrollbar - Slider del scrollbar (rest/hover/active)
 
   // === Azules de Métodos ===
-  blueMethod: "#82aaff",    // blue-method - Métodos JS/CS/Go, source.sass keyword.control, source.json values y decorators (azul de métodos)
+  blueMethod: "#82aaff",    // blue-method - Métodos JS/CS/Go, source.json values y decorators (azul de métodos)
 
   // === Verdes Material / Naranjas / Terracota ===
   greenMaterial: "#c3e88d", // green-material - Git insertions, find-in-files filename y algunos strings (verde Material)
@@ -387,15 +387,23 @@ module.exports = {
       }
     },
     {
-      "scope": "keyword.control.import, keyword.control.from, keyword.control.export, keyword.control.return",
+      "scope": "keyword.control.import, keyword.control.from, keyword.control.export",
       "settings": {
 
+      }
+    },
+    // Estrategia cromática: flujo (if/for/while/return/import…) en morado claro,
+    // separado de la declaración (storage.* en morado base) — ver docs/how-to-modify-theme.md
+    {
+      "scope": "keyword.control",
+      "settings": {
+        "foreground": palette.purpleBright
       }
     },
     {
       "scope": "source.sass keyword.control",
       "settings": {
-        "foreground": palette.blueMethod
+        "foreground": palette.purpleBright
       }
     },
 

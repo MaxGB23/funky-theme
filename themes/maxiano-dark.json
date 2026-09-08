@@ -260,13 +260,19 @@
       }
     },
     {
-      "scope": "keyword.control.import, keyword.control.from, keyword.control.export, keyword.control.return",
+      "scope": "keyword.control.import, keyword.control.from, keyword.control.export",
       "settings": {}
+    },
+    {
+      "scope": "keyword.control",
+      "settings": {
+        "foreground": "#eaa9fc"
+      }
     },
     {
       "scope": "source.sass keyword.control",
       "settings": {
-        "foreground": "#82aaff"
+        "foreground": "#eaa9fc"
       }
     },
     {
