@@ -986,5 +986,6 @@ module.exports = {
       }
     }
   ],
-  "type": "dark"
+  "type": "dark",
+  palette
 };

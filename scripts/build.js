@@ -3,6 +3,8 @@ const path = require('path');
 
 // 1. Cargamos el Source of Truth
 const baseTheme = require('../src/theme-config.js');
+// palette queda fuera del clon: es la paleta de tokens de build, no parte del theme JSON.
+const { palette, ...themeConfig } = baseTheme;
 
 const THEMES_DIR = path.join(__dirname, '..', 'themes');
 
@@ -19,9 +21,22 @@ const variants = [
   { file: 'maxiano-high-contrast.json', name: 'Maxiano High Contrast', profile: 'high-contrast' }
 ];
 
+// Mapa de oscurecimiento de la variante Darker. Detecta el prefijo del color y
+// conserva el sufijo alpha (#24212ed3 -> #181520d3). Al estar keyed por token de
+// paleta, el transform sigue a los fondos aunque cambien su valor: con el hex
+// hardcodeado, un cambio de bgBase/bgDeep/bgElevated rompía el oscurecimiento
+// en silencio (el startsWith ya no matcheaba y el JSON darker salía sin oscurecer).
+const darkerBackgrounds = {
+  [palette.bgBase]: '#181520',     // fondo base -> ultra-nocturno
+  [palette.bgDeep]: '#121018',     // fondo profundo -> ultra-nocturno
+  [palette.bgElevated]: '#201d2a', // superficie elevada -> ultra-nocturno
+  // statusBarItem.compactHoverBackground — un solo uso, no es token de paleta
+  '#363143': '#26222f'
+};
+
 variants.forEach(variant => {
   // Clonamos el objeto base para no mutar la referencia original
-  const theme = JSON.parse(JSON.stringify(baseTheme));
+  const theme = JSON.parse(JSON.stringify(themeConfig));
   
   theme.name = variant.name;
   theme.type = "dark";
@@ -29,12 +44,13 @@ variants.forEach(variant => {
   // Perfil: Darker (Oscurecer fondos drásticamente)
   if (variant.profile === 'ultra-nocturno') {
     Object.keys(theme.colors || {}).forEach(k => {
-      let color = theme.colors[k].toLowerCase();
-      // Backgrounds del config original (#24212e, #211e2b, #2e2a3a)
-      if (color.startsWith('#24212e')) theme.colors[k] = '#181520' + color.slice(7);
-      if (color.startsWith('#211e2b')) theme.colors[k] = '#121018' + color.slice(7);
-      if (color.startsWith('#2e2a3a')) theme.colors[k] = '#201d2a' + color.slice(7);
-      if (color.startsWith('#363143')) theme.colors[k] = '#26222f' + color.slice(7); // statusBarItem.compactHoverBackground
+      const color = theme.colors[k].toLowerCase();
+      for (const [base, darker] of Object.entries(darkerBackgrounds)) {
+        if (color.startsWith(base)) {
+          theme.colors[k] = darker + color.slice(base.length);
+          break;
+        }
+      }
     });
     
     // Bajar opacidad de diffs aún más porque el fondo es más oscuro
@@ -51,80 +67,80 @@ variants.forEach(variant => {
     theme.colors['dropdown.border'] = '#372e3eb1';
     theme.colors['checkbox.border'] = '#372e3eb1';
     // QuickInput (Command Palette / Quick Open) Darker
-    theme.colors['quickInput.foreground'] = '#ffffff';
-    theme.colors['quickInputTitle.background'] = '#121018';
+    theme.colors['quickInput.foreground'] = palette.fgWhite;
+    theme.colors['quickInputTitle.background'] = darkerBackgrounds[palette.bgDeep];
   }
   
   // Perfil: Dark & Italic (QuickInput con fondo profundo y texto blanco)
   if (variant.profile === 'flat' || variant.profile === 'expressive' || variant.profile === 'mix') {
-    theme.colors['quickInput.foreground'] = '#ffffff';
-    theme.colors['quickInputTitle.background'] = '#211e2b';
+    theme.colors['quickInput.foreground'] = palette.fgWhite;
+    theme.colors['quickInputTitle.background'] = palette.bgDeep;
   }
   
   // Perfil: High Contrast (Accesibilidad visual)
   if (variant.profile === 'high-contrast') {
-    theme.colors['contrastBorder'] = '#8c8effd2';
-    theme.colors['activityBar.border'] = '#8c8effd2';
-    theme.colors['sideBar.border'] = '#8c8effd2';
-    theme.colors['editorGroup.border'] = '#8c8effd2';
-    theme.colors['titleBar.border'] = '#8c8effd2';
-    theme.colors['statusBar.border'] = '#8c8effd2';
+    theme.colors['contrastBorder'] = palette.uiAccentStrong;
+    theme.colors['activityBar.border'] = palette.uiAccentStrong;
+    theme.colors['sideBar.border'] = palette.uiAccentStrong;
+    theme.colors['editorGroup.border'] = palette.uiAccentStrong;
+    theme.colors['titleBar.border'] = palette.uiAccentStrong;
+    theme.colors['statusBar.border'] = palette.uiAccentStrong;
     
-    theme.colors['editor.selectionBackground'] = '#8c8effd2';
-    theme.colors['editor.selectionForeground'] = '#ffffff';
+    theme.colors['editor.selectionBackground'] = palette.uiAccentStrong;
+    theme.colors['editor.selectionForeground'] = palette.fgWhite;
     // Highlights HC: bordes con el accent completo y backgrounds más visibles que en las variantes oscuras
     theme.colors['editor.selectionHighlightBackground'] = '#8c8eff73';
-    theme.colors['editor.selectionHighlightBorder'] = '#8c8effd2';
-    theme.colors['editor.wordHighlightBorder'] = '#8c8effd2';
-    theme.colors['editor.wordHighlightStrongBorder'] = '#8c8effd2';
-    theme.colors['editorLineNumber.foreground'] = '#ffffff';
+    theme.colors['editor.selectionHighlightBorder'] = palette.uiAccentStrong;
+    theme.colors['editor.wordHighlightBorder'] = palette.uiAccentStrong;
+    theme.colors['editor.wordHighlightStrongBorder'] = palette.uiAccentStrong;
+    theme.colors['editorLineNumber.foreground'] = palette.fgWhite;
     theme.colors['editorLineNumber.activeForeground'] = '#eaa9fc';
     // Bordes de la línea actual: todos los bordes del editor visibles en HC
     theme.colors['editor.lineHighlightBackground'] = '#24212ed3';
-    theme.colors['editor.lineHighlightBorder'] = '#8c8effd2';
+    theme.colors['editor.lineHighlightBorder'] = palette.uiAccentStrong;
     // Find Match: resaltado fuerte y distinguible en HC
     theme.colors['editor.findMatchBackground'] = '#a599efff';
     theme.colors['editor.findMatchBorder'] = '#a599efff';
-    theme.colors['editor.findMatchForeground'] = '#ffffff';
-    theme.colors['editor.findMatchHighlightBackground'] = '#5f569580';
-    theme.colors['editor.findMatchHighlightForeground'] = '#ffffff';
+    theme.colors['editor.findMatchForeground'] = palette.fgWhite;
+    theme.colors['editor.findMatchHighlightBackground'] = palette.searchBackground;
+    theme.colors['editor.findMatchHighlightForeground'] = palette.fgWhite;
     // Minimap / Overview Ruler HC: resaltados con el accent completo
-    theme.colors['minimap.findMatchHighlight'] = '#8c8effd2';
-    theme.colors['editorOverviewRuler.findMatchForeground'] = '#8c8effd2';
-    theme.colors['minimap.selectionHighlight'] = '#8c8effd2';
+    theme.colors['minimap.findMatchHighlight'] = palette.uiAccentStrong;
+    theme.colors['editorOverviewRuler.findMatchForeground'] = palette.uiAccentStrong;
+    theme.colors['minimap.selectionHighlight'] = palette.uiAccentStrong;
     // Diffs: borde de línea/texto insertado (magenta) solo en HC
     theme.colors['diffEditor.insertedTextBorder'] = '#e881ff';
     theme.colors['diffEditor.insertedLineBorder'] = '#e881ff';
     // Suggest widget HC: borde, fondo e item seleccionado (icono hereda el compartido #ffa8e6)
-    theme.colors['editorSuggestWidget.border'] = '#8c8effd2';
+    theme.colors['editorSuggestWidget.border'] = palette.uiAccentStrong;
     theme.colors['editorSuggestWidget.selectedBackground'] = '#8c8eff33';
-    theme.colors['editorSuggestWidget.selectedForeground'] = '#ffffff';
+    theme.colors['editorSuggestWidget.selectedForeground'] = palette.fgWhite;
     // Widgets / Notifications HC: bordes con el accent completo (base: bgElevated / bgBase)
-    theme.colors['widget.border'] = '#8c8effd2';
-    theme.colors['notifications.border'] = '#8c8effd2';
+    theme.colors['widget.border'] = palette.uiAccentStrong;
+    theme.colors['notifications.border'] = palette.uiAccentStrong;
     // Hover widget HC: borde con el accent del tema
-    theme.colors['editorHoverWidget.border'] = '#8c8effd2';
+    theme.colors['editorHoverWidget.border'] = palette.uiAccentStrong;
     // Sticky Scroll HC: bordes y resaltado de hover
-    theme.colors['editorStickyScroll.border'] = '#8c8effd2';
-    theme.colors['terminalStickyScroll.background'] = '#211e2b';
-    theme.colors['terminalStickyScrollHover.background'] = '#2e2a3a';
-    theme.colors['terminalStickyScroll.border'] = '#8c8effd2';
+    theme.colors['editorStickyScroll.border'] = palette.uiAccentStrong;
+    theme.colors['terminalStickyScroll.background'] = palette.bgDeep;
+    theme.colors['terminalStickyScrollHover.background'] = palette.bgElevated;
+    theme.colors['terminalStickyScroll.border'] = palette.uiAccentStrong;
     // Guías de indentación de árbol claras en HC
-    theme.colors['tree.indentGuidesStroke'] = '#8c8effd2';
+    theme.colors['tree.indentGuidesStroke'] = palette.uiAccentStrong;
 
-    theme.colors['welcomePage.tileBackground'] = '#2e2a3a';
+    theme.colors['welcomePage.tileBackground'] = palette.bgElevated;
     theme.colors['welcomePage.tileHoverBackground'] = '#383347';
     theme.colors['welcomePage.tileBorder'] = '#ffffff15';
-    theme.colors['welcomePage.progress.background'] = '#8c8effd2';
+    theme.colors['welcomePage.progress.background'] = palette.uiAccentStrong;
 
-    theme.colors['textPreformat.background'] = '#8c8effd2';
-    theme.colors['textPreformat.foreground'] = '#ffffff';
+    theme.colors['textPreformat.background'] = palette.uiAccentStrong;
+    theme.colors['textPreformat.foreground'] = palette.fgWhite;
 
     // QuickInput (Command Palette / Quick Open) HC — fondo profundo, texto blanco
-    theme.colors['quickInput.foreground'] = '#ffffff';
-    theme.colors['quickInputTitle.background'] = '#211e2b';
+    theme.colors['quickInput.foreground'] = palette.fgWhite;
+    theme.colors['quickInputTitle.background'] = palette.bgDeep;
     // Picker Group: separadores y bordes HC
-    theme.colors['pickerGroup.border'] = '#8c8effd2';
+    theme.colors['pickerGroup.border'] = palette.uiAccentStrong;
     // inputOption.activeBorder no aplica en HC
     delete theme.colors['inputOption.activeBorder'];
     // Secondary buttons: no aplican en HC (defaults de VS Code con contraste máximo)
