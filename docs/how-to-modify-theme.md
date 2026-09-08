@@ -41,7 +41,11 @@ Los colores reutilizados viven como variables en `const palette` al inicio del a
 
 Los colores con **alpha** (formato `#rrggbbaa`, ej. `#d8d8d8f1`) son **mezclas de opacidad con el fondo**, no "colores puros" de la paleta. Un alpha como `#8c8eff7e` no es un color con identidad propia — es el tono `#8c8eff` a un 49% de opacidad sobre lo que haya detrás. El resultado visual final depende del fondo, y por eso no encaja en un token de paleta.
 
-**Regla:** estos **NO se resuelven a tokens de paleta** — se escriben **literales** en su regla. Aunque el tono base se repita (p.ej. `#5f569580`, `#8c8eff40`, `#8c8effd2`), cada opacidad distinta es deliberadamente un valor distinto: cambiarla en un token rompería los demás. Los tokens son para **colores opacos puros** con identidad estable (p.ej. `fgWhite`, `bgDeep`); el alpha es la única categoría que rompe la regla de "≥2 usos → token". No intentes convertir un alpha en variable.
+**Regla:** los alphas **NO se derivan de tokens base** (p.ej. no compongas `uiAccent` + sufijo: el resultado visual depende del fondo, no es un color con identidad propia). Pero eso NO prohíbe tokenizarlos:
+
+- **Un MISMO alpha repetido ≥2 usos con la MISMA semántica → SÍ es token.** Viven en la sección "Alphas compartidos" de `theme-config.js` (p.ej. `uiAccentStrong` `#8c8effd2` — 9 superficies comparten el acento fuerte al 82%). Si cambias el token, las superficies se mantienen cohesionadas.
+- **Cada opacidad DISTINTA del mismo base → literal.** `#8c8eff45`, `#8c8eff40`, `#8c8eff2a`… son mezclas deliberadamente distintas; unificarlas en un token rompería las demás.
+- **Coincidencia de valor entre familias distintas → literal.** Si el MISMO número aparece con semántica distinta (un fill que vale como border, terminal vs markdown), dejarlo literal evita acoplar superficies que no deberían cambiar juntas (p.ej. `#8c8eff5e`, `#8c8eff33`, `#a4ffff`).
 
 ---
 

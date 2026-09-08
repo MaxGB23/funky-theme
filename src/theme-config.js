@@ -66,6 +66,20 @@ const palette = {
   greenMaterial: "#c3e88d", // green-material - Git insertions, find-in-files filename y algunos strings (verde Material)
   orangeScarlet: "#f78c6c", // orange-scarlet - markup.underline y un source.json value (naranja cortical Material)
   terracotta: "#c17e70",    // terracotta - constant.numeric.line-number.find-in-files y un source.json value (marrón terracota)
+
+  // === Alphas compartidos (MISMA opacidad repetida ≥2 usos con misma semántica) ===
+  // Regla: un MISMO alpha repetido con la MISMA semántica SÍ es token. Cada opacidad
+  // DISTINTA del mismo base sigue literal (cada mezcla es deliberada) y los alphas NO
+  // se derivan de tokens base (el render depende del fondo). Coincidencias de valor
+  // entre familias distintas se dejan literales para no acoplarlas (ver docs).
+  uiAccentStrong: "#8c8effd2", // accent fuerte al 82% — selection, statusBarItem.remote, inputOption, botones, focus, badge, keybindings, settings
+  accentSelection: "#8c8eff45", // familia selección — selectionBackground, selectionHighlightBackground, overviewRuler findMatch, minimap
+  accentFaint: "#8c8eff2a", // fondos tenues — wordHighlight(Strong)Background, bracketMatch.background
+  controlBorder: "#473c52a5", // bordes de controles — input, checkbox, dropdown
+  searchBackground: "#5f569580", // búsqueda/hover — hoverHighlight, findMatch(Bg|Highlight)Background
+  scrollbarTrack: "#24212eea", // track del scrollbar — scrollbar.background + shadow
+  matchBorder: "#a599efff", // bordes de match — bracketMatch.border, findMatch.border
+  hoverSurface: "#2e2a3a80", // superficies hover — toolbar.hoverBackground, list.hoverBackground
 };
 
 // ==========================================
@@ -79,27 +93,27 @@ module.exports = {
     "editorCursor.foreground": "#ffde25",
     "editor.lineHighlightBackground": palette.bgElevated,
     "editor.lineHighlightBorder": palette.bgElevated,
-    "editor.selectionBackground": "#8c8eff45",
-    "selection.background": "#8c8effd2",
+    "editor.selectionBackground": palette.accentSelection,
+    "selection.background": palette.uiAccentStrong,
     // Highlights de selección/palabras: alpha sobre el accent para distinguirlos del selection real (#8c8eff45) y de brackets/tags (#8c8eff2a); Darker sube los fdos a #8c8eff30 (build.js)
-    "editor.selectionHighlightBackground": "#8c8eff45",
+    "editor.selectionHighlightBackground": palette.accentSelection,
     "editor.selectionHighlightBorder": "#8c8eff5e",
-    "editor.wordHighlightBackground": "#8c8eff2a",
+    "editor.wordHighlightBackground": palette.accentFaint,
     "editor.wordHighlightBorder": "#8c8eff5e",
-    "editor.wordHighlightStrongBackground": "#8c8eff2a",
+    "editor.wordHighlightStrongBackground": palette.accentFaint,
     "editor.wordHighlightStrongBorder": "#8c8eff5e",
-    "editorBracketMatch.background": "#8c8eff2a",
-    "editorBracketMatch.border": "#a599efff",
-    "editor.hoverHighlightBackground": "#5f569580",
-    "editor.findMatchBackground": "#5f569580",
-    "editor.findMatchBorder": "#a599efff",
+    "editorBracketMatch.background": palette.accentFaint,
+    "editorBracketMatch.border": palette.matchBorder,
+    "editor.hoverHighlightBackground": palette.searchBackground,
+    "editor.findMatchBackground": palette.searchBackground,
+    "editor.findMatchBorder": palette.matchBorder,
     "editor.findMatchForeground": palette.fgWhite,
-    "editor.findMatchHighlightBackground": "#5f569580",
+    "editor.findMatchHighlightBackground": palette.searchBackground,
     "editor.findMatchHighlightForeground": palette.fgWhite,
     // Minimap / Overview Ruler: resaltados consistentes entre editores basados en VS Code (HC los sube a d2 vía build.js)
     "minimap.findMatchHighlight": "#8c8eff80",
-    "editorOverviewRuler.findMatchForeground": "#8c8eff45",
-    "minimap.selectionHighlight": "#8c8eff45",
+    "editorOverviewRuler.findMatchForeground": palette.accentSelection,
+    "minimap.selectionHighlight": palette.accentSelection,
     "editorGroupHeader.tabsBackground": palette.bgDeep,
 
     // ── Activity Bar / Sidebar / Tree ─────────────────────────────────────────────────
@@ -159,7 +173,7 @@ module.exports = {
     "titleBar.inactiveForeground": "#ffffff99",
     "menubar.selectionForeground": palette.fgWhite,
     "menubar.selectionBackground": palette.bgElevated,
-    "toolbar.hoverBackground": "#2e2a3a80",
+    "toolbar.hoverBackground": palette.hoverSurface,
 
     // ── Status Bar ────────────────────────────────────────────────────────────────────
     "statusBar.background": palette.bgDeep,
@@ -172,7 +186,7 @@ module.exports = {
     "statusBarItem.prominentHoverBackground": palette.bgElevated,
     "statusBarItem.hoverBackground": palette.bgElevated,
     "statusBarItem.activeBackground": "#8c8eff5e",
-    "statusBarItem.remoteBackground": "#8c8effd2",
+    "statusBarItem.remoteBackground": palette.uiAccentStrong,
     "statusBarItem.remoteForeground": palette.fgWhite,
     "statusBarItem.warningBackground": palette.bgDeep,
     "statusBarItem.warningHoverBackground": palette.bgElevated,
@@ -192,17 +206,17 @@ module.exports = {
     // ── Inputs ────────────────────────────────────────────────────────────────────────
     "input.background": palette.bgDeep,
     "input.foreground": palette.fgWhite,
-    "input.border": "#473c52a5",
-    "inputOption.activeBorder": "#8c8effd2",
+    "input.border": palette.controlBorder,
+    "inputOption.activeBorder": palette.uiAccentStrong,
 
     // ── Checkbox / Dropdown ───────────────────────────────────────────────────────────
     "checkbox.background": palette.bgDeep,
     "checkbox.foreground": palette.fgWhite,
-    "checkbox.border": "#473c52a5",
+    "checkbox.border": palette.controlBorder,
     "dropdown.background": palette.bgDeep,
     "dropdown.foreground": palette.fgWhite,
     "dropdown.listBackground": palette.bgBase,
-    "dropdown.border": "#473c52a5",
+    "dropdown.border": palette.controlBorder,
 
     // ── Menús y Listas ─────────────────────────────────────────────────────────────────
     "menu.background": palette.bgBase,
@@ -211,7 +225,7 @@ module.exports = {
     "menu.separatorBackground": palette.comments,
     "list.activeSelectionBackground": "#8c8eff33",
     "list.activeSelectionForeground": palette.fgWhite,
-    "list.hoverBackground": "#2e2a3a80",
+    "list.hoverBackground": palette.hoverSurface,
     "list.inactiveSelectionBackground": palette.bgElevated,
     "list.inactiveSelectionForeground": palette.fgWhite,
     "list.warningForeground": palette.yellowBase,
@@ -220,8 +234,8 @@ module.exports = {
     "pickerGroup.foreground": palette.linkPurple,
 
     // ── Scrollbar ─────────────────────────────────────────────────────────────────────
-    "scrollbar.background": "#24212eea",
-    "scrollbar.shadow": "#24212eea",
+    "scrollbar.background": palette.scrollbarTrack,
+    "scrollbar.shadow": palette.scrollbarTrack,
     "scrollbarSlider.background": "#4e4b5980",
     "scrollbarSlider.hoverBackground": "#4e4b59a0",
     "scrollbarSlider.activeBackground": "#4e4b59c0",
@@ -235,14 +249,14 @@ module.exports = {
     "diffEditor.removedTextBackground": "#ff000040",
 
     // ── Botones / Focus / Badges ──────────────────────────────────────────────────────
-    "button.background": "#8c8effd2",
+    "button.background": palette.uiAccentStrong,
     "button.foreground": palette.fgWhite,
     "button.hoverBackground": "#8c8effb6",
     "button.secondaryBackground": "#313244",
     "button.secondaryForeground": palette.fgWhite,
     "button.secondaryHoverBackground": "#45475a",
-    "focusBorder": "#8c8effd2",
-    "activityBarBadge.background": "#8c8effd2",
+    "focusBorder": palette.uiAccentStrong,
+    "activityBarBadge.background": palette.uiAccentStrong,
 
     // ── Links ─────────────────────────────────────────────────────────────────────────
     "textLink.foreground": palette.linkPurple,
@@ -273,13 +287,13 @@ module.exports = {
     // ── Keybinding Labels ─────────────────────────────────────────────────────────────
     "keybindingLabel.background": "#1e1a29",
     "keybindingLabel.foreground": palette.fgWhite,
-    "keybindingLabel.border": "#8c8effd2",
-    "keybindingLabel.bottomBorder": "#8c8effd2",
+    "keybindingLabel.border": palette.uiAccentStrong,
+    "keybindingLabel.bottomBorder": palette.uiAccentStrong,
 
     // ── Settings Editor ────────────────────────────────────────────────────────────────
     // Indicador de configuración modificada (punto junto al setting). Alpha literal:
     // es una mezcla de opacidad sobre el fondo, no un color puro de paleta.
-    "settings.modifiedItemIndicator": "#8c8effd2",
+    "settings.modifiedItemIndicator": palette.uiAccentStrong,
 
     // ── Sticky Scroll ─────────────────────────────────────────────────────────────────
     "editorStickyScroll.background": palette.bgDeep,
