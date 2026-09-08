@@ -122,6 +122,9 @@ module.exports = {
     "sideBar.background": "#24212ed3",
     "sideBar.foreground": palette.fgWhite,
     "sideBar.border": palette.bgBase,
+    "sideBarSectionHeader.background": palette.bgDeep,
+    "sideBarSectionHeader.foreground": palette.fgWhite,
+    "sideBarSectionHeader.border": palette.bgBase,
     "tree.indentGuidesStroke": palette.comments,
     "tree.tableColumnsBorder": palette.comments,
     "tree.tableOddRowsBackground": palette.bgElevated,
@@ -198,10 +201,17 @@ module.exports = {
     "editorWidget.background": palette.bgBase,
     "editorWidget.border": palette.bgDeep,
     "editorSuggestWidget.selectedIconForeground": palette.pinkLight,
-    "widget.shadow": "#00000030",
+    "widget.shadow": "#00000000",
+    "widget.border": palette.bgElevated,
     "editorFindWidget.background": palette.bgBase,
     "editorFindWidget.foreground": palette.fgWhite,
     "editorFindWidget.border": palette.bgDeep,
+
+    // ── Notifications ──────────────────────────────────────────────────────────────────
+    "notifications.border": palette.bgBase,
+    "notifications.background": palette.bgBase,
+    "notificationCenterHeader.background": palette.bgDeep,
+    "notificationCenterHeader.foreground": palette.fgWhite,
 
     // ── Inputs ────────────────────────────────────────────────────────────────────────
     "input.background": palette.bgDeep,
@@ -257,6 +267,8 @@ module.exports = {
     "button.secondaryHoverBackground": "#45475a",
     "focusBorder": palette.uiAccentStrong,
     "activityBarBadge.background": palette.uiAccentStrong,
+    "badge.background": palette.uiAccentStrong,
+    "badge.foreground": palette.fgWhite,
 
     // ── Links ─────────────────────────────────────────────────────────────────────────
     "textLink.foreground": palette.linkPurple,
