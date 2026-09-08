@@ -141,7 +141,7 @@ La variante Italic (`expressive`) parte de la MISMA capa de italic de Mix (comme
 
 3. Compila con `node scripts/build.js`. El override se aplicará **solamente** a esa variante; el resto mantiene el valor compartido o por defecto.
 
-**Regla de tokens en build.js:** `build.js` importa la paleta que `src/theme-config.js` exporta al final del `module.exports`. Si el valor que necesitas ya tiene token en la paleta, úsalo (`palette.uiAccentStrong`, `palette.bgDeep`, `palette.fgWhite`, …) en vez de repetir el hex hardcodeado. El mapa `darkerBackgrounds` (variante Darker) está keyed por token: si cambias `bgBase`, `bgDeep` o `bgElevated` en la paleta, el oscurecimiento lo sigue automáticamente — con hex hardcodeado ese cambio rompía el Darker en silencio.
+**Regla de tokens en build.js:** `build.js` importa la paleta que `src/theme-config.js` exporta al final del `module.exports`. Si el valor ya tiene token, úsalo (`palette.uiAccentStrong`, `palette.bgDeep`, `palette.fgWhite`, …) en vez de repetir el hex. El mapa `darkerBackgrounds` (variante Darker) está keyed por token: los overrides de fondo y el transform se mantienen sincronizados aunque cambie el valor de `bgBase`, `bgDeep` o `bgElevated`.
 
 **Regla:** si un color aplica a varias variantes pero con valores distintos, define el valor base en `theme-config.js` (compartido) y solo overrides por variante en `build.js`. Así evitas duplicar el valor en cada bloque.
 
