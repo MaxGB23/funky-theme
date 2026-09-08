@@ -67,7 +67,7 @@ Every release `--notes` MUST follow this exact structure. Do not improvise headi
 
 1. Ensure working tree changes are backported to `src/theme-config.js` (use palette tokens for repeated colors).
 2. **Determine version bump**
-   - **Release boundary:** el corte SIEMPRE es el último tag (`git tag --sort=-creatordate | Select-Object -First 1`). Enumerar `git log --oneline <último-tag>..HEAD` ANTES de decidir el bump y redactar las notas — la plantilla no elimina este paso. Todo lo que esté en el rango entra en la release, incluidos merges/PRs de sesiones anteriores nunca liberados.
+   - **Release boundary:** el corte SIEMPRE es el tag publicado más reciente. NO confíes solo en los tags locales (`git tag` los puede tener desactualizados): primero `git fetch --tags`, compara con `git ls-remote --tags origin`, y usa el tag más reciente de ambos. Enumerar `git log --oneline <último-tag>..HEAD` ANTES de decidir el bump y redactar las notas — la plantilla no elimina este paso. Todo lo que esté en el rango entra en la release, incluidos merges/PRs de sesiones anteriores nunca liberados.
    - Leer `package.json` y determinar el tipo de bump:
 
      | Change type | Bump | Example |
@@ -80,8 +80,8 @@ Every release `--notes` MUST follow this exact structure. Do not improvise headi
    - For themes, "breaking" = identity or semantic change (hue-family overhaul, color-meaning reassignment, contrast-philosophy change): if users must re-learn the theme, it is MAJOR. Diff size alone never upgrades PATCH.
    - Preguntar al usuario para confirmar si es ambiguo.
 3. Bump `version` en `package.json` según el bump determinado.
-4. Canonical flow: `pnpm install && pnpm build && pnpm package`. Minimum viable: `pnpm run package` (builds all 4 variants into `/themes`, then packs `funky-theme-vscode-<ver>.vsix`).
-5. Verify output: build logs list 4 variants; spot-check generated JSONs (e.g. changed keys) before packaging.
+4. Canonical flow: `pnpm install && pnpm build && pnpm package`. Minimum viable: `pnpm run package` (builds all 5 variants into `/themes`, then packs `funky-theme-vscode-<ver>.vsix`).
+5. Verify output: build logs list 5 variants; spot-check generated JSONs (e.g. changed keys) before packaging.
 6. Commit with conventional messages (`feat(theme): ...`, `chore: ...`), then `git push`.
 7. Write the notes to `RELEASE_NOTES.md` per the **Release Notes Format**, then create the release:
    ```bash
