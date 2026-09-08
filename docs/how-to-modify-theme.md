@@ -156,7 +156,7 @@ La meta es la legibilidad por escaneo: el ojo distingue de un vistazo *dónde pa
 
 **Excepciones legítimas:** la estrategia es una sugerencia, no un contrato rígido. Un caso particular (lenguaje, contexto o necesidad de énfasis) puede romperla si la excepción mejora la legibilidad. Si rompes la regla, documenta la excepción con un comentario junto a la regla en `theme-config.js`, para que no parezca un error accidental.
 
-**Estado actual:** la separación está **aplicada en el source of truth** (`src/theme-config.js`): `keyword.control` → `#eaa9fc` (morado claro) y `source.sass keyword.control` unificado al mismo tono — ya no hay excepción azul. Las 5 variantes la heredan vía build; el README refleja la filosofía de color. La separación es una **guía**, no una ley: si un caso particular la rompe, documenta la excepción con un comentario junto a la regla en `theme-config.js`.
+**Dónde vive:** la estrategia se implementa en `src/theme-config.js` (sección "Keywords / control / imports" y otras zonas semánticas): cada familia cromática es un `foreground` definido con tokens de la paleta, y las 5 variantes la heredan vía build. Si buscas dónde está aplicada una regla, ese archivo es el punto de partida — nunca los `themes/*.json` (artefactos compilados).
 
 ---
 
