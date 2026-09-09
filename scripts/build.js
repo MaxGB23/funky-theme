@@ -62,10 +62,6 @@ variants.forEach(variant => {
     theme.colors['editor.wordHighlightBackground'] = '#8c8eff30';
     theme.colors['editor.wordHighlightStrongBackground'] = '#8c8eff30';
     theme.colors['editorBracketMatch.background'] = '#8c8eff30';
-    // Darker: bordes de checkbox/input/dropdown adaptados al fondo ultra-oscuro (toolbar.hoverBackground se deriva solo del transform #2e2a3a -> #201d2a)
-    theme.colors['input.border'] = '#372e3eb1';
-    theme.colors['dropdown.border'] = '#372e3eb1';
-    theme.colors['checkbox.border'] = '#372e3eb1';
     // QuickInput (Command Palette / Quick Open) Darker
     theme.colors['quickInput.foreground'] = palette.fgWhite;
     theme.colors['quickInputTitle.background'] = darkerBackgrounds[palette.bgDeep];
@@ -127,6 +123,12 @@ variants.forEach(variant => {
     theme.colors['terminalStickyScroll.border'] = palette.uiAccentStrong;
     // Guías de indentación de árbol claras en HC
     theme.colors['tree.indentGuidesStroke'] = palette.uiAccentStrong;
+    // Paneles y tabs inactivos: HC excluido de los nuevos valores compartidos (mantiene defaults de VS Code)
+    delete theme.colors['panel.background'];
+    delete theme.colors['panel.border'];
+    delete theme.colors['panelTitle.activeForeground'];
+    delete theme.colors['panelTitle.inactiveForeground'];
+    theme.colors['tab.inactiveForeground'] = '#B0B0B0';
 
     theme.colors['welcomePage.tileBackground'] = palette.bgElevated;
     theme.colors['welcomePage.tileHoverBackground'] = '#383347';

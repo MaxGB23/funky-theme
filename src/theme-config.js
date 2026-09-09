@@ -18,6 +18,7 @@ const palette = {
   // === Grises de UI e Invisibles ===
   comments: "#555555",     // comment (Reemplaza a '#666666') - Exclusivo para código comentado en cursiva
   uiMuted: "#606685",      // ui-muted (Reemplaza a '#5a657c','#65737e','#546e7a') - Bordes, guías y tokens secundarios
+  uiInactive: "#8b8f9e",   // ui-inactive - Texto UI inactivo: panelTitle y tabs inactivos
   greyLight: "#cbcbcb",    // grey-light - Delimitadores de code blocks de Markdown
   purpleGrey: "#a9b1de",   // purple-grey - Puntuación y meta de Markdown
   linkPurple: "#b2b3ff",   // link-purple - Links y pickerGroup foreground
@@ -75,7 +76,7 @@ const palette = {
   uiAccentStrong: "#8c8effd2", // accent fuerte al 82% — selection, statusBarItem.remote, inputOption, botones, focus, badge, keybindings, settings
   accentSelection: "#8c8eff45", // familia selección — selectionBackground, selectionHighlightBackground, overviewRuler findMatch, minimap
   accentFaint: "#8c8eff2a", // fondos tenues — wordHighlight(Strong)Background, bracketMatch.background
-  controlBorder: "#473c52a5", // bordes de controles — input, checkbox, dropdown
+  controlBorder: "#8c8eff33", // bordes de controles — input, checkbox, dropdown (accent tenue #8c8eff al 20%)
   searchBackground: "#5f569580", // búsqueda/hover — hoverHighlight, findMatch(Bg|Highlight)Background
   scrollbarTrack: "#24212eea", // track del scrollbar — scrollbar.background + shadow
   matchBorder: "#a599efff", // bordes de match — bracketMatch.border, findMatch.border
@@ -133,9 +134,15 @@ module.exports = {
     "tab.activeBackground": palette.bgElevated,
     "tab.activeForeground": palette.fgWhite,
     "tab.inactiveBackground": palette.bgBase,
-    "tab.inactiveForeground": "#B0B0B0",
+    "tab.inactiveForeground": palette.uiInactive,
     "tab.hoverBackground": palette.bgElevated,
     "tab.hoverForeground": palette.fgWhite,
+
+    // ── Panels / Panel Title ───────────────────────────────────────────────────────────
+    "panel.background": palette.bgDeep,
+    "panel.border": palette.bgElevated,
+    "panelTitle.activeForeground": palette.fgWhite,
+    "panelTitle.inactiveForeground": palette.uiInactive,
 
     // ── Git (decoraciones) ────────────────────────────────────────────────────────────
     "gitDecoration.modifiedResourceForeground": palette.cyanVibrant,
