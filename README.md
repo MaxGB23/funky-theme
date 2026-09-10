@@ -78,6 +78,22 @@ code --install-extension path/to/funky-theme-vscode-x.x.x.vsix
 
 ---
 
+## Recommended editor settings
+
+Funky Theme is tested and tuned against the following editor settings. They are **recommended, not required** — the theme works with any font and spacing, but this is the setup it was designed and validated with:
+
+```json
+{
+  "editor.fontFamily": "Cascadia Code, monospace",
+  "editor.fontLigatures": true,
+  "editor.lineHeight": 23,
+  "editor.tabSize": 2,
+  "editor.fontSize": 14
+}
+```
+
+---
+
 ## Build from source
 
 > **Note**: You can use `npm` to install dependencies and run scripts, but **`pnpm` is highly recommended** for better security, stricter dependency resolution, and to avoid lockfile conflicts.
