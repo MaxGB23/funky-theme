@@ -139,7 +139,7 @@
     "button.background": "#8c8effd2",
     "button.foreground": "#ffffff",
     "button.hoverBackground": "#8c8effb6",
-    "focusBorder": "#8c8effd2",
+    "focusBorder": "#8c8eff",
     "activityBarBadge.background": "#8c8effd2",
     "badge.background": "#8c8effd2",
     "badge.foreground": "#ffffff",

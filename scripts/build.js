@@ -82,6 +82,7 @@ variants.forEach(variant => {
     theme.colors['editorGroup.border'] = palette.uiAccentStrong;
     theme.colors['titleBar.border'] = palette.uiAccentStrong;
     theme.colors['statusBar.border'] = palette.uiAccentStrong;
+    theme.colors['focusBorder'] = palette.uiAccent;
     
     theme.colors['editor.selectionBackground'] = palette.uiAccentStrong;
     theme.colors['editor.selectionForeground'] = palette.fgWhite;
