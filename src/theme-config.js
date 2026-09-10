@@ -123,7 +123,7 @@ module.exports = {
     "sideBar.background": palette.bgBase,
     "sideBar.foreground": palette.fgWhite,
     "sideBar.border": palette.bgBase,
-    "sideBarSectionHeader.background": palette.bgDeep,
+    "sideBarSectionHeader.background": palette.bgBase,
     "sideBarSectionHeader.foreground": palette.fgWhite,
     "sideBarSectionHeader.border": palette.bgBase,
     "tree.indentGuidesStroke": palette.comments,

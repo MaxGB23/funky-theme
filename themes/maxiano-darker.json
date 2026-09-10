@@ -30,7 +30,7 @@
     "sideBar.background": "#181520",
     "sideBar.foreground": "#ffffff",
     "sideBar.border": "#181520",
-    "sideBarSectionHeader.background": "#121018",
+    "sideBarSectionHeader.background": "#181520",
     "sideBarSectionHeader.foreground": "#ffffff",
     "sideBarSectionHeader.border": "#181520",
     "tree.indentGuidesStroke": "#555555",
