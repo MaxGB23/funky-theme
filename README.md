@@ -11,7 +11,7 @@ As terminal agents and AI handle more of the heavy lifting, the IDE is becoming 
 | Variant | Description |
 |---|---|
 | **Funky Dark** | The main experience. Balanced contrast, vivid palette. |
-| **Funky Dark Italic** | The full cursive treatment — control flow, storage types and metadata in italic, zero bold. For fans of italic-capable fonts like Operator Mono. |
+| **Funky Dark Italic** | The full cursive treatment — control flow, storage types and metadata in italic, zero bold in code. For fans of italic-capable fonts like Operator Mono. |
 | **Funky Dark Mix** | A directed typography strategy: bold on declaration names, italic on metadata, everything else regular. An anti-eye-fatigue balance. |
 | **Funky Darker** | Ultra-nocturnal backgrounds for zero-distraction sessions. |
 | **Funky High Contrast** | Accessibility-focused borders and boosted contrast for comment tokens. |
@@ -23,7 +23,7 @@ Different developers read code differently. Some want pure color, some want deep
 Two things make this lineup original:
 
 - **One italic layer, two personalities.** Dark Mix and Dark Italic share the exact same metadata-italic foundation (comments, parameters, attributes, language variables, aliases). Mix then adds bold on declaration names — functions, classes, types — marking *where things are defined* so definitions stand out from plain calls; Italic extends the cursive to control flow (`if`, `return`, `for`…) and storage types (`function`, `class`, `const`…). The variants complement each other instead of duplicating.
-- **Controversial aesthetics live in their own variant.** Keyword italics are among the most toggled-off styles in VS Code history — so instead of forcing them on everyone, they live isolated in Funky Dark Italic. Everyone else keeps four calm, typography-free options. Only what nobody defends — italics on numbers — is left out everywhere.
+- **Controversial aesthetics live in their own variant.** Keyword italics are among the most toggled-off styles in VS Code history — so instead of forcing them on everyone, they live isolated in Funky Dark Italic. Dark, Darker and High Contrast stay completely typography-free, and even Mix — which does use bold and italics — deliberately never touches keywords. Only what nobody defends — italics on numbers — is left out everywhere.
 
 ---
 
