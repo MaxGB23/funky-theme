@@ -114,6 +114,10 @@ variants.forEach(variant => {
     // Widgets / Notifications HC: bordes con el accent completo (base: bgElevated / bgBase)
     theme.colors['widget.border'] = palette.uiAccentStrong;
     theme.colors['notifications.border'] = palette.uiAccentStrong;
+    // Controles HC: bordes de input/checkbox/dropdown con el accent completo (base: #8c8eff33 compartido)
+    theme.colors['input.border'] = palette.uiAccentStrong;
+    theme.colors['checkbox.border'] = palette.uiAccentStrong;
+    theme.colors['dropdown.border'] = palette.uiAccentStrong;
     // Hover widget HC: borde con el accent del tema
     theme.colors['editorHoverWidget.border'] = palette.uiAccentStrong;
     // Sticky Scroll HC: bordes y resaltado de hover
