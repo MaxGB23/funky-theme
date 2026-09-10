@@ -193,7 +193,7 @@ variants.forEach(variant => {
 
       // Reglas Expresivas (Solamente en la variante Italic)
       // La Italic es dark regular adaptada a italic: NI un solo bold (release.md bloque 4).
-      // Su capa de italic es EXACTAMENTE la misma que Dark Mix; Mix añade además las anclas en bold.
+      // Su capa de italic es EXACTAMENTE la misma que Dark Mix; Mix añade además bold en definiciones.
       if (variant.profile === 'expressive') {
         // italic — documentación y metadata
         if (scope.match(/^(comment|.*\.comment)[,\s$]/i) || scope === 'comment, punctuation.definition.comment') styles.push('italic');
@@ -217,10 +217,11 @@ variants.forEach(variant => {
         if (scope.match(/entity\.other\.attribute-name/i)) styles.push('italic');
         if (scope.match(/variable\.language/i)) styles.push('italic');
         if (scope.match(/variable\.other\.readwrite\.alias\.js/i)) styles.push('italic');
-        // bold — anclas estructurales (types, imports/exports, new)
-        if (scope.match(/storage\.type/i)) styles.push('bold');
-        if (scope.match(/keyword\.control\.(import|from|export)/i)) styles.push('bold');
-        if (scope.match(/keyword\.operator\.new/i)) styles.push('bold');
+        // bold — anclas de definición (no keywords): marcar DÓNDE se define algo.
+        // La definición y la llamada comparten cyanAccent; el bold distingue ambas sin cambiar la paleta.
+        if (scope === 'meta.function entity.name.function') styles.push('bold');
+        if (scope === 'entity.name.type') styles.push('bold');
+        if (scope === 'entity.name.class') styles.push('bold');
         // italic — modificadores de comportamiento (sin bold: misma capa italic que la Italic)
         if (scope.match(/storage\.modifier/i)) styles.push('italic');
       }

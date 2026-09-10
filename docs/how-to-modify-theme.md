@@ -127,9 +127,11 @@ A veces un color aplica únicamente a una variante (p.ej. `quickInput.*` que dif
    - `ultra-nocturno` → Maxiano Darker
    - `high-contrast` → Maxiano High Contrast
    - `flat` / `expressive` → Maxiano Dark / Dark Italic
-   - `mix` → Maxiano Dark Mix (tipografía dirigida: bold en anclas estructurales, italic en metadata)
+   - `mix` → Maxiano Dark Mix (tipografía dirigida: bold en nombres de definición, italic en metadata)
 
 La variante Italic (`expressive`) parte de la MISMA capa de italic de Mix (comments, params, attributes, `variable.language`, alias y `storage.modifier`) y la extiende con `keyword.control` (if/else/return…) y `storage.type` (function/class/const/let/var…): la estética cursiva completa tipo Operator Mono. En esta variante NO hay bold de tipografía (solo los bold de markdown `**negrita**` y headings, igual que en la variante regular); números y keywords genéricas quedan normales.
+
+Por su parte, Dark Mix añade el bold SOLO en los nombres de definición (`meta.function entity.name.function`, `entity.name.type`, `entity.name.class`) y NUNCA en keywords: así la definición de una función se distingue de su llamada aunque ambas compartan el cyan de funciones. Estos tres scopes exactos se resuelven en `scripts/build.js` dentro del perfil `mix`.
 
 2. Agrega el color dentro de ese bloque con un comentario que explique qué hace:
    ```javascript

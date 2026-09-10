@@ -306,6 +306,12 @@
       }
     },
     {
+      "scope": "meta.function entity.name.function",
+      "settings": {
+        "foreground": "#96e7ff"
+      }
+    },
+    {
       "scope": "entity.name.method.js",
       "settings": {
         "foreground": "#82aaff"

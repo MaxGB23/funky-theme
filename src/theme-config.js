@@ -452,6 +452,14 @@ module.exports = {
         "foreground": palette.cyanAccent
       }
     },
+    // Definición de función (no llamada): el bold de Mix marca dónde se define algo.
+    // Definición y llamada comparten cyanAccent, el bold separa ambas sin tocar la paleta.
+    {
+      "scope": "meta.function entity.name.function",
+      "settings": {
+        "foreground": palette.cyanAccent
+      }
+    },
     {
       "scope": "entity.name.method.js",
       "settings": {
