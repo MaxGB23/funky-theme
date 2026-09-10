@@ -97,7 +97,7 @@
     "statusBarItem.errorHoverBackground": "#201d2a",
     "statusBarItem.compactHoverBackground": "#26222f",
     "editorWidget.background": "#181520",
-    "editorWidget.border": "#121018",
+    "editorWidget.border": "#181520",
     "editorSuggestWidget.selectedIconForeground": "#ffa8e6",
     "widget.shadow": "#00000000",
     "widget.border": "#201d2a",

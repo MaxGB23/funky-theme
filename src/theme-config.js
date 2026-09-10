@@ -206,7 +206,7 @@ module.exports = {
 
     // ── Widgets / Find ─────────────────────────────────────────────────────────────────
     "editorWidget.background": palette.bgBase,
-    "editorWidget.border": palette.bgDeep,
+    "editorWidget.border": palette.bgBase,
     "editorSuggestWidget.selectedIconForeground": palette.pinkLight,
     "widget.shadow": "#00000000",
     "widget.border": palette.bgElevated,
