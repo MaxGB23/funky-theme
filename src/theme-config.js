@@ -120,7 +120,7 @@ module.exports = {
     // ── Activity Bar / Sidebar / Tree ─────────────────────────────────────────────────
     "activityBar.background": palette.bgDeep,
     "activityBar.foreground": palette.fgWhite,
-    "sideBar.background": "#24212ed3",
+    "sideBar.background": palette.bgBase,
     "sideBar.foreground": palette.fgWhite,
     "sideBar.border": palette.bgBase,
     "sideBarSectionHeader.background": palette.bgDeep,
