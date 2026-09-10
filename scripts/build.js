@@ -78,6 +78,7 @@ variants.forEach(variant => {
     theme.colors['contrastBorder'] = palette.uiAccentStrong;
     theme.colors['activityBar.border'] = palette.uiAccentStrong;
     theme.colors['sideBar.border'] = palette.uiAccentStrong;
+    theme.colors['sideBarSectionHeader.border'] = palette.uiAccentStrong;
     theme.colors['editorGroup.border'] = palette.uiAccentStrong;
     theme.colors['titleBar.border'] = palette.uiAccentStrong;
     theme.colors['statusBar.border'] = palette.uiAccentStrong;

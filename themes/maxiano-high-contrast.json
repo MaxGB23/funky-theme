@@ -32,7 +32,7 @@
     "sideBar.border": "#8c8effd2",
     "sideBarSectionHeader.background": "#211e2b",
     "sideBarSectionHeader.foreground": "#ffffff",
-    "sideBarSectionHeader.border": "#24212e",
+    "sideBarSectionHeader.border": "#8c8effd2",
     "tree.indentGuidesStroke": "#8c8effd2",
     "tree.tableColumnsBorder": "#555555",
     "tree.tableOddRowsBackground": "#2e2a3a",
