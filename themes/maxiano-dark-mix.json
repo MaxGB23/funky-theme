@@ -263,7 +263,7 @@
       }
     },
     {
-      "scope": "keyword.operator.new, keyword.operator.new.tsx",
+      "scope": "keyword.operator.new, keyword.operator.new.tsx, keyword.operator.expression.new, keyword.other.new, keyword.control.new.java",
       "settings": {
         "foreground": "#ffcb7d"
       }
@@ -494,6 +494,12 @@
       "scope": "source.json meta.structure.dictionary.json string.quoted.double.json - meta.structure.dictionary.json meta.structure.dictionary.value.json string.quoted.double.json, source.json meta.structure.dictionary.json punctuation.definition.string - meta.structure.dictionary.json meta.structure.dictionary.value.json punctuation.definition.string",
       "settings": {
         "foreground": "#c792ea"
+      }
+    },
+    {
+      "scope": "support.type.property-name.json",
+      "settings": {
+        "foreground": "#f6ff98"
       }
     },
     {

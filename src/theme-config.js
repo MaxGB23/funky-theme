@@ -13,7 +13,7 @@ const palette = {
   // === Claros (Foreground principal) ===
   fgBase: "#f8f8f2",       // fg-base (Reemplaza los 5 "blancos cian": '#eeffff', '#f7f7f7', '#eefcfe', etc.)
   fgWhite: "#ffffff",      // fg-white - Blanco puro para meta tags, clases y html tags
-  fgMuted: "#d8d8d8",      // fg-muted - Comentarios en el nuevo estilo sin cursiva
+  fgMuted: "#d8d8d8",      // fg-muted - SIN USOS (0 referencias). Los comentarios usan literal alfa #d8d8d8f1; mantener solo si se decide reactivarlo
 
   // === Grises de UI e Invisibles ===
   comments: "#555555",     // comment (Reemplaza a '#666666') - Exclusivo para código comentado en cursiva
@@ -34,7 +34,7 @@ const palette = {
   redBase: "#ff5555",      // red-base (Reemplaza a '#ff6e6e', '#f07178', '#ff5370')
 
   // Rosas (Keywords, Control Flow, Parameters)
-  pinkBase: "#ff8bee",     // pink-base (Reemplaza la masacre de 5 rosas: '#ffacf5', '#feb3e8', '#ffa6f9', '#ff92df', '#ff78f8')
+  pinkBase: "#ff8bee",     // pink-base (Reemplaza la masacre de 5 rosas: '#ffacf5', '#feb3e8', '#ffa6f9', '#ff92df', '#ff78f8') - SIN USOS: aguarda un nuevo rol (decidido 2026-09-11)
   pinkLight: "#ffa8e6",    // pink-light - Git ignored, constantes numéricas y parámetros
   pinkAccent: "#ff87c5",   // pink-accent - Tags HTML/SGM y git deleted markers
   pinkVibrant: "#ff8ddb",  // pink-vibrant - Headings de Markdown
@@ -60,7 +60,7 @@ const palette = {
 
   // === UI Accent & Surfaces ===
   uiAccent: "#8c8eff",     // ui-accent - Botones, focusBorder y activityBarBadge
-  bgScrollbar: "#4e4b59",  // bg-scrollbar - Slider del scrollbar (rest/hover/active)
+  bgScrollbar: "#4e4b59",  // bg-scrollbar - SIN USOS como token: solo es la base de los sliders alfa literales #4e4b5980/a0/c0 (scrollbarSlider.*)
 
   // === Azules de Métodos ===
   blueMethod: "#82aaff",    // blue-method - Métodos JS/CS/Go, source.json values y decorators (azul de métodos)
@@ -413,8 +413,13 @@ module.exports = {
         "foreground": "#9abfff"
       }
     },
+    // Creatión (new): naranja. Los scopes de "new" varían por lenguaje — C# usa
+    // keyword.operator.expression.new (prefijo distinto, confirmado en testeo 2026-09-12),
+    // PHP keyword.other.new (keyword.other.new.php) y Java keyword.control.new.java.
+    // Go usa new() como builtin → cyan (soporte).
+    // Si otro lenguaje tiene su propio scope, agregarlo aquí (mismo criterio: prefijo del stack).
     {
-      "scope": "keyword.operator.new, keyword.operator.new.tsx",
+      "scope": "keyword.operator.new, keyword.operator.new.tsx, keyword.operator.expression.new, keyword.other.new, keyword.control.new.java",
       "settings": {
         "foreground": palette.orangeAccent
       }
@@ -665,6 +670,13 @@ module.exports = {
       "scope": "source.json meta.structure.dictionary.json string.quoted.double.json - meta.structure.dictionary.json meta.structure.dictionary.value.json string.quoted.double.json, source.json meta.structure.dictionary.json punctuation.definition.string - meta.structure.dictionary.json meta.structure.dictionary.value.json punctuation.definition.string",
       "settings": {
         "foreground": palette.purpleDim
+      }
+    },
+    // Nombres de propiedad JSON: amarillo fuerte (aprobado en testeo directo al JSON)
+    {
+      "scope": "support.type.property-name.json",
+      "settings": {
+        "foreground": palette.yellowBase
       }
     },
 
