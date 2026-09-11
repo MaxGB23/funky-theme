@@ -27,7 +27,6 @@ const palette = {
 
   // Cyans (Attributes, Numbers)
   cyanDim: "#80ecff",      // cyan-dim (Reemplaza a '#8ceaff') - Tokens numéricos o attributes secundarios
-  cyanBase: "#8be9fd",     // cyan-base (Reemplaza a '#96e7ff', '#89ddff') - Atributos de React, props, variables
   cyanAccent: "#96e7ff",   // cyan-accent - Functions, git modified, regex, escapes
   cyanVibrant: "#6df5fa",  // cyan-vibrant - Markdown bold, italic e interfaces
 
@@ -39,7 +38,10 @@ const palette = {
   pinkLight: "#ffa8e6",    // pink-light - Git ignored, constantes numéricas y parámetros
   pinkAccent: "#ff87c5",   // pink-accent - Tags HTML/SGM y git deleted markers
   pinkVibrant: "#ff8ddb",  // pink-vibrant - Headings de Markdown
-  pinkTerminal: "#ff55a4", // pink-terminal - ANSI red/bright-red de terminal y git deleted (unifica el rojo de estado)
+  pinkTerminal: "#ff55a4", // pink-terminal - Solo decoraciones de git deleted; el ANSI red/bright-red usa pinkAccent
+
+  // Rojo de errores (squiggly, gutter markers, error markers)
+  errorFg: "#ff8282",      // error-foreground - list.errorForeground, editorError.foreground
 
   // Morados (Operators, Support Classes, Flujo/Control)
   purpleDim: "#c792ea",    // purple-dim (Reemplaza a '#d6acff') - Operadores matemáticos o lógicos
@@ -116,6 +118,9 @@ module.exports = {
     "editorOverviewRuler.findMatchForeground": palette.accentSelection,
     "minimap.selectionHighlight": palette.accentSelection,
     "editorGroupHeader.tabsBackground": palette.bgDeep,
+    // ── Editor Errors / Warnings (squiggly underline + gutter markers) ─────────────────
+    "editorError.foreground": palette.errorFg,
+    "editorWarning.foreground": palette.yellowBase,
 
     // ── Activity Bar / Sidebar / Tree ─────────────────────────────────────────────────
     "activityBar.background": palette.bgDeep,
@@ -246,7 +251,7 @@ module.exports = {
     "list.inactiveSelectionBackground": palette.bgElevated,
     "list.inactiveSelectionForeground": palette.fgWhite,
     "list.warningForeground": palette.yellowBase,
-    "list.errorForeground": "#ff8282",
+    "list.errorForeground": palette.errorFg,
     "list.highlightForeground": palette.pinkLight,
     "pickerGroup.foreground": palette.linkPurple,
 
@@ -342,12 +347,8 @@ module.exports = {
         "foreground": palette.fgBase
       }
     },
-    {
-      "scope": "constant.other.color",
-      "settings": {
-        "foreground": palette.fgWhite
-      }
-    },
+    // constant.other.color NO está aquí: la lista de L404 (cyanDim) gana por orden de aparición
+    // a igual especificidad, y es el comportamiento que se ve reflejado (no reportado como bug).
     {
       "scope": "support.other.variable, string.other.link",
       "settings": {
@@ -491,7 +492,10 @@ module.exports = {
       }
     },
     {
-      "scope": "entity.name.class, entity.name.type.class, support.type, support.orther.namespace.use.php, meta.use.php, support.other.namespace.php, markup.changed.git_gutter, support.type.sys-types",
+      // Podado en auditoría: se fueron entity.name.class (gana L513 fgWhite),
+      // markup.changed.git_gutter (gana orangeBase en la sección git) y el typo
+      // support.orther. Los scopes restantes son los que realmente matchean aquí.
+      "scope": "entity.name.type.class, support.type, meta.use.php, support.other.namespace.php, support.type.sys-types",
       "settings": {
         "foreground": palette.yellowLight
       }

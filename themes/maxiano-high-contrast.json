@@ -25,6 +25,8 @@
     "editorOverviewRuler.findMatchForeground": "#8c8effd2",
     "minimap.selectionHighlight": "#8c8effd2",
     "editorGroupHeader.tabsBackground": "#211e2b",
+    "editorError.foreground": "#ff8282",
+    "editorWarning.foreground": "#f6ff98",
     "activityBar.background": "#211e2b",
     "activityBar.foreground": "#ffffff",
     "sideBar.background": "#24212e",
@@ -208,12 +210,6 @@
       }
     },
     {
-      "scope": "constant.other.color",
-      "settings": {
-        "foreground": "#ffffff"
-      }
-    },
-    {
       "scope": "support.other.variable, string.other.link",
       "settings": {
         "foreground": "#ff5555"
@@ -338,7 +334,7 @@
       }
     },
     {
-      "scope": "entity.name.class, entity.name.type.class, support.type, support.orther.namespace.use.php, meta.use.php, support.other.namespace.php, markup.changed.git_gutter, support.type.sys-types",
+      "scope": "entity.name.type.class, support.type, meta.use.php, support.other.namespace.php, support.type.sys-types",
       "settings": {
         "foreground": "#fff9ba"
       }
