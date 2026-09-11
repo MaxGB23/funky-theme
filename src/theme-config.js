@@ -49,8 +49,8 @@ const palette = {
   // Naranjas & Amarillos (Strings, Functions, Warnings)
   orangeBase: "#ffb86c",   // orange-base (Reemplaza a '#ffcb6b') - Usado para strings y warnings moderados
   orangeAccent: "#ffcb7d", // orange-accent - keyword.operator.new.tsx
-  yellowBase: "#f6ff98",   // yellow-base (Reemplaza a '#ffffa5', '#ffffa3') - Nombres de funciones (Methods)
-  yellowLight: "#fff9ba",  // yellow-light - Entity types y attribute names
+  yellowBase: "#f6ff98",   // yellow-base - Markdown (links y listas) y warnings/terminal (colors)
+  yellowLight: "#fff9ba",  // yellow-light - Entity types, classes, support types y attribute names
 
   // Verdes (Classes, RegEx, Strings exitosos)
   greenBase: "#8bffa8",    // green-base (Reemplaza a '#8affc4', '#c7ffc8', '#b9ffba')
@@ -493,7 +493,7 @@ module.exports = {
     {
       "scope": "entity.name.class, entity.name.type.class, support.type, support.orther.namespace.use.php, meta.use.php, support.other.namespace.php, markup.changed.git_gutter, support.type.sys-types",
       "settings": {
-        "foreground": palette.yellowBase
+        "foreground": palette.yellowLight
       }
     },
     {
@@ -554,7 +554,7 @@ module.exports = {
     {
       "scope": "entity.other.attribute-name.class.css",
       "settings": {
-        "foreground": palette.yellowBase
+        "foreground": palette.yellowLight
       }
     },
     {

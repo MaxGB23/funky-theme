@@ -329,7 +329,7 @@
     {
       "scope": "entity.name.class, entity.name.type.class, support.type, support.orther.namespace.use.php, meta.use.php, support.other.namespace.php, markup.changed.git_gutter, support.type.sys-types",
       "settings": {
-        "foreground": "#f6ff98"
+        "foreground": "#fff9ba"
       }
     },
     {
@@ -383,7 +383,7 @@
     {
       "scope": "entity.other.attribute-name.class.css",
       "settings": {
-        "foreground": "#f6ff98"
+        "foreground": "#fff9ba"
       }
     },
     {
