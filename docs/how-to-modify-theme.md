@@ -159,7 +159,7 @@ Los colores siguen una estrategia semántica: **el rol del token en el código d
 | **Flujo** | Verbos que controlan la ejecución | Morado claro (`#eaa9fc`) | `if`, `else`, `for`, `while`, `return`, `switch`, `import`, `export` |
 | **Declaración** | Sustantivos que definen estructura | Morado (`#c792ea`) | `type`, `interface`, `class`, `const`, `let`, `var`, `private`, `function` |
 | **Referencia** | Punteros al contexto actual | Morado claro (`#eaa9fc`) | `this`, `super`, `self` |
-| **Creación** | Operadores de instanciación | Naranja (`#ffcb7d`) | `new` |
+| **Creación** | Operadores de instanciación | Naranja (`#ffcf87`) | `new` |
 
 La meta es la legibilidad por escaneo: el ojo distingue de un vistazo *dónde pasa algo* (flujo) de *dónde se declara algo* (estructura) — por luminosidad dentro de la misma familia morada, no por cambio de color. Flujo y Referencia comparten tono a propósito: ambos son "tokens activos", a diferencia de la estructura estática.
 

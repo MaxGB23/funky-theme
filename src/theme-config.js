@@ -50,7 +50,7 @@ const palette = {
 
   // Naranjas & Amarillos (Strings, Functions, Warnings)
   orangeBase: "#ffb86c",   // orange-base (Reemplaza a '#ffcb6b') - Usado para strings y warnings moderados
-  orangeAccent: "#ffcb7d", // orange-accent - keyword.operator.new.tsx
+  orangeAccent: "#ffcf87", // orange-accent - keyword.operator.new.tsx
   yellowBase: "#f6ff98",   // yellow-base - Markdown (links y listas) y warnings/terminal (colors)
   yellowLight: "#fff9ba",  // yellow-light - Entity types, classes, support types y attribute names
 
@@ -276,7 +276,7 @@ module.exports = {
     "button.hoverBackground": "#8c8effb6",
     "button.secondaryBackground": "#313244",
     "button.secondaryForeground": palette.fgWhite,
-    "button.secondaryHoverBackground": "#45475a",
+    "button.secondaryHoverBackground": "#3f3c4f",
     "focusBorder": palette.uiAccentStrong,
     "activityBarBadge.background": palette.uiAccentStrong,
     "badge.background": palette.uiAccentStrong,

@@ -272,7 +272,7 @@
     {
       "scope": "keyword.operator.new, keyword.operator.new.tsx, keyword.operator.expression.new, keyword.other.new, keyword.control.new.java",
       "settings": {
-        "foreground": "#ffcb7d"
+        "foreground": "#ffcf87"
       }
     },
     {
@@ -596,7 +596,7 @@
     {
       "scope": "constant.other.reference.link.markdown",
       "settings": {
-        "foreground": "#ffcb7d"
+        "foreground": "#ffcf87"
       }
     },
     {

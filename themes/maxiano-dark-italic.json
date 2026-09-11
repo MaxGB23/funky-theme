@@ -148,7 +148,7 @@
     "button.hoverBackground": "#8c8effb6",
     "button.secondaryBackground": "#313244",
     "button.secondaryForeground": "#ffffff",
-    "button.secondaryHoverBackground": "#45475a",
+    "button.secondaryHoverBackground": "#3f3c4f",
     "focusBorder": "#8c8effd2",
     "activityBarBadge.background": "#8c8effd2",
     "badge.background": "#8c8effd2",
@@ -266,7 +266,7 @@
     {
       "scope": "keyword.operator.new, keyword.operator.new.tsx, keyword.operator.expression.new, keyword.other.new, keyword.control.new.java",
       "settings": {
-        "foreground": "#ffcb7d",
+        "foreground": "#ffcf87",
         "fontStyle": "italic"
       }
     },
@@ -600,7 +600,7 @@
     {
       "scope": "constant.other.reference.link.markdown",
       "settings": {
-        "foreground": "#ffcb7d"
+        "foreground": "#ffcf87"
       }
     },
     {
