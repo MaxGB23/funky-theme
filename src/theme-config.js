@@ -460,6 +460,15 @@ module.exports = {
         "foreground": palette.cyanAccent
       }
     },
+    // Llamada de función: supera en especificidad a meta.function entity.name.function
+    // (meta.function-call está más cerca del nombre en el stack TS/JS), por lo que
+    // las llamadas pierden el bold y solo las definiciones lo conservan.
+    {
+      "scope": "meta.function-call entity.name.function",
+      "settings": {
+        "foreground": palette.cyanAccent
+      }
+    },
     {
       "scope": "entity.name.method.js",
       "settings": {
