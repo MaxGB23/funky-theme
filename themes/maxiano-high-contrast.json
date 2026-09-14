@@ -165,6 +165,7 @@
     "symbolIcon.valueForeground": "#ffffff",
     "symbolIcon.constantForeground": "#ffffff",
     "symbolIcon.interfaceForeground": "#ffffff",
+    "extensionIcon.starForeground": "#ffde25",
     "keybindingLabel.background": "#1e1a29",
     "keybindingLabel.foreground": "#ffffff",
     "keybindingLabel.border": "#8c8effd2",

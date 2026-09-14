@@ -317,7 +317,7 @@ module.exports = {
     "symbolIcon.interfaceForeground": palette.fgWhite,
 
     // ── Extension Marketplace ──────────────────────────────────────────────────────────
-    // Estrella de valoración de extensiones — compartido; HC usa defaults (build.js lo borra)
+    // Estrella de valoración de extensiones — compartido en todas las variantes
     "extensionIcon.starForeground": palette.yellowVibrant,
 
     // ── Keybinding Labels ─────────────────────────────────────────────────────────────

@@ -156,8 +156,6 @@ variants.forEach(variant => {
     delete theme.colors['button.secondaryBackground'];
     delete theme.colors['button.secondaryForeground'];
     delete theme.colors['button.secondaryHoverBackground'];
-    // Estrella de valoración de extensiones: no aplica en HC (defaults de VS Code)
-    delete theme.colors['extensionIcon.starForeground'];
   }
 
   // Perfiles Tipográficos (FontStyles)
