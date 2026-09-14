@@ -1,7 +1,7 @@
 // ==========================================
 // MAXIANO THEME CONFIGURATION (Source of Truth)
 // ==========================================
-// Este archivo genera el JSON final. 
+// Este archivo genera el JSON final.
 // Acá SÍ POUDÉS usar comentarios eternamente y cambiar variables sin miedo.
 
 const palette = {
@@ -47,12 +47,15 @@ const palette = {
   purpleDim: "#c792ea",    // purple-dim (Reemplaza a '#d6acff') - Operadores matemáticos o lógicos
   purpleBase: "#bd93f9",   // purple-base (Reemplaza a '#cca2e8') - terminal.ansiBlue
   purpleBright: "#eaa9fc", // purple-bright - support.class, variable.language (this) y keyword.control (flujo)
+  purpleSoft: "#afadff",   // purple-soft - storage.modifier (public/static/readonly…). Candidato a más usos
 
   // Naranjas & Amarillos (Strings, Functions, Warnings)
   orangeBase: "#ffb86c",   // orange-base (Reemplaza a '#ffcb6b') - Usado para strings y warnings moderados
-  orangeAccent: "#ffcf87", // orange-accent - keyword.operator.new.tsx
+  orangeAccent: "#ffcc81", // orange-accent - keyword.operator/other/control.new
+  orangeSoft: "#ffb488",   // orange-soft - keyword.other (extends, package, auxiliares). Candidato a más usos
   yellowBase: "#f6ff98",   // yellow-base - Markdown (links y listas) y warnings/terminal (colors)
-  yellowLight: "#fff9ba",  // yellow-light - Entity types, classes, support types y attribute names
+  yellowLight: "#fff9b7",  // yellow-light - Entity types, classes, support types y attribute names
+  yellowVibrant: "#ffde25", // yellow-vibrant - editorCursor y extensionIcon.starForeground (amarillo dorado, fuerza de icono)
 
   // Verdes (Classes, RegEx, Strings exitosos)
   greenBase: "#8bffa8",    // green-base (Reemplaza a '#8affc4', '#c7ffc8', '#b9ffba')
@@ -93,7 +96,7 @@ module.exports = {
   "colors": {
     // ── Editor ───────────────────────────────────────────────────────────────────────
     "editor.background": palette.bgBase,
-    "editorCursor.foreground": "#ffde25",
+    "editorCursor.foreground": palette.yellowVibrant,
     "editor.lineHighlightBackground": palette.bgElevated,
     "editor.lineHighlightBorder": palette.bgElevated,
     "editor.selectionBackground": palette.accentSelection,
@@ -108,7 +111,9 @@ module.exports = {
     "editorBracketMatch.background": palette.accentFaint,
     "editorBracketMatch.border": palette.matchBorder,
     "editor.hoverHighlightBackground": palette.searchBackground,
-    "editor.findMatchBackground": palette.searchBackground,
+    // Transparente: la palabra matcheada se distingue por su borde (#a599efff compartido),
+    // no por rellenar el fondo. HC lo sube a fondo sólido vía build.js.
+    "editor.findMatchBackground": "#00000000",
     "editor.findMatchBorder": palette.matchBorder,
     "editor.findMatchForeground": palette.fgWhite,
     "editor.findMatchHighlightBackground": palette.searchBackground,
@@ -194,6 +199,9 @@ module.exports = {
     "statusBar.background": palette.bgDeep,
     "statusBar.foreground": palette.fgWhite,
     "statusBar.border": palette.bgDeep,
+    // Foco por teclado en la status bar — base se oscurece solo en Darker (bgDeep es token
+    // del mapa darkerBackgrounds); HC lo sube a uiAccentStrong vía build.js.
+    "statusBar.focusBorder": palette.bgDeep,
     "statusBar.noFolderBackground": palette.bgDeep,
     "statusBar.debuggingBackground": palette.redBase,
     "statusBar.debuggingForeground": palette.fgWhite,
@@ -308,6 +316,10 @@ module.exports = {
     "symbolIcon.constantForeground": palette.fgWhite,
     "symbolIcon.interfaceForeground": palette.fgWhite,
 
+    // ── Extension Marketplace ──────────────────────────────────────────────────────────
+    // Estrella de valoración de extensiones — compartido; HC usa defaults (build.js lo borra)
+    "extensionIcon.starForeground": palette.yellowVibrant,
+
     // ── Keybinding Labels ─────────────────────────────────────────────────────────────
     "keybindingLabel.background": "#1e1a29",
     "keybindingLabel.foreground": palette.fgWhite,
@@ -398,7 +410,7 @@ module.exports = {
     {
       "scope": "storage.modifier",
       "settings": {
-        "foreground": palette.purpleDim
+        "foreground": palette.purpleSoft
       }
     },
     {
@@ -448,6 +460,15 @@ module.exports = {
       "scope": "source.sass keyword.control",
       "settings": {
         "foreground": palette.purpleBright
+      }
+    },
+    // Candidato genérico keyword.other (extends, package, auxiliares, import en Java) →
+    // coral suave. Los sub-scopes específicos (keyword.other.new/template/special-method/unit)
+    // siguen ganando por especificidad y mantienen sus colores previos.
+    {
+      "scope": "keyword.other",
+      "settings": {
+        "foreground": palette.orangeSoft
       }
     },
 

@@ -80,6 +80,7 @@
     "statusBar.background": "#211e2b",
     "statusBar.foreground": "#ffffff",
     "statusBar.border": "#8c8effd2",
+    "statusBar.focusBorder": "#8c8effd2",
     "statusBar.noFolderBackground": "#211e2b",
     "statusBar.debuggingBackground": "#ff5555",
     "statusBar.debuggingForeground": "#ffffff",
@@ -254,7 +255,7 @@
     {
       "scope": "storage.modifier",
       "settings": {
-        "foreground": "#c792ea"
+        "foreground": "#afadff"
       }
     },
     {
@@ -272,7 +273,7 @@
     {
       "scope": "keyword.operator.new, keyword.operator.new.tsx, keyword.operator.expression.new, keyword.other.new, keyword.control.new.java",
       "settings": {
-        "foreground": "#ffcf87"
+        "foreground": "#ffcc81"
       }
     },
     {
@@ -295,6 +296,12 @@
       "scope": "source.sass keyword.control",
       "settings": {
         "foreground": "#eaa9fc"
+      }
+    },
+    {
+      "scope": "keyword.other",
+      "settings": {
+        "foreground": "#ffb488"
       }
     },
     {
@@ -336,7 +343,7 @@
     {
       "scope": "entity.name.type.class, support.type, meta.use.php, support.other.namespace.php, support.type.sys-types",
       "settings": {
-        "foreground": "#fff9ba"
+        "foreground": "#fff9b7"
       }
     },
     {
@@ -348,7 +355,7 @@
     {
       "scope": "entity.name.type",
       "settings": {
-        "foreground": "#fff9ba"
+        "foreground": "#fff9b7"
       }
     },
     {
@@ -390,13 +397,13 @@
     {
       "scope": "entity.other.attribute-name.class.css",
       "settings": {
-        "foreground": "#fff9ba"
+        "foreground": "#fff9b7"
       }
     },
     {
       "scope": "entity.other.attribute-name",
       "settings": {
-        "foreground": "#fff9ba"
+        "foreground": "#fff9b7"
       }
     },
     {
@@ -596,7 +603,7 @@
     {
       "scope": "constant.other.reference.link.markdown",
       "settings": {
-        "foreground": "#ffcf87"
+        "foreground": "#ffcc81"
       }
     },
     {

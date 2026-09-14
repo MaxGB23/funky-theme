@@ -82,6 +82,7 @@ variants.forEach(variant => {
     theme.colors['editorGroup.border'] = palette.uiAccentStrong;
     theme.colors['titleBar.border'] = palette.uiAccentStrong;
     theme.colors['statusBar.border'] = palette.uiAccentStrong;
+    theme.colors['statusBar.focusBorder'] = palette.uiAccentStrong;
     theme.colors['focusBorder'] = palette.uiAccent;
     
     theme.colors['editor.selectionBackground'] = palette.uiAccentStrong;
@@ -155,6 +156,8 @@ variants.forEach(variant => {
     delete theme.colors['button.secondaryBackground'];
     delete theme.colors['button.secondaryForeground'];
     delete theme.colors['button.secondaryHoverBackground'];
+    // Estrella de valoración de extensiones: no aplica en HC (defaults de VS Code)
+    delete theme.colors['extensionIcon.starForeground'];
   }
 
   // Perfiles Tipográficos (FontStyles)
