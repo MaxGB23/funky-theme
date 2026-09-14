@@ -2,3 +2,6 @@ node_modules/
 *.vsix
 package-lock.json
 .atl/
+
+# Archivo de trabajo local para gh release --notes-file (nunca se versiona)
+RELEASE_NOTES.md

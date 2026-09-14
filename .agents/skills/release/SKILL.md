@@ -18,7 +18,7 @@ Use when the user asks to release, publish, package a new version, generate a `.
 - `src/theme-config.js` is the source of truth. NEVER hand-edit `themes/*.json`; they are build artifacts.
 - Never release uncommitted changes: commit first, push, then tag the release on pushed HEAD.
 - Conventional Commits only, no AI attribution in commits.
-- Confirm the version bump number with the user if ambiguous (patch/minor/major).
+- **`RELEASE_NOTES.md` is a transient scratch file, NEVER versioned:** it exists only to pass the notes to `gh release --notes-file` without shell corruption of backticks. Create it before the release, then **DELETE it after `gh release create` succeeds** (`Remove-Item RELEASE_NOTES.md` on Windows / `rm RELEASE_NOTES.md` on Unix). Never `git add`, commit, or push it; it is covered by `.gitignore` as a safety net.
 - **Release notes are written in English** (GitHub facing), regardless of the author's conversation language.
 
 ## Release Notes Format (MANDATORY)
@@ -89,6 +89,7 @@ Every release `--notes` MUST follow this exact structure. Do not improvise headi
      --title "v<version>" --notes-file RELEASE_NOTES.md
    ```
    > Use `--notes-file`, never inline `--notes`: both Windows and Unix shells corrupt Markdown backticks (PowerShell `` `t ``/`` `n ``; bash command substitution). The file bypasses the shell, so notes are byte-identical on any OS. Write `RELEASE_NOTES.md` raw (`Set-Content -Raw` on PowerShell) so backticks survive verbatim.
+   > After the release is created, **delete the scratch file** (`Remove-Item RELEASE_NOTES.md` on Windows / `rm RELEASE_NOTES.md` on Unix). It must never be committed or pushed.
 8. Report the release URL and the commit hashes included.
 
 ## Output Contract
