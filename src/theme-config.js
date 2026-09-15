@@ -47,7 +47,7 @@ const palette = {
   purpleDim: "#c792ea",    // purple-dim (Reemplaza a '#d6acff') - Operadores matemáticos o lógicos
   purpleBase: "#bd93f9",   // purple-base (Reemplaza a '#cca2e8') - terminal.ansiBlue
   purpleBright: "#eaa9fc", // purple-bright - support.class, variable.language (this) y keyword.control (flujo)
-  purpleSoft: "#afadff",   // purple-soft - storage.modifier (public/static/readonly…). Candidato a más usos
+  purpleSoft: "#b7b5ff",   // purple-soft - storage.modifier (public/static/readonly…) — lavanda ajustada para mejor presencia sobre el fondo. Candidato a más usos
 
   // Naranjas & Amarillos (Strings, Functions, Warnings)
   orangeBase: "#ffb86c",   // orange-base (Reemplaza a '#ffcb6b') - Usado para strings y warnings moderados
@@ -293,6 +293,8 @@ module.exports = {
     // ── Links ─────────────────────────────────────────────────────────────────────────
     "textLink.foreground": palette.linkPurple,
     "textLink.activeForeground": palette.uiAccent,
+    // Link activo del editor (cmd+click): cyan compartido en todas las variantes, incluido HC
+    "editorLink.activeForeground": palette.cyanAccent,
 
     // ── Markdown Preview (Blockquotes / Preformatted) ─────────────────────────────────
     // textPreformat: compartido; High Contrast maneja los suyos (build.js los sobreescribe)
@@ -462,13 +464,22 @@ module.exports = {
         "foreground": palette.purpleBright
       }
     },
-    // Candidato genérico keyword.other (extends, package, auxiliares, import en Java) →
-    // coral suave. Los sub-scopes específicos (keyword.other.new/template/special-method/unit)
-    // siguen ganando por especificidad y mantienen sus colores previos.
+    // Candidato genérico keyword.other (extends, mod/pub, auxiliares) →
+    // coral suave. Los sub-scopes específicos (new/template/special-method/unit y la
+    // parte superior import/use/namespace/…) ganan por especificidad y mantienen sus colores.
     {
       "scope": "keyword.other",
       "settings": {
         "foreground": palette.orangeSoft
+      }
+    },
+    // Parte superior del archivo (imports, namespaces): los sub-scopes estructurales de
+    // keyword.other van en cyan (mismo tinte que funciones) — combinan con la paleta de
+    // morados del tema; el keyword.other genérico auxiliar se queda en coral.
+    {
+      "scope": "keyword.other.import, keyword.other.use, keyword.other.namespace, keyword.other.package, keyword.other.include, keyword.other.require, keyword.other.module",
+      "settings": {
+        "foreground": palette.cyanAccent
       }
     },
 
@@ -510,7 +521,10 @@ module.exports = {
     },
 
     // ── Classes / tipos / soporte ──────────────────────────────────────────────────────
-    // support.class: un solo rule (el valor purpleBright dominaba al anterior fgBase en cascade)
+    // support.class (clases externas/builtin: Exception, DateTime en PHP; React en TSX):
+    // EXCEPCIÓN deliberada — se queda en morado claro #eaa9fc como referencia activa
+    // (viene de afuera, no se define aquí). Casi no aparece (solo PHP y a veces JSX/TSX),
+    // aprueba visualmente; NO moverlo a la familia de tipos (se confundiría con el código propio).
     {
       "scope": "support.class",
       "settings": {

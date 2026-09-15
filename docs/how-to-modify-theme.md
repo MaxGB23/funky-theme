@@ -158,14 +158,14 @@ Los colores siguen una estrategia semántica: **el rol del token en el código d
 |---|---|---|---|
 | **Flujo** | Verbos que controlan la ejecución | Morado claro (`#eaa9fc`) | `if`, `else`, `for`, `while`, `return`, `switch`, `import`, `export` |
 | **Declaración** | Sustantivos que definen estructura | Morado (`#c792ea`) | `type`, `interface`, `class`, `const`, `let`, `var`, `private`, `function` |
-| **Modificador** | Adjetivos que matizan una declaración | Lavanda (`#afadff`) | `public`, `static`, `final`, `abstract`, `readonly` |
+| **Modificador** | Adjetivos que matizan una declaración | Lavanda (`#b7b5ff`) | `public`, `static`, `final`, `abstract`, `readonly` |
 | **Referencia** | Punteros al contexto actual | Morado claro (`#eaa9fc`) | `this`, `super`, `self` |
-| **Auxiliar** | Palabras estructurales que no controlan el flujo | Coral (`#ffb488`) | `extends`, `package`, `import` (Java), `mod`/`pub` (Rust) |
+| **Auxiliar** | Palabras estructurales que no controlan el flujo | Coral (`#ffb488`) | `extends`, `mod`/`pub` (Rust) |
 | **Creación** | Operadores de instanciación | Naranja (`#ffcc81`) | `new` |
 
 La meta es la legibilidad por escaneo: el ojo distingue de un vistazo *dónde pasa algo* (flujo) de *dónde se declara algo* (estructura) — por luminosidad dentro de la misma familia morada, no por cambio de color. Flujo y Referencia comparten tono a propósito: ambos son "tokens activos", a diferencia de la estructura estática.
 
-**Excepciones deliberadas (decididas en testeo 2026-09-13):** los roles **Modificador** y **Auxiliar** NO viven en la familia morada. `storage.modifier` (public/static) va en lavanda `#afadff` y `keyword.other` (extends/package) en coral `#ffb488` — ambos son tokens de paleta (`purpleSoft`, `orangeSoft`), creados como candidatos reutilizables aunque hoy tengan un solo uso.
+**Excepciones deliberadas (decididas en testeo 2026-09-13, ajustadas 2026-09-14):** los roles **Modificador** y **Auxiliar** NO viven en la familia morada. `storage.modifier` (public/static) va en lavanda `#b7b5ff` y `keyword.other` genérico (extends, mod/pub) en coral `#ffb488` — ambos son tokens de paleta (`purpleSoft`, `orangeSoft`), creados como candidatos reutilizables aunque hoy tengan un solo uso. Los sub-scopes superiores de `keyword.other` (`import`, `use`, `namespace`, `package`, `include`, `require`, `module`) van en cyan `#96e7ff` (mismo tinte que las funciones): distinguen la parte estructural superior del archivo del coral auxiliar genérico, por especificidad de stack. Otra excepción: `support.class` (clases externas/builtin como `Exception` en PHP o `React` en TSX) se queda en morado claro `#eaa9fc` como referencia activa — no es tipo definido por el usuario, y moverlo a la familia de tipos lo confundiría con el código propio.
 
 **Excepciones legítimas:** la estrategia es una sugerencia, no un contrato rígido. Un caso particular (lenguaje, contexto o necesidad de énfasis) puede romperla si la excepción mejora la legibilidad. Si rompes la regla, documenta la excepción con un comentario junto a la regla en `theme-config.js`, para que no parezca un error accidental.
 

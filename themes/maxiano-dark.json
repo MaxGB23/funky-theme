@@ -156,6 +156,7 @@
     "badge.foreground": "#ffffff",
     "textLink.foreground": "#b2b3ff",
     "textLink.activeForeground": "#8c8eff",
+    "editorLink.activeForeground": "#96e7ff",
     "textBlockQuote.background": "#24212e",
     "textBlockQuote.border": "#8c8eff",
     "textPreformat.background": "#8c8eff33",
@@ -245,7 +246,7 @@
     {
       "scope": "storage.modifier",
       "settings": {
-        "foreground": "#afadff"
+        "foreground": "#b7b5ff"
       }
     },
     {
@@ -292,6 +293,12 @@
       "scope": "keyword.other",
       "settings": {
         "foreground": "#ffb488"
+      }
+    },
+    {
+      "scope": "keyword.other.import, keyword.other.use, keyword.other.namespace, keyword.other.package, keyword.other.include, keyword.other.require, keyword.other.module",
+      "settings": {
+        "foreground": "#96e7ff"
       }
     },
     {
