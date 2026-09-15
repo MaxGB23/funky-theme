@@ -23,6 +23,7 @@ Flujo de testeo manual ANTES de tocar el Source of Truth:
 
 ## Versioning & Releases (estrategia acordada)
 
+- **🚨 NUNCA lanzar un release de memoria:** releer siempre `.agents/skills/release/SKILL.md` y no asumir nada — verificar cada paso contra la skill y el estado real del repo.
 - **SemVer estricto:** consultar la skill para más detalles.
 - **NO borrar releases/tags anteriores**, aunque el repo tenga pocas visitas. Mantienen trazabilidad.
 - **Releases por lote, no por commit:** agrupar varios cambios en un solo vsix cuando haya un grupo coherente. NO publicar un vsix por cada micro-commit (eso satura el feed de releases).
