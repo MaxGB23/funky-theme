@@ -27,8 +27,9 @@ As terminal agents and AI handle more of the heavy lifting, the IDE is becoming 
 Funky Theme is built around a **semantic, tiered color palette** defined in a single source-of-truth config file. Every color has a name and a reason to exist:
 
 - 🩷 **Pinks** — Tags, parameters, numeric constants
-- 🟣 **Purples** — Keywords, operators, support classes (flow keywords in a lighter purple)
-- 🔵 **Cyans** — Functions, attributes, regex, escape characters
+- 🟣 **Purples** — Keywords, math/logic operators, support classes (flow keywords in a lighter purple)
+- 🩵 **Cyans** — Functions, attributes, regex, escape characters
+- 🔵 **Blues** — Methods, symbol operators, storage modifier
 - 🟡 **Yellows** — Class names, type names, attribute names
 - 🟢 **Greens** — Strings, git untracked, inline code
 - 🔴 **Reds** — Errors, variables, deleted references
