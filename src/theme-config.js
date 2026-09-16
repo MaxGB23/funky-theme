@@ -56,7 +56,7 @@ const palette = {
   yellowBase: "#f6ff98",   // yellow-base - Markdown (links y listas) y warnings/terminal (colors)
   yellowLight: "#fff9b7",  // yellow-light - Entity types, classes, support types y attribute names
   yellowVibrant: "#ffde25", // yellow-vibrant - editorCursor y extensionIcon.starForeground (amarillo dorado, fuerza de icono)
-  bracketGold: "#FFD700",  // bracket-gold - editorBracketHighlight.foreground1 y fallback meta.brace (brackets de nivel 1 y capturas CodeSnap)
+  bracketGold: "#ffd700",  // bracket-gold - editorBracketHighlight.foreground1 y fallback meta.brace (brackets de nivel 1 y capturas CodeSnap)
 
   // Verdes (Classes, RegEx, Strings exitosos)
   greenBase: "#8bffa8",    // green-base (Reemplaza a '#8affc4', '#c7ffc8', '#b9ffba')
@@ -114,10 +114,10 @@ module.exports = {
     "editorBracketMatch.border": palette.matchBorder,
     // Bracket Pair Colorization (nativa de VS Code): 3 niveles de color propios + transparentes
     // del nivel 4 en adelante. Los niveles 4-6 quedan #00000000 para no saturar (los guides siguen
-    // visibles); el fallback TextMate meta.brace (#FFD700) solo aplica donde no hay bracket
+    // visibles); el fallback TextMate meta.brace (#ffd700) solo aplica donde no hay bracket
     // colorization (p.ej. capturas con CodeSnap).
     "editorBracketHighlight.foreground1": palette.bracketGold,
-    "editorBracketHighlight.foreground2": "#DA70D6",
+    "editorBracketHighlight.foreground2": "#da70d6",
     "editorBracketHighlight.foreground3": "#47b2ff",
     "editorBracketHighlight.foreground4": "#00000000",
     "editorBracketHighlight.foreground5": "#00000000",
@@ -181,13 +181,13 @@ module.exports = {
     // ── Terminal (ANSI) ───────────────────────────────────────────────────────────────
     "terminal.background": palette.bgDeep,
     "terminal.foreground": palette.fgBase,
-    "terminal.ansiBrightBlack": "#6272A4",
+    "terminal.ansiBrightBlack": "#6272a4",
     "terminal.ansiBrightRed": palette.pinkAccent,
     "terminal.ansiBrightGreen": palette.pinkLight,
     "terminal.ansiBrightYellow": palette.yellowBase,
     "terminal.ansiBrightBlue": palette.purpleDim,
     "terminal.ansiBrightMagenta": palette.pinkLight,
-    "terminal.ansiBrightCyan": "#A4FFFF",
+    "terminal.ansiBrightCyan": "#a4ffff",
     "terminal.ansiBrightWhite": palette.fgWhite,
     "terminal.ansiBlack": palette.bgDeep,
     "terminal.ansiRed": palette.pinkAccent,
@@ -195,7 +195,7 @@ module.exports = {
     "terminal.ansiYellow": palette.yellowBase,
     "terminal.ansiBlue": palette.purpleBase,
     "terminal.ansiMagenta": palette.pinkLight,
-    "terminal.ansiCyan": "#A4FFFF",
+    "terminal.ansiCyan": "#a4ffff",
     "terminal.ansiWhite": palette.fgBase,
 
     // ── Title Bar / Menubar ───────────────────────────────────────────────────────────
@@ -911,7 +911,7 @@ module.exports = {
     {
       "scope": "text.html.markdown meta.disable-markdown punctuation.definition",
       "settings": {
-        "foreground": "#A4FFFF"
+        "foreground": "#a4ffff"
       }
     },
     {
@@ -1070,7 +1070,7 @@ module.exports = {
     {
       "scope": "brackethighlighter.default",
       "settings": {
-        "foreground": "#B2CCD6"
+        "foreground": "#b2ccd6"
       }
     },
     {
