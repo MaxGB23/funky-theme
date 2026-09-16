@@ -56,6 +56,7 @@ const palette = {
   yellowBase: "#f6ff98",   // yellow-base - Markdown (links y listas) y warnings/terminal (colors)
   yellowLight: "#fff9b7",  // yellow-light - Entity types, classes, support types y attribute names
   yellowVibrant: "#ffde25", // yellow-vibrant - editorCursor y extensionIcon.starForeground (amarillo dorado, fuerza de icono)
+  bracketGold: "#FFD700",  // bracket-gold - editorBracketHighlight.foreground1 y fallback meta.brace (brackets de nivel 1 y capturas CodeSnap)
 
   // Verdes (Classes, RegEx, Strings exitosos)
   greenBase: "#8bffa8",    // green-base (Reemplaza a '#8affc4', '#c7ffc8', '#b9ffba')
@@ -111,6 +112,16 @@ module.exports = {
     "editor.wordHighlightStrongBorder": "#8c8eff5e",
     "editorBracketMatch.background": palette.accentFaint,
     "editorBracketMatch.border": palette.matchBorder,
+    // Bracket Pair Colorization (nativa de VS Code): 3 niveles de color propios + transparentes
+    // del nivel 4 en adelante. Los niveles 4-6 quedan #00000000 para no saturar (los guides siguen
+    // visibles); el fallback TextMate meta.brace (#FFD700) solo aplica donde no hay bracket
+    // colorization (p.ej. capturas con CodeSnap).
+    "editorBracketHighlight.foreground1": palette.bracketGold,
+    "editorBracketHighlight.foreground2": "#DA70D6",
+    "editorBracketHighlight.foreground3": "#47b2ff",
+    "editorBracketHighlight.foreground4": "#00000000",
+    "editorBracketHighlight.foreground5": "#00000000",
+    "editorBracketHighlight.foreground6": "#00000000",
     "editor.hoverHighlightBackground": palette.searchBackground,
     // Transparente: la palabra matcheada se distingue por su borde (#a599efff compartido),
     // no por rellenar el fondo. HC lo sube a fondo sólido vía build.js.
@@ -422,6 +433,15 @@ module.exports = {
       "scope": "constant.other.color, punctuation, punctuation.definition.tag, punctuation.separator.inheritance.php, punctuation.section.embedded, keyword.other.template, keyword.other.substitution",
       "settings": {
         "foreground": palette.cyanDim
+      }
+    },
+    {
+      // Fallback de brackets para renderers sin Bracket Pair Colorization (p.ej. capturas con
+      // CodeSnap): pinta los braces TextMate con el dorado de nivel 1. En el editor real VS Code
+      // usa editorBracketHighlight.* (nativa) y esta regla casi no se ve — salvo si se desactiva.
+      "scope": "meta.brace",
+      "settings": {
+        "foreground": palette.bracketGold
       }
     },
     {

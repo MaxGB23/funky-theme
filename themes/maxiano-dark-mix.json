@@ -15,6 +15,12 @@
     "editor.wordHighlightStrongBorder": "#8c8eff5e",
     "editorBracketMatch.background": "#8c8eff2a",
     "editorBracketMatch.border": "#a599efff",
+    "editorBracketHighlight.foreground1": "#FFD700",
+    "editorBracketHighlight.foreground2": "#DA70D6",
+    "editorBracketHighlight.foreground3": "#47b2ff",
+    "editorBracketHighlight.foreground4": "#00000000",
+    "editorBracketHighlight.foreground5": "#00000000",
+    "editorBracketHighlight.foreground6": "#00000000",
     "editor.hoverHighlightBackground": "#5f569580",
     "editor.findMatchBackground": "#00000000",
     "editor.findMatchBorder": "#a599efff",
@@ -257,6 +263,12 @@
       "scope": "constant.other.color, punctuation, punctuation.definition.tag, punctuation.separator.inheritance.php, punctuation.section.embedded, keyword.other.template, keyword.other.substitution",
       "settings": {
         "foreground": "#80ecff"
+      }
+    },
+    {
+      "scope": "meta.brace",
+      "settings": {
+        "foreground": "#FFD700"
       }
     },
     {
