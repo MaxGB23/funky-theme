@@ -86,6 +86,26 @@ A terminal palette derived from the same source-of-truth palette is in the works
 
 ---
 
+## Recommended editor settings
+
+Funky Theme is tested and tuned against the following editor settings. They are **recommended, not required** — the theme works with any font and spacing, but this is the setup it was designed and validated with:
+
+```json
+{
+  "editor.fontFamily": "Cascadia Code, monospace",
+  "editor.fontLigatures": true,
+  "editor.lineHeight": 23,
+  "editor.tabSize": 2,
+  "editor.fontSize": 14
+}
+```
+
+> `editor.lineHeight` works anywhere from **23 to 25** — pick what feels comfortable.
+>
+> **Note**: Cascadia Code isn't bundled with Funky Theme. If it isn't installed on your system, VS Code falls back to a system monospace font.
+
+---
+
 ## 📦 Installation
 
 This theme **is not published on the Marketplace**. Being store-agnostic, it is distributed directly via a `.vsix` file. This ensures universal compatibility with any VS Code-based editor (VS Code, Cursor, Windsurf, etc.).
@@ -109,22 +129,6 @@ code --install-extension path/to/funky-theme-vscode-x.x.x.vsix
 ```
 
 > *Note: Replace `code` with your editor's CLI command if you are not using VS Code, e.g., `cursor --install-extension ...`*
-
----
-
-## Recommended editor settings
-
-Funky Theme is tested and tuned against the following editor settings. They are **recommended, not required** — the theme works with any font and spacing, but this is the setup it was designed and validated with:
-
-```json
-{
-  "editor.fontFamily": "Cascadia Code, monospace",
-  "editor.fontLigatures": true,
-  "editor.lineHeight": 23,
-  "editor.tabSize": 2,
-  "editor.fontSize": 14
-}
-```
 
 ---
 
