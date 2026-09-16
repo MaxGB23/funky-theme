@@ -78,9 +78,13 @@ While primarily dedicated to and optimized for **web development** (specifically
 
 ---
 
-## Terminal themes (WIP)
+## Terminals
 
-A terminal palette derived from the same source-of-truth palette is in the works: same backgrounds, accents and ANSI colors as the editor, so your terminal environment matches the theme without a second palette to memorize. Targeted at OpenCode and Pi.
+The integrated editor terminal already ships with Funky Theme's ANSI palette — no extra setup required, and it works across shells such as Bash, Zsh, PowerShell, and others. The palette is most noticeable in shells and CLI tools that make extensive use of colored output.
+
+### Terminal-based AI Agents (WIP)
+
+A standalone terminal palette for AI coding agents such as OpenCode and Pi is in the works, with two planned variants: Funky Dark and Funky Darker. Both are derived from the same source of truth as the editor theme, while allowing for small adjustments where terminal environments differ from the IDE. The standard variant may also use minimal italics where they improve readability, without introducing a separate italic variant. This keeps your terminal environment visually consistent without requiring a separate palette to maintain.
 
 > **Status:** WIP — still debating packaging and whether it ships in this repo or a separate one.
 
