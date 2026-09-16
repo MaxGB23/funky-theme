@@ -68,7 +68,8 @@ const palette = {
 
   // === Azules de Métodos ===
   blueMethod: "#82aaff",    // blue-method - Métodos JS/CS/Go, source.json values y decorators (azul de métodos)
-  operatorBlue: "#9abfff",  // operator-blue - keyword.operator (símbolos). storage.modifier usa #a1caff (literal, variante más clara — no comparte)
+  operatorBlue: "#9abfff",  // operator-blue - keyword.operator (símbolos). storage.modifier y cuantificadores regex usan blueSoft (variante más clara)
+  blueSoft: "#a1caff",      // blue-soft - storage.modifier y keyword.operator.quantifier.regexp (variante clara del azul operador; antes literal)
 
   // === Verdes Material / Naranjas / Terracota ===
   greenMaterial: "#c3e88d", // green-material - Git insertions, find-in-files filename y algunos strings (verde Material)
@@ -425,8 +426,8 @@ module.exports = {
       "scope": "storage.modifier",
       "settings": {
         // Variante ligeramente más clara del azul de operadores (#9abfff -> #a1caff),
-        // deliberadamente NO comparte color con keyword.operator.
-        "foreground": "#a1caff"
+        // comparte palette.blueSoft con los cuantificadores de regex.
+        "foreground": palette.blueSoft
       }
     },
     {
@@ -595,7 +596,13 @@ module.exports = {
     {
       "scope": "string.regexp",
       "settings": {
-        "foreground": palette.cyanAccent
+        "foreground": palette.greenAccent
+      }
+    },
+    {
+      "scope": "keyword.operator.quantifier.regexp",
+      "settings": {
+        "foreground": palette.blueSoft
       }
     },
     {

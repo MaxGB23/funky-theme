@@ -389,7 +389,13 @@
     {
       "scope": "string.regexp",
       "settings": {
-        "foreground": "#96e7ff"
+        "foreground": "#b9ffba"
+      }
+    },
+    {
+      "scope": "keyword.operator.quantifier.regexp",
+      "settings": {
+        "foreground": "#a1caff"
       }
     },
     {
