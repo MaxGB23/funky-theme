@@ -27,6 +27,14 @@ Two things make this lineup original:
 
 ---
 
+## Terminal themes (WIP)
+
+A terminal palette derived from the same source-of-truth palette is in the works: same backgrounds, accents and ANSI colors as the editor, so your terminal environment matches the theme without a second palette to memorize. Targeted at OpenCode and Pi.
+
+> **Status:** WIP — still debating packaging and whether it ships in this repo or a separate one.
+
+---
+
 ## Color Philosophy
 
 Funky Theme is built around a **semantic, tiered color palette** defined in a single source-of-truth config file. Every color has a name and a reason to exist:
