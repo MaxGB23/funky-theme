@@ -8,9 +8,13 @@ As terminal agents and AI handle more of the heavy lifting, the IDE is becoming 
 
 ## Screenshots
 
-![Funky Dark — TSX](public/images/tsx-code.png)
+<p align="center">
+  <img src="public/images/tsx-code.png" alt="Funky Dark — TSX" width="80%">
+</p>
 
-![Funky Darker — Functions](public/images/functions-darker.png)
+<p align="center">
+  <img src="public/images/functions-darker.png" alt="Funky Darker — Functions" width="80%">
+</p>
 
 ---
 
