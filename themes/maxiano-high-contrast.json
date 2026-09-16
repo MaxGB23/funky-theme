@@ -257,7 +257,7 @@
     {
       "scope": "storage.modifier",
       "settings": {
-        "foreground": "#b7b5ff"
+        "foreground": "#a1caff"
       }
     },
     {
@@ -275,7 +275,7 @@
     {
       "scope": "keyword.operator.new, keyword.operator.new.tsx, keyword.operator.expression.new, keyword.other.new, keyword.control.new.java",
       "settings": {
-        "foreground": "#ffcc81"
+        "foreground": "#ffd089"
       }
     },
     {
@@ -307,7 +307,7 @@
       }
     },
     {
-      "scope": "keyword.other.import, keyword.other.use, keyword.other.namespace, keyword.other.package, keyword.other.include, keyword.other.require, keyword.other.module",
+      "scope": "keyword.other.import, keyword.other.directive, keyword.other.using, keyword.other.use, keyword.other.namespace, keyword.other.package, keyword.other.include, keyword.other.require, keyword.other.module",
       "settings": {
         "foreground": "#96e7ff"
       }
@@ -611,7 +611,7 @@
     {
       "scope": "constant.other.reference.link.markdown",
       "settings": {
-        "foreground": "#ffcc81"
+        "foreground": "#ffd089"
       }
     },
     {

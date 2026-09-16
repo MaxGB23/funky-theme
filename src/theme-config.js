@@ -47,11 +47,11 @@ const palette = {
   purpleDim: "#c792ea",    // purple-dim (Reemplaza a '#d6acff') - Operadores matemáticos o lógicos
   purpleBase: "#bd93f9",   // purple-base (Reemplaza a '#cca2e8') - terminal.ansiBlue
   purpleBright: "#eaa9fc", // purple-bright - support.class, variable.language (this) y keyword.control (flujo)
-  purpleSoft: "#b7b5ff",   // purple-soft - storage.modifier (public/static/readonly…) — lavanda ajustada para mejor presencia sobre el fondo. Candidato a más usos
+  purpleSoft: "#b7b5ff",   // purple-soft - SIN USOS: aguarda un nuevo rol (lavanda liberada 2026-09-15 al mover storage.modifier a operatorBlue)
 
   // Naranjas & Amarillos (Strings, Functions, Warnings)
   orangeBase: "#ffb86c",   // orange-base (Reemplaza a '#ffcb6b') - Usado para strings y warnings moderados
-  orangeAccent: "#ffcc81", // orange-accent - keyword.operator/other/control.new
+  orangeAccent: "#ffd089", // orange-accent - keyword.operator/other/control.new y constant.other.reference.link.markdown (naranja compartido: new y md link consistente, claro y de baja fatiga)
   orangeSoft: "#ffb488",   // orange-soft - keyword.other (extends, package, auxiliares). Candidato a más usos
   yellowBase: "#f6ff98",   // yellow-base - Markdown (links y listas) y warnings/terminal (colors)
   yellowLight: "#fff9b7",  // yellow-light - Entity types, classes, support types y attribute names
@@ -67,6 +67,7 @@ const palette = {
 
   // === Azules de Métodos ===
   blueMethod: "#82aaff",    // blue-method - Métodos JS/CS/Go, source.json values y decorators (azul de métodos)
+  operatorBlue: "#9abfff",  // operator-blue - keyword.operator (símbolos). storage.modifier usa #a1caff (literal, variante más clara — no comparte)
 
   // === Verdes Material / Naranjas / Terracota ===
   greenMaterial: "#c3e88d", // green-material - Git insertions, find-in-files filename y algunos strings (verde Material)
@@ -412,7 +413,9 @@ module.exports = {
     {
       "scope": "storage.modifier",
       "settings": {
-        "foreground": palette.purpleSoft
+        // Variante ligeramente más clara del azul de operadores (#9abfff -> #a1caff),
+        // deliberadamente NO comparte color con keyword.operator.
+        "foreground": "#a1caff"
       }
     },
     {
@@ -424,7 +427,7 @@ module.exports = {
     {
       "scope": "keyword.operator",
       "settings": {
-        "foreground": "#9abfff"
+        "foreground": palette.operatorBlue
       }
     },
     // Creatión (new): naranja. Los scopes de "new" varían por lenguaje — C# usa
@@ -476,8 +479,10 @@ module.exports = {
     // Parte superior del archivo (imports, namespaces): los sub-scopes estructurales de
     // keyword.other van en cyan (mismo tinte que funciones) — combinan con la paleta de
     // morados del tema; el keyword.other genérico auxiliar se queda en coral.
+    // directive (C/C++ #define/typedef), using (C#), use (Rust) → imports (import) e
+    // include (PHP/C++): la parte superior estructural comparte cyan.
     {
-      "scope": "keyword.other.import, keyword.other.use, keyword.other.namespace, keyword.other.package, keyword.other.include, keyword.other.require, keyword.other.module",
+      "scope": "keyword.other.import, keyword.other.directive, keyword.other.using, keyword.other.use, keyword.other.namespace, keyword.other.package, keyword.other.include, keyword.other.require, keyword.other.module",
       "settings": {
         "foreground": palette.cyanAccent
       }

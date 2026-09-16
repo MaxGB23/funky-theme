@@ -1,139 +1,65 @@
 # Manual de Mantenimiento: Maxiano Theme
 
-Este documento detalla el flujo de trabajo (Workflow) arquitectónico para mantener, modificar o extender la paleta de colores del Tema Maxiano.
+Guía operativa para mantener y extender la paleta de colores del tema. Todo cambio de color se hace en el **source of truth** y se compila — nunca a mano en los JSON.
 
-**🚨 Regla de Oro:** NUNCA modifiques manualmente los archivos `.json` dentro de la carpeta `/themes/`. Estos son archivos compilados. Si lo haces, tus cambios se sobrescribirán en la próxima compilación.
-
----
-
-## 🏗️ La Arquitectura Básica
-
-Toda tu atención debe centrarse en dos lugares:
-1. **Source of Truth:** `src/theme-config.js` (Acá viven tus variables y reglas semánticas).
-2. **El Compilador:** `scripts/build.js` (El script que lee tu Source of Truth y escupe las variantes).
+**🚨 Regla de Oro:** NUNCA modifiques manualmente los archivos `.json` dentro de `/themes/`. Son artefactos compilados: tus cambios se sobrescribirán en la próxima compilación.
 
 ---
 
-## 🗂️ Estructura del Source of Truth
+## 🏗️ Arquitectura (lo único que importa)
 
-`src/theme-config.js` está organizado por **zonas semánticas** (no al azar). Antes de agregar o modificar un color, ubica su sección correspondiente:
-
-- **`colors`** → agrupado en ~15 secciones (Editor, Terminal, Git, Barra de estado, etc.), cada una delimitada por comentarios.
-- **`tokenColors`** → agrupado en ~14 secciones de sintaxis (Comentarios, Variables, Funciones, Palabras clave, etc.).
-
-**Regla:** cuando agregues un color, colócalo **dentro de su sección semántica**, no suelto al final. Esto mantiene el archivo navegable a medida que crece.
-
-### 🎨 Tokens de paleta disponibles
-
-Los colores reutilizados viven como variables en `const palette` al inicio del archivo. Además de los tokens base, existen estos usos frecuentes:
-
-| Token | Valor | Uso principal |
-|---|---|---|
-| `blueMethod` | `#82aaff` | Métodos, propiedades, atributos de JS/TS |
-| `greenMaterial` | `#c3e88d` | Strings, marcas de inserción, subrayados |
-| `orangeScarlet` | `#f78c6c` | Advertencias, números, acentos de operador |
-| `terracotta` | `#c17e70` | Verificación de números, find-in-files |
-| `linkPurple` | `#b2b3ff` | Links y `pickerGroup.foreground` |
-| `uiInactive` | `#8b8f9e` | Título de panel y tabs inactivos |
-
-**Regla de paleta:** crea una variable **solo** para valores que se repiten (≥2 usos) o que tienen identidad semántica clara. Los valores de un solo uso se dejan **literales** en su regla.
-
-### 🔢 Colores con alpha (8 dígitos hex)
-
-Los colores con **alpha** (formato `#rrggbbaa`, ej. `#d8d8d8f1`) son **mezclas de opacidad con el fondo**, no "colores puros" de la paleta. Un alpha como `#8c8eff7e` no es un color con identidad propia — es el tono `#8c8eff` a un 49% de opacidad sobre lo que haya detrás. El resultado visual final depende del fondo, y por eso no encaja en un token de paleta.
-
-**Regla:** los alphas **NO se derivan de tokens base** (p.ej. no compongas `uiAccent` + sufijo: el resultado visual depende del fondo, no es un color con identidad propia). Pero eso NO prohíbe tokenizarlos:
-
-- **Un MISMO alpha repetido ≥2 usos con la MISMA semántica → SÍ es token.** Viven en la sección "Alphas compartidos" de `theme-config.js` (p.ej. `uiAccentStrong` `#8c8effd2` — 9 superficies comparten el acento fuerte al 82%). Si cambias el token, las superficies se mantienen cohesionadas.
-- **Cada opacidad DISTINTA del mismo base → literal.** `#8c8eff45`, `#8c8eff40`, `#8c8eff2a`… son mezclas deliberadamente distintas; unificarlas en un token rompería las demás.
-- **Coincidencia de valor entre familias distintas → literal.** Si el MISMO número aparece con semántica distinta (un fill que vale como border, terminal vs markdown), dejarlo literal evita acoplar superficies que no deberían cambiar juntas (p.ej. `#8c8eff5e`, `#8c8eff33`, `#a4ffff`).
+| Pieza | Rol |
+|---|---|
+| `src/theme-config.js` | **Source of Truth**: paleta de tokens + reglas de `colors` y `tokenColors` |
+| `scripts/build.js` | **Compilador**: lee el source y genera las 5 variantes en `/themes/*.json` |
 
 ---
 
-## 🎨 Escenario 1: Cómo modificar un color existente
+## 🎨 Cómo hacer cambios
 
-Supongamos que el rosa (`pinkBase`) actual de tu tema te parece muy saturado y lo quieres apagar un poco.
+### Escenario 1: Modificar un color existente
 
-1. Abre el archivo `src/theme-config.js`.
-2. Busca el objeto `const palette` en la parte superior.
-3. Ubica la variable deseada y modifica su string hexadecimal. De paso, ¡puedes dejar un comentario del por qué cambiaste el color!
+1. Abre `src/theme-config.js`.
+2. Busca la variable en `const palette` y cambia su hex. De paso deja un comentario del porqué:
    ```javascript
-   // Antes
-   pinkBase: "#ff8bee",
-   
-   // Después
    pinkBase: "#e87ea5", // Lo apagué un poco porque cansaba la vista en jornadas largas
    ```
-4. **Compilar:** Abre la terminal en la raíz del proyecto y ejecuta:
-   ```bash
-   node scripts/build.js
+3. Compila: `node scripts/build.js`.
+4. Recarga el editor (`Ctrl+Shift+P` → `Developer: Reload Window`) o corre la extensión en modo Debug (F5).
+
+### Escenario 2: Agregar un color NUEVO a la paleta
+
+1. Registra el token en `const palette`:
+   ```javascript
+   orangeBright: "#ff9133", // Nuevo token específico para alertas severas
    ```
-5. ¡Listo! Automáticamente las 5 variantes de tus temas (`/themes/*.json`) van a heredar este nuevo rosa exacto en los lugares correspondientes.
+2. Úsalo donde corresponda:
+   - **UI del editor** → en `colors`:
+     ```javascript
+     "editorWarning.foreground": palette.orangeBright,
+     ```
+   - **Sintaxis de código** → en `tokenColors`:
+     ```javascript
+     {
+       scope: ["log.warning.severe"],
+       settings: {
+         foreground: palette.orangeBright
+       }
+     }
+     ```
+3. Compila: `node scripts/build.js`. El token se vuelca a las 5 variantes como `"#ff9133"`.
 
----
+### Escenario 3: Color SOLO en una variante (vía build.js)
 
-## 🛠️ Escenario 2: Cómo agregar un color NUEVO a la paleta
+Cuando un color aplica a una única variante (p.ej. `quickInput.*` que difiere entre Dark/Italic y Darker, o `editorLineNumber.activeForeground` que resalta más en High Contrast), NO va en el source compartido: va en `scripts/build.js`, dentro del bloque del perfil.
 
-Supongamos que quieres introducir un color Naranja brillante (`orangeBright`) exclusivamente para resaltar los *warnings* severos del editor porque el naranja base se queda corto.
-
-### Paso 2.1: Registrar el Nuevo Token en la Paleta
-Agrega la variable al principio de `src/theme-config.js`:
-```javascript
-const palette = {
-  // ... (colores existentes)
-  orangeBase: "#ffb86c",
-  orangeBright: "#ff9133", // Nuevo token específico para alertas severas
-};
-```
-
-### Paso 2.2: Aplicar la Variable en el Tema
-Baja en el mismo archivo hasta el `module.exports`, donde está la configuración final.
-Si es para la **UI del editor**, agrégalo en `colors`:
-```javascript
-colors: {
-  // ...
-  "editorWarning.foreground": palette.orangeBright, // Acá inyectás tu nuevo color
-},
-```
-
-Si es para la **sintaxis del código**, búscalo o agrégalo en `tokenColors`:
-```javascript
-tokenColors: [
-  // ...
-  {
-    name: "Severe Warnings Output",
-    scope: ["log.warning.severe"],
-    settings: {
-      foreground: palette.orangeBright
-    }
-  }
-]
-```
-
-### Paso 2.3: Compilar el Tema
-En la terminal ejecuta:
-```bash
-node scripts/build.js
-```
-El script leerá la nueva llave `orangeBright` y la volcará compilada a los 5 temas como `"#ff9133"`.
-
----
-
-## 🗂️ Escenario 3: Agregar un color SOLO en una variante (vía build.js)
-
-A veces un color aplica únicamente a una variante (p.ej. `quickInput.*` que difiere entre Dark/Italic y Darker, o `editorLineNumber.activeForeground` que solo resalta más en High Contrast). Esto NO va en `src/theme-config.js` (compartido), sino en `scripts/build.js`, dentro del bloque de perfil de esa variante.
-
-1. Abre `scripts/build.js` y localiza el bloque de la variante:
+1. Localiza el bloque del perfil en `build.js`:
    - `ultra-nocturno` → Maxiano Darker
    - `high-contrast` → Maxiano High Contrast
    - `flat` / `expressive` → Maxiano Dark / Dark Italic
-   - `mix` → Maxiano Dark Mix (tipografía dirigida: bold en nombres de definición, italic en metadata)
+   - `mix` → Maxiano Dark Mix
 
-La variante Italic (`expressive`) parte de la MISMA capa de italic de Mix (comments, params, attributes, `variable.language`, alias y `storage.modifier`) y la extiende con `keyword.control` (if/else/return…) y `storage.type` (function/class/const/let/var…): la estética cursiva completa tipo Operator Mono. En esta variante NO hay bold de tipografía (solo los bold de markdown `**negrita**` y headings, igual que en la variante regular); números y keywords genéricas quedan normales.
-
-Por su parte, Dark Mix añade el bold SOLO en los nombres de definición (`meta.function entity.name.function`, `entity.name.type`, `entity.name.class`) y NUNCA en keywords: así la definición de una función se distingue de su llamada aunque ambas compartan el cyan de funciones. Estos tres scopes exactos se resuelven en `scripts/build.js` dentro del perfil `mix`. La separación definición/llamada se refuerza en `src/theme-config.js` con la regla `meta.function-call entity.name.function` (mismo cyan, sin bold): como `meta.function-call` está más cerca del nombre en el stack TS/JS, gana especificidad y las llamadas pierden el bold.
-
-2. Agrega el color dentro de ese bloque con un comentario que explique qué hace:
+2. Añade el override con un comentario que explique qué hace:
    ```javascript
    // Perfil: Dark & Italic (QuickInput con fondo profundo y texto blanco)
    if (variant.profile === 'flat' || variant.profile === 'expressive') {
@@ -141,39 +67,76 @@ Por su parte, Dark Mix añade el bold SOLO en los nombres de definición (`meta.
      theme.colors['quickInputTitle.background'] = '#211e2b';
    }
    ```
+3. Compila: `node scripts/build.js`. El override aplica SOLO a esa variante; el resto mantiene el valor compartido.
 
-3. Compila con `node scripts/build.js`. El override se aplicará **solamente** a esa variante; el resto mantiene el valor compartido o por defecto.
+**Reglas de build.js:**
+- Usa los tokens que importa de la paleta (`palette.uiAccentStrong`, `palette.bgDeep`, …) en vez de repetir hex.
+- El mapa `darkerBackgrounds` (variante Darker) está keyed por token: los overrides de fondo y su transform se mantienen sincronizados aunque cambie el valor de `bgBase`/`bgDeep`/`bgElevated`.
+- El mapa `darkerSyntaxAdjustments` (también Darker) atenúa colores de sintaxis luminosos sobre el fondo ultra-nocturno (amarillo/naranja claros cansan más): keyed por token de paleta, recorre `tokenColors` y sustituye el foreground. Si quieres que un color luminoso se atenúe en Darker, añádelo aquí — NO en el source compartido.
+- Si un color vale distinto entre variantes: define el base en `theme-config.js` (compartido) y solo los overrides por variante en `build.js`.
 
-**Regla de tokens en build.js:** `build.js` importa la paleta que `src/theme-config.js` exporta al final del `module.exports`. Si el valor ya tiene token, úsalo (`palette.uiAccentStrong`, `palette.bgDeep`, `palette.fgWhite`, …) en vez de repetir el hex. El mapa `darkerBackgrounds` (variante Darker) está keyed por token: los overrides de fondo y el transform se mantienen sincronizados aunque cambie el valor de `bgBase`, `bgDeep` o `bgElevated`.
-
-**Regla:** si un color aplica a varias variantes pero con valores distintos, define el valor base en `theme-config.js` (compartido) y solo overrides por variante en `build.js`. Así evitas duplicar el valor en cada bloque.
+**Perfiles tipográficos (italic/bold, resueltos en `build.js`):**
+- Dark Italic parte de la MISMA capa de italic que Mix (comments, params, attributes, `variable.language`, alias, `storage.modifier`) y la extiende con `keyword.control` y `storage.type`; NO tiene bold de tipografía. Números y keywords genéricas quedan normales.
+- Mix añade bold SOLO en nombres de definición (`meta.function entity.name.function`, `entity.name.type`, `entity.name.class`), nunca en keywords: así la definición se distingue de la llamada aunque ambas compartan el cyan de funciones. La separación se refuerza en `theme-config.js` con `meta.function-call entity.name.function` (gana por especificidad de stack y las llamadas pierden el bold).
 
 ---
 
-## 🎨 Estrategia cromática: separación por rol
+## 🗂️ Mapa de decisiones
 
-Los colores siguen una estrategia semántica: **el rol del token en el código decide su familia cromática**. Es una GUÍA — no una ley — y admite excepciones cuando el contexto lo pide.
+### Colocación de las propiedades
+
+`src/theme-config.js` está organizado por **zonas semánticas**: `colors` agrupado en ~15 secciones (Editor, Terminal, Git, Barra de estado, etc.) y `tokenColors` en ~14 secciones de sintaxis (Comentarios, Variables, Funciones, Palabras clave, etc.). Al agregar una propiedad nueva, colócala **dentro de su sección semántica**, junto a las keys vecinas del área — nunca suelta al final.
+
+### Tokens de paleta disponibles
+
+Los colores reutilizados viven como variables en `const palette`. Además de los tokens base, existen estos usos frecuentes:
+
+| Token | Valor | Uso principal |
+|---|---|---|
+| `blueMethod` | `#82aaff` | Métodos y propiedades (JS/TS, C#, Go…), valores de JSON y decorators |
+| `greenMaterial` | `#c3e88d` | Strings, marcas de inserción, subrayados |
+| `orangeScarlet` | `#f78c6c` | Advertencias, números, acentos de operador |
+| `terracotta` | `#c17e70` | Verificación de números, find-in-files |
+| `linkPurple` | `#b2b3ff` | Links y `pickerGroup.foreground` |
+| `uiInactive` | `#8b8f9e` | Título de panel y tabs inactivos |
+
+**Regla de paleta:** crea una variable SOLO para valores que se repiten (≥2 usos) o con identidad semántica clara. Los de un solo uso se dejan literales en su regla.
+
+### Colores con alpha (8 dígitos hex)
+
+Los colores con alpha (formato `#rrggbbaa`, p.ej. `#d8d8d8f1`) son **mezclas de opacidad con el fondo**, no colores puros: su resultado visual depende de lo que haya detrás.
+
+- **Un MISMO alpha repetido ≥2 usos con la MISMA semántica → SÍ es token** (sección "Alphas compartidos", p.ej. `uiAccentStrong` `#8c8effd2` — 9 superficies comparten el acento fuerte al 82%). Cambiar el token mantiene las superficies cohesionadas.
+- **Cada opacidad DISTINTA del mismo base → literal**: `#8c8eff45`, `#8c8eff40`, `#8c8eff2a`… son mezclas deliberadamente distintas.
+- **Coincidencia de valor entre familias distintas → literal**: si el mismo número aparece con semántica distinta (un fill que vale como border, terminal vs markdown), dejarlo literal evita acoplar superficies que no deberían cambiar juntas.
+- Los alphas NO se derivan de tokens base (no compongas `uiAccent` + sufijo: el render depende del fondo).
+
+### Estrategia cromática: separación por rol
+
+El rol del token en el código decide su familia cromática. Es una GUÍA — no una ley — y admite excepciones cuando el contexto lo pide.
 
 | Rol | Qué es | Familia cromática | Ejemplos |
 |---|---|---|---|
 | **Flujo** | Verbos que controlan la ejecución | Morado claro (`#eaa9fc`) | `if`, `else`, `for`, `while`, `return`, `switch`, `import`, `export` |
 | **Declaración** | Sustantivos que definen estructura | Morado (`#c792ea`) | `type`, `interface`, `class`, `const`, `let`, `var`, `private`, `function` |
-| **Modificador** | Adjetivos que matizan una declaración | Lavanda (`#b7b5ff`) | `public`, `static`, `final`, `abstract`, `readonly` |
+| **Modificador** | Adjetivos que matizan una declaración | Azul claro (`#a1caff`) | `public`, `static`, `final`, `abstract`, `readonly` |
 | **Referencia** | Punteros al contexto actual | Morado claro (`#eaa9fc`) | `this`, `super`, `self` |
-| **Auxiliar** | Palabras estructurales que no controlan el flujo | Coral (`#ffb488`) | `extends`, `mod`/`pub` (Rust) |
-| **Creación** | Operadores de instanciación | Naranja (`#ffcc81`) | `new` |
+| **Auxiliar** | Palabras estructurales que no controlan el flujo | Coral (`#ffb488`) | `extends` (JS/TS, Java, PHP), `mod`/`pub` (p.ej. Rust) |
+| **Creación** | Operadores de instanciación | Naranja claro (`#ffd089`) | `new` |
 
-La meta es la legibilidad por escaneo: el ojo distingue de un vistazo *dónde pasa algo* (flujo) de *dónde se declara algo* (estructura) — por luminosidad dentro de la misma familia morada, no por cambio de color. Flujo y Referencia comparten tono a propósito: ambos son "tokens activos", a diferencia de la estructura estática.
+La meta es la legibilidad por escaneo: distinguir de un vistazo *dónde pasa algo* (flujo) de *dónde se declara algo* (estructura) — por luminosidad dentro de la misma familia morada, no por cambio de color. Flujo y Referencia comparten tono a propósito: ambos son "tokens activos", a diferencia de la estructura estática.
 
-**Excepciones deliberadas (decididas en testeo 2026-09-13, ajustadas 2026-09-14):** los roles **Modificador** y **Auxiliar** NO viven en la familia morada. `storage.modifier` (public/static) va en lavanda `#b7b5ff` y `keyword.other` genérico (extends, mod/pub) en coral `#ffb488` — ambos son tokens de paleta (`purpleSoft`, `orangeSoft`), creados como candidatos reutilizables aunque hoy tengan un solo uso. Los sub-scopes superiores de `keyword.other` (`import`, `use`, `namespace`, `package`, `include`, `require`, `module`) van en cyan `#96e7ff` (mismo tinte que las funciones): distinguen la parte estructural superior del archivo del coral auxiliar genérico, por especificidad de stack. Otra excepción: `support.class` (clases externas/builtin como `Exception` en PHP o `React` en TSX) se queda en morado claro `#eaa9fc` como referencia activa — no es tipo definido por el usuario, y moverlo a la familia de tipos lo confundiría con el código propio.
+> **⚠️ Ejemplos representativos, NO exhaustivos.** Cada rol aplica a TODOS los lenguajes donde exista una palabra con ese papel; los paréntesis tipo `(Rust)` solo indican dónde es común verla. Para verificar una palabra concreta usa `Developer: Inspect Editor Tokens and Scopes` (`Ctrl+Shift+P`) en el editor — el scope real que reporta VS Code es el que manda, no la tabla. **Ojo: esto solo lo puede hacer un humano en el editor; un agente no puede abrir el inspector.**
 
-**Excepciones legítimas:** la estrategia es una sugerencia, no un contrato rígido. Un caso particular (lenguaje, contexto o necesidad de énfasis) puede romperla si la excepción mejora la legibilidad. Si rompes la regla, documenta la excepción con un comentario junto a la regla en `theme-config.js`, para que no parezca un error accidental.
+**Excepciones al mapa:** el rol **Auxiliar** no vive en la familia morada: `keyword.other` genérico → coral `#ffb488` (token `orangeSoft`) — creado como candidato reutilizable aunque hoy tenga un solo uso. Los sub-scopes superiores de `keyword.other` (`import`, `directive`, `using`, `use`, `namespace`, `package`, `include`, `require`, `module`) → cyan `#96e7ff` (parte estructural superior, mismo tinte que las funciones). `storage.modifier` → azul claro `#a1caff` (literal: variante ligeramente más clara del azul de operadores `#9abfff`, deliberadamente NO comparte color con `keyword.operator`). `support.class` (clases externas/builtin: p.ej. `Exception` en PHP, `React` en TSX) se queda en morado claro `#eaa9fc` como referencia activa — no es tipo definido por el usuario, y moverlo a la familia de tipos lo confundiría con el código propio.
 
-**Dónde vive:** la estrategia se implementa en `src/theme-config.js` (sección "Keywords / control / imports" y otras zonas semánticas): cada familia cromática es un `foreground` definido con tokens de la paleta, y las 5 variantes la heredan vía build. Si buscas dónde está aplicada una regla, ese archivo es el punto de partida — nunca los `themes/*.json` (artefactos compilados).
+**Excepciones legítimas:** la estrategia es una sugerencia, no un contrato. Un caso particular (lenguaje, contexto o necesidad de énfasis) puede romperla si mejora la legibilidad — pero documenta la excepción con un comentario junto a la regla en `theme-config.js`, para que no parezca un error accidental.
+
+**Dónde vive:** la estrategia se implementa en `src/theme-config.js` (sección "Keywords / control / imports" y otras zonas semánticas): cada familia es un `foreground` con tokens de la paleta, y las 5 variantes la heredan vía build. Si buscas dónde está aplicada una regla, ese archivo es el punto de partida — nunca los `themes/*.json`.
 
 ---
 
 ## 🚀 Cheatsheet de Comandos
-- Para compilar el tema tras CUALQUIER cambio:
-  `node scripts/build.js`
-- Para previsualizar los cambios en VS Code, tienes que recargar la ventana (`Ctrl + Shift + P` -> `Developer: Reload Window`) o tener la extensión corriendo en modo *Debug* (F5).
+- Compilar tras CUALQUIER cambio: `node scripts/build.js`
+- Previsualizar en VS Code: recargar la ventana (`Ctrl+Shift+P` → `Developer: Reload Window`) o correr la extensión en modo Debug (F5)
+- Inspeccionar el scope real de un token: `Ctrl+Shift+P` → `Developer: Inspect Editor Tokens and Scopes` (solo humano)

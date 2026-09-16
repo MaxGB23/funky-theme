@@ -34,6 +34,16 @@ const darkerBackgrounds = {
   '#363143': '#26222f'
 };
 
+// Mapa de atenuación de colores de sintaxis en Darker: los colores luminosos
+// (amarillos y naranjas claros) cansan más sobre el fondo ultra-nocturno, así
+// que se sustituyen por versiones ligeramente más apagadas SOLO en esta variante.
+// Keyed por token de paleta (igual que darkerBackgrounds) para seguir a la paleta
+// si el token cambia de valor.
+const darkerSyntaxAdjustments = {
+  [palette.yellowLight]: '#fff9ba',  // amarillo luminoso -> amarillo atenuado
+  [palette.orangeAccent]: '#ffd18e'  // naranja claro -> naranja atenuado
+};
+
 variants.forEach(variant => {
   // Clonamos el objeto base para no mutar la referencia original
   const theme = JSON.parse(JSON.stringify(themeConfig));
@@ -65,6 +75,18 @@ variants.forEach(variant => {
     // QuickInput (Command Palette / Quick Open) Darker
     theme.colors['quickInput.foreground'] = palette.fgWhite;
     theme.colors['quickInputTitle.background'] = darkerBackgrounds[palette.bgDeep];
+
+    // Atenuar colores de sintaxis luminosos sobre el fondo ultra-nocturno
+    theme.tokenColors.forEach(token => {
+      const color = token.settings && token.settings.foreground;
+      if (!color) return;
+      for (const [base, adjusted] of Object.entries(darkerSyntaxAdjustments)) {
+        if (color.toLowerCase().startsWith(base.toLowerCase())) {
+          token.settings.foreground = adjusted + color.slice(base.length);
+          break;
+        }
+      }
+    });
   }
   
   // Perfil: Dark & Italic (QuickInput con fondo profundo y texto blanco)
