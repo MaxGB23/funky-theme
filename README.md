@@ -8,25 +8,43 @@ As terminal agents and AI handle more of the heavy lifting, the IDE is becoming 
 
 ## Screenshots
 
-<p align="center">
-  <img src="public/images/tsx-code.png" alt="Funky Dark — TSX" width="80%">
-</p>
+<p align="center"><strong>Funky Dark</strong></p>
 
 <p align="center">
-  <img src="public/images/functions-darker.png" alt="Funky Darker — Functions" width="80%">
+  <img src="public/images/tsx-code.png" alt="Funky Dark — TSX code" width="75%">
 </p>
+
+<p align="center"><strong>Funky Darker</strong></p>
+
+<p align="center">
+  <img src="public/images/functions-darker.png" alt="Funky Darker — Functions code" width="75%">
+</p>
+
+---
+
+## Color Philosophy
+
+Funky Theme is built around a **semantic, tiered color palette** defined in a single source-of-truth config file. Every color has a name and a reason to exist:
+
+- 🩷 **Pinks** — Tags, parameters, numeric constants
+- 🟣 **Purples** — Keywords, operators, support classes (flow keywords in a lighter purple)
+- 🔵 **Cyans** — Functions, attributes, regex, escape characters
+- 🟡 **Yellows** — Class names, type names, attribute names
+- 🟢 **Greens** — Strings, git untracked, inline code
+- 🔴 **Reds** — Errors, variables, deleted references
+- 🟠 **Oranges** — Warnings, HTML attributes, operator accents
 
 ---
 
 ## Variants
 
-| Variant | Description |
-|---|---|
-| **Funky Dark** | The main experience. Balanced contrast, vivid palette. |
-| **Funky Dark Italic** | The full cursive treatment — control flow, storage types and metadata in italic, zero bold in code. For fans of italic-capable fonts like Operator Mono. |
-| **Funky Dark Mix** | A directed typography strategy: bold on declaration names, italic on metadata, everything else regular. An anti-eye-fatigue balance. |
-| **Funky Darker** | Ultra-nocturnal backgrounds for zero-distraction sessions. |
-| **Funky High Contrast** | Accessibility-focused borders and boosted contrast for comment tokens. |
+| Variant                 | Description                                                                                                                                                     |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Funky Dark**          | The main experience. Balanced contrast, vivid palette.                                                                                                          |
+| **Funky Dark Italic**   | The full cursive treatment — control flow, storage types and metadata in italic, zero bold in code. For fans of italic-capable fonts like Operator Mono.       |
+| **Funky Dark Mix**      | A directed typography strategy: bold on declaration names, italic on metadata, everything else regular. An anti-eye-fatigue balance.                          |
+| **Funky Darker**        | Ultra-nocturnal backgrounds for zero-distraction sessions.                                                                                                      |
+| **Funky High Contrast** | Accessibility-focused borders and boosted contrast for comment tokens.                                                                                          |
 
 ### Why five variants?
 
@@ -39,28 +57,6 @@ Two things make this lineup original:
 
 ---
 
-## Terminal themes (WIP)
-
-A terminal palette derived from the same source-of-truth palette is in the works: same backgrounds, accents and ANSI colors as the editor, so your terminal environment matches the theme without a second palette to memorize. Targeted at OpenCode and Pi.
-
-> **Status:** WIP — still debating packaging and whether it ships in this repo or a separate one.
-
----
-
-## Color Philosophy
-
-Funky Theme is built around a **semantic, tiered color palette** defined in a single source-of-truth config file. Every color has a name and a reason to exist:
-
-- 🩷 **Pinks** — Tags, parameters, numeric constants
-- 🟣 **Purples** — Keywords, operators, support classes (flow keywords in a lighter purple)  
-- 🔵 **Cyans** — Functions, attributes, regex, escape characters
-- 🟡 **Yellows** — Class names, type names, attribute names  
-- 🟢 **Greens** — Strings, git untracked, inline code  
-- 🔴 **Reds** — Errors, variables, deleted references  
-- 🟠 **Oranges** — Warnings, HTML attributes, operator accents
-
----
-
 ## Language Support
 
 While primarily dedicated to and optimized for **web development** (specifically for workflows using **React, HTML, CSS, JavaScript, TypeScript, Next.js, and Markdown**), it has also been tested and tuned for other backend and scripting languages.
@@ -70,6 +66,13 @@ While primarily dedicated to and optimized for **web development** (specifically
 - **Backend & Scripts**: Java, Python, C#, Go
 - **Utilities**: Regular Expressions
 
+---
+
+## Terminal themes (WIP)
+
+A terminal palette derived from the same source-of-truth palette is in the works: same backgrounds, accents and ANSI colors as the editor, so your terminal environment matches the theme without a second palette to memorize. Targeted at OpenCode and Pi.
+
+> **Status:** WIP — still debating packaging and whether it ships in this repo or a separate one.
 
 ---
 
@@ -94,7 +97,8 @@ If you have already downloaded the `.vsix` file, you can install it via CLI:
 ```bash
 code --install-extension path/to/funky-theme-vscode-x.x.x.vsix
 ```
-*(Note: Replace `code` with your editor's CLI command if you are not using VS Code, e.g., `cursor --install-extension ...`)*
+
+> *Note: Replace `code` with your editor's CLI command if you are not using VS Code, e.g., `cursor --install-extension ...`*
 
 ---
 
