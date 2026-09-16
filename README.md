@@ -4,6 +4,8 @@
 
 As terminal agents and AI handle more of the heavy lifting, the IDE is becoming less of a place to write everything and more of a place to review, understand, and refine. Funky Theme embraces that shift with bright, vibrant semantics — because if you're going to look at code, it shouldn't have to look dull.
 
+![Funky Dark — TSX](public/images/tsx-code.png)
+
 ---
 
 ## Variants

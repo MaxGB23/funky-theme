@@ -8,3 +8,5 @@
 !README.md
 !themes/
 !themes/*.json
+!public/images/
+!public/images/*.png
