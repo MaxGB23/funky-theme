@@ -8,5 +8,5 @@
 !README.md
 !themes/
 !themes/*.json
-!public/images/
-!public/images/*.png
+!public/images/tsx-code.png
+!public/images/functions-darker.png
