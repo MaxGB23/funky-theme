@@ -986,9 +986,18 @@ module.exports = {
     },
 
     // ── Lenguajes específicos (Python/C#) ─────────────────────────────────────────────
-    // Argumentos de llamada Python + primitivos C# (keyword.type): ambos van a la familia
-    // pinkLight (constantes/params). Las funciones cs/go y el generic.python vuelven al
-    // cyan universal de la regla de funciones (L514) — el blanco local quedó eliminado.
+    // Argumentos de llamada Python → pinkLight (familia constantes/params).
+    //
+    // keyword.type es un scope TextMate GENÉRICO, NO exclusivo de C#. La regla original
+    // (.string.cs/.int.cs/.bool.cs) se migró a este paraguas justamente para cubrir
+    // TODOS los primitivos C# (la gramática oficial emite keyword.type.$1.cs para int,
+    // string, bool, void, etc.). Cualquier otra gramática que emita keyword.type.*
+    // (p.ej. typeof en TS, type en Rust) tomará también este rosa — es el efecto
+    // paraguas buscado y validado visualmente. Los primitivos de lenguajes que usan
+    // storage.type (TS/JS, Java, Dart) NO se ven afectados.
+    //
+    // Las funciones cs/go y el generic.python vuelven al cyan universal de la regla de
+    // funciones (L514) — el blanco local quedó eliminado.
     {
       "scope": "meta.function-call.arguments.python, keyword.type",
       "settings": {
