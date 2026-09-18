@@ -77,7 +77,7 @@ Cuando un color aplica a una única variante (p.ej. `quickInput.*` que difiere e
 
 **Perfiles tipográficos (italic/bold, resueltos en `build.js`):**
 - Dark Italic parte de la MISMA capa de italic que Mix (comments, params, attributes, `variable.language`, alias, `storage.modifier`) y la extiende con `keyword.control` y `storage.type`; NO tiene bold de tipografía. Números y keywords genéricas quedan normales.
-- Mix añade bold SOLO en nombres de definición (`meta.function entity.name.function`, `entity.name.type`, `entity.name.class`), nunca en keywords: así la definición se distingue de la llamada aunque ambas compartan el cyan de funciones. La separación se refuerza en `theme-config.js` con `meta.function-call entity.name.function` (gana por especificidad de stack y las llamadas pierden el bold).
+- Mix añade bold SOLO en nombres de definición (`meta.function entity.name.function`, `entity.name.type`, `entity.name.class`), nunca en keywords: así la definición se distingue de la llamada aunque ambas compartan el cyan de funciones. La separación llamada/definición también es de color: el contenedor `meta.function-call` usa un rosa propio (`pinkAccent`) distinto del de params (`pinkLight`), y en gramáticas que emiten `meta.function-call.generic` (p. ej. Python) el contenedor cede al cyan de funciones.
 
 ---
 

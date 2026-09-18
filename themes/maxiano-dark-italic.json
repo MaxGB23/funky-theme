@@ -33,6 +33,7 @@
     "editorGroupHeader.tabsBackground": "#211e2b",
     "editorError.foreground": "#ff8282",
     "editorWarning.foreground": "#f6ff98",
+    "editorHint.foreground": "#eaa9fc",
     "activityBar.background": "#211e2b",
     "activityBar.foreground": "#ffffff",
     "sideBar.background": "#24212e",
@@ -65,7 +66,7 @@
     "terminal.background": "#211e2b",
     "terminal.foreground": "#f8f8f2",
     "terminal.ansiBrightBlack": "#6272a4",
-    "terminal.ansiBrightRed": "#ff87c5",
+    "terminal.ansiBrightRed": "#ff8282",
     "terminal.ansiBrightGreen": "#ffa8e6",
     "terminal.ansiBrightYellow": "#f6ff98",
     "terminal.ansiBrightBlue": "#c792ea",
@@ -73,7 +74,7 @@
     "terminal.ansiBrightCyan": "#a4ffff",
     "terminal.ansiBrightWhite": "#ffffff",
     "terminal.ansiBlack": "#211e2b",
-    "terminal.ansiRed": "#ff87c5",
+    "terminal.ansiRed": "#ff8282",
     "terminal.ansiGreen": "#b9ffba",
     "terminal.ansiYellow": "#f6ff98",
     "terminal.ansiBlue": "#bd93f9",
@@ -281,7 +282,7 @@
     {
       "scope": "meta.brace",
       "settings": {
-        "foreground": "#ffd700"
+        "foreground": "#ffde25"
       }
     },
     {
@@ -772,7 +773,7 @@
     {
       "scope": "meta.function-call",
       "settings": {
-        "foreground": "#ffa8e6"
+        "foreground": "#ff87c5"
       }
     },
     {

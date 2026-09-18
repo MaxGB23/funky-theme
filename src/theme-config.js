@@ -56,7 +56,7 @@ const palette = {
   yellowBase: "#f6ff98",   // yellow-base - Markdown (links y listas) y warnings/terminal (colors)
   yellowLight: "#fff9b7",  // yellow-light - Entity types, classes, support types y attribute names
   yellowVibrant: "#ffde25", // yellow-vibrant - editorCursor, extensionIcon.starForeground y editorBracketHighlight.foreground1 (amarillo dorado, fuerza de icono)
-  bracketGold: "#ffd700",  // bracket-gold - fallback TextMate meta.brace (capturas CodeSnap)
+  bracketGold: "#ffd700",  // bracket-gold - SIN USOS: aguarda un nuevo rol (fallback meta.brace movido a yellowVibrant 2026-09-18)
 
   // Verdes (Classes, RegEx, Strings exitosos)
   greenBase: "#8bffa8",    // green-base (Reemplaza a '#8affc4', '#c7ffc8', '#b9ffba')
@@ -115,8 +115,8 @@ module.exports = {
     "editorBracketMatch.border": palette.matchBorder,
     // Bracket Pair Colorization (nativa de VS Code): 3 niveles de color propios + transparentes
     // del nivel 4 en adelante. Los niveles 4-6 quedan #00000000 para no saturar (los guides siguen
-    // visibles); el fallback TextMate meta.brace (#ffd700) solo aplica donde no hay bracket
-    // colorization (p.ej. capturas con CodeSnap).
+    // visibles); el fallback TextMate meta.brace (amarillo del nivel 1) solo aplica donde no hay
+    // bracket colorization (p.ej. capturas con CodeSnap).
     "editorBracketHighlight.foreground1": palette.yellowVibrant,
     "editorBracketHighlight.foreground2": "#da70d6",
     "editorBracketHighlight.foreground3": "#47b2ff",
@@ -139,6 +139,7 @@ module.exports = {
     // ── Editor Errors / Warnings (squiggly underline + gutter markers) ─────────────────
     "editorError.foreground": palette.errorFg,
     "editorWarning.foreground": palette.yellowBase,
+    "editorHint.foreground": palette.purpleBright,
 
     // ── Activity Bar / Sidebar / Tree ─────────────────────────────────────────────────
     "activityBar.background": palette.bgDeep,
@@ -183,7 +184,7 @@ module.exports = {
     "terminal.background": palette.bgDeep,
     "terminal.foreground": palette.fgBase,
     "terminal.ansiBrightBlack": "#6272a4",
-    "terminal.ansiBrightRed": palette.pinkAccent,
+    "terminal.ansiBrightRed": palette.errorFg,
     "terminal.ansiBrightGreen": palette.pinkLight,
     "terminal.ansiBrightYellow": palette.yellowBase,
     "terminal.ansiBrightBlue": palette.purpleDim,
@@ -191,7 +192,7 @@ module.exports = {
     "terminal.ansiBrightCyan": "#a4ffff",
     "terminal.ansiBrightWhite": palette.fgWhite,
     "terminal.ansiBlack": palette.bgDeep,
-    "terminal.ansiRed": palette.pinkAccent,
+    "terminal.ansiRed": palette.errorFg,
     "terminal.ansiGreen": palette.greenAccent,
     "terminal.ansiYellow": palette.yellowBase,
     "terminal.ansiBlue": palette.purpleBase,
@@ -454,11 +455,12 @@ module.exports = {
     },
     {
       // Fallback de brackets para renderers sin Bracket Pair Colorization (p.ej. capturas con
-      // CodeSnap): pinta los braces TextMate con el dorado de nivel 1. En el editor real VS Code
-      // usa editorBracketHighlight.* (nativa) y esta regla casi no se ve — salvo si se desactiva.
+      // CodeSnap): pinta los braces TextMate con el amarillo del nivel 1 (yellowVibrant). En el
+      // editor real VS Code usa editorBracketHighlight.* (nativa) y esta regla casi no se ve —
+      // salvo si se desactiva.
       "scope": "meta.brace",
       "settings": {
-        "foreground": palette.bracketGold
+        "foreground": palette.yellowVibrant
       }
     },
     {
@@ -992,13 +994,15 @@ module.exports = {
       }
     },
 
-    // ── Lenguajes específicos (Python/C#) ─────────────────────────────────────────────
-    // Contenedor de llamada: pinkLight como base; el generic (Python, etc.) gana cyan
-    // por especificidad, así el "rosa masivo" no ocurre en gramáticas con .generic.
+    // ── Llamadas de función según gramática (p. ej. Python/C#) ─────────────────────────
+    // Contenedor de llamada: pinkAccent como base (rosa propio, distinto del pinkLight
+    // de params) para que las llamadas no se confundan con los parámetros en lenguajes
+    // llenos de funciones; las gramáticas que emiten meta.function-call.generic
+    // (p. ej. Python) ganan cyan por especificidad.
     {
       "scope": "meta.function-call",
       "settings": {
-        "foreground": palette.pinkLight
+        "foreground": palette.pinkAccent
       }
     },
     {
