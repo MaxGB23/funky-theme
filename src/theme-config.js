@@ -369,9 +369,15 @@ module.exports = {
 
     // ── Variables y constantes ─────────────────────────────────────────────────────────
     {
-      "scope": "variable, string constant.other.placeholder",
+      "scope": "variable",
       "settings": {
         "foreground": palette.fgBase
+      }
+    },
+    {
+      "scope": "string constant.other.placeholder",
+      "settings": {
+        "foreground": palette.blueSoft
       }
     },
     // constant.other.color NO está aquí: la lista de L404 (cyanDim) gana por orden de aparición
@@ -383,7 +389,13 @@ module.exports = {
       }
     },
     {
-      "scope": "meta.object-literal.key, meta.property-name, variable.object.property",
+      "scope": "meta.property-name, variable.object.property",
+      "settings": {
+        "foreground": palette.fgWhite
+      }
+    },
+    {
+      "scope": "meta.object-literal.key",
       "settings": {
         "foreground": palette.fgWhite
       }
@@ -417,7 +429,11 @@ module.exports = {
       }
     },
     {
-      "scope": "storage.type",
+      // keyword.type / keyword.other.type son scopes TextMate GENÉRICOS, no exclusivos de C#:
+      // la gramática oficial de C# emite keyword.type.$1.cs para sus primitivos (int, string,
+      // bool, void…), así que el paraguas los cubre todos a la vez. Tipos = púrpura en toda
+      // gramática que emita keyword.type.* (p.ej. typeof en TS, type en Rust).
+      "scope": "storage.type, keyword.type, keyword.other.type",
       "settings": {
         "foreground": palette.purpleDim
       }
@@ -511,7 +527,7 @@ module.exports = {
 
     // ── Funciones y métodos ────────────────────────────────────────────────────────────
     {
-      "scope": "entity.name.function, meta.function-call, variable.function, support.function, keyword.other.special-method, meta.block-level",
+      "scope": "entity.name.function, variable.function, support.function, keyword.other.special-method, meta.block-level",
       "settings": {
         "foreground": palette.cyanAccent
       }
@@ -520,15 +536,6 @@ module.exports = {
     // Definición y llamada comparten cyanAccent, el bold separa ambas sin tocar la paleta.
     {
       "scope": "meta.function entity.name.function",
-      "settings": {
-        "foreground": palette.cyanAccent
-      }
-    },
-    // Llamada de función: supera en especificidad a meta.function entity.name.function
-    // (meta.function-call está más cerca del nombre en el stack TS/JS), por lo que
-    // las llamadas pierden el bold y solo las definiciones lo conservan.
-    {
-      "scope": "meta.function-call entity.name.function",
       "settings": {
         "foreground": palette.cyanAccent
       }
@@ -620,7 +627,7 @@ module.exports = {
       }
     },
     {
-      "scope": "variable.parameter",
+      "scope": "variable.parameter, entity.name.variable.parameter, meta.record.identifier",
       "settings": {
         "foreground": palette.pinkLight
       }
@@ -986,22 +993,18 @@ module.exports = {
     },
 
     // ── Lenguajes específicos (Python/C#) ─────────────────────────────────────────────
-    // Argumentos de llamada Python → pinkLight (familia constantes/params).
-    //
-    // keyword.type es un scope TextMate GENÉRICO, NO exclusivo de C#. La regla original
-    // (.string.cs/.int.cs/.bool.cs) se migró a este paraguas justamente para cubrir
-    // TODOS los primitivos C# (la gramática oficial emite keyword.type.$1.cs para int,
-    // string, bool, void, etc.). Cualquier otra gramática que emita keyword.type.*
-    // (p.ej. typeof en TS, type en Rust) tomará también este rosa — es el efecto
-    // paraguas buscado y validado visualmente. Los primitivos de lenguajes que usan
-    // storage.type (TS/JS, Java, Dart) NO se ven afectados.
-    //
-    // Las funciones cs/go y el generic.python vuelven al cyan universal de la regla de
-    // funciones (L514) — el blanco local quedó eliminado.
+    // Contenedor de llamada: pinkLight como base; el generic (Python, etc.) gana cyan
+    // por especificidad, así el "rosa masivo" no ocurre en gramáticas con .generic.
     {
-      "scope": "meta.function-call.arguments.python, keyword.type",
+      "scope": "meta.function-call",
       "settings": {
         "foreground": palette.pinkLight
+      }
+    },
+    {
+      "scope": "meta.function-call.generic",
+      "settings": {
+        "foreground": palette.cyanAccent
       }
     },
 

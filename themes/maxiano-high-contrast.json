@@ -213,9 +213,15 @@
       }
     },
     {
-      "scope": "variable, string constant.other.placeholder",
+      "scope": "variable",
       "settings": {
         "foreground": "#f8f8f2"
+      }
+    },
+    {
+      "scope": "string constant.other.placeholder",
+      "settings": {
+        "foreground": "#a1caff"
       }
     },
     {
@@ -225,7 +231,13 @@
       }
     },
     {
-      "scope": "meta.object-literal.key, meta.property-name, variable.object.property",
+      "scope": "meta.property-name, variable.object.property",
+      "settings": {
+        "foreground": "#ffffff"
+      }
+    },
+    {
+      "scope": "meta.object-literal.key",
       "settings": {
         "foreground": "#ffffff"
       }
@@ -255,7 +267,7 @@
       }
     },
     {
-      "scope": "storage.type",
+      "scope": "storage.type, keyword.type, keyword.other.type",
       "settings": {
         "foreground": "#c792ea"
       }
@@ -325,19 +337,13 @@
       }
     },
     {
-      "scope": "entity.name.function, meta.function-call, variable.function, support.function, keyword.other.special-method, meta.block-level",
+      "scope": "entity.name.function, variable.function, support.function, keyword.other.special-method, meta.block-level",
       "settings": {
         "foreground": "#96e7ff"
       }
     },
     {
       "scope": "meta.function entity.name.function",
-      "settings": {
-        "foreground": "#96e7ff"
-      }
-    },
-    {
-      "scope": "meta.function-call entity.name.function",
       "settings": {
         "foreground": "#96e7ff"
       }
@@ -415,7 +421,7 @@
       }
     },
     {
-      "scope": "variable.parameter",
+      "scope": "variable.parameter, entity.name.variable.parameter, meta.record.identifier",
       "settings": {
         "foreground": "#ffa8e6"
       }
@@ -759,9 +765,15 @@
       }
     },
     {
-      "scope": "meta.function-call.arguments.python, keyword.type",
+      "scope": "meta.function-call",
       "settings": {
         "foreground": "#ffa8e6"
+      }
+    },
+    {
+      "scope": "meta.function-call.generic",
+      "settings": {
+        "foreground": "#96e7ff"
       }
     },
     {
