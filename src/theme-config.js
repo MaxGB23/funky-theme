@@ -985,16 +985,12 @@ module.exports = {
       }
     },
 
-    // ── Lenguajes específicos (Python/C#/Go) ──────────────────────────────────────────
-    // PYTHON, cs, go, java
+    // ── Lenguajes específicos (Python/C#) ─────────────────────────────────────────────
+    // Argumentos de llamada Python + primitivos C# (keyword.type): ambos van a la familia
+    // pinkLight (constantes/params). Las funciones cs/go y el generic.python vuelven al
+    // cyan universal de la regla de funciones (L514) — el blanco local quedó eliminado.
     {
-      "scope": "meta.function-call.generic.python, entity.name.function.cs, entity.name.function.support.go",
-      "settings": {
-        "foreground": palette.fgWhite
-      }
-    },
-    {
-      "scope": "meta.function-call.arguments.python, keyword.type.string.cs, keyword.type.int.cs, keyword.type.bool.cs",
+      "scope": "meta.function-call.arguments.python, keyword.type",
       "settings": {
         "foreground": palette.pinkLight
       }
