@@ -55,8 +55,8 @@ const palette = {
   orangeSoft: "#ffb488",   // orange-soft - keyword.other (extends, package, auxiliares). Candidato a más usos
   yellowBase: "#f6ff98",   // yellow-base - Markdown (links y listas) y warnings/terminal (colors)
   yellowLight: "#fff9b7",  // yellow-light - Entity types, classes, support types y attribute names
-  yellowVibrant: "#ffde25", // yellow-vibrant - editorCursor y extensionIcon.starForeground (amarillo dorado, fuerza de icono)
-  bracketGold: "#ffd700",  // bracket-gold - editorBracketHighlight.foreground1 y fallback meta.brace (brackets de nivel 1 y capturas CodeSnap)
+  yellowVibrant: "#ffde25", // yellow-vibrant - editorCursor, extensionIcon.starForeground y editorBracketHighlight.foreground1 (amarillo dorado, fuerza de icono)
+  bracketGold: "#ffd700",  // bracket-gold - fallback TextMate meta.brace (capturas CodeSnap)
 
   // Verdes (Classes, RegEx, Strings exitosos)
   greenBase: "#8bffa8",    // green-base (Reemplaza a '#8affc4', '#c7ffc8', '#b9ffba')
@@ -117,7 +117,7 @@ module.exports = {
     // del nivel 4 en adelante. Los niveles 4-6 quedan #00000000 para no saturar (los guides siguen
     // visibles); el fallback TextMate meta.brace (#ffd700) solo aplica donde no hay bracket
     // colorization (p.ej. capturas con CodeSnap).
-    "editorBracketHighlight.foreground1": palette.bracketGold,
+    "editorBracketHighlight.foreground1": palette.yellowVibrant,
     "editorBracketHighlight.foreground2": "#da70d6",
     "editorBracketHighlight.foreground3": "#47b2ff",
     "editorBracketHighlight.foreground4": "#00000000",
