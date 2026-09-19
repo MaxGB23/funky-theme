@@ -158,6 +158,8 @@ variants.forEach(variant => {
     delete theme.colors['panelTitle.activeForeground'];
     delete theme.colors['panelTitle.inactiveForeground'];
     theme.colors['tab.inactiveForeground'] = '#B0B0B0';
+    // Editor hints: HC usa el auto-estilo nativo de VS Code; fijar editorHint.foreground pintaba doble
+    delete theme.colors['editorHint.foreground'];
 
     theme.colors['welcomePage.tileBackground'] = palette.bgElevated;
     theme.colors['welcomePage.tileHoverBackground'] = '#383347';
