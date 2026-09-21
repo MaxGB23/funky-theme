@@ -129,9 +129,9 @@ variants.forEach(variant => {
     theme.colors['minimap.findMatchHighlight'] = palette.uiAccentStrong;
     theme.colors['editorOverviewRuler.findMatchForeground'] = palette.uiAccentStrong;
     theme.colors['minimap.selectionHighlight'] = palette.uiAccentStrong;
-    // Diffs: borde de línea/texto insertado (magenta) solo en HC
-    theme.colors['diffEditor.insertedTextBorder'] = '#e881ff';
-    theme.colors['diffEditor.insertedLineBorder'] = '#e881ff';
+    // Diffs HC: bordes de línea/texto insertado con el accent morado (coherencia con los diff backgrounds #8c8eff25/40; el rosa #e881ff rompía la familia)
+    theme.colors['diffEditor.insertedTextBorder'] = palette.uiAccent;
+    theme.colors['diffEditor.insertedLineBorder'] = palette.uiAccent;
     // Suggest widget HC: borde, fondo e item seleccionado (icono hereda el compartido #ffa8e6)
     theme.colors['editorSuggestWidget.border'] = palette.uiAccentStrong;
     theme.colors['editorSuggestWidget.selectedBackground'] = '#8c8eff33';
