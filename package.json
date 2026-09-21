@@ -16,19 +16,21 @@
     "dark",
     "italic",
     "high-contrast",
-    "contrast",
     "syntax",
     "highlighting",
-    "minimal",
-    "accessibility",
     "pastel",
     "vscode",
-    "vscode-theme",
     "purple",
     "pink",
     "cyan",
     "funky",
-    "maxiano"
+    "semantic",
+    "eye-strain",
+    "react",
+    "typescript",
+    "webdev",
+    "vscodium",
+    "cursor"
   ],
   "engines": {
     "vscode": "^1.60.0"
