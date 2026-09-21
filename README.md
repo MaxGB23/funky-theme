@@ -112,27 +112,35 @@ Funky Theme is tested and tuned against the following editor settings. They are 
 
 ## 📦 Installation
 
-This theme **is not published on the Marketplace**. Being store-agnostic, it is distributed directly via a `.vsix` file. This ensures universal compatibility with any VS Code-based editor (VS Code, Cursor, Windsurf, etc.).
+Funky Theme is available on both major VS Code-compatible registries — the **VS Code Marketplace** and **Open VSX** — plus the GitHub Releases `.vsix` for anything else. Pick the path that fits your editor.
 
-You can install it in two ways:
+### Option A: VS Code Marketplace (Recommended)
 
-### Option A: Editor UI (Recommended)
+1. Open the **Extensions** view (`Ctrl+Shift+X` on Windows/Linux or `Cmd+Shift+X` on Mac).
+2. Search for **"Funky Theme"** — extension ID: `MaxGB23.funky-theme-vscode`.
+3. Click **Install**.
+4. Open the Command Palette (`Ctrl+Shift+P` on Windows/Linux or `Cmd+Shift+P` on Mac), run **`Preferences: Color Theme`**, and select your favorite **Funky** variant.
 
-1. Download the latest `.vsix` file from the [Releases](https://github.com/maxgb23/funky-theme/releases) page.
-2. Open your editor and open the Command Palette (`Ctrl+Shift+P` on Windows/Linux or `Cmd+Shift+P` on Mac).
-3. Type and select **`Extensions: Install from VSIX...`**.
-4. Browse and select the downloaded `.vsix` file.
-5. To activate it, open the Command Palette again, type **`Preferences: Color Theme`**, and select your favorite **Funky** variant.
+### Option B: Open VSX (VS Code-compatible editors)
 
-### Option B: Terminal (Hacker Mode)
+The theme is also published to **open-vsx.org**, the open-source registry used by VS Code-compatible editors that cannot use the Microsoft Marketplace (Microsoft's ToS restricts forks): **VSCodium** (default gallery), **Google Antigravity** (default marketplace), **Cursor** (served through Cursor's own marketplace proxy), **Windsurf / Devin Desktop**, **AWS Kiro**, **Gitpod** (browser) and **Eclipse Theia**. In any of these, just open the editor's **Extensions** panel and search for **"Funky Theme"** — then pick a Funky variant via `Preferences: Color Theme`.
 
-If you have already downloaded the `.vsix` file, you can install it via CLI:
+### Option C: GitHub Releases (direct .vsix)
+
+Prefer sideloading? Download the latest `.vsix` file from the [Releases](https://github.com/maxgb23/funky-theme/releases) page and install it directly:
+
+1. Open the Command Palette (`Ctrl+Shift+P` on Windows/Linux or `Cmd+Shift+P` on Mac).
+2. Type and select **`Extensions: Install from VSIX...`**.
+3. Browse and select the downloaded `.vsix` file.
+4. Open the Command Palette again, run **`Preferences: Color Theme`**, and select your favorite **Funky** variant.
+
+Or install it via CLI:
 
 ```bash
 code --install-extension path/to/funky-theme-vscode-x.x.x.vsix
 ```
 
-> *Note: Replace `code` with your editor's CLI command if you are not using VS Code, e.g., `cursor --install-extension ...`*
+> *Note: Replace `code` with your editor's CLI command if you are not using VS Code, e.g., `cursor --install-extension ...`, `codium --install-extension ...` (VSCodium), or `antigravity --install-extension ...` (Google Antigravity).*
 
 ---
 
