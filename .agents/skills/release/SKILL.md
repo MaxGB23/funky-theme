@@ -26,7 +26,7 @@ Use when the user asks to release, publish, package a new version, generate a `.
 
 ## Release Content Format (MANDATORY — notes + changelog)
 
-`RELEASE_NOTES.md` (transient, GitHub) and `CHANGELOG.md` (versioned, ships in the vsix) share the SAME grouped content derived from `git log <último-tag>..HEAD` — keep their bullets identical. Only the heading differs: `## v<version> — <title>` on GitHub vs `## [<version>] - <YYYY-MM-DD>` in the changelog. Every release `--notes` MUST follow this exact structure. Do not improvise headings, order, or wording.
+`RELEASE_NOTES.md` (transient, GitHub) and `CHANGELOG.md` (versioned, ships in the vsix) share the SAME grouped content derived from `git log <boundary>..HEAD` — keep their bullets identical. Only the heading differs: `## v<version> — <title>` on GitHub vs `## [<version>] - <YYYY-MM-DD>` in the changelog. Every release `--notes` MUST follow this exact structure. Do not improvise headings, order, or wording.
 
 ```
 ## v<version> — <Short meaningful title>
@@ -59,6 +59,7 @@ Use when the user asks to release, publish, package a new version, generate a `.
 - End with a known-issues or "no issues found" line only when relevant: `No issues found after extended testing.`
 - No emojis. No AI attribution. Match the version number exactly.
 - Release notes and CHANGELOG share identical bullets and order (see section intro); only the heading format differs.
+- **Content boundary** (`<boundary>`): when the release is the stable that closes a pre-release line (rc/beta/alpha), the boundary is the last STABLE tag and bullets are assembled from the accumulated pre-release bodies (`gh release view <tag> --json body`) plus `git log <último-estable>..HEAD` — users who never tried the RCs see the whole line as new. Otherwise the boundary is the last tag.
 
 ## Decision Gates
 
