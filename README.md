@@ -4,13 +4,7 @@
 
 As terminal agents and AI handle more of the heavy lifting, the IDE is becoming less of a place to write everything and more of a place to review, understand, and refine. Funky Theme embraces that shift with bright, vibrant semantics — because if you're going to look at code, it shouldn't have to look dull.
 
-<p align="center">
-  <strong>
-    <a href="https://marketplace.visualstudio.com/items?itemName=MaxGB23.funky-theme-vscode">Get it on the VS Code Marketplace</a>
-    &nbsp;·&nbsp;
-    <a href="https://open-vsx.org/extension/MaxGB23/funky-theme-vscode">Get it on Open VSX</a>
-  </strong>
-</p>
+**Get it on the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=MaxGB23.funky-theme-vscode) · [Open VSX](https://open-vsx.org/extension/MaxGB23/funky-theme-vscode).**
 
 ---
 
