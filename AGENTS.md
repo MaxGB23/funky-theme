@@ -7,7 +7,7 @@
 Flujo de testeo manual ANTES de tocar el Source of Truth:
 
 1. **Testeo directo en JSON:** editar `themes/*.json` directamente y probar la variante en el editor (VS Code con reload window o F5). La aprobación visual es el criterio de aceptación.
-2. **Propagación tras aprobación:** SOLO después de aprobar visualmente, aplicar el cambio en `src/theme-config.js` y compilar con `node scripts/build.js` para que las 4 variantes hereden el cambio.
+2. **Propagación tras aprobación:** SOLO después de aprobar visualmente, aplicar el cambio en `src/theme-config.js` y compilar con `node scripts/build.js` para que las 5 variantes hereden el cambio.
 3. **Alerta:** ediciones directas al JSON que no se propaguen a `src/theme-config.js` se PIERDEN en la próxima compilación. El JSON es un artefacto compilado; la edición directa es únicamente para testear.
 
 ### Commits
@@ -33,4 +33,4 @@ Flujo de testeo manual ANTES de tocar el Source of Truth:
 - Respecto al pipeline de la skill `.agents/skills/release/SKILL.md`, confirmar siempre el bump (MAJOR/MINOR/PATCH) con el usuario antes de publicar.
 
 ## Project Skills
-- `.agents/skills/release/SKILL.md` — Full release pipeline: version bump, build 4 variants, vsix packaging with pnpm, GitHub release with attached vsix. Trigger on "release", "publicar versión", "generar vsix".
+- `.agents/skills/release/SKILL.md` — Full release pipeline: version bump, build 5 variants, vsix packaging with pnpm, GitHub release with attached vsix. Trigger on "release", "publicar versión", "generar vsix".
