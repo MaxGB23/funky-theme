@@ -4,6 +4,8 @@ All notable changes to the Funky Theme extension will be documented in this file
 
 ## [Unreleased]
 
+## [3.0.0] - 2026-09-21
+
 ### Added
 
 - Bracket pair colorization: `editorBracketHighlight.foreground1`-3 with a `meta.brace` fallback in vibrant yellow.
@@ -27,4 +29,6 @@ All notable changes to the Funky Theme extension will be documented in this file
 - High Contrast: inherited the shared extension star color (`extensionIcon.starForeground`).
 - Normalized all hex colors to lowercase.
 
-<!-- At stable release: rename [Unreleased] to [3.0.0] with the release date and remove this comment. -->
+### Docs
+
+- README: new installation channels — VS Code Marketplace, Open VSX (VS Code-compatible editors), and GitHub Releases `.vsix`.
