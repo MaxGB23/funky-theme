@@ -4,6 +4,14 @@
 
 As terminal agents and AI handle more of the heavy lifting, the IDE is becoming less of a place to write everything and more of a place to review, understand, and refine. Funky Theme embraces that shift with bright, vibrant semantics — because if you're going to look at code, it shouldn't have to look dull.
 
+<p align="center">
+  <strong>
+    <a href="https://marketplace.visualstudio.com/items?itemName=MaxGB23.funky-theme-vscode">Get it on the VS Code Marketplace</a>
+    &nbsp;·&nbsp;
+    <a href="https://open-vsx.org/extension/MaxGB23/funky-theme-vscode">Get it on Open VSX</a>
+  </strong>
+</p>
+
 ---
 
 ## Screenshots
@@ -116,6 +124,8 @@ Funky Theme is available on both major VS Code-compatible registries — the **V
 
 ### Option A: VS Code Marketplace (Recommended)
 
+Get it directly: **[VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=MaxGB23.funky-theme-vscode)** — or follow the steps below.
+
 1. Open the **Extensions** view (`Ctrl+Shift+X` on Windows/Linux or `Cmd+Shift+X` on Mac).
 2. Search for **"Funky Theme"** — extension ID: `MaxGB23.funky-theme-vscode`.
 3. Click **Install**.
@@ -123,7 +133,7 @@ Funky Theme is available on both major VS Code-compatible registries — the **V
 
 ### Option B: Open VSX (VS Code-compatible editors)
 
-The theme is also published to **open-vsx.org**, the open-source registry used by VS Code-compatible editors that cannot use the Microsoft Marketplace (Microsoft's ToS restricts forks): **VSCodium** (default gallery), **Google Antigravity** (default marketplace), **Cursor** (served through Cursor's own marketplace proxy), **Windsurf / Devin Desktop**, **AWS Kiro**, **Gitpod** (browser) and **Eclipse Theia**. In any of these, just open the editor's **Extensions** panel and search for **"Funky Theme"** — then pick a Funky variant via `Preferences: Color Theme`.
+Get it directly: **[Open VSX](https://open-vsx.org/extension/MaxGB23/funky-theme-vscode)** — the open-source registry used by VS Code-compatible editors that cannot use the Microsoft Marketplace (Microsoft's ToS restricts forks): **VSCodium** (default gallery), **Google Antigravity** (default marketplace), **Cursor** (served through Cursor's own marketplace proxy), **Windsurf / Devin Desktop**, **AWS Kiro**, **Gitpod** (browser) and **Eclipse Theia**. In any of these, just open the editor's **Extensions** panel and search for **"Funky Theme"** — then pick a Funky variant via `Preferences: Color Theme`.
 
 ### Option C: GitHub Releases (direct .vsix)
 
