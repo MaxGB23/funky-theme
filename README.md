@@ -62,21 +62,25 @@ Two things make this lineup original:
 
 ## Language Support
 
-While primarily dedicated to and optimized for **web development** (specifically for workflows using **React, HTML, CSS, JavaScript, TypeScript, Next.js, and Markdown**), it has also been tested and tuned for other languages:
+While primarily dedicated to and optimized for **web development** (specifically for workflows using **React, HTML, CSS, JavaScript, TypeScript, Next.js, and Markdown**), it has also been tested and tuned for the following:
 
-- **JavaScript** (includes Node.js/Express)
+**Web frameworks & libraries**
+
+- **React**, **Vue**, **Svelte**, **Angular**
+- **Next.js**
+
+**Languages**
+
 - **TypeScript / TSX**
-- **HTML**
-- **CSS / SCSS**
-- **C**
-- **C++**
-- **C#**
-- **Go**
-- **Java**
-- **PHP**
-- **Python**
-- **Rust**
-- **Markdown, JSON / JSON5 & Regular Expressions** — formats and utilities with dedicated rules
+- **JavaScript** (includes Node.js/Express)
+- **HTML**, **CSS / SCSS**
+- **C**, **C++**, **C#**
+- **Go**, **Java**
+- **PHP**, **Python**, **Rust**
+
+**Formats & utilities**
+
+- **Markdown**, **JSON / JSON5** & **Regular Expressions (RegEx)** — formats and utilities with dedicated rules
 
 ---
 
