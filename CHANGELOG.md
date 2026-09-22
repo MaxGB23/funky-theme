@@ -6,6 +6,18 @@ All notable changes to the Funky Theme extension will be documented in this file
 
 _No changes since the last release._
 
+## [3.0.1] - 2026-09-21
+
+### Changed
+
+- Refined marketplace keywords to the documented 30-tag limit for better search discoverability.
+
+### Docs
+
+- README: added VS Code Marketplace and Open VSX listing links and installation channels in the intro.
+- README: left-aligned intro install links for consistency.
+- README: grouped language support by category and listed React, Vue, Svelte, Angular and Next.js as tested frameworks.
+
 ## [3.0.0] - 2026-09-21
 
 ### Added
