@@ -4,7 +4,7 @@ description: "Trigger: release, publicar versión, generar vsix, crear GitHub re
 license: MIT
 metadata:
   author: maxgb23
-  version: "1.7"
+  version: "1.8"
 ---
 
 # Release Pipeline (funky-theme)
@@ -24,6 +24,7 @@ Use when the user asks to release, publish, package a new version, generate a `.
 - **Marketplace/Open VSX accept ONLY stable `major.minor.patch`** and publication is HUMAN work: the agent never uploads, it hands off (step 8).
 - **CHANGELOG.md is versioned and ships in the vsix** (`.vscodeignore` allowlists it): `[Unreleased]` accumulates between releases and is renamed `[<version>] - <date>` at release. An empty `[Unreleased]` carries the placeholder `_No changes since the last release._`; the first real entry replaces it.
 - **CHANGELOG.md is a permanent, append-only historical record**: once a version section is released, it is never rewritten, deleted, or pruned (it ships in the vsix and documents the project's history); only new `[Unreleased]` entries and the release rename/prepend change the file.
+- **An RC (rc/beta/alpha) NEVER creates a CHANGELOG section**: its content stays in `[Unreleased]` and its notes live only on the GitHub pre-release. The stable that closes the line consolidates the accumulated pre-release content via the Content boundary rule.
 
 ## Release Content Format (MANDATORY — notes + changelog)
 
