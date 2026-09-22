@@ -4,6 +4,8 @@ All notable changes to the Funky Theme extension will be documented in this file
 
 ## [Unreleased]
 
+_No changes since the last release._
+
 ## [3.0.0] - 2026-09-21
 
 ### Added

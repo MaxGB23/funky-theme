@@ -4,7 +4,7 @@ description: "Trigger: release, publicar versión, generar vsix, crear GitHub re
 license: MIT
 metadata:
   author: maxgb23
-  version: "1.5"
+  version: "1.7"
 ---
 
 # Release Pipeline (funky-theme)
@@ -22,7 +22,8 @@ Use when the user asks to release, publish, package a new version, generate a `.
 - **Release notes are written in English** (GitHub facing), regardless of the author's conversation language.
 - **Pre-releases (rc/beta/alpha) are ALWAYS GitHub pre-releases**: `gh release create ... --prerelease` — NEVER as latest. If an rc was released as latest, fix with `gh release edit <tag> --prerelease` (never delete the tag).
 - **Marketplace/Open VSX accept ONLY stable `major.minor.patch`** and publication is HUMAN work: the agent never uploads, it hands off (step 8).
-- **CHANGELOG.md is versioned and ships in the vsix** (`.vscodeignore` allowlists it): `[Unreleased]` accumulates between releases and is renamed `[<version>] - <date>` at release.
+- **CHANGELOG.md is versioned and ships in the vsix** (`.vscodeignore` allowlists it): `[Unreleased]` accumulates between releases and is renamed `[<version>] - <date>` at release. An empty `[Unreleased]` carries the placeholder `_No changes since the last release._`; the first real entry replaces it.
+- **CHANGELOG.md is a permanent, append-only historical record**: once a version section is released, it is never rewritten, deleted, or pruned (it ships in the vsix and documents the project's history); only new `[Unreleased]` entries and the release rename/prepend change the file.
 
 ## Release Content Format (MANDATORY — notes + changelog)
 
@@ -90,7 +91,7 @@ Use when the user asks to release, publish, package a new version, generate a `.
 4. Canonical flow: `pnpm install && pnpm build && pnpm package`. Minimum viable: `pnpm run package` (builds all 5 variants into `/themes`, then packs `funky-theme-vscode-<ver>.vsix`).
 5. Verify output: build logs list 5 variants; spot-check generated JSONs (e.g. changed keys) before packaging.
 6. Commit with conventional messages (`feat(theme): ...`, `chore: ...`) — include the finalized CHANGELOG.md (6a) in the same release commit — then `git push`.
-   6a. **Finalize CHANGELOG.md** with the release content (identical bullets to the notes): rename `## [Unreleased]` → `## [<version>] - <YYYY-MM-DD>`, prepend a fresh `## [Unreleased]`, remove the HTML placeholder at the bottom.
+   6a. **Finalize CHANGELOG.md** with the release content (identical bullets to the notes): rename `## [Unreleased]` → `## [<version>] - <YYYY-MM-DD>`, prepend a fresh empty `## [Unreleased]` with its placeholder (the placeholder is replaced by the first real entry; if a release happens while it still sits there — e.g. an empty section — remove it during finalize so it never leaks into the released section).
 7. Write the notes to `RELEASE_NOTES.md` per the **Release Content Format**, then create the release:
    ```bash
    gh release create v<version> funky-theme-vscode-<version>.vsix \
