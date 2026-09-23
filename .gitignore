@@ -5,3 +5,6 @@ package-lock.json
 
 # Archivo de trabajo local para gh release --notes-file (nunca se versiona)
 RELEASE_NOTES.md
+
+# Seguimiento ODD: caché local de tasks (el respaldo persistente vive en Engram)
+odd/
