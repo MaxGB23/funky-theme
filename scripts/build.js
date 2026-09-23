@@ -31,7 +31,10 @@ const darkerBackgrounds = {
   [palette.bgDeep]: '#121018',     // fondo profundo -> ultra-nocturno
   [palette.bgElevated]: '#201d2a', // superficie elevada -> ultra-nocturno
   // statusBarItem.compactHoverBackground — un solo uso, no es token de paleta
-  '#363143': '#26222f'
+  '#363143': '#26222f',
+  // Guías de indentación del editor: no son tokens del mapa previo (uno es literal, el otro token nuevo)
+  '#464254': '#3a374a',      // editorIndentGuide.background1 -> ultra-nocturno
+  [palette.guideMid]: '#544f64' // editorIndentGuide.activeBackground1 -> ultra-nocturno
 };
 
 // Mapa de atenuación de colores de sintaxis en Darker: los colores luminosos
@@ -176,10 +179,20 @@ variants.forEach(variant => {
     theme.colors['pickerGroup.border'] = palette.uiAccentStrong;
     // inputOption.activeBorder no aplica en HC
     delete theme.colors['inputOption.activeBorder'];
-    // Secondary buttons: no aplican en HC (defaults de VS Code con contraste máximo)
-    delete theme.colors['button.secondaryBackground'];
-    delete theme.colors['button.secondaryForeground'];
-    delete theme.colors['button.secondaryHoverBackground'];
+    // Secondary buttons: HC hereda los valores base (#313244 / fgWhite / #3f3c4f) — coinciden con la propuesta probada
+    // Indent guides HC: guía base con guideMid y activa con el accent completo
+    theme.colors['editorIndentGuide.background1'] = palette.guideMid;
+    theme.colors['editorIndentGuide.activeBackground1'] = palette.uiAccentStrong;
+    theme.colors['tree.tableColumnsBorder'] = palette.uiAccentStrong;
+    theme.colors['peekView.border'] = palette.uiAccentStrong;
+    theme.colors['list.activeSelectionBackground'] = '#8c8eff33';
+    // Gutter HC: scopes ignorado/untracked suben a uiInactive (#8b8f9e) para distinguirse del fondo
+    theme.tokenColors.forEach(token => {
+      const scope = Array.isArray(token.scope) ? token.scope : (token.scope || '');
+      if (scope === 'markup.ignored.git_gutter' || scope === 'markup.untracked.git_gutter') {
+        token.settings.foreground = palette.uiInactive;
+      }
+    });
   }
 
   // Perfiles Tipográficos (FontStyles)

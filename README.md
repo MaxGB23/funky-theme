@@ -24,6 +24,22 @@ As terminal agents and AI handle more of the heavy lifting, the IDE is becoming 
 
 ---
 
+## Variants — five ways to read the same code
+
+Different developers read code differently. Some want pure color, some want deep night, some need accessibility, some love cursive. There is a Funky variant for each of them — same palette, five experiences.
+
+| Variant                 | Description                                                                                                                                                     |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Funky Dark**          | The main experience. Balanced contrast, vivid palette.                                                                                                          |
+| **Funky Dark Italic**   | The full cursive treatment — control flow, storage types and metadata in italic, zero bold in code. For fans of italic-capable fonts like Operator Mono.       |
+| **Funky Dark Mix**      | A directed typography strategy: bold on declaration names, italic on metadata, everything else regular. An anti-eye-fatigue balance.                          |
+| **Funky Darker**        | Ultra-nocturnal backgrounds for zero-distraction sessions.                                                                                                      |
+| **Funky High Contrast** | Accessibility-focused borders and boosted contrast for comment tokens.                                                                                          |
+
+Five profiles, one palette — every variant keeps the meaning of every color while changing the reading experience. Two decisions drive the lineup: the italic layer is shared between Dark Mix and Dark Italic so they complement instead of colliding, and keyword italics — one of the more polarizing choices in syntax highlighting — live isolated in Funky Dark Italic instead of being forced on everyone. The choices are grounded in research across developer communities, theme discussions, and real-world usage patterns.
+
+---
+
 ## Color Philosophy
 
 Funky Theme is built around a **semantic, tiered color palette** defined in a single source-of-truth config file. Every color has a name and a reason to exist:
@@ -37,26 +53,12 @@ Funky Theme is built around a **semantic, tiered color palette** defined in a si
 - 🔴 **Reds** — Errors, variables, deleted references
 - 🟠 **Oranges** — Warnings, HTML attributes, operator accents
 
----
+**One shared canvas.** Dark themes often reach for deep blues — the familiar default — but blue-heavy darks can feel harsh or fatiguing to some eyes, even at low brightness. All five variants instead share one custom gray-mauve canvas, a friendlier take on deep night — grounded in research across developer communities, theme discussions, and real-world usage patterns. Only Darker goes deeper, and High Contrast keeps the same canvas while approaching accessibility through stronger borders and UI separation, not a darker background.
 
-## Variants
-
-| Variant                 | Description                                                                                                                                                     |
-| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Funky Dark**          | The main experience. Balanced contrast, vivid palette.                                                                                                          |
-| **Funky Dark Italic**   | The full cursive treatment — control flow, storage types and metadata in italic, zero bold in code. For fans of italic-capable fonts like Operator Mono.       |
-| **Funky Dark Mix**      | A directed typography strategy: bold on declaration names, italic on metadata, everything else regular. An anti-eye-fatigue balance.                          |
-| **Funky Darker**        | Ultra-nocturnal backgrounds for zero-distraction sessions.                                                                                                      |
-| **Funky High Contrast** | Accessibility-focused borders and boosted contrast for comment tokens.                                                                                          |
-
-### Why five variants?
-
-Different developers read code differently. Some want pure color, some want deep night, some need accessibility, some love cursive, and some want typography that works *with* their eyes instead of against them. Funky Theme ships five variants so each of those profiles gets a first-class experience instead of a compromise — and every variant inherits the same palette, so switching between them changes the *experience*, never the meaning of a color.
-
-Two things make this lineup original:
-
-- **One italic layer, two personalities.** Dark Mix and Dark Italic share the exact same metadata-italic foundation (comments, parameters, attributes, language variables, aliases). Mix then adds bold on declaration names — functions, classes, types — marking *where things are defined* so definitions stand out from plain calls; Italic extends the cursive to control flow (`if`, `return`, `for`…) and storage types (`function`, `class`, `const`…). The variants complement each other instead of duplicating.
-- **Controversial aesthetics live in their own variant.** Keyword italics are among the most toggled-off styles in VS Code history — so instead of forcing them on everyone, they live isolated in Funky Dark Italic. Dark, Darker and High Contrast stay completely typography-free, and even Mix — which does use bold and italics — deliberately never touches keywords. Only what nobody defends — italics on numbers — is left out everywhere.
+| Canvas | Variants |
+|---|---|
+| `#24212e` gray-mauve | Dark · Dark Italic · Dark Mix · High Contrast |
+| `#181520` ultra-nocturnal | Darker |
 
 ---
 
@@ -82,17 +84,7 @@ While primarily dedicated to and optimized for **web development** (specifically
 
 - **Markdown**, **JSON / JSON5** & **Regular Expressions (RegEx)** — formats and utilities with dedicated rules
 
----
-
-## Terminals
-
-The integrated editor terminal already ships with Funky Theme's ANSI palette — no extra setup required, and it works across shells such as Bash, Zsh, PowerShell, and others. The palette is most noticeable in shells and CLI tools that make extensive use of colored output.
-
-### Terminal-based AI Agents (WIP)
-
-A standalone terminal palette for AI coding agents such as OpenCode and Pi is in the works, with two planned variants: Funky Dark and Funky Darker. Both are derived from the same source of truth as the editor theme, while allowing for small adjustments where terminal environments differ from the IDE. The standard variant may also use minimal italics where they improve readability, without introducing a separate italic variant. This keeps your terminal environment visually consistent without requiring a separate palette to maintain.
-
-> **Status:** WIP — still debating packaging and whether it ships in this repo or a separate one.
+Popular dark themes — Dracula, Material, Tokyo Night - often recycle the same few colors across languages, blurring what is what. Funky Theme maps code by role instead: flow, structure, reference, creation. The same semantic part keeps its family color in every tested language.
 
 ---
 
@@ -149,6 +141,18 @@ code --install-extension path/to/funky-theme-vscode-x.x.x.vsix
 ```
 
 > *Note: Replace `code` with your editor's CLI command if you are not using VS Code, e.g., `cursor --install-extension ...`, `codium --install-extension ...` (VSCodium), or `antigravity --install-extension ...` (Google Antigravity).*
+
+---
+
+## Terminals
+
+The integrated editor terminal already ships with Funky Theme's ANSI palette — no extra setup required, and it works across shells such as Bash, Zsh, PowerShell, and others. The palette is most noticeable in shells and CLI tools that make extensive use of colored output.
+
+### Terminal-based AI Agents (WIP)
+
+A standalone terminal palette for AI coding agents such as OpenCode and Pi is in the works, with two planned variants: Funky Dark and Funky Darker. Both are derived from the same source of truth as the editor theme, while allowing for small adjustments where terminal environments differ from the IDE. The standard variant may also use minimal italics where they improve readability, without introducing a separate italic variant. This keeps your terminal environment visually consistent without requiring a separate palette to maintain.
+
+> **Status:** WIP — still debating packaging and whether it ships in this repo or a separate one.
 
 ---
 

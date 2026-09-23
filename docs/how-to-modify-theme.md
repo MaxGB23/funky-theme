@@ -99,6 +99,8 @@ Los colores reutilizados viven como variables en `const palette`. Además de los
 | `terracotta` | `#c17e70` | Verificación de números, find-in-files |
 | `linkPurple` | `#b2b3ff` | Links y `pickerGroup.foreground` |
 | `uiInactive` | `#8b8f9e` | Título de panel y tabs inactivos |
+| `guideAccent` | `#8c8eff73` | Tree indent guides y column borders |
+| `guideMid` | `#625e74` | Indent guide activa del editor y guía base en HC |
 
 **Regla de paleta:** crea una variable SOLO para valores que se repiten (≥2 usos) o con identidad semántica clara. Los de un solo uso se dejan literales en su regla.
 

@@ -16,9 +16,10 @@ const palette = {
   fgMuted: "#d8d8d8",      // fg-muted - SIN USOS (0 referencias). Los comentarios usan literal alfa #d8d8d8f1; mantener solo si se decide reactivarlo
 
   // === Grises de UI e Invisibles ===
-  comments: "#555555",     // comment (Reemplaza a '#666666') - Exclusivo para código comentado en cursiva
+  comments: "#555555",     // comment - SOLO separadores UI (menu.separatorBackground). Los comments de código usan literal #d8d8d8f1 (alfa)
   uiMuted: "#606685",      // ui-muted (Reemplaza a '#5a657c','#65737e','#546e7a') - Bordes, guías y tokens secundarios
   uiInactive: "#8b8f9e",   // ui-inactive - Texto UI inactivo: panelTitle y tabs inactivos
+  guideMid: "#625e74",     // guide-mid - Línea activa de guías de indentación (base) y guía base en HC
   greyLight: "#cbcbcb",    // grey-light - Delimitadores de code blocks de Markdown
   purpleGrey: "#a9b1de",   // purple-grey - Puntuación y meta de Markdown
   linkPurple: "#b2b3ff",   // link-purple - Links y pickerGroup foreground
@@ -83,8 +84,9 @@ const palette = {
   // entre familias distintas se dejan literales para no acoplarlas (ver docs).
   uiAccentStrong: "#8c8effd2", // accent fuerte al 82% — selection, statusBarItem.remote, inputOption, botones, focus, badge, keybindings, settings
   accentSelection: "#8c8eff45", // familia selección — selectionBackground, selectionHighlightBackground, overviewRuler findMatch, minimap
+  guideAccent: "#8c8eff73", // accent al 45% — tree indent guides y table column borders (2 usos)
   accentFaint: "#8c8eff2a", // fondos tenues — wordHighlight(Strong)Background, bracketMatch.background
-  controlBorder: "#8c8eff33", // bordes de controles — input, checkbox, dropdown (accent tenue #8c8eff al 20%)
+  controlBorder: "#8c8eff33", // SIN USOS (0 referencias) desde v3.1rc1: input/checkbox/dropdown pasaron a bgElevated. El valor #8c8eff33 sigue como literal en textPreformat y HC; mantener solo si se decide reactivarlo
   searchBackground: "#5f569580", // búsqueda/hover — hoverHighlight, findMatch(Bg|Highlight)Background
   scrollbarTrack: "#24212eea", // track del scrollbar — scrollbar.background + shadow
   matchBorder: "#a599efff", // bordes de match — bracketMatch.border, findMatch.border
@@ -102,6 +104,9 @@ module.exports = {
     "editorCursor.foreground": palette.yellowVibrant,
     "editor.lineHighlightBackground": palette.bgElevated,
     "editor.lineHighlightBorder": palette.bgElevated,
+    // Guías de indentación: fondo #464254 (literal) y línea activa guideMid (token, compartida con HC)
+    "editorIndentGuide.background1": "#464254",
+    "editorIndentGuide.activeBackground1": palette.guideMid,
     "editor.selectionBackground": palette.accentSelection,
     "selection.background": palette.uiAccentStrong,
     // Highlights de selección/palabras: alpha sobre el accent para distinguirlos del selection real (#8c8eff45) y de brackets/tags (#8c8eff2a); Darker sube los fdos a #8c8eff30 (build.js)
@@ -150,8 +155,8 @@ module.exports = {
     "sideBarSectionHeader.background": palette.bgBase,
     "sideBarSectionHeader.foreground": palette.fgWhite,
     "sideBarSectionHeader.border": palette.bgBase,
-    "tree.indentGuidesStroke": palette.comments,
-    "tree.tableColumnsBorder": palette.comments,
+    "tree.indentGuidesStroke": palette.guideAccent,
+    "tree.tableColumnsBorder": palette.guideAccent,
     "tree.tableOddRowsBackground": palette.bgElevated,
 
     // ── Tabs ──────────────────────────────────────────────────────────────────────────
@@ -241,6 +246,20 @@ module.exports = {
     "editorFindWidget.foreground": palette.fgWhite,
     "editorFindWidget.border": palette.bgDeep,
 
+    // ── PeekView ──────────────────────────────────────────────────────────────────────
+    "peekView.border": palette.bgDeep,
+    "peekViewEditor.background": palette.bgDeep,
+    "peekViewEditor.matchHighlightBackground": palette.searchBackground,
+    "peekViewResult.background": palette.bgDeep,
+    "peekViewResult.fileForeground": palette.fgWhite,
+    "peekViewResult.lineForeground": palette.fgWhite,
+    "peekViewResult.matchHighlightBackground": palette.searchBackground,
+    "peekViewResult.selectionBackground": "#2e3250",
+    "peekViewResult.selectionForeground": palette.fgWhite,
+    "peekViewTitle.background": palette.bgDeep,
+    "peekViewTitleDescription.foreground": "#ffffff90",
+    "peekViewTitleLabel.foreground": palette.fgWhite,
+
     // ── Notifications ──────────────────────────────────────────────────────────────────
     "notifications.border": palette.bgBase,
     "notifications.background": palette.bgBase,
@@ -248,26 +267,28 @@ module.exports = {
     "notificationCenterHeader.foreground": palette.fgWhite,
 
     // ── Inputs ────────────────────────────────────────────────────────────────────────
-    "input.background": palette.bgDeep,
+    "input.background": palette.bgElevated,
     "input.foreground": palette.fgWhite,
-    "input.border": palette.controlBorder,
+    "input.border": palette.bgElevated,
     "inputOption.activeBorder": palette.uiAccentStrong,
+    "inputValidation.infoBackground": palette.uiAccentStrong,
+    "inputValidation.infoBorder": palette.uiAccentStrong,
 
     // ── Checkbox / Dropdown ───────────────────────────────────────────────────────────
-    "checkbox.background": palette.bgDeep,
+    "checkbox.background": palette.bgElevated,
     "checkbox.foreground": palette.fgWhite,
-    "checkbox.border": palette.controlBorder,
-    "dropdown.background": palette.bgDeep,
+    "checkbox.border": palette.bgElevated,
+    "dropdown.background": palette.bgElevated,
     "dropdown.foreground": palette.fgWhite,
-    "dropdown.listBackground": palette.bgBase,
-    "dropdown.border": palette.controlBorder,
+    "dropdown.listBackground": palette.bgElevated,
+    "dropdown.border": palette.bgElevated,
 
     // ── Menús y Listas ─────────────────────────────────────────────────────────────────
     "menu.background": palette.bgBase,
     "menu.foreground": palette.fgWhite,
     "menu.selectionForeground": palette.fgWhite,
     "menu.separatorBackground": palette.comments,
-    "list.activeSelectionBackground": "#8c8eff33",
+    "list.activeSelectionBackground": "#8c8eff1e",
     "list.activeSelectionForeground": palette.fgWhite,
     "list.hoverBackground": palette.hoverSurface,
     "list.inactiveSelectionBackground": palette.bgElevated,
