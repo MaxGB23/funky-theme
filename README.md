@@ -34,7 +34,7 @@ Different developers read code differently. Some want pure color, some want deep
 | **Funky Darker**        | Ultra-nocturnal backgrounds for zero-distraction sessions.                                                                                                      |
 | **Funky Dark Italic**   | The full cursive treatment — control flow, storage types and metadata in italic, zero bold in code. For fans of italic-capable fonts like Operator Mono.       |
 | **Funky Dark Mix**      | A directed typography strategy: bold on declaration names, italic on metadata, everything else regular. An anti-eye-fatigue balance.                          |
-| **Funky High Contrast** | Accessibility-focused borders and boosted contrast for comment tokens.                                                                                          |
+| **Funky High Contrast** | Accessibility-first borders and strong UI separation for maximum visibility.                                                                                    |
 
 Five profiles, one palette — every variant keeps the meaning of every color while changing the reading experience. Two decisions drive the lineup: the italic layer is shared between Dark Mix and Dark Italic so they complement instead of colliding, and keyword italics — one of the more polarizing choices in syntax highlighting — live isolated in Funky Dark Italic instead of being forced on everyone. The choices are grounded in research across developer communities, theme discussions, and real-world usage patterns.
 
@@ -84,7 +84,7 @@ While primarily dedicated to and optimized for **web development** (specifically
 
 - **Markdown**, **JSON / JSON5** & **Regular Expressions (RegEx)** — formats and utilities with dedicated rules
 
-Popular dark themes — Dracula, Material, Tokyo Night - often recycle the same few colors across languages, blurring what is what. Funky Theme maps code by role instead: flow, structure, reference, creation. The same semantic part keeps its family color in every tested language.
+Popular dark themes — Dracula Theme, Material Theme, Tokyo Night - often recycle the same few colors across languages, blurring what is what. Funky Theme maps code by role instead: flow, structure, reference, creation. The same semantic part keeps its family color in every tested language.
 
 ---
 
@@ -98,13 +98,16 @@ Funky Theme is tested and tuned against the following editor settings. They are 
   "editor.fontLigatures": true,
   "editor.lineHeight": 23,
   "editor.tabSize": 2,
-  "editor.fontSize": 14
+  "editor.fontSize": 14,
+  "editor.mouseWheelZoom": true
 }
 ```
 
 > `editor.lineHeight` works anywhere from **23 to 25** — pick what feels comfortable.
 >
 > **Note**: Cascadia Code isn't bundled with Funky Theme. If it isn't installed on your system, VS Code falls back to a system monospace font.
+>
+> `editor.mouseWheelZoom` lets you scale the editor text independently with Ctrl+scroll — the theme is validated at `14`, but if you prefer a compact UI (set a lower `window.zoomLevel` for fewer visual distractions), you can enlarge the code back to a comfortable size without affecting panels or tabs.
 
 ---
 
@@ -189,7 +192,7 @@ Want to tweak colors, add new tokens, or build your own variant on top of Funky 
 
 ## Author
 
-**Max González Ballesteros** — the developer behind Funky Theme.
+**Maximiliano González Ballesteros** — the developer behind Funky Theme.
 
 - GitHub: [maxgb23](https://github.com/maxgb23)
 - LinkedIn: [in/maxballesteros](https://www.linkedin.com/in/maxballesteros/)
