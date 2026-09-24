@@ -6,6 +6,26 @@ All notable changes to the Funky Theme extension will be documented in this file
 
 _No changes since the last release._
 
+## [3.1.0] - 2026-09-24
+
+### Added
+
+- Full PeekView block on the deep canvas: `peekView.border`/`peekViewEditor.background` with accent match highlights, `peekViewResult.*` (selection `#2e3250`), and `peekViewTitle.*`.
+- Editor indent guides: `editorIndentGuide.background1` (`#464254`) with an active line in the new `guideMid` token; `tree.indentGuidesStroke` and `tree.tableColumnsBorder` switched to the shared `guideAccent` token.
+- Elevated input surfaces: `input.background`/`input.border` and `checkbox.*` moved to `bgElevated` with an invisible border, plus `inputValidation.infoBackground`/`infoBorder` styling.
+
+### Changed
+
+- Funky Darker promoted to second position in the variant lineup for quicker access to the most-liked variants.
+- High Contrast: inherited secondary buttons, added strong borders for indent guides/tables/PeekView, and raised ignored/untracked gutter marks to `uiInactive` (`#8b8f9e`).
+- Darker: manual indent-guide exceptions in the background map keep the active guide visible.
+
+### Docs
+
+- README: restructured for conversion-first flow — Variants hook, shared canvas chips, language differentiation and recommended settings up front.
+- README: added Author section with full name, contacts and special thanks; capitalized Variants heading.
+- Theme guide: palette table gains `guideAccent`/`guideMid` tokens.
+
 ## [3.0.1] - 2026-09-21
 
 ### Changed
