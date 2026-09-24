@@ -24,7 +24,7 @@ As terminal agents and AI handle more of the heavy lifting, the IDE is becoming 
 
 ---
 
-## Variants — five ways to read the same code
+## Variants — Five ways to read the same code
 
 Different developers read code differently. Some want pure color, some want deep night, some need accessibility, some love cursive. There is a Funky variant for each of them — same palette, five experiences.
 
