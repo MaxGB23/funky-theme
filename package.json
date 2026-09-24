@@ -61,7 +61,8 @@
   },
   "scripts": {
     "build": "node scripts/build.js",
-    "package": "node scripts/build.js && vsce package --no-dependencies"
+    "package": "node scripts/build.js && vsce package --no-dependencies",
+    "verify:vsix": "node scripts/verify-vsix.js"
   },
   "contributes": {
     "themes": [

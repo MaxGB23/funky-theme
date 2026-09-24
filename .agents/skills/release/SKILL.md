@@ -4,7 +4,7 @@ description: "Trigger: release, publicar versión, generar vsix, crear GitHub re
 license: MIT
 metadata:
   author: maxgb23
-  version: "1.8"
+  version: "1.9"
 ---
 
 # Release Pipeline (funky-theme)
@@ -23,6 +23,7 @@ Use when the user asks to release, publish, package a new version, generate a `.
 - **Pre-releases (rc/beta/alpha) are ALWAYS GitHub pre-releases**: `gh release create ... --prerelease` — NEVER as latest. If an rc was released as latest, fix with `gh release edit <tag> --prerelease` (never delete the tag).
 - **Marketplace/Open VSX accept ONLY stable `major.minor.patch`** and publication is HUMAN work: the agent never uploads, it hands off (step 8).
 - **CHANGELOG.md is versioned and ships in the vsix** (`.vscodeignore` allowlists it): `[Unreleased]` accumulates between releases and is renamed `[<version>] - <date>` at release. An empty `[Unreleased]` carries the placeholder `_No changes since the last release._`; the first real entry replaces it.
+- **Package AFTER the changelog is finalized:** `pnpm package` runs only after step 4 renamed `[Unreleased]` → `[<version>]`. Packaging first ships a stale `extension/changelog.md` — the IDE later shows an update whose changelog lacks the release section. Step 6 verifies the packaged changelog contains the new section **and** that the vsix matches its `.vscodeignore` allowlist (`pnpm verify:vsix`) before anything is uploaded.
 - **CHANGELOG.md is a permanent, append-only historical record**: once a version section is released, it is never rewritten, deleted, or pruned (it ships in the vsix and documents the project's history); only new `[Unreleased]` entries and the release rename/prepend change the file.
 - **An RC (rc/beta/alpha) NEVER creates a CHANGELOG section**: its content stays in `[Unreleased]` and its notes live only on the GitHub pre-release. The stable that closes the line consolidates the accumulated pre-release content via the Content boundary rule.
 
@@ -89,11 +90,22 @@ Use when the user asks to release, publish, package a new version, generate a `.
    - For themes, "breaking" = identity or semantic change (hue-family overhaul, color-meaning reassignment, contrast-philosophy change): if users must re-learn the theme, it is MAJOR. Diff size alone never upgrades PATCH.
    - Preguntar al usuario para confirmar si es ambiguo.
 3. Bump `version` en `package.json` según el bump determinado.
-4. Canonical flow: `pnpm install && pnpm build && pnpm package`. Minimum viable: `pnpm run package` (builds all 5 variants into `/themes`, then packs `funky-theme-vscode-<ver>.vsix`).
-5. Verify output: build logs list 5 variants; spot-check generated JSONs (e.g. changed keys) before packaging.
-6. Commit with conventional messages (`feat(theme): ...`, `chore: ...`) — include the finalized CHANGELOG.md (6a) in the same release commit — then `git push`.
-   6a. **Finalize CHANGELOG.md** with the release content (identical bullets to the notes): rename `## [Unreleased]` → `## [<version>] - <YYYY-MM-DD>`, prepend a fresh empty `## [Unreleased]` with its placeholder (the placeholder is replaced by the first real entry; if a release happens while it still sits there — e.g. an empty section — remove it during finalize so it never leaks into the released section).
-7. Write the notes to `RELEASE_NOTES.md` per the **Release Content Format**, then create the release:
+4. **Finalize CHANGELOG.md BEFORE packaging** with the release content (identical bullets to the notes): rename `## [Unreleased]` → `## [<version>] - <YYYY-MM-DD>`, prepend a fresh empty `## [Unreleased]` with its placeholder (the placeholder is replaced by the first real entry; if a release happens while it still sits there — e.g. an empty section — remove it during finalize so it never leaks into the released section). For rc/beta/alpha releases, SKIP this step entirely — an RC never creates a changelog section (Hard Rule); its `[Unreleased]` remains in the packaged changelog.
+5. Canonical flow: `pnpm install && pnpm build && pnpm package`. Minimum viable: `pnpm run package` (builds all 5 variants into `/themes`, then packs `funky-theme-vscode-<ver>.vsix`). Runs AFTER step 4 so the packaged `extension/changelog.md` carries the finalized section — packaging before finalize ships a stale changelog inside the vsix.
+6. Verify output: build logs list 5 variants; spot-check generated JSONs (e.g. changed keys); **verify the packaged changelog** — extract `extension/changelog.md` from the vsix and confirm it contains the release section; any failure means re-run `pnpm package`, never upload a vsix missing its changelog section. PowerShell:
+   ```powershell
+   $vsix = "funky-theme-vscode-<version>.vsix"
+   Add-Type -AssemblyName System.IO.Compression.FileSystem
+   $zip = [System.IO.Compression.ZipFile]::OpenRead((Resolve-Path $vsix))
+   $entry = $zip.GetEntry("extension/changelog.md")
+   $reader = New-Object System.IO.StreamReader($entry.Open())
+   $changelog = $reader.ReadToEnd(); $reader.Dispose(); $zip.Dispose()
+   if ($changelog -notmatch "## \[<version>\] - ") { throw "vsix changelog missing [<version>] section" }
+   ```
+   Bash: `unzip -p funky-theme-vscode-<version>.vsix extension/changelog.md | grep -q "## \[<version>\] - " && echo OK`.
+   Then **verify the vsix contains EXACTLY the `.vscodeignore` allowlist** — run `pnpm verify:vsix` (wraps `node scripts/verify-vsix.js`, auto-detects `funky-theme-vscode-<version>.vsix` from `package.json`). It parses `.vscodeignore` `!`-entries, expands `*.json`-style globs against the filesystem, maps vsce's asset renames (`README.md`→`readme.md`, `CHANGELOG.md`→`changelog.md`, `LICENSE`→`LICENSE.txt`) and fails on any missing OR extra vsix entry. A FAIL here means the package leaks files (someone added an allowlist entry or a stray file slipped in) or misses expected assets — fix the cause and re-run `pnpm package` + `pnpm verify:vsix`; never upload a vsix that does not match its `.vscodeignore`.
+7. Commit with conventional messages (`feat(theme): ...`, `chore: ...`) — include the finalized CHANGELOG.md (step 4) in the same release commit — then `git push`.
+8. Write the notes to `RELEASE_NOTES.md` per the **Release Content Format**, then create the release:
    ```bash
    gh release create v<version> funky-theme-vscode-<version>.vsix \
      --title "v<version>" --notes-file RELEASE_NOTES.md [--prerelease]
@@ -101,11 +113,11 @@ Use when the user asks to release, publish, package a new version, generate a `.
    > `--prerelease` is MANDATORY when the version carries an rc/beta/alpha suffix (Hard Rule). Never publish a pre-release as latest.
    > Use `--notes-file`, never inline `--notes`: both Windows and Unix shells corrupt Markdown backticks (PowerShell `` `t ``/`` `n ``; bash command substitution). The file bypasses the shell, so notes are byte-identical on any OS. Write `RELEASE_NOTES.md` raw (`Set-Content -Raw` on PowerShell) so backticks survive verbatim.
    > After the release is created, **delete the scratch file** (`Remove-Item RELEASE_NOTES.md` on Windows / `rm RELEASE_NOTES.md` on Unix). It must never be committed or pushed.
-8. **Marketplace publication is HUMAN work — the agent does NOT upload** (stable releases only). For rc/beta/alpha, SKIP this step entirely — no handoff message, nothing to upload. After a stable GitHub release, hand off with this message:
+9. **Marketplace publication is HUMAN work** — the agent does NOT upload (stable releases only). For rc/beta/alpha, SKIP this step entirely — no handoff message, nothing to upload. After a stable GitHub release, hand off with this message:
    > Release lanzada. Siguiente paso para ti: sube manualmente el vsix empaquetado al VS Code Marketplace y a Open VSX.
    - VS Code Marketplace: marketplace.visualstudio.com/manage → MaxGB23 → arrastrar el vsix (login Microsoft, cero PAT). Never bare `vsce publish` (auto-bumps and creates a commit+tag).
    - Open VSX: `npx ovsx publish funky-theme-vscode-<version>.vsix -p <OPEN_VSX_TOKEN>` (namespace MaxGB23 + access token) — canal para editores VS Code-compatibles: VSCodium, Google Antigravity, Cursor, Windsurf/Devin Desktop, AWS Kiro, Gitpod, Eclipse Theia.
-9. Report the release URL, the changelog commit, and the commit hashes included.
+10. Report the release URL, the changelog commit, and the commit hashes included.
 
 ## Output Contract
 
