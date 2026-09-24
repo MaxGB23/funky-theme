@@ -31,9 +31,9 @@ Different developers read code differently. Some want pure color, some want deep
 | Variant                 | Description                                                                                                                                                     |
 | ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Funky Dark**          | The main experience. Balanced contrast, vivid palette.                                                                                                          |
+| **Funky Darker**        | Ultra-nocturnal backgrounds for zero-distraction sessions.                                                                                                      |
 | **Funky Dark Italic**   | The full cursive treatment — control flow, storage types and metadata in italic, zero bold in code. For fans of italic-capable fonts like Operator Mono.       |
 | **Funky Dark Mix**      | A directed typography strategy: bold on declaration names, italic on metadata, everything else regular. An anti-eye-fatigue balance.                          |
-| **Funky Darker**        | Ultra-nocturnal backgrounds for zero-distraction sessions.                                                                                                      |
 | **Funky High Contrast** | Accessibility-focused borders and boosted contrast for comment tokens.                                                                                          |
 
 Five profiles, one palette — every variant keeps the meaning of every color while changing the reading experience. Two decisions drive the lineup: the italic layer is shared between Dark Mix and Dark Italic so they complement instead of colliding, and keyword italics — one of the more polarizing choices in syntax highlighting — live isolated in Funky Dark Italic instead of being forced on everyone. The choices are grounded in research across developer communities, theme discussions, and real-world usage patterns.
