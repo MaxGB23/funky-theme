@@ -6,6 +6,15 @@ All notable changes to the Funky Theme extension will be documented in this file
 
 _No changes since the last release._
 
+## [3.1.1] - 2026-09-24
+
+No appreciable changes to the theme itself — this release fixes extension packaging only.
+
+### Fixed
+
+- Packaged `extension/changelog.md` now ships the release section (`[3.1.0]`) that the published `v3.1.0` vsix was missing — the IDE changelog reflects the installed version from now on.
+- Added a packaging guard (`verify:vsix`) that fails the build if the vsix leaks files or misses allowlisted assets.
+
 ## [3.1.0] - 2026-09-24
 
 ### Added
