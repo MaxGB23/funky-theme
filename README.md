@@ -1,6 +1,6 @@
 # Funky Theme 👻
 
-> A vibrant, semantically-driven dark theme for Visual Studio Code — breaking away from the usual dull dark themes.
+> A vibrant, semantically-driven dark theme for Visual Studio Code, Cursor, and Antigravity — breaking away from the usual dull dark themes.
 
 As terminal agents and AI handle more of the heavy lifting, the IDE is becoming less of a place to write everything and more of a place to review, understand, and refine. Funky Theme embraces that shift with bright, vibrant semantics — because if you're going to look at code, it shouldn't have to look dull.
 
@@ -187,6 +187,19 @@ Want to tweak colors, add new tokens, or build your own variant on top of Funky 
 
 ---
 
+## Author
+
+**Max González Ballesteros** — the developer behind Funky Theme.
+
+- GitHub: [maxgb23](https://github.com/maxgb23)
+- LinkedIn: [in/maxballesteros](https://www.linkedin.com/in/maxballesteros/)
+- X: [@FunkyGtG](https://x.com/FunkyGtG)
+- Email: maxgonzalezballesteros@gmail.com
+
+Special thanks to [danelogotom-dotcom](https://github.com/danelogotom-dotcom) — not a code contributor, but part of the process: ideas, constructive criticism, and report feedback shaped the theme.
+
+---
+
 ## License
 
-[MIT](./LICENSE) © maxgb23
+[MIT](./LICENSE) © Max González Ballesteros (@maxgb23)
