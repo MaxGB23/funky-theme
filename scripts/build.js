@@ -160,7 +160,7 @@ variants.forEach(variant => {
     delete theme.colors['panel.border'];
     delete theme.colors['panelTitle.activeForeground'];
     delete theme.colors['panelTitle.inactiveForeground'];
-    theme.colors['tab.inactiveForeground'] = '#B0B0B0';
+    theme.colors['tab.inactiveForeground'] = '#b0b0b0';
     // Editor hints: HC usa el auto-estilo nativo de VS Code; fijar editorHint.foreground pintaba doble
     delete theme.colors['editorHint.foreground'];
 
@@ -231,7 +231,9 @@ variants.forEach(variant => {
 
       // Reglas Expresivas (Solamente en la variante Italic)
       // La Italic es dark regular adaptada a italic: NI un solo bold (release.md bloque 4).
-      // Su capa de italic es EXACTAMENTE la misma que Dark Mix; Mix añade además bold en definiciones.
+      // Su capa de italic es un SUPERSET de la de Dark Mix: comparte la capa de metadata/comments
+      // y añade keyword.control + storage.type en italic. Dark Mix comparte esa metadata pero omite
+      // keywords (aisladas en la Italic) y añade bold en definiciones.
       if (variant.profile === 'expressive') {
         // italic — documentación y metadata
         if (scope.match(/^(comment|.*\.comment)[,\s$]/i) || scope === 'comment, punctuation.definition.comment') styles.push('italic');

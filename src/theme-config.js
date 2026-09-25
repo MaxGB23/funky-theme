@@ -27,7 +27,7 @@ const palette = {
   // === Colores de Sintaxis (Accents Tiered Palette) ===
 
   // Cyans (Attributes, Numbers)
-  cyanDim: "#80ecff",      // cyan-dim (Reemplaza a '#8ceaff') - Tokens numéricos o attributes secundarios
+  cyanDim: "#80ecff",      // cyan-dim (Reemplaza a '#8ceaff') - Puntuación general, constant.other.color y literales (umbrella `punctuation`); group punctuation de regex cae aquí
   cyanAccent: "#96e7ff",   // cyan-accent - Functions, git modified, regex, escapes
   cyanVibrant: "#6df5fa",  // cyan-vibrant - Markdown bold, italic e interfaces
 
@@ -45,13 +45,13 @@ const palette = {
   errorFg: "#ff8282",      // error-foreground - list.errorForeground, editorError.foreground
 
   // Morados (Operators, Support Classes, Flujo/Control)
-  purpleDim: "#c792ea",    // purple-dim (Reemplaza a '#d6acff') - Operadores matemáticos o lógicos
+  purpleDim: "#c792ea",    // purple-dim (Reemplaza a '#d6acff') - keyword genérico, editorLineNumber activa, markup.changed y ansiBrightBlue de terminal (los operadores viven en operatorBlue)
   purpleBase: "#bd93f9",   // purple-base (Reemplaza a '#cca2e8') - terminal.ansiBlue
   purpleBright: "#eaa9fc", // purple-bright - support.class, variable.language (this) y keyword.control (flujo)
   purpleSoft: "#b7b5ff",   // purple-soft - SIN USOS: aguarda un nuevo rol (lavanda liberada 2026-09-15 al mover storage.modifier a operatorBlue)
 
   // Naranjas & Amarillos (Strings, Functions, Warnings)
-  orangeBase: "#ffb86c",   // orange-base (Reemplaza a '#ffcb6b') - Usado para strings y warnings moderados
+  orangeBase: "#ffb86c",   // orange-base (Reemplaza a '#ffcb6b') - HTML y CSS attribute names, git conflicting/changed y sublimelinter warning (los warnings del editor son yellowBase)
   orangeAccent: "#ffd089", // orange-accent - keyword.operator/other/control.new y constant.other.reference.link.markdown (naranja compartido: new y md link consistente, claro y de baja fatiga)
   orangeSoft: "#ffb488",   // orange-soft - keyword.other (extends, package, auxiliares). Candidato a más usos
   yellowBase: "#f6ff98",   // yellow-base - Markdown (links y listas) y warnings/terminal (colors)
@@ -71,6 +71,7 @@ const palette = {
   blueMethod: "#82aaff",    // blue-method - Métodos JS/CS/Go, source.json values y decorators (azul de métodos)
   operatorBlue: "#9abfff",  // operator-blue - keyword.operator (símbolos). storage.modifier y cuantificadores regex usan blueSoft (variante más clara)
   blueSoft: "#a1caff",      // blue-soft - storage.modifier y keyword.operator.quantifier.regexp (variante clara del azul operador; antes literal)
+  cyanTerminal: "#a4ffff",  // cyan-terminal - ANSI cyan del terminal (ansiCyan, ansiBrightCyan) y meta.disable-markdown punctuation
 
   // === Verdes Material / Naranjas / Terracota ===
   greenMaterial: "#c3e88d", // green-material - Git insertions, find-in-files filename y algunos strings (verde Material)
@@ -91,6 +92,7 @@ const palette = {
   scrollbarTrack: "#24212eea", // track del scrollbar — scrollbar.background + shadow
   matchBorder: "#a599efff", // bordes de match — bracketMatch.border, findMatch.border
   hoverSurface: "#2e2a3a80", // superficies hover — toolbar.hoverBackground, list.hoverBackground
+  highlightBorder: "#8c8eff5e", // borde de highlights (wordHighlight/selectionHighlight/wordHighlightStrong borders)
 };
 
 // ==========================================
@@ -111,11 +113,11 @@ module.exports = {
     "selection.background": palette.uiAccentStrong,
     // Highlights de selección/palabras: alpha sobre el accent para distinguirlos del selection real (#8c8eff45) y de brackets/tags (#8c8eff2a); Darker sube los fdos a #8c8eff30 (build.js)
     "editor.selectionHighlightBackground": palette.accentSelection,
-    "editor.selectionHighlightBorder": "#8c8eff5e",
+    "editor.selectionHighlightBorder": palette.highlightBorder,
     "editor.wordHighlightBackground": palette.accentFaint,
-    "editor.wordHighlightBorder": "#8c8eff5e",
+    "editor.wordHighlightBorder": palette.highlightBorder,
     "editor.wordHighlightStrongBackground": palette.accentFaint,
-    "editor.wordHighlightStrongBorder": "#8c8eff5e",
+    "editor.wordHighlightStrongBorder": palette.highlightBorder,
     "editorBracketMatch.background": palette.accentFaint,
     "editorBracketMatch.border": palette.matchBorder,
     // Bracket Pair Colorization (nativa de VS Code): 3 niveles de color propios + transparentes
@@ -194,7 +196,7 @@ module.exports = {
     "terminal.ansiBrightYellow": palette.yellowBase,
     "terminal.ansiBrightBlue": palette.purpleDim,
     "terminal.ansiBrightMagenta": palette.pinkLight,
-    "terminal.ansiBrightCyan": "#a4ffff",
+    "terminal.ansiBrightCyan": palette.cyanTerminal,
     "terminal.ansiBrightWhite": palette.fgWhite,
     "terminal.ansiBlack": palette.bgDeep,
     "terminal.ansiRed": palette.errorFg,
@@ -202,7 +204,7 @@ module.exports = {
     "terminal.ansiYellow": palette.yellowBase,
     "terminal.ansiBlue": palette.purpleBase,
     "terminal.ansiMagenta": palette.pinkLight,
-    "terminal.ansiCyan": "#a4ffff",
+    "terminal.ansiCyan": palette.cyanTerminal,
     "terminal.ansiWhite": palette.fgBase,
 
     // ── Title Bar / Menubar ───────────────────────────────────────────────────────────
@@ -948,7 +950,7 @@ module.exports = {
     {
       "scope": "text.html.markdown meta.disable-markdown punctuation.definition",
       "settings": {
-        "foreground": "#a4ffff"
+        "foreground": palette.cyanTerminal
       }
     },
     {

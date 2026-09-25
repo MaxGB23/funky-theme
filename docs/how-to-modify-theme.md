@@ -94,8 +94,8 @@ Los colores reutilizados viven como variables en `const palette`. Además de los
 | Token | Valor | Uso principal |
 |---|---|---|
 | `blueMethod` | `#82aaff` | Métodos y propiedades (JS/TS, C#, Go…), valores de JSON y decorators |
-| `greenMaterial` | `#c3e88d` | Strings, marcas de inserción, subrayados |
-| `orangeScarlet` | `#f78c6c` | Advertencias, números, acentos de operador |
+| `greenMaterial` | `#c3e88d` | Strings y marcas de inserción (JSON, git) |
+| `orangeScarlet` | `#f78c6c` | Subrayados (markup.underline) y un value de JSON profundo |
 | `terracotta` | `#c17e70` | Verificación de números, find-in-files |
 | `linkPurple` | `#b2b3ff` | Links y `pickerGroup.foreground` |
 | `uiInactive` | `#8b8f9e` | Título de panel y tabs inactivos |

@@ -36,3 +36,7 @@ Flujo de testeo manual ANTES de tocar el Source of Truth:
 
 ## Project Skills
 - `.agents/skills/release/SKILL.md` — Full release pipeline: version bump, build 5 variants, vsix packaging with pnpm, GitHub release with attached vsix. Trigger on "release", "publicar versión", "generar vsix".
+
+## Seguimiento ODD (`odd/`)
+- `odd/` es caché local (no se trackea; el respaldo vive en Engram).
+- Limpiar una feature SOLO si: feature cerrada en git Y espejo Engram sincronizado (sin pendientes). Si el sync de Engram falló, conservar el archivo local y reintentar.

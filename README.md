@@ -45,13 +45,15 @@ Five profiles, one palette — every variant keeps the meaning of every color wh
 Funky Theme is built around a **semantic, tiered color palette** defined in a single source-of-truth config file. Every color has a name and a reason to exist:
 
 - 🩷 **Pinks** — Tags, parameters, numeric constants
-- 🟣 **Purples** — Keywords, math/logic operators, support classes (flow keywords in a lighter purple)
-- 🩵 **Cyans** — Functions, attributes, regex, escape characters
+- 🟣 **Purples** — Keywords, support classes (flow keywords in a lighter purple)
+- 🩵 **Cyans** — Functions, escape characters, regex group punctuation, structural top-of-file keywords (imports, use, require…)
 - 🔵 **Blues** — Methods, symbol operators, storage modifier
-- 🟡 **Yellows** — Class names, type names, attribute names
+- 🟡 **Yellows** — Type names, type attribute names
 - 🟢 **Greens** — Strings, git untracked, inline code
-- 🔴 **Reds** — Errors, variables, deleted references
-- 🟠 **Oranges** — Warnings, HTML attributes, operator accents
+- 🔴 **Reds** — Errors, deleted references
+- 🟠 **Oranges** — HTML attributes, `new`/operator accents, auxiliary keywords (extends, mod…)
+
+Structural top-of-file keywords (`import`, `use`, `require`…) stay cyan so bootstrapping code reads differently from orange auxiliary keywords like `extends` and `mod`.
 
 **One shared canvas.** Dark themes often reach for deep blues — the familiar default — but blue-heavy darks can feel harsh or fatiguing to some eyes, even at low brightness. All five variants instead share one custom gray-mauve canvas, a friendlier take on deep night — grounded in research across developer communities, theme discussions, and real-world usage patterns. Only Darker goes deeper, and High Contrast keeps the same canvas while approaching accessibility through stronger borders and UI separation, not a darker background.
 
