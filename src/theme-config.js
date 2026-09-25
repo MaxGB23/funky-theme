@@ -16,7 +16,6 @@ const palette = {
   fgMuted: "#d8d8d8",      // fg-muted - SIN USOS (0 referencias). Los comentarios usan literal alfa #d8d8d8f1; mantener solo si se decide reactivarlo
 
   // === Grises de UI e Invisibles ===
-  comments: "#555555",     // comment - SOLO separadores UI (menu.separatorBackground). Los comments de código usan literal #d8d8d8f1 (alfa)
   uiMuted: "#606685",      // ui-muted (Reemplaza a '#5a657c','#65737e','#546e7a') - Bordes, guías y tokens secundarios
   uiInactive: "#8b8f9e",   // ui-inactive - Texto UI inactivo: panelTitle y tabs inactivos
   guideMid: "#625e74",     // guide-mid - Línea activa de guías de indentación (base) y guía base en HC
@@ -89,7 +88,7 @@ const palette = {
   accentFaint: "#8c8eff2a", // fondos tenues — wordHighlight(Strong)Background, bracketMatch.background
   controlBorder: "#8c8eff33", // SIN USOS (0 referencias) desde v3.1rc1: input/checkbox/dropdown pasaron a bgElevated. El valor #8c8eff33 sigue como literal en textPreformat y HC; mantener solo si se decide reactivarlo
   searchBackground: "#5f569580", // búsqueda/hover — hoverHighlight, findMatch(Bg|Highlight)Background
-  scrollbarTrack: "#24212eea", // track del scrollbar — scrollbar.background + shadow
+  scrollbarTrack: "#24212eea", // track del scrollbar — 1 uso: scrollbar.shadow (token de infraestructura tras el fondo transparente, como bgScrollbar)
   matchBorder: "#a599efff", // bordes de match — bracketMatch.border, findMatch.border
   hoverSurface: "#2e2a3a80", // superficies hover — toolbar.hoverBackground, list.hoverBackground
   highlightBorder: "#8c8eff5e", // borde de highlights (wordHighlight/selectionHighlight/wordHighlightStrong borders)
@@ -289,7 +288,7 @@ module.exports = {
     "menu.background": palette.bgBase,
     "menu.foreground": palette.fgWhite,
     "menu.selectionForeground": palette.fgWhite,
-    "menu.separatorBackground": palette.comments,
+    "menu.separatorBackground": palette.uiAccentStrong,
     "list.activeSelectionBackground": "#8c8eff1e",
     "list.activeSelectionForeground": palette.fgWhite,
     "list.hoverBackground": palette.hoverSurface,
@@ -301,7 +300,7 @@ module.exports = {
     "pickerGroup.foreground": palette.linkPurple,
 
     // ── Scrollbar ─────────────────────────────────────────────────────────────────────
-    "scrollbar.background": palette.scrollbarTrack,
+    "scrollbar.background": "#00000000",
     "scrollbar.shadow": palette.scrollbarTrack,
     "scrollbarSlider.background": "#4e4b5980",
     "scrollbarSlider.hoverBackground": "#4e4b59a0",
