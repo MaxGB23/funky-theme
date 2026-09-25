@@ -48,10 +48,10 @@ Funky Theme is built around a **semantic, tiered color palette** defined in a si
 - 🟣 **Purples** — Keywords, support classes (flow keywords in a lighter purple)
 - 🩵 **Cyans** — Functions, escape characters, regex group punctuation, structural top-of-file keywords (imports, use, require…)
 - 🔵 **Blues** — Methods, symbol operators, storage modifier
-- 🟡 **Yellows** — Type names, type attribute names
+- 🟡 **Yellows** — Type names, attribute names (e.g., HTML, CSS, JSX)
 - 🟢 **Greens** — Strings, git untracked, inline code
 - 🔴 **Reds** — Errors, deleted references
-- 🟠 **Oranges** — HTML attributes, `new`/operator accents, auxiliary keywords (extends, mod…)
+- 🟠 **Oranges** — `new`/operator accents, auxiliary keywords (extends, mod…)
 
 **One shared canvas.** Dark themes often reach for deep blues — the familiar default — but blue-heavy darks can feel harsh or fatiguing to some eyes, even at low brightness. All five variants instead share one custom gray-mauve canvas, a friendlier take on deep night — grounded in research across developer communities, theme discussions, and real-world usage patterns. Only Darker goes deeper, and High Contrast keeps the same canvas while approaching accessibility through stronger borders and UI separation, not a darker background.
 
@@ -75,7 +75,7 @@ While primarily dedicated to and optimized for **web development** (specifically
 
 - **TypeScript / TSX**
 - **JavaScript** (includes Node.js/Express)
-- **HTML**, **CSS / SCSS**
+- **HTML**, **CSS / SCSS**, **XML**
 - **C**, **C++**, **C#**
 - **Go**, **Java**
 - **PHP**, **Python**, **Rust**

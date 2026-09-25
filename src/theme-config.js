@@ -670,18 +670,6 @@ module.exports = {
         "foreground": palette.yellowLight
       }
     },
-    {
-      "scope": "text.html.basic entity.other.attribute-name.html, text.html.basic entity.other.attribute-name",
-      "settings": {
-        "foreground": palette.orangeBase
-      }
-    },
-    {
-      "scope": "entity.other.attribute-name.class",
-      "settings": {
-        "foreground": palette.orangeBase
-      }
-    },
 
     // ── Tags / meta (HTML/XML) ─────────────────────────────────────────────────────────
     {

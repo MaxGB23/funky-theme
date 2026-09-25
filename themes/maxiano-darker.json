@@ -445,18 +445,6 @@
       }
     },
     {
-      "scope": "text.html.basic entity.other.attribute-name.html, text.html.basic entity.other.attribute-name",
-      "settings": {
-        "foreground": "#ffb86c"
-      }
-    },
-    {
-      "scope": "entity.other.attribute-name.class",
-      "settings": {
-        "foreground": "#ffb86c"
-      }
-    },
-    {
       "scope": "entity.name.tag, meta.tag.sgml, markup.deleted.git_gutter",
       "settings": {
         "foreground": "#ff87c5"
