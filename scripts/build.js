@@ -146,6 +146,10 @@ variants.forEach(variant => {
     theme.colors['input.border'] = palette.uiAccentStrong;
     theme.colors['checkbox.border'] = palette.uiAccentStrong;
     theme.colors['dropdown.border'] = palette.uiAccentStrong;
+    // Scrollbar slider HC: thumb con el accent visible sobre el track transparente (otras variantes: base #4e4b59 literal)
+    theme.colors['scrollbarSlider.background'] = '#8c8effb6';
+    theme.colors['scrollbarSlider.hoverBackground'] = palette.uiAccent;
+    theme.colors['scrollbarSlider.activeBackground'] = palette.uiAccent;
     // Hover widget HC: borde con el accent del tema
     theme.colors['editorHoverWidget.border'] = palette.uiAccentStrong;
     // Sticky Scroll HC: bordes y resaltado de hover
