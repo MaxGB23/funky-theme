@@ -53,8 +53,6 @@ Funky Theme is built around a **semantic, tiered color palette** defined in a si
 - 🔴 **Reds** — Errors, deleted references
 - 🟠 **Oranges** — HTML attributes, `new`/operator accents, auxiliary keywords (extends, mod…)
 
-Structural top-of-file keywords (`import`, `use`, `require`…) stay cyan so bootstrapping code reads differently from orange auxiliary keywords like `extends` and `mod`.
-
 **One shared canvas.** Dark themes often reach for deep blues — the familiar default — but blue-heavy darks can feel harsh or fatiguing to some eyes, even at low brightness. All five variants instead share one custom gray-mauve canvas, a friendlier take on deep night — grounded in research across developer communities, theme discussions, and real-world usage patterns. Only Darker goes deeper, and High Contrast keeps the same canvas while approaching accessibility through stronger borders and UI separation, not a darker background.
 
 | Canvas | Variants |
