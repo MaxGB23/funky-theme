@@ -288,7 +288,7 @@ module.exports = {
     "menu.background": palette.bgBase,
     "menu.foreground": palette.fgWhite,
     "menu.selectionForeground": palette.fgWhite,
-    "menu.separatorBackground": palette.uiAccentStrong,
+    "menu.separatorBackground": "#444156", // separador de menús — gris propio (Darker lo oscurece via build.js; HC lo conserva en accent)
     "list.activeSelectionBackground": "#8c8eff1e",
     "list.activeSelectionForeground": palette.fgWhite,
     "list.hoverBackground": palette.hoverSurface,

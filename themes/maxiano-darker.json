@@ -148,7 +148,7 @@
     "menu.background": "#181520",
     "menu.foreground": "#ffffff",
     "menu.selectionForeground": "#ffffff",
-    "menu.separatorBackground": "#8c8effd2",
+    "menu.separatorBackground": "#3f3c4f",
     "list.activeSelectionBackground": "#8c8eff1e",
     "list.activeSelectionForeground": "#ffffff",
     "list.hoverBackground": "#201d2a80",

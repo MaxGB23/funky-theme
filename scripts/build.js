@@ -34,6 +34,7 @@ const darkerBackgrounds = {
   '#363143': '#26222f',
   // Guías de indentación del editor: no son tokens del mapa previo (uno es literal, el otro token nuevo)
   '#464254': '#3a374a',      // editorIndentGuide.background1 -> ultra-nocturno
+  '#444156': '#3f3c4f',      // menu.separatorBackground -> ultra-nocturno
   [palette.guideMid]: '#544f64' // editorIndentGuide.activeBackground1 -> ultra-nocturno
 };
 
@@ -146,6 +147,8 @@ variants.forEach(variant => {
     theme.colors['input.border'] = palette.uiAccentStrong;
     theme.colors['checkbox.border'] = palette.uiAccentStrong;
     theme.colors['dropdown.border'] = palette.uiAccentStrong;
+    // Separador de menús HC: se conserva el accent (el cambio base a #444156 no aplica a HC)
+    theme.colors['menu.separatorBackground'] = palette.uiAccentStrong;
     // Scrollbar slider HC: thumb con el accent visible sobre el track transparente (otras variantes: base #4e4b59 literal)
     theme.colors['scrollbarSlider.background'] = '#8c8effb6';
     theme.colors['scrollbarSlider.hoverBackground'] = palette.uiAccent;
