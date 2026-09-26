@@ -105,8 +105,8 @@ module.exports = {
     "editorCursor.foreground": palette.yellowVibrant,
     "editor.lineHighlightBackground": palette.bgElevated,
     "editor.lineHighlightBorder": palette.bgElevated,
-    // Guías de indentación: fondo #464254f1 (literal con alpha f1) y línea activa guideMid (token, compartida con HC)
-    "editorIndentGuide.background1": "#464254f1",
+    // Guías de indentación: fondo #464254f5 (literal con alpha f5) y línea activa guideMid (token, compartida con HC)
+    "editorIndentGuide.background1": "#464254f5",
     "editorIndentGuide.activeBackground1": palette.guideMid,
     "editor.selectionBackground": palette.accentSelection,
     "selection.background": palette.uiAccentStrong,
