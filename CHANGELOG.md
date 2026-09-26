@@ -6,6 +6,25 @@ All notable changes to the Funky Theme extension will be documented in this file
 
 _No changes since the last release._
 
+## [3.1.2] - 2026-09-26
+
+### Changed
+
+- `scrollbar.background` set to fully transparent in all variants so dropdown, widget and panel backgrounds show through.
+- `menu.separatorBackground` switched to a discreet gray (`#444156`, darker `#3f3c4f`); High Contrast keeps the accent separator (`#8c8effd2`).
+- `editorIndentGuide.background1` raised to `#464254f5` (darker `#3a374af5`) so the active guide stands out on bright panels.
+- High Contrast scrollbar slider moved to the accent family (`#8c8effb6` / `#8c8eff`) for an accessible, visible thumb.
+
+### Fixed
+
+- Removed dead orange rules for HTML attribute names — modern HTML tokenizes under `text.html.derivative` (not `text.html.basic`) and the class-scoped rule matched no live scope; shipped rules now match the parser.
+
+### Docs
+
+- README: aligned the color philosophy section with live mappings — attribute names under Yellows (`e.g. HTML, CSS, JSX`), Oranges without HTML attributes, XML added to supported languages.
+- README: refined accessibility and editor settings guidance and trimmed a redundant note.
+- Noted active work with terminal-based AI coding agents (`opencode`, `pi`) on the dark and darker variants.
+
 ## [3.1.1] - 2026-09-24
 
 No appreciable changes to the theme itself — this release fixes extension packaging only.
