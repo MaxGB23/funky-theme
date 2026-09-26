@@ -4,7 +4,9 @@ All notable changes to the Funky Theme extension will be documented in this file
 
 ## [Unreleased]
 
-_No changes since the last release._
+### Docs
+
+- Noted active work with terminal-based AI coding agents (`opencode`, `pi`) on the dark and darker variants.
 
 ## [3.1.2] - 2026-09-26
 
