@@ -18,7 +18,7 @@ const palette = {
   // === Grises de UI e Invisibles ===
   uiMuted: "#606685",      // ui-muted (Reemplaza a '#5a657c','#65737e','#546e7a') - Bordes, guías y tokens secundarios
   uiInactive: "#8b8f9e",   // ui-inactive - Texto UI inactivo: panelTitle y tabs inactivos
-  guideMid: "#625e74",     // guide-mid - Línea activa de guías de indentación (base) y guía base en HC
+  guideMid: "#625e74",     // guide-mid - Guía activa del editor + guías del árbol y bordes de tabla; en HC la guía base del editor y sus bordes fuertes suben a uiAccentStrong
   greyLight: "#cbcbcb",    // grey-light - Delimitadores de code blocks de Markdown
   purpleGrey: "#a9b1de",   // purple-grey - Puntuación y meta de Markdown
   linkPurple: "#b2b3ff",   // link-purple - Links y pickerGroup foreground
@@ -84,7 +84,7 @@ const palette = {
   // entre familias distintas se dejan literales para no acoplarlas (ver docs).
   uiAccentStrong: "#8c8effd2", // accent fuerte al 82% — selection, statusBarItem.remote, inputOption, botones, focus, badge, keybindings, settings
   accentSelection: "#8c8eff45", // familia selección — selectionBackground, selectionHighlightBackground, overviewRuler findMatch, minimap
-  guideAccent: "#8c8eff73", // accent al 45% — tree indent guides y table column borders (2 usos)
+  guideAccent: "#8c8eff73", // SIN USOS (0 referencias): tree indent guides y table column borders pasaron a guideMid. Mantener solo si se decide reactivar el guide en accent
   accentFaint: "#8c8eff2a", // fondos tenues — wordHighlight(Strong)Background, bracketMatch.background
   controlBorder: "#8c8eff33", // SIN USOS (0 referencias) desde v3.1rc1: input/checkbox/dropdown pasaron a bgElevated. El valor #8c8eff33 sigue como literal en textPreformat y HC; mantener solo si se decide reactivarlo
   searchBackground: "#5f569580", // búsqueda/hover — hoverHighlight, findMatch(Bg|Highlight)Background
@@ -156,8 +156,11 @@ module.exports = {
     "sideBarSectionHeader.background": palette.bgBase,
     "sideBarSectionHeader.foreground": palette.fgWhite,
     "sideBarSectionHeader.border": palette.bgBase,
-    "tree.indentGuidesStroke": palette.guideAccent,
-    "tree.tableColumnsBorder": palette.guideAccent,
+    // Guías del árbol y bordes de tabla en guideMid: comparten color con la guía activa
+    // del editor para que indent, árbol y tablas se lean como una sola estructura. HC los
+    // sube a uiAccentStrong (bordes fuertes); Darker los oscurece vía darkerBackgrounds.
+    "tree.indentGuidesStroke": palette.guideMid,
+    "tree.tableColumnsBorder": palette.guideMid,
     "tree.tableOddRowsBackground": palette.bgElevated,
 
     // ── Tabs ──────────────────────────────────────────────────────────────────────────
