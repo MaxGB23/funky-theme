@@ -4,7 +4,7 @@ description: "Trigger: release, publicar versión, generar vsix, crear GitHub re
 license: MIT
 metadata:
   author: maxgb23
-  version: "1.9"
+  version: "1.10"
 ---
 
 # Release Pipeline (funky-theme)
@@ -22,7 +22,7 @@ Use when the user asks to release, publish, package a new version, generate a `.
 - **Release notes are written in English** (GitHub facing), regardless of the author's conversation language.
 - **Pre-releases (rc/beta/alpha) are ALWAYS GitHub pre-releases**: `gh release create ... --prerelease` — NEVER as latest. If an rc was released as latest, fix with `gh release edit <tag> --prerelease` (never delete the tag).
 - **Marketplace/Open VSX accept ONLY stable `major.minor.patch`** and publication is HUMAN work: the agent never uploads, it hands off (step 8).
-- **CHANGELOG.md is versioned and ships in the vsix** (`.vscodeignore` allowlists it): `[Unreleased]` accumulates between releases and is renamed `[<version>] - <date>` at release. An empty `[Unreleased]` carries the placeholder `_No changes since the last release._`; the first real entry replaces it.
+- **CHANGELOG.md is versioned and ships in the vsix** (`.vscodeignore` allowlists it): `[Unreleased]` accumulates between releases and is renamed `[<version>] - <date>` at release. An empty `[Unreleased]` carries the placeholder `_No changes since the last release._`; the first real entry replaces it. `[Unreleased]` holds ONLY changes that will ship in a version of this extension — forward-looking notices about other repos or sibling projects belong in the README, not here. A section that never empties has stopped being a version placeholder.
 - **Package AFTER the changelog is finalized:** `pnpm package` runs only after step 4 renamed `[Unreleased]` → `[<version>]`. Packaging first ships a stale `extension/changelog.md` — the IDE later shows an update whose changelog lacks the release section. Step 6 verifies the packaged changelog contains the new section **and** that the vsix matches its `.vscodeignore` allowlist (`pnpm verify:vsix`) before anything is uploaded.
 - **CHANGELOG.md is a permanent, append-only historical record**: once a version section is released, it is never rewritten, deleted, or pruned (it ships in the vsix and documents the project's history); only new `[Unreleased]` entries and the release rename/prepend change the file.
 - **An RC (rc/beta/alpha) NEVER creates a CHANGELOG section**: its content stays in `[Unreleased]` and its notes live only on the GitHub pre-release. The stable that closes the line consolidates the accumulated pre-release content via the Content boundary rule.
