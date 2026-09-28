@@ -27,10 +27,21 @@ if (!vsixArg) {
   process.exit(1);
 }
 
+/**
+ * Read package.json, tolerating a BOM.
+ *
+ * JSON.parse throws on a leading U+FEFF, and an editor that saves with a BOM
+ * would otherwise fail this script for a reason unrelated to packaging.
+ */
+function readPackageJson() {
+  const raw = fs.readFileSync(path.join(process.cwd(), 'package.json'), 'utf8');
+  return JSON.parse(raw.replace(/^﻿/, ''));
+}
+
 /** Detect the vsix matching the current package.json version. */
 function autoDetectVsix() {
   try {
-    const pkg = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'package.json'), 'utf8'));
+    const pkg = readPackageJson();
     const candidate = path.join(process.cwd(), `funky-theme-vscode-${pkg.version}.vsix`);
     return fs.existsSync(candidate) ? candidate : null;
   } catch (_) {
@@ -141,13 +152,6 @@ const actualEntries = listZipEntries(vsixPath);
 const missing = expectedEntries.filter((entry) => !actualEntries.includes(entry));
 const extra = actualEntries.filter((entry) => !expectedEntries.includes(entry));
 
-if (missing.length === 0 && extra.length === 0) {
-  console.log(
-    `PASS: vsix contains exactly the ${expectedEntries.length} allowed entries (.vscodeignore allowlist)`
-  );
-  process.exit(0);
-}
-
 if (missing.length > 0) {
   console.error('FAIL: expected entries missing from vsix:');
   missing.forEach((entry) => console.error(`  - ${entry}`));
@@ -156,4 +160,73 @@ if (extra.length > 0) {
   console.error('FAIL: unexpected entries in vsix (not allowlisted):');
   extra.forEach((entry) => console.error(`  + ${entry}`));
 }
-process.exit(1);
+if (missing.length > 0 || extra.length > 0) {
+  process.exit(1);
+}
+
+console.log(
+  `PASS: vsix contains exactly the ${expectedEntries.length} allowed entries (.vscodeignore allowlist)`
+);
+
+// --- 6. Verify the packaged CHANGELOG content ---------------------------------
+// The entry-set comparison above only proves the changelog ENTRY exists. It says
+// nothing about its content, and the release skill promises that step 6 verifies
+// the packaged changelog. Reached only when the entry set already matched.
+/**
+ * Read one zip entry as UTF-8 text.
+ *
+ * The payload round-trips as base64: the changelog contains em dashes and the
+ * PowerShell host's console encoding is not guaranteed to be UTF-8, so decoding
+ * raw text straight out of execFileSync risks silent mojibake. Base64 is ASCII,
+ * so the transport cannot corrupt it.
+ */
+function readZipEntry(zip, entryName) {
+  const script =
+    `Add-Type -AssemblyName System.IO.Compression.FileSystem; ` +
+    `$z = [System.IO.Compression.ZipFile]::OpenRead('${zip.replace(/'/g, "''")}'); ` +
+    `try { $e = $z.GetEntry('${entryName.replace(/'/g, "''")}'); ` +
+    `if ($null -eq $e) { '' } else { ` +
+    `$s = $e.Open(); $m = New-Object System.IO.MemoryStream; $s.CopyTo($m); $s.Close(); ` +
+    `[Convert]::ToBase64String($m.ToArray()) } } finally { $z.Dispose() }`;
+  const out = execFileSync('powershell', ['-NoProfile', '-Command', script], {
+    encoding: 'utf8'
+  }).trim();
+  return out ? Buffer.from(out, 'base64').toString('utf8') : null;
+}
+
+/** Release categories a versioned section may use. Anything else is not a change. */
+const RELEASE_CATEGORIES = ['Added', 'Changed', 'Fixed', 'Docs', 'Removed'];
+const CHANGELOG_ENTRY = 'extension/changelog.md';
+
+const packagedChangelog = readZipEntry(vsixPath, CHANGELOG_ENTRY);
+if (packagedChangelog === null) {
+  console.error(`FAIL: ${CHANGELOG_ENTRY} present in the entry set but not readable in the vsix`);
+  process.exit(1);
+}
+
+const pkgVersion = readPackageJson().version;
+// `[Unreleased]` is the accumulator slot and always sits at the top, so it is
+// skipped: the newest RELEASED section must be the version being packaged.
+const versionHeadings = [...packagedChangelog.matchAll(/^## \[([^\]]+)\]/gm)].map((m) => m[1]);
+const [newestReleased] = versionHeadings.filter((v) => v !== 'Unreleased');
+if (newestReleased !== pkgVersion) {
+  console.error(
+    `FAIL: newest released changelog section is [${newestReleased}] but package.json is ${pkgVersion} ` +
+    `— the vsix would ship the wrong release notes`
+  );
+  process.exit(1);
+}
+
+const strayHeadings = [...packagedChangelog.matchAll(/^### (.+)$/gm)]
+  .map((m) => m[1].trim())
+  .filter((h) => !RELEASE_CATEGORIES.includes(h));
+if (strayHeadings.length > 0) {
+  console.error('FAIL: packaged changelog has non-release heading(s):');
+  strayHeadings.forEach((h) => console.error(`  - ${h}`));
+  console.error(`      allowed categories: ${RELEASE_CATEGORIES.join(', ')}`);
+  process.exit(1);
+}
+
+console.log(
+  `PASS: packaged changelog tops at released [${newestReleased}] and uses only release categories`
+);
