@@ -4,7 +4,7 @@ description: "Trigger: release, publicar versión, generar vsix, crear GitHub re
 license: MIT
 metadata:
   author: maxgb23
-  version: "1.11"
+  version: "1.12"
 ---
 
 # Release Pipeline (funky-theme)
@@ -30,7 +30,7 @@ Use when the user asks to release, publish, package a new version, generate a `.
 
 ## Release Content Format (MANDATORY — notes + changelog)
 
-`RELEASE_NOTES.md` (transient, GitHub) and `CHANGELOG.md` (versioned, ships in the vsix) share the SAME grouped content derived from `git log <boundary>..HEAD` — keep their bullets identical. Only the heading differs: `## v<version> — <title>` on GitHub vs `## [<version>] - <YYYY-MM-DD>` in the changelog. Every release `--notes` MUST follow this exact structure. Do not improvise headings, order, or wording.
+`CHANGELOG.md` is the SOURCE for `RELEASE_NOTES.md` (transient, GitHub): the notes are derived from the finalized `[<version>]` changelog section, never authored in parallel with it — two independently written copies drift. Only the heading differs: `## v<version> — <title>` on GitHub vs `## [<version>] - <YYYY-MM-DD>` in the changelog. Every release `--notes` MUST follow this exact structure. Do not improvise headings, order, or wording.
 
 ```
 ## v<version> — <Short meaningful title>
@@ -62,7 +62,7 @@ Use when the user asks to release, publish, package a new version, generate a `.
 - Use backticks around code identifiers (`editor.*` keys, tokens, file paths).
 - End with a known-issues or "no issues found" line only when relevant: `No issues found after extended testing.`
 - No emojis. No AI attribution. Match the version number exactly.
-- Release notes and CHANGELOG share identical bullets and order (see section intro); only the heading format differs.
+- Release notes are DERIVED from the finalized changelog section (see section intro), so their bullets and order are identical by construction — only the heading format differs. Never re-draft the notes independently of the changelog.
 - **Content boundary** (`<boundary>`): when the release is the stable that closes a pre-release line (rc/beta/alpha), the boundary is the last STABLE tag and bullets are assembled from the accumulated pre-release bodies (`gh release view <tag> --json body`) plus `git log <último-estable>..HEAD` — users who never tried the RCs see the whole line as new. Otherwise the boundary is the last tag.
 
 ## Decision Gates
@@ -78,7 +78,7 @@ Use when the user asks to release, publish, package a new version, generate a `.
 
 1. Ensure working tree changes are backported to `src/theme-config.js` (use palette tokens for repeated colors).
 2. **Determine version bump**
-   - **Release boundary:** el corte SIEMPRE es el tag publicado más reciente. NO confíes solo en los tags locales (`git tag` los puede tener desactualizados): primero `git fetch --tags`, compara con `git ls-remote --tags origin`, y usa el tag más reciente de ambos. Enumerar `git log --oneline <último-tag>..HEAD` ANTES de decidir el bump y redactar las notas — la plantilla no elimina este paso. Todo lo que esté en el rango entra en la release, incluidos merges/PRs de sesiones anteriores nunca liberados.
+   - **Release boundary:** el corte SIEMPRE es el tag publicado más reciente. NO confíes solo en los tags locales (`git tag` los puede tener desactualizados): primero `git fetch --tags`, compara con `git ls-remote --tags origin`, y usa el tag más reciente de ambos. Enumerar `git log --oneline <último-tag>..HEAD` ANTES de decidir el bump y de verificar que el `[Unreleased]` acumulado cubra todo el rango — la plantilla no elimina este paso. Todo lo que esté en el rango entra en la release, incluidos merges/PRs de sesiones anteriores nunca liberados.
    - Leer `package.json` y determinar el tipo de bump:
 
      | Change type | Bump | Example |
@@ -91,20 +91,11 @@ Use when the user asks to release, publish, package a new version, generate a `.
    - For themes, "breaking" = identity or semantic change (hue-family overhaul, color-meaning reassignment, contrast-philosophy change): if users must re-learn the theme, it is MAJOR. Diff size alone never upgrades PATCH.
    - Preguntar al usuario para confirmar si es ambiguo.
 3. Bump `version` en `package.json` según el bump determinado.
-4. **Finalize CHANGELOG.md BEFORE packaging** with the release content (identical bullets to the notes): rename `## [Unreleased]` → `## [<version>] - <YYYY-MM-DD>`, prepend a fresh empty `## [Unreleased]` with its placeholder (the placeholder is replaced by the first real entry; if a release happens while it still sits there — e.g. an empty section — remove it during finalize so it never leaks into the released section). For rc/beta/alpha releases, SKIP this step entirely — an RC never creates a changelog section (Hard Rule); its `[Unreleased]` remains in the packaged changelog.
+4. **Finalize CHANGELOG.md BEFORE packaging** by renaming `## [Unreleased]` → `## [<version>] - <YYYY-MM-DD>`, then prepend a fresh empty `## [Unreleased]` with its placeholder (the placeholder is replaced by the first real entry; if a release happens while it still sits there — e.g. an empty section — remove it during finalize so it never leaks into the released section). **The renamed block IS the release content — consume it, never rewrite it.** Entries accumulate there per work unit (see `AGENTS.md`); this step is a rename plus a completeness check, not a reconstruction. Verify with `git log --oneline <boundary>..HEAD` that every shipped work unit has a corresponding entry, and if one is missing, ADD IT HERE (while the block is still `[Unreleased]`) rather than shipping a changelog that omits shipped work — do not reconstruct the section from commit subjects, because a commit subject preserves the *what* and loses the *why*. For rc/beta/alpha releases, SKIP this step entirely — an RC never creates a changelog section (Hard Rule); its `[Unreleased]` remains in the packaged changelog.
 5. Canonical flow: `pnpm install && pnpm build && pnpm package`. Minimum viable: `pnpm run package` (builds all 5 variants into `/themes`, then packs `funky-theme-vscode-<ver>.vsix`). Runs AFTER step 4 so the packaged `extension/changelog.md` carries the finalized section — packaging before finalize ships a stale changelog inside the vsix.
-6. Verify output: build logs list 5 variants; spot-check generated JSONs (e.g. changed keys); **verify the packaged changelog** — extract `extension/changelog.md` from the vsix and confirm it contains the release section; any failure means re-run `pnpm package`, never upload a vsix missing its changelog section. PowerShell:
-   ```powershell
-   $vsix = "funky-theme-vscode-<version>.vsix"
-   Add-Type -AssemblyName System.IO.Compression.FileSystem
-   $zip = [System.IO.Compression.ZipFile]::OpenRead((Resolve-Path $vsix))
-   $entry = $zip.GetEntry("extension/changelog.md")
-   $reader = New-Object System.IO.StreamReader($entry.Open())
-   $changelog = $reader.ReadToEnd(); $reader.Dispose(); $zip.Dispose()
-   if ($changelog -notmatch "## \[<version>\] - ") { throw "vsix changelog missing [<version>] section" }
-   ```
-   Bash: `unzip -p funky-theme-vscode-<version>.vsix extension/changelog.md | grep -q "## \[<version>\] - " && echo OK`.
-   Then **verify the vsix contains EXACTLY the `.vscodeignore` allowlist** — run `pnpm verify:vsix` (wraps `node scripts/verify-vsix.js`, auto-detects `funky-theme-vscode-<version>.vsix` from `package.json`). It parses `.vscodeignore` `!`-entries, expands `*.json`-style globs against the filesystem, maps vsce's asset renames (`README.md`→`readme.md`, `CHANGELOG.md`→`changelog.md`, `LICENSE`→`LICENSE.txt`) and fails on any missing OR extra vsix entry. A FAIL here means the package leaks files (someone added an allowlist entry or a stray file slipped in) or misses expected assets — fix the cause and re-run `pnpm package` + `pnpm verify:vsix`; never upload a vsix that does not match its `.vscodeignore`.
+6. Verify output: build logs list 5 variants; spot-check generated JSONs (e.g. changed keys); then run **`pnpm verify:vsix`** (wraps `node scripts/verify-vsix.js`, auto-detects `funky-theme-vscode-<version>.vsix` from `package.json`). It asserts BOTH halves, and a FAIL on either means fix the cause and re-run `pnpm package` + `pnpm verify:vsix` — never upload a vsix that fails:
+   - **Entry set:** the vsix contains EXACTLY the `.vscodeignore` allowlist. It parses `!`-entries, expands `*.json`-style globs against the filesystem, maps vsce's asset renames (`README.md`→`readme.md`, `CHANGELOG.md`→`changelog.md`, `LICENSE`→`LICENSE.txt`) and fails on any missing OR extra entry. A FAIL means the package leaks files (an added allowlist entry or a stray file) or misses expected assets.
+   - **Changelog content:** it reads `extension/changelog.md` out of the vsix and fails unless the newest RELEASED section equals `package.json`'s version and every `###` heading is a release category. This is what catches a stale vsix carrying the previous release's notes, and a non-category heading (`### Planned`) that the step 4 rename would have swept into the released section. Pass the vsix path explicitly (`node scripts/verify-vsix.js <path>`) when the on-disk filename does not match the current version.
 7. Commit with conventional messages (`feat(theme): ...`, `chore: ...`) — include the finalized CHANGELOG.md (step 4) in the same release commit — then `git push`.
 8. Write the notes to `RELEASE_NOTES.md` per the **Release Content Format**, then create the release:
    ```bash

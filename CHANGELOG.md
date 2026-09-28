@@ -4,9 +4,15 @@ All notable changes to the Funky Theme extension will be documented in this file
 
 ## [Unreleased]
 
+### Added
+
+- `pnpm verify:vsix` now reads `extension/changelog.md` out of the packaged vsix and fails unless the newest released section matches `package.json`'s version and every `###` heading is a release category. Catches a stale vsix carrying the previous release's notes, and a non-category heading that the release rename would have swept into a released section.
+
 ### Docs
 
 - README: added a `Roadmap` section for work that has not shipped yet (Zed support, terminal AI agents), so forward-looking notices stop living in the version history.
+- `AGENTS.md`: every work unit commit now writes its `[Unreleased]` entry in the same commit, under the standard release categories, with the reasoning — `git log` keeps the what but loses the why.
+- Release skill: the changelog is now the source for the release notes instead of both being written in parallel, and the release step consumes the accumulated `[Unreleased]` instead of reconstructing it from commit subjects.
 
 ## [3.1.3] - 2026-09-28
 
