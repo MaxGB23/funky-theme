@@ -7,6 +7,17 @@ All notable changes to the Funky Theme extension will be documented in this file
 ### Added
 
 - `pnpm verify:vsix` now reads `extension/changelog.md` out of the packaged vsix and fails unless the newest released section matches `package.json`'s version and every `###` heading is a release category. Catches a stale vsix carrying the previous release's notes, and a non-category heading that the release rename would have swept into a released section.
+- Range highlight theming for Quick Open, Symbol in File, and Find (`editor.rangeHighlightBackground`, `editor.rangeHighlightBorder`, `editorOverviewRuler.rangeHighlightForeground`) across all five variants; base variants inherit automatically from palette tokens, Darker derives via existing `darkerBackgrounds` transform, High Contrast uses explicit values.
+
+### Changed
+
+- `editor.findMatchHighlightBackground` and new `editor.findMatchHighlightBorder` now use `purpleDim` with variant-specific alpha (30/20/40) instead of `searchBackground`, so the current match (solid white box) and other matches (purple wash) are visually distinct.
+- Darker variant word/symbol highlights and bracket match now use `accentFaint` (`#8c8eff2a`) like all other variants; the Darker-only override that raised them to `#8c8eff30` has been removed — the special case was inverted by the requested change.
+
+### Fixed
+
+- `palette.controlBorder` was an orphan token ("SIN USOS") since v3.1rc1; now drives `editorOverviewRuler.rangeHighlightForeground` in base variants.
+- `palette.searchBackground` comment no longer claims `findMatchHighlightBackground` (moved to `purpleDim`).
 
 ### Docs
 

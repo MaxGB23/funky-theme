@@ -72,10 +72,8 @@ variants.forEach(variant => {
     theme.colors['diffEditor.removedLineBackground'] = '#ff000018';
     theme.colors['diffEditor.insertedTextBackground'] = '#8c8eff28';
     theme.colors['diffEditor.removedTextBackground'] = '#ff000028';
-    // Darker: highlights de palabras y brackets un punto más visibles sobre el fondo más oscuro
-    theme.colors['editor.wordHighlightBackground'] = '#8c8eff30';
-    theme.colors['editor.wordHighlightStrongBackground'] = '#8c8eff30';
-    theme.colors['editorBracketMatch.background'] = '#8c8eff30';
+    theme.colors['editor.findMatchHighlightBackground'] = '#c792ea20';
+    theme.colors['editor.findMatchHighlightBorder'] = '#c792ea20';
     // QuickInput (Command Palette / Quick Open) Darker
     theme.colors['quickInput.foreground'] = palette.fgWhite;
     theme.colors['quickInputTitle.background'] = darkerBackgrounds[palette.bgDeep];
@@ -127,12 +125,17 @@ variants.forEach(variant => {
     theme.colors['editor.findMatchBackground'] = '#a599efff';
     theme.colors['editor.findMatchBorder'] = '#a599efff';
     theme.colors['editor.findMatchForeground'] = palette.fgWhite;
-    theme.colors['editor.findMatchHighlightBackground'] = palette.searchBackground;
+    theme.colors['editor.findMatchHighlightBackground'] = '#c792ea40';
+    theme.colors['editor.findMatchHighlightBorder'] = '#8c8effd2';
     theme.colors['editor.findMatchHighlightForeground'] = palette.fgWhite;
     // Minimap / Overview Ruler HC: resaltados con el accent completo
     theme.colors['minimap.findMatchHighlight'] = palette.uiAccentStrong;
     theme.colors['editorOverviewRuler.findMatchForeground'] = palette.uiAccentStrong;
+    theme.colors['editorOverviewRuler.rangeHighlightForeground'] = palette.highlightBorder;
     theme.colors['minimap.selectionHighlight'] = palette.uiAccentStrong;
+    // Range highlights HC
+    theme.colors['editor.rangeHighlightBackground'] = palette.hoverSurface;
+    theme.colors['editor.rangeHighlightBorder'] = palette.uiAccentStrong;
     // Diffs HC: bordes de línea/texto insertado con el accent morado (coherencia con los diff backgrounds #8c8eff25/40; el rosa #e881ff rompía la familia)
     theme.colors['diffEditor.insertedTextBorder'] = palette.uiAccent;
     theme.colors['diffEditor.insertedLineBorder'] = palette.uiAccent;

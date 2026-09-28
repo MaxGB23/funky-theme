@@ -86,8 +86,8 @@ const palette = {
   accentSelection: "#8c8eff45", // familia selección — selectionBackground, selectionHighlightBackground, overviewRuler findMatch, minimap
   guideAccent: "#8c8eff73", // SIN USOS (0 referencias): tree indent guides y table column borders pasaron a guideMid. Mantener solo si se decide reactivar el guide en accent
   accentFaint: "#8c8eff2a", // fondos tenues — wordHighlight(Strong)Background, bracketMatch.background
-  controlBorder: "#8c8eff33", // SIN USOS (0 referencias) desde v3.1rc1: input/checkbox/dropdown pasaron a bgElevated. El valor #8c8eff33 sigue como literal en textPreformat y HC; mantener solo si se decide reactivarlo
-  searchBackground: "#5f569580", // búsqueda/hover — hoverHighlight, findMatch(Bg|Highlight)Background
+  controlBorder: "#8c8eff33", // overviewRuler rangeHighlightForeground (base variants), textPreformat y HC literal
+  searchBackground: "#5f569580", // búsqueda/hover — hoverHighlight, findMatchBackground
   scrollbarTrack: "#24212eea", // track del scrollbar — 1 uso: scrollbar.shadow (token de infraestructura tras el fondo transparente, como bgScrollbar)
   matchBorder: "#a599efff", // bordes de match — bracketMatch.border, findMatch.border
   hoverSurface: "#2e2a3a80", // superficies hover — toolbar.hoverBackground, list.hoverBackground
@@ -130,16 +130,19 @@ module.exports = {
     "editorBracketHighlight.foreground5": "#00000000",
     "editorBracketHighlight.foreground6": "#00000000",
     "editor.hoverHighlightBackground": palette.searchBackground,
+    "editor.rangeHighlightBackground": palette.hoverSurface,
     // Transparente: la palabra matcheada se distingue por su borde (#a599efff compartido),
     // no por rellenar el fondo. HC lo sube a fondo sólido vía build.js.
     "editor.findMatchBackground": "#00000000",
     "editor.findMatchBorder": palette.matchBorder,
     "editor.findMatchForeground": palette.fgWhite,
-    "editor.findMatchHighlightBackground": palette.searchBackground,
+    "editor.findMatchHighlightBackground": "#c792ea30",
+    "editor.findMatchHighlightBorder": "#c792ea30",
     "editor.findMatchHighlightForeground": palette.fgWhite,
     // Minimap / Overview Ruler: resaltados consistentes entre editores basados en VS Code (HC los sube a d2 vía build.js)
     "minimap.findMatchHighlight": "#8c8eff80",
     "editorOverviewRuler.findMatchForeground": palette.accentSelection,
+    "editorOverviewRuler.rangeHighlightForeground": palette.controlBorder,
     "minimap.selectionHighlight": palette.accentSelection,
     "editorGroupHeader.tabsBackground": palette.bgDeep,
     // ── Editor Errors / Warnings (squiggly underline + gutter markers) ─────────────────
