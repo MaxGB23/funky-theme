@@ -4,14 +4,23 @@ All notable changes to the Funky Theme extension will be documented in this file
 
 ## [Unreleased]
 
-### Planned
+_No changes since the last release._
 
-- Zed support — planned, no work started yet.
-- Terminal-based AI agents: the palette moves to its own repo, `funky-theme-tui`, targeting `gentle-shell` first (it runs on `pi`, so `pi` comes along for the ride) plus `opencode` and `claude code`. Dark and darker variants, plus transparent background variants for custom terminal backgrounds. An initial version is prototyped, roughly at `v0.1`; it will ship to package marketplaces (like Pi packages) once v1 is stable.
+## [3.1.3] - 2026-09-28
+
+### Changed
+
+- `tree.indentGuidesStroke` and `tree.tableColumnsBorder` moved from the accent family (`#8c8eff73`) to `guideMid` (`#625e74`, Darker `#544f64`) so tree guides and table borders read as the same structure as the editor's active indent guide; High Contrast keeps its stronger borders.
 
 ### Docs
 
 - README: terminal AI agents section now names the dedicated `funky-theme-tui` repo and the target agents instead of leaving packaging open.
+- README: terminal agent status reports the prototype version as `v0.1.0`.
+
+### Planned
+
+- Zed support — planned, no work started yet.
+- Terminal-based AI agents: the palette moves to its own repo, `funky-theme-tui`, targeting `gentle-shell` first (it runs on `pi`, so `pi` comes along for the ride) plus `opencode` and `claude code`. Dark and darker variants, plus transparent background variants for custom terminal backgrounds. An initial version is prototyped, roughly at `v0.1.0`; it will ship to package marketplaces (like Pi packages) once v1 is stable.
 
 ## [3.1.2] - 2026-09-26
 
