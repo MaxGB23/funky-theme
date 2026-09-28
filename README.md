@@ -159,6 +159,15 @@ A standalone terminal palette for AI coding agents is being built in its own rep
 
 ---
 
+## Roadmap
+
+Forward-looking work that has not shipped yet. It lives here rather than in `CHANGELOG.md` on purpose: the changelog records what each version actually changed, so a roadmap that drifts into a released section misrepresents that version's history.
+
+- **Zed support** — planned, no work started yet.
+- **Terminal-based AI agents** — see [Terminal-based AI Agents](#terminal-based-ai-agents-wip) above; the palette ships from its own repo, `funky-theme-tui`.
+
+---
+
 ## Build from source
 
 > **Note**: You can use `npm` to install dependencies and run scripts, but **`pnpm` is highly recommended** for better security, stricter dependency resolution, and to avoid lockfile conflicts.
