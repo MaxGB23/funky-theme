@@ -4,9 +4,14 @@ All notable changes to the Funky Theme extension will be documented in this file
 
 ## [Unreleased]
 
+### Planned
+
+- Zed support — planned, no work started yet.
+- Terminal-based AI agents: the palette moves to its own repo, `funky-theme-tui`, targeting `gentle-shell` first (it runs on `pi`, so `pi` comes along for the ride) plus `opencode` and `claude code`. Dark and darker variants, plus transparent background variants for custom terminal backgrounds. An initial version is prototyped, roughly at `v0.1`; it will ship to package marketplaces (like Pi packages) once v1 is stable.
+
 ### Docs
 
-- Noted active work with terminal-based AI coding agents (`opencode`, `pi`) on the dark and darker variants.
+- README: terminal AI agents section now names the dedicated `funky-theme-tui` repo and the target agents instead of leaving packaging open.
 
 ## [3.1.2] - 2026-09-26
 

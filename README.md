@@ -153,9 +153,9 @@ The integrated editor terminal already ships with Funky Theme's ANSI palette —
 
 ### Terminal-based AI Agents (WIP)
 
-A standalone terminal palette for AI coding agents such as OpenCode and Pi is in the works, with two planned variants: Funky Dark and Funky Darker. Both are derived from the same source of truth as the editor theme, while allowing for small adjustments where terminal environments differ from the IDE. The standard variant may also use minimal italics where they improve readability, without introducing a separate italic variant. This keeps your terminal environment visually consistent without requiring a separate palette to maintain.
+A standalone terminal palette for AI coding agents is being built in its own repo, `funky-theme-tui` — starting with gentle-shell, and with Pi along for the ride since gentle-shell runs on it, plus OpenCode and Claude Code. Two variants are planned, Funky Dark and Funky Darker, plus transparent background variants for people who run a custom terminal background. They are independent palettes — kept visually close to the editor theme, but tuned for the terminal experience, which is a different medium, so small variations per variant are expected. Minimal italics may be used where they aid readability, without a separate italic variant.
 
-> **Status:** WIP — still debating packaging and whether it ships in this repo or a separate one.
+> **Status:** WIP — currently around `v0.1`; nothing published yet. It will ship to package marketplaces (like Pi packages) once v1 is stable.
 
 ---
 
