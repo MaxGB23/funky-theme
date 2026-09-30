@@ -476,7 +476,7 @@ module.exports = {
       }
     },
     {
-      "scope": "constant.other.color, punctuation, punctuation.definition.tag, punctuation.separator.inheritance.php, punctuation.section.embedded, keyword.other.template, keyword.other.substitution",
+      "scope": "constant.other.color, punctuation, punctuation.separator.inheritance.php, punctuation.section.embedded, keyword.other.template, keyword.other.substitution",
       "settings": {
         "foreground": palette.cyanDim
       }
@@ -703,7 +703,7 @@ module.exports = {
       }
     },
     {
-      "scope": "punctuation.definition.tag.html, punctuation.definition.tag.begin.html, punctuation.definition.tag.end.html, punctuation.definition.tag.begin.tsx, punctuation.definition.tag.end.tsx, punctuation.definition.tag.begin.jsx, punctuation.definition.tag.end.jsx",
+      "scope": "punctuation.definition.tag",
       "settings": {
         "foreground": palette.fgWhite
       }
