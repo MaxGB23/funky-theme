@@ -90,6 +90,8 @@ Popular dark themes — Dracula Theme, Material Theme, Tokyo Night - often recyc
 
 ## Recommended editor settings
 
+### Theme settings
+
 Funky Theme is tested and tuned against the following editor settings. They are **recommended, not required** — the theme works with any font and spacing, but this is the setup it was designed and validated with:
 
 ```json
@@ -99,7 +101,7 @@ Funky Theme is tested and tuned against the following editor settings. They are 
   "editor.lineHeight": 23,
   "editor.tabSize": 2,
   "editor.fontSize": 14,
-  "editor.mouseWheelZoom": true
+  "editor.bracketPairColorization.enabled": true
 }
 ```
 
@@ -107,7 +109,23 @@ Funky Theme is tested and tuned against the following editor settings. They are 
 >
 > **Note**: Cascadia Code isn't bundled with Funky Theme. If it isn't installed on your system, VS Code falls back to a system monospace font.
 >
-> `editor.mouseWheelZoom` lets you scale the editor text independently with Ctrl+scroll — the theme is validated at `14`, but if you prefer a compact UI (set a lower `window.zoomLevel` for fewer visual distractions), you can enlarge the code back to a comfortable size without affecting panels or tabs.
+> `editor.bracketPairColorization` is the primary bracket rendering mode — the palette is configured for it. If disabled, VS Code falls back to a basic bracket colorization that doesn't leverage the theme's semantic colors.
+
+### Personal recommendations
+
+Settings the maintainer enjoys — not required, but they make the editor feel better:
+
+```json
+{
+  "editor.cursorBlinking": "expand",
+  "editor.cursorSmoothCaretAnimation": "on",
+  "editor.mouseWheelZoom": true
+}
+```
+
+> Cursor animations add smoothness to caret movement — some find them fluid, others distracting.
+>
+> `editor.mouseWheelZoom` scales only the editor text with Ctrl+scroll — unlike `window.zoomLevel`, which scales the entire UI (panels, sidebars, tabs). Handy if you prefer a compact UI but comfortable code size, though not everyone adjusts their zoom on the fly.
 
 ---
 
