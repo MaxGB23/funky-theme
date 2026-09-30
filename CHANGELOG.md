@@ -4,6 +4,10 @@ All notable changes to the Funky Theme extension will be documented in this file
 
 ## [Unreleased]
 
+_No changes since the last release._
+
+## [3.2.0] - 2026-09-29
+
 ### Added
 
 - `pnpm verify:vsix` now reads `extension/changelog.md` out of the packaged vsix and fails unless the newest released section matches `package.json`'s version and every `###` heading is a release category. Catches a stale vsix carrying the previous release's notes, and a non-category heading that the release rename would have swept into a released section.
