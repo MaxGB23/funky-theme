@@ -697,12 +697,6 @@ module.exports = {
       }
     },
     {
-      "scope": "tag.decorator.js entity.name.tag.js, tag.decorator.js punctuation.definition.tag.js",
-      "settings": {
-        "foreground": palette.blueMethod
-      }
-    },
-    {
       "scope": "punctuation.definition.tag",
       "settings": {
         "foreground": palette.fgWhite

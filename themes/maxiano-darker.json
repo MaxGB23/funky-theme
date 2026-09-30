@@ -466,12 +466,6 @@
       }
     },
     {
-      "scope": "tag.decorator.js entity.name.tag.js, tag.decorator.js punctuation.definition.tag.js",
-      "settings": {
-        "foreground": "#82aaff"
-      }
-    },
-    {
       "scope": "punctuation.definition.tag",
       "settings": {
         "foreground": "#ffffff"

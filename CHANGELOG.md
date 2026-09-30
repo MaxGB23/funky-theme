@@ -7,6 +7,7 @@ All notable changes to the Funky Theme extension will be documented in this file
 ### Fixed
 
 - XML tag punctuation now renders in the theme's white foreground — the general `punctuation` scope in the cyan rule was overriding the specific `punctuation.definition.tag` rule. Removed the general scope from the cyan rule and simplified the white rule to a single `punctuation.definition.tag` scope (language-specific variants were redundant).
+- Removed dead decorator rule (`tag.decorator.js entity.name.tag.js, tag.decorator.js punctuation.definition.tag.js`) — the `tag.*` scope family is reserved for markup grammars, not JS/TS decorators, so the rule never matched any token.
 
 ## [3.2.0] - 2026-09-29
 
