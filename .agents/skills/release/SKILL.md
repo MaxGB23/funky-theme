@@ -1,6 +1,6 @@
 ---
 name: release
-description: "Trigger: release, publicar versión, generar vsix, crear GitHub release, bump version, package theme. Run the full funky-theme release pipeline."
+description: "Trigger: release, publish version, generate vsix, create GitHub release, bump version, package theme. Run the full funky-theme release pipeline."
 license: MIT
 metadata:
   author: maxgb23
@@ -63,7 +63,7 @@ Use when the user asks to release, publish, package a new version, generate a `.
 - End with a known-issues or "no issues found" line only when relevant: `No issues found after extended testing.`
 - No emojis. No AI attribution. Match the version number exactly.
 - Release notes are DERIVED from the finalized changelog section (see section intro), so their bullets and order are identical by construction — only the heading format differs. Never re-draft the notes independently of the changelog.
-- **Content boundary** (`<boundary>`): when the release is the stable that closes a pre-release line (rc/beta/alpha), the boundary is the last STABLE tag and bullets are assembled from the accumulated pre-release bodies (`gh release view <tag> --json body`) plus `git log <último-estable>..HEAD` — users who never tried the RCs see the whole line as new. Otherwise the boundary is the last tag.
+- **Content boundary** (`<boundary>`): when the release is the stable that closes a pre-release line (rc/beta/alpha), the boundary is the last STABLE tag and bullets are assembled from the accumulated pre-release bodies (`gh release view <tag> --json body`) plus `git log <last-stable>..HEAD` — users who never tried the RCs see the whole line as new. Otherwise the boundary is the last tag.
 
 ## Decision Gates
 
@@ -78,8 +78,8 @@ Use when the user asks to release, publish, package a new version, generate a `.
 
 1. Ensure working tree changes are backported to `src/theme-config.js` (use palette tokens for repeated colors).
 2. **Determine version bump**
-   - **Release boundary:** el corte SIEMPRE es el tag publicado más reciente. NO confíes solo en los tags locales (`git tag` los puede tener desactualizados): primero `git fetch --tags`, compara con `git ls-remote --tags origin`, y usa el tag más reciente de ambos. Enumerar `git log --oneline <último-tag>..HEAD` ANTES de decidir el bump y de verificar que el `[Unreleased]` acumulado cubra todo el rango — la plantilla no elimina este paso. Todo lo que esté en el rango entra en la release, incluidos merges/PRs de sesiones anteriores nunca liberados.
-   - Leer `package.json` y determinar el tipo de bump:
+   - **Release boundary:** the cutoff is ALWAYS the latest published tag. Do not trust local tags alone (`git tag` can be stale): first `git fetch --tags`, compare with `git ls-remote --tags origin`, and use the most recent tag from both. Run `git log --oneline <last-tag>..HEAD` BEFORE deciding the bump and verifying that the accumulated `[Unreleased]` covers the full range — the template does not skip this step. Everything in the range goes into the release, including merges/PRs from previous sessions that were never released.
+   - Read `package.json` and determine the bump type:
 
      | Change type | Bump | Example |
      |-------------|------|---------|
@@ -89,8 +89,8 @@ Use when the user asks to release, publish, package a new version, generate a `.
 
    - If the notes will have an `### Added` section, the bump cannot be PATCH: new keys change behavior that previously used VS Code defaults.
    - For themes, "breaking" = identity or semantic change (hue-family overhaul, color-meaning reassignment, contrast-philosophy change): if users must re-learn the theme, it is MAJOR. Diff size alone never upgrades PATCH.
-   - Preguntar al usuario para confirmar si es ambiguo.
-3. Bump `version` en `package.json` según el bump determinado.
+   - Ask the user to confirm if ambiguous.
+3. Bump `version` in `package.json` per the determined bump.
 4. **Finalize CHANGELOG.md BEFORE packaging** by renaming `## [Unreleased]` → `## [<version>] - <YYYY-MM-DD>`, then prepend a fresh empty `## [Unreleased]` with its placeholder (the placeholder is replaced by the first real entry; if a release happens while it still sits there — e.g. an empty section — remove it during finalize so it never leaks into the released section). **The renamed block IS the release content — consume it, never rewrite it.** Entries accumulate there per work unit (see `AGENTS.md`); this step is a rename plus a completeness check, not a reconstruction. Verify with `git log --oneline <boundary>..HEAD` that every shipped work unit has a corresponding entry, and if one is missing, ADD IT HERE (while the block is still `[Unreleased]`) rather than shipping a changelog that omits shipped work — do not reconstruct the section from commit subjects, because a commit subject preserves the *what* and loses the *why*. For rc/beta/alpha releases, SKIP this step entirely — an RC never creates a changelog section (Hard Rule); its `[Unreleased]` remains in the packaged changelog.
 5. Canonical flow: `pnpm install && pnpm build && pnpm package`. Minimum viable: `pnpm run package` (builds all 5 variants into `/themes`, then packs `funky-theme-vscode-<ver>.vsix`). Runs AFTER step 4 so the packaged `extension/changelog.md` carries the finalized section — packaging before finalize ships a stale changelog inside the vsix.
 6. Verify output: build logs list 5 variants; spot-check generated JSONs (e.g. changed keys); then run **`pnpm verify:vsix`** (wraps `node scripts/verify-vsix.js`, auto-detects `funky-theme-vscode-<version>.vsix` from `package.json`). It asserts BOTH halves, and a FAIL on either means fix the cause and re-run `pnpm package` + `pnpm verify:vsix` — never upload a vsix that fails:
@@ -106,9 +106,9 @@ Use when the user asks to release, publish, package a new version, generate a `.
    > Use `--notes-file`, never inline `--notes`: both Windows and Unix shells corrupt Markdown backticks (PowerShell `` `t ``/`` `n ``; bash command substitution). The file bypasses the shell, so notes are byte-identical on any OS. Write `RELEASE_NOTES.md` raw (`Set-Content -Raw` on PowerShell) so backticks survive verbatim.
    > After the release is created, **delete the scratch file** (`Remove-Item RELEASE_NOTES.md` on Windows / `rm RELEASE_NOTES.md` on Unix). It must never be committed or pushed.
 9. **Marketplace publication is HUMAN work** — the agent does NOT upload (stable releases only). For rc/beta/alpha, SKIP this step entirely — no handoff message, nothing to upload. After a stable GitHub release, hand off with this message:
-   > Release lanzada. Siguiente paso para ti: sube manualmente el vsix empaquetado al VS Code Marketplace y a Open VSX.
-   - VS Code Marketplace: marketplace.visualstudio.com/manage → MaxGB23 → arrastrar el vsix (login Microsoft, cero PAT). Never bare `vsce publish` (auto-bumps and creates a commit+tag).
-   - Open VSX: `npx ovsx publish funky-theme-vscode-<version>.vsix -p <OPEN_VSX_TOKEN>` (namespace MaxGB23 + access token) — canal para editores VS Code-compatibles: VSCodium, Google Antigravity, Cursor, Windsurf/Devin Desktop, AWS Kiro, Gitpod, Eclipse Theia.
+   > Release published. Next step for you: manually upload the packaged vsix to VS Code Marketplace and Open VSX.
+   - VS Code Marketplace: marketplace.visualstudio.com/manage → MaxGB23 → drag the vsix (Microsoft login, zero PAT). Never bare `vsce publish` (auto-bumps and creates a commit+tag).
+   - Open VSX: `npx ovsx publish funky-theme-vscode-<version>.vsix -p <OPEN_VSX_TOKEN>` (namespace MaxGB23 + access token) — channel for VS Code-compatible editors: VSCodium, Google Antigravity, Cursor, Windsurf/Devin Desktop, AWS Kiro, Gitpod, Eclipse Theia.
 10. Report the release URL, the changelog commit, and the commit hashes included.
 
 ## Output Contract
