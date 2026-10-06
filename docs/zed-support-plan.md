@@ -1,6 +1,6 @@
 # Plan de Soporte a Zed — Funky Theme
 
-> **Estado:** Borrador v1 — **PENDIENTE DE REVISIÓN Y APROBACIÓN**
+> **Estado:** v2 — **APROBADO 2026-10-06**
 > **Fecha:** 2026-10-06
 > **Objetivo:** primera release pública de soporte inicial para Zed en ≤ 2 días
 > **Bloqueante:** este documento requiere aprobación antes de implementar nada
@@ -9,6 +9,10 @@
 > (VS Code ↔ Zed independientes, changelogs y boundaries separados), recuento corregido,
 > citas y aceptación condicionada. Verificada contra `zed.dev/docs` (publishing, license,
 > updating) y contra el repo (`release` skill v1.12, `verify-vsix.js`, `.vscodeignore`).
+>
+> **Rev. v2:** Q1/Q2/Q4/Q5 decididas (ID `funky-theme`; HC y Mix fuera de Zed; sin release ligera
+> en v0.1). Alcance Zed v0.1 = 3 variantes (Dark, Darker, Italic). Mecánica de llenado de
+> changelogs en §7.5.
 
 ---
 
@@ -28,7 +32,7 @@ Decisiones centrales (detalladas en §4):
 | D6 | Distribución por fases | v0.1 = instalación local (carpeta `themes/` o dev extension); registro Zed después |
 | D7 | Automatización de registry PRs | GitHub Actions con script `gh` propio tras un primer PR manual humano; agente local con `gh` descartado |
 | D8 | Cadence simétrica por artefacto | Cada canal releasea solo si SU artefacto cambió; cambio de fuente compartida rebuilda ambos pero nunca fuerza bump cruzado |
-| D9 | Alcance v0.1 | Las 5 variantes generadas (HC sujeto a Q2), verificación priorizada (Dark/Darker primero) |
+| D9 | Alcance v0.1 | 3 variantes (Dark, Darker, Italic); HC y Mix sin soporte en Zed; verificación Dark/Darker primero |
 
 ---
 
@@ -88,9 +92,9 @@ Nuestro source: **54 tokens de paleta, 210 claves `colors`, 97 reglas `tokenColo
 | Sintaxis: 97 reglas → ~49 tokens | Prefix matching preserva jerarquía (`keyword` + `keyword.control` coexisten) | Tiering conservado ✅ |
 | **~15 reglas sin equivalente** | `acejump.*` (4), `sublimelinter.*` (3), `brackethighlighter.*` (3), `*.find-in-files` (2), `invalid.*` (3) — scopes de extensiones VS Code | Se descartan sin regresión para nadie |
 | **`*.git_gutter` (5) NO muere** | → `version_control.added/deleted/modified/ignored` + status colors (`created`, `deleted`, …) | Mapeo explícito ✅ |
-| **Selectores stack** (`meta.function entity.name.function`, `text.html.markdown markup.raw.inline`, …) | Zed colorea la **captura simple**, no el stack TextMate | ~15–20 reglas se aplanan: p.ej. el bold de "definición" de Dark Mix pasará a aplicarse a toda `entity.name.function` — **decidir si se aplana o se descarta** (limitación conocida a documentar) |
+| **Selectores stack** (`meta.function entity.name.function`, `text.html.markdown markup.raw.inline`, …) | Zed colorea la **captura simple**, no el stack TextMate | Moot en v0.1: Mix está fuera de alcance (Q5). Si Mix vuelve algún día, la decisión registrada es descartar la distinción definición-vs-uso y documentarlo |
 | Bracket colorization nativa (`editorBracketHighlight.*`) | Sin clave equivalente directa; Zed tiene `accents[]` (colores cíclicos para rainbow brackets/indent) | Mapear niveles 1–3 a `accents` |
-| HC (`hc-black`, `contrastBorder`, …) | Zed solo conoce `light|dark`; no existe modelo HC de VS Code | Variante HC = "parcial"; documentar |
+| HC (`hc-black`, `contrastBorder`, …) | Zed solo conoce `light|dark`; no existe modelo HC de VS Code | HC fuera de alcance en Zed (Q2); documentar la ausencia en el README |
 | Terminal ANSI | Zed tiene los 16 + 8 `dim_*` + `bright_foreground/dim_foreground` | 1:1 para nuestros 16; `dim_*` opcional (omitir = default) |
 
 **Recuento v1 (corrige la estimación previa de 22 descartadas):** 15 reglas sin equivalente
@@ -129,7 +133,7 @@ Automatización existente (verificada):
 
 **Decisión:** generar y versionar el soporte Zed dentro de este repo, en `zed/`.
 
-**Alternativa descartada:** repo hermano `funky-theme-zed` (como `funky-theme-tui`).
+**Alternativa descartada:** repo hermano separado (p. ej. `funky-theme-zed`, como `funky-theme-tui`). Como nombre de repo sería válido; como ID de extensión no (ver Q1).
 
 **Justificación:**
 
@@ -149,8 +153,8 @@ Automatización existente (verificada):
 const { palette } = require('./theme-config.js');  // única fuente de la paleta
 const zedMap = { ... };               // clave Zed → token palette / key colors
 const zedDarkerBackgrounds = { ... }; // subset aplicable a keys Zed (ver D3; nombre propio para no colisionar con el de build.js)
-const hcOverrides = { ... };          // overrides HC con keys Zed (solo si Q2 aprueba shippear HC)
-module.exports = { zedMap, zedDarkerBackgrounds, hcOverrides };
+module.exports = { zedMap, zedDarkerBackgrounds };
+// Sin hcOverrides: HC no tiene soporte en Zed (Q2). Sin perfiles Mix: Mix no tiene soporte en Zed (Q5).
 ```
 
 **Alternativa descartada:** todo en `theme-config.js`.
@@ -257,7 +261,7 @@ su artefacto (`themes/*.json` vs `zed/themes/*.json`) y solo el que difirió rel
 funky-theme-vscode/
 ├── src/
 │   ├── theme-config.js        # SOURCE OF TRUTH (sin cambios estructurales)
-│   └── zed-config.js          # NUEVO: zedMap + zedDarkerBackgrounds + hcOverrides(Zed)
+│   └── zed-config.js          # NUEVO: zedMap + zedDarkerBackgrounds (sin HC ni Mix — Q2/Q5)
 ├── scripts/
 │   ├── build.js               # VS Code (sin cambios)
 │   └── build-zed.js           # NUEVO: genera zed/themes/*.json
@@ -266,7 +270,7 @@ funky-theme-vscode/
 │   ├── LICENSE                # NUEVO: copia MIT (requisito del registro)
 │   ├── CHANGELOG.md             # NUEVO: historial versionado de Zed (ver D5)
 │   └── themes/
-│       └── funky-theme.json   # GENERADO: family con las 5 variantes, todas appearance=dark
+│       └── funky-theme.json   # GENERADO: family con 3 variantes (Dark, Darker, Italic), todas appearance=dark
 ├── package.json               # + script "build:zed"
 ├── .vscodeignore              # SIN CAMBIOS (deny-all ya excluye zed/)
 └── scripts/verify-vsix.js     # SIN CAMBIOS
@@ -286,7 +290,7 @@ src/theme-config.js ──► palette ──┬──► scripts/build.js      �
 Detalle de `build-zed.js`:
 
 1. Resuelve `zedMap` → colores reales (**falla** si el token no existe).
-2. Aplica perfiles: `ultra-nocturno` (transform D3 vía `zedDarkerBackgrounds`), `expressive`/`mix` (font rules → `font_style`/`font_weight`; ver Q5 para las reglas stack que se dropean), `high-contrast` (overrides con keys Zed; solo si Q2 aprueba shippear HC).
+2. Aplica perfiles: `ultra-nocturno` (transform D3 vía `zedDarkerBackgrounds`) e `italic` (font rules → `font_style`/`font_weight`). Sin perfil Mix ni high-contrast (Q2/Q5: fuera de alcance).
 3. Emite theme family con nombres públicos (D9).
 4. Valida: JSON parseable + claves críticas presentes (`editor.background`, `players[0]`, `syntax.keyword`, …).
 
@@ -296,10 +300,10 @@ Detalle de `build-zed.js`:
 
 | ID | Tarea | Ruta | Evidencia de done |
 |----|-------|------|-------------------|
-| T1 | `src/zed-config.js`: `zedMap` UI + syntax + players + accents (referenciando solo tokens existentes) + `zedDarkerBackgrounds` + `hcOverrides` (si Q2) | Delegada (writer) | `require()` OK; sin referencias inválidas |
-| T2 | `scripts/build-zed.js` + script `build:zed` en `package.json` | Delegada (writer) | `pnpm build:zed` genera las variantes aprobadas en Q2; nombres = labels públicos |
+| T1 | `src/zed-config.js`: `zedMap` UI + syntax + players + accents (referenciando solo tokens existentes) + `zedDarkerBackgrounds` | Delegada (writer) | `require()` OK; sin referencias inválidas |
+| T2 | `scripts/build-zed.js` + script `build:zed` en `package.json` | Delegada (writer) | `pnpm build:zed` genera 3 variantes (Dark, Darker, Italic); nombres = labels públicos |
 | T3 | `zed/extension.toml` + `zed/LICENSE` (copia MIT + check de drift) + `zed/CHANGELOG.md` (sección `0.1.0`) | Delegada (writer) | Estructura válida; license check verde |
-| T4 | Validación funcional: instalar como dev extension en Zed; side-by-side **Dark y Darker** vs VS Code (fondo, selección, cursor, keywords, strings, funciones, terminal, git, markdown, tabs, paleta de comandos) | Directa (verificación visual — decisión humana) | Checklist visual firmado; notas de drift (descontando el apagado macOS de R1 — no es drift del theme) |
+| T4 | Validación funcional: instalar como dev extension en Zed; side-by-side **Dark y Darker** vs VS Code (fondo, selección, cursor, keywords, strings, funciones, terminal, git, markdown, tabs, paleta de comandos) | Directa (verificación visual — decisión humana) | Checklist visual firmado (Dark/Darker side-by-side + Italic tipografía en Windows); notas de drift (en Windows no aplica el apagado macOS de R1) |
 | T5 | Ajustes de mapping observados en T4 (iteración única) | Delegada (writer) | Diff revisado, regresión visual OK |
 | T6 | Docs sincronizados: README (sección Zed + install a/b + disclaimer sRGB + Roadmap actualizado), `docs/how-to-modify-theme.md` (patrón nuevo: build Zed + `zedMap` — justificado como patrón de build nuevo, AGENTS.md:28), `zed/CHANGELOG.md` (sección `0.1.0`) + UNA línea `Docs` en `CHANGELOG.md` raíz | Directa/delegada | `pnpm verify:vsix` pasa; guía actualizada **en el mismo commit** |
 | T7 | Regresión VS Code: `pnpm build && pnpm package && pnpm verify:vsix` | Directa (bounded) | vsix idéntico al previo salvo changelog |
@@ -364,6 +368,16 @@ cada operación usa boundary filtrado — verificar con `git fetch --tags` prime
 Un tag `zed-v*` jamás cuenta como boundary de VS Code ni viceversa. Actualizar la skill ANTES del
 primer tag `zed-v*` (dueño: T10 o tarea previa al T8).
 
+### 7.5 Llenado de changelogs (sin conflictos entre plataformas)
+
+Cada work unit escribe en el `[Unreleased]` de SU canal y solo del suyo:
+- Cambio VS Code (colores, scopes, guía que lo describa) → `CHANGELOG.md` raíz.
+- Cambio Zed (mapping, `extension.toml`, `build-zed.js`) → `zed/CHANGELOG.md`.
+- Cambio de fuente compartida (`palette`, `colors`) → entrada en AMBOS (cada una describe el efecto en su artefacto).
+- Un commit que toque ambos canales trae ambas entradas; son archivos distintos, nunca hay conflicto de contenido por plataforma.
+- Los finalize son independientes: el step 4 de la skill renombra `[Unreleased]` → versión solo en el archivo del canal que releasea. `verify-vsix.js` solo mira el raíz, así que el changelog Zed jamás lo rompe.
+- Bootstrap v0.1: `zed/CHANGELOG.md` nace con su sección `0.1.0`; el raíz recibe UNA línea `Docs` que viaja con la próxima versión VS Code que salga (no fuerza release).
+
 **Decisión de estructura (sesión 2026-10-06):** la skill `release` NO se parte por plataforma ni se crea
 skill conjunta: un solo entry point con router por canal (VS Code-only / Zed-only / conjunto desde fuente
 compartida) + detalle pesado en `references/`. El bump Zed no es skill sino workflow disparado por tag.
@@ -380,7 +394,7 @@ Aplicar al implementar Zed, no antes.
 | **R3** — Latencia/rechazo en review del registro | Alta para Fase 2 | D6: release v0.1 no depende del registro |
 | **R4** — CLA: automation rechazada si autor es bot | Alta (fase 2) | PAT de cuenta con CLA firmada; documentado en workflow |
 | **R5** — Límite 3 PRs abiertos / ventana 3 semanas | Media | Dedupe en automation; bump solo cuando toca (D8) |
-| **R6** — Fidelidad: selectores stack aplanados, HC parcial, ~15 reglas descartadas | Media | "Known limitations" en README Zed; priorizar verificación Dark/Darker (D9) |
+| **R6** — Fidelidad: ~15 reglas descartadas, HC y Mix fuera de alcance | Media | "Known limitations" en README Zed; priorizar verificación Dark/Darker (D9) |
 | **R7** — Drift futuro: token nuevo en `palette` no mapeado a Zed | Baja | `build-zed.js` valida referencias; revisión de `zedMap` como checklist de cada cambio de paleta (documentar en guía) |
 | **R8** — `zed/LICENSE` desincronizado de la raíz | Baja | Check en build que falle ante diff |
 | **R9** — Expiración del PAT del workflow | Baja | Falla cerrada (no abre PR); recordatorio de rotación desde el día uno (T10) |
@@ -389,7 +403,7 @@ Aplicar al implementar Zed, no antes.
 
 ## 9. Criterios de aceptación (v0.1)
 
-- [ ] `pnpm build:zed` genera `zed/themes/funky-theme.json` con las variantes aprobadas en Q2 (5 si HC shippea como parcial documentado, 4 + HC diferido en caso contrario), nombres públicos.
+- [ ] `pnpm build:zed` genera `zed/themes/funky-theme.json` con 3 variantes (Dark, Darker, Italic), nombres públicos (`Funky ...`, no los `Maxiano ...` internos).
 - [ ] Referencias de `zedMap` 100% válidas (build falla ante typo).
 - [ ] Instalación dev-extension en Zed funcional; **Dark y Darker** aprobados visualmente side-by-side (checklist T4).
 - [ ] `pnpm build && pnpm package && pnpm verify:vsix` pasa — **vsix sin `zed/`** y changelog con la entrada.
@@ -408,6 +422,7 @@ Aplicar al implementar Zed, no antes.
 - Semantic tokens Zed (vienen off; nuestro theme no los usa).
 - Icon theme.
 - Registry: alta inicial, workflow de bump. (Zed no tiene RCs por D8.)
+- Variantes Mix y HC en Zed: sin soporte por decisión explícita (Q2/Q5) — no hay backlog activo.
 
 ---
 
@@ -415,11 +430,11 @@ Aplicar al implementar Zed, no antes.
 
 | Q | Pregunta | Recomendación |
 |---|----------|---------------|
-| Q1 | **ID de extensión:** `funky-theme` (brand público) vs `maxiano-theme` (nombre interno)? Ambos libres en registry; ambos cumplen `-theme` y sin palabra `zed` | `funky-theme` |
-| Q2 | **¿Ship de High Contrast en v0.1?** Zed no tiene modelo HC; la variante será parcial (bordes accent sí, resto ≈ Dark) | Ship las 5 + "HC es parcial" en README — o diferir HC, decisión del revisor |
-| Q3 | **Automatización registry:** script `gh` propio en Actions tras PR manual (decidido) vs `huacnlee/zed-extension-action` (descartada: 3ra dependencia) vs agente local con `gh` (descartado: identidad sin acotar) | Script propio en Actions (D7) |
-| Q4 | **¿GitHub Release ligera para tags `zed-v*` (notas sin vsix)?** Default v0.1: no — tag anotado + `zed/CHANGELOG.md` bastan; releases de GitHub = VS Code + vsix | No en v0.1 (revisitar si el registro o los usuarios piden URL de release) |
-| Q5 | **Aplanar o descartar** los selectores stack de mix/italic (p.ej. bold solo en "definición" de función) cuando Zed solo ve la captura simple | Descartar la distinción en v0.1 y documentar (el bold global cambiaría la identidad de la variante); las reglas `font_style`/`font_weight` 1:1 de Italic/Mix sí se mapean (D9) — solo se dropean las distinciones definición-vs-uso |
+| Q1 ✅ DECIDIDO | **ID de extensión:** `funky-theme` — `maxiano` es legacy nostálgico (solo vive en los nombres de JSON, que no afectan nada; el package es `funky-theme-vscode`). `funky-theme-zed` queda descartado: contiene la palabra `zed`, prohibida en IDs | `funky-theme` |
+| Q2 ✅ DECIDIDO | **¿Soporte HC en Zed?** No — cada cambio exige adaptación costosa (no es un transform limpio como Darker) y nadie la usa | Sin soporte: HC no se genera ni se documenta en Zed |
+| Q3 ✅ DECIDIDO | **Automatización registry:** script `gh` propio en Actions tras PR manual (decidido) vs `huacnlee/zed-extension-action` (descartada: 3ra dependencia) vs agente local con `gh` (descartado: identidad sin acotar) | Script propio en Actions (D7) |
+| Q4 ✅ DECIDIDO | **¿GitHub Release ligera para tags `zed-v*`?** No en v0.1 — tag anotado + `zed/CHANGELOG.md` bastan; releases de GitHub = VS Code + vsix | No en v0.1 (revisitar si el registro o los usuarios piden URL de release) |
+| Q5 ✅ DECIDIDO | **¿Soporte Mix en Zed?** No — al caer la variante completa, la duda de aplanar-vs-descartar se disuelve | Sin soporte Mix en Zed |
 
 ---
 
@@ -448,7 +463,8 @@ Aplicar al implementar Zed, no antes.
 
 | Rol | Persona | Fecha | Veredicto | Notas |
 |-----|---------|-------|-----------|-------|
-| Autor | (sesión actual) | 2026-10-06 | Borrador enviado (v0) / Rev. v1 con correcciones de coherencia | Ver §11 Q1–Q5 para lo que sigue abierto |
+| Autor | (sesión actual) | 2026-10-06 | Borrador v2 con Q1/Q2/Q4/Q5 decididas | Aprobado por el revisor en sesión |
+| Revisor 1 | (dueño) | 2026-10-06 | ☑ Aprobar | Q1/Q2/Q4/Q5 decididas; alcance 3 variantes |
 | Revisor 1 | | | ☐ Aprobar ☐ Aprobar con cambios ☐ Rechazar | |
 | Revisor 2 | | | ☐ Aprobar ☐ Aprobar con cambios ☐ Rechazar | |
 
