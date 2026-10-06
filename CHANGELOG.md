@@ -4,11 +4,19 @@ All notable changes to the Funky Theme extension will be documented in this file
 
 ## [Unreleased]
 
+_No changes since the last release._
+
+## [3.2.1] - 2026-10-05
+
 ### Fixed
 
 - XML tag punctuation now renders in the theme's white foreground — the general `punctuation` scope in the cyan rule was overriding the specific `punctuation.definition.tag` rule. Removed the general scope from the cyan rule and simplified the white rule to a single `punctuation.definition.tag` scope (language-specific variants were redundant).
 - Removed dead decorator rule (`tag.decorator.js entity.name.tag.js, tag.decorator.js punctuation.definition.tag.js`) — the `tag.*` scope family is reserved for markup grammars, not JS/TS decorators, so the rule never matched any token.
 - Removed 9 obsolete JSON meta rules (`source.json meta meta...`) — Sublime Text 2012 hacks that target `string.quoted.double.json` with `meta.structure.dictionary.json` but not `meta.structure.dictionary.json`. VS Code's grammar tokenizes keys as `support.type.property-name.json`, so the rules never matched. JSON keys are already covered by the single `support.type.property-name.json` rule.
+
+### Docs
+
+- README: recommended editor settings split into **Theme settings** — the setup the palette is tuned for, now naming `editor.bracketPairColorization.enabled` instead of `editor.mouseWheelZoom` — and **Personal recommendations** (caret animations, `editor.mouseWheelZoom`), so what the theme needs is no longer mixed with maintainer taste.
 
 ## [3.2.0] - 2026-09-29
 
