@@ -1,0 +1,7 @@
+id = "funky-theme"
+name = "Funky Theme"
+schema_version = 1
+version = "0.1.0"
+authors = ["MaxGB23"]
+description = "A modern, vibrant dark theme with semantic syntax highlighting and low eye strain."
+repository = "https://github.com/maxgb23/funky-theme"
