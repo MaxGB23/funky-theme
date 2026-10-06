@@ -4,14 +4,33 @@ description: "Trigger: release, publish version, generate vsix, create GitHub re
 license: MIT
 metadata:
   author: maxgb23
-  version: "1.12"
+  version: "1.13"
 ---
 
 # Release Pipeline (funky-theme)
 
 ## Activation Contract
 
-Use when the user asks to release, publish, package a new version, generate a `.vsix`, or create a GitHub release for this theme.
+Use when the user asks to release, publish, package a new version, generate a `.vsix`, or create a GitHub release for this theme — VS Code channel, Zed channel (`zed-v*`), or both.
+
+## Channel router (VS Code ↔ Zed)
+
+This repo ships two independent channels from one source of truth (`docs/zed-support-plan.md` §D5/D8):
+
+| Channel | Version file | Changelog | Tag | Distributes via |
+|---|---|---|---|---|
+| VS Code | `package.json` | `CHANGELOG.md` | `vX.Y.Z` | GitHub Release + vsix → manual Marketplace/Open VSX |
+| Zed | `zed/extension.toml` | `zed/CHANGELOG.md` | `zed-vX.Y.Z` (annotated) | Local install (v0.1); Zed registry PR post-v0.1 |
+
+**Route first:** VS Code-only change → VS Code pipeline below. Zed-only change (mapping, `extension.toml`, `build-zed.js`) → Zed channel (§Zed channel release). Shared-source change (`palette`, `colors`) → rebuild BOTH targets, then each channel releases only if ITS artefact changed (`themes/*.json` vs `zed/themes/*.json`); a channel whose artefact is byte-identical neither bumps nor tags (D8). RCs exist only on VS Code and never bump Zed.
+
+**Boundaries are per-channel, never mixed:** first `git fetch --tags`, then
+- VS Code boundary: latest tag matching `v[0-9]*` → `git log --oneline $(git describe --tags --match "v[0-9]*" --abbrev=0)..HEAD`
+- Zed boundary: latest tag matching `zed-v*` → `git log --oneline $(git describe --tags --match "zed-v*" --abbrev=0)..HEAD`
+
+A `zed-v*` tag is invisible to the VS Code pipeline and vice versa. If no tag matches yet (first release of the channel), the range is the channel's full history — do not borrow the other channel's tags as boundary.
+
+**Changelogs are per-channel:** each work unit writes `[Unreleased]` only in its channel's file (a shared-source change writes both, each describing its artefact's effect). Finalize renames `[Unreleased]` → version only in the releasing channel's file. `verify:vsix` guards the root changelog only.
 
 ## Hard Rules
 
@@ -110,6 +129,14 @@ Use when the user asks to release, publish, package a new version, generate a `.
    - VS Code Marketplace: marketplace.visualstudio.com/manage → MaxGB23 → drag the vsix (Microsoft login, zero PAT). Never bare `vsce publish` (auto-bumps and creates a commit+tag).
    - Open VSX: `npx ovsx publish funky-theme-vscode-<version>.vsix -p <OPEN_VSX_TOKEN>` (namespace MaxGB23 + access token) — channel for VS Code-compatible editors: VSCodium, Google Antigravity, Cursor, Windsurf/Devin Desktop, AWS Kiro, Gitpod, Eclipse Theia.
 10. Report the release URL, the changelog commit, and the commit hashes included.
+
+## Zed channel release
+
+1. Bump `version` in `zed/extension.toml` if needed (own semver line, starts at `0.1.0`; Zed has no RCs).
+2. `node scripts/build-zed.js` — must print 3 variants + validation PASS.
+3. Finalize `zed/CHANGELOG.md`: rename `## [Unreleased]` → `## [<version>]`, prepend a fresh empty `## [Unreleased]`. Consume the block, never rewrite it.
+4. Commit (conventional, English) + push; tag annotated `zed-v<version>` on pushed HEAD recording the coetaneous VS Code version in the tag message; push the tag. **No GitHub Release for `zed-v*`** (decided Q4) — source of truth is the tag + `zed/CHANGELOG.md`.
+5. Distribution for v0.1 = local install (README). Registry PRs are a separate post-v0.1 flow (human first PR, then Actions) and are never part of this skill.
 
 ## Output Contract
 
