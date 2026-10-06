@@ -79,6 +79,11 @@ Cuando un color aplica a una única variante (p.ej. `quickInput.*` que difiere e
 - Dark Italic parte de la MISMA capa de italic que Mix (comments, params, attributes, `variable.language`, alias, `storage.modifier`) y la extiende con `keyword.control` y `storage.type`; NO tiene bold de tipografía. Números y keywords genéricas quedan normales.
 - Mix añade bold SOLO en nombres de definición (`meta.function entity.name.function`, `entity.name.type`, `entity.name.class`), nunca en keywords: así la definición se distingue de la llamada aunque ambas compartan el cyan de funciones. La separación llamada/definición también es de color: el contenedor `meta.function-call` usa un rosa propio (`pinkAccent`) distinto del de params (`pinkLight`), y en gramáticas que emiten `meta.function-call.generic` (p. ej. Python) el contenedor cede al cyan de funciones.
 
+**Target Zed (compilación a otro editor):**
+- `src/zed-config.js` compone `palette` (importada de `theme-config.js`) en dos piezas: `zedMap` (clave Zed → token de paleta, o key de `colors` con prefijo `colors:`) y `zedDarkerBackgrounds` (subset del transform Darker aplicable a las keys Zed).
+- `scripts/build-zed.js` resuelve esas referencias y genera la familia (`zed/themes/funky-theme.json`): **toda referencia debe resolver o el build falla** — ningún typo pasa inadvertido.
+- Si agregas un token nuevo a `palette`, revisa si necesita mapeo en `zedMap` (checklist de cada cambio de paleta); si Zed no tiene destino para ese color, se documenta como limitación y no se mapea.
+
 ---
 
 ## 🗂️ Mapa de decisiones

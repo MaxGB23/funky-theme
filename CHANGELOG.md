@@ -4,7 +4,9 @@ All notable changes to the Funky Theme extension will be documented in this file
 
 ## [Unreleased]
 
-_No changes since the last release._
+### Docs
+
+- Zed support bootstrap (local-install v0.1): README section, theme-guide pattern note, and `zed/CHANGELOG.md`; no VS Code behavior change — versioned Zed history lives in `zed/CHANGELOG.md`.
 
 ## [3.2.1] - 2026-10-05
 

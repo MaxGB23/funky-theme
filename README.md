@@ -165,6 +165,36 @@ code --install-extension path/to/funky-theme-vscode-x.x.x.vsix
 
 ---
 
+## Zed support
+
+Funky Theme ships a Zed extension built from the same palette source of truth, with three dark variants: **Funky Dark**, **Funky Darker**, and **Funky Italic**. High Contrast and Mix are not shipped in Zed.
+
+### Installation (local, v0.1)
+
+The Zed extension is not in the official extension registry yet — install it locally with either path:
+
+**Option A: copy the theme file.** Copy `zed/themes/funky-theme.json` from this repo into your Zed themes folder:
+
+- macOS/Linux: `~/.config/zed/themes/`
+- Windows: `%USERPROFILE%\AppData\Roaming\Zed\themes\`
+
+Then pick a Funky variant in Zed via the theme picker.
+
+**Option B: dev extension.** In Zed, run `zed: install dev extension` from the command palette and select the `zed/` directory of this repo (it contains `extension.toml`).
+
+### Color note (upstream, not a theme bug)
+
+On macOS wide-gamut displays, Zed is not color-managed, so theme colors can look muted compared to VS Code — this affects every theme, not just Funky. Upstream issue: [zed-industries/zed#9057](https://github.com/zed-industries/zed/issues/9057).
+
+### Known limitations (v0.1)
+
+- Around 15 VS Code-only scopes have no Zed equivalent and are dropped: `acejump.*`, `sublimelinter.*`, `brackethighlighter.*`, `*.find-in-files`, and `invalid.*` (extension-specific scopes).
+- High Contrast and Mix variants are not shipped in Zed.
+- The autocomplete match highlight renders bold — Zed's renderer hardcodes it and exposes no theme key.
+- `editor.wrap_guide` / `editor.active_wrap_guide` are column rulers; the visible indent guides are `editor.indent_guide*` and `panel.indent_guide*`.
+
+---
+
 ## Terminals
 
 The integrated editor terminal already ships with Funky Theme's ANSI palette — no extra setup required, and it works across shells such as Bash, Zsh, PowerShell, and others. The palette is most noticeable in shells and CLI tools that make extensive use of colored output.
@@ -181,7 +211,7 @@ A standalone terminal palette for AI coding agents is being built in its own rep
 
 Forward-looking work that has not shipped yet. It lives here rather than in `CHANGELOG.md` on purpose: the changelog records what each version actually changed, so a roadmap that drifts into a released section misrepresents that version's history.
 
-- **Zed support** — planned, no work started yet.
+- **Zed support** — v0.1 shipped (local install, see [Zed support](#zed-support)); registry publication pending.
 - **Terminal-based AI agents** — see [Terminal-based AI Agents](#terminal-based-ai-agents-wip) above; the palette ships from its own repo, `funky-theme-tui`.
 
 ---
