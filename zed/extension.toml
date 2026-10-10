@@ -1,7 +1,7 @@
 id = "funky-theme"
 name = "Funky Theme"
 schema_version = 1
-version = "0.1.0"
+version = "0.2.0"
 authors = ["MaxGB23"]
-description = "A modern, vibrant dark theme with semantic syntax highlighting and low eye strain."
+description = "A modern, vibrant, and expressive dark color theme for Zed. Crafted for React, TypeScript, and web development, with semantic syntax highlighting, vivid colors, and low eye strain."
 repository = "https://github.com/maxgb23/funky-theme"

@@ -170,9 +170,21 @@ const zedMap = {
     'preproc': 'cyanAccent',
     'primary': 'fgBase',
     'property': 'fgWhite',
+    // Keys JSON (capture property.json_key del inspector): amarillo fuerte,
+    // igual que support.type.property-name.json en VS Code; no toca property generico
+    'property.json_key': 'yellowBase',
     'punctuation': 'cyanDim',
-    // Sin amarillo meta.brace aqui: el rainbow de Zed vive en accents[]
-    'punctuation.bracket': 'cyanDim',
+    // Brackets en el azul del nivel 3 de VS Code (testeado: el cyan chocaba
+    // con functions en `function()`, el amarillo/rosa saturaban); via colors
+    // para no duplicar el literal, igual que accents[] con foreground2/3
+    'punctuation.bracket': 'colors:editorBracketHighlight.foreground3',
+    // <> de HTML (capture punctuation.bracket.html en highlights.scm de Zed):
+    // blancos como punctuation.definition.tag en VS Code; el prefix matching
+    // de Zed lo limita a HTML sin tocar el amarillo generico
+    'punctuation.bracket.html': 'fgWhite',
+    // <> de JSX/TSX (capture punctuation.bracket.jsx en crates/grammars de
+    // Zed, tsx y javascript): blancos igual que en VS Code
+    'punctuation.bracket.jsx': 'fgWhite',
     'punctuation.delimiter': 'cyanDim',
     'punctuation.list_marker': 'yellowBase',
     'punctuation.markup': 'purpleGrey',

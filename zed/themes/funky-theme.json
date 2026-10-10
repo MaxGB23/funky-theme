@@ -254,13 +254,28 @@
             "font_style": null,
             "font_weight": null
           },
+          "property.json_key": {
+            "color": "#f6ff98ff",
+            "font_style": null,
+            "font_weight": null
+          },
           "punctuation": {
             "color": "#80ecffff",
             "font_style": null,
             "font_weight": null
           },
           "punctuation.bracket": {
-            "color": "#80ecffff",
+            "color": "#47b2ffff",
+            "font_style": null,
+            "font_weight": null
+          },
+          "punctuation.bracket.html": {
+            "color": "#ffffffff",
+            "font_style": null,
+            "font_weight": null
+          },
+          "punctuation.bracket.jsx": {
+            "color": "#ffffffff",
             "font_style": null,
             "font_weight": null
           },
@@ -634,13 +649,28 @@
             "font_style": null,
             "font_weight": null
           },
+          "property.json_key": {
+            "color": "#f6ff98ff",
+            "font_style": null,
+            "font_weight": null
+          },
           "punctuation": {
             "color": "#80ecffff",
             "font_style": null,
             "font_weight": null
           },
           "punctuation.bracket": {
-            "color": "#80ecffff",
+            "color": "#47b2ffff",
+            "font_style": null,
+            "font_weight": null
+          },
+          "punctuation.bracket.html": {
+            "color": "#ffffffff",
+            "font_style": null,
+            "font_weight": null
+          },
+          "punctuation.bracket.jsx": {
+            "color": "#ffffffff",
             "font_style": null,
             "font_weight": null
           },
@@ -1014,13 +1044,28 @@
             "font_style": null,
             "font_weight": null
           },
+          "property.json_key": {
+            "color": "#f6ff98ff",
+            "font_style": null,
+            "font_weight": null
+          },
           "punctuation": {
             "color": "#80ecffff",
             "font_style": null,
             "font_weight": null
           },
           "punctuation.bracket": {
-            "color": "#80ecffff",
+            "color": "#47b2ffff",
+            "font_style": null,
+            "font_weight": null
+          },
+          "punctuation.bracket.html": {
+            "color": "#ffffffff",
+            "font_style": null,
+            "font_weight": null
+          },
+          "punctuation.bracket.jsx": {
+            "color": "#ffffffff",
             "font_style": null,
             "font_weight": null
           },
