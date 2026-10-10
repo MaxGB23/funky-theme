@@ -4,7 +4,8 @@
 
 As terminal agents and AI handle more of the heavy lifting, the IDE is becoming less of a place to write everything and more of a place to review, understand, and refine. Funky Theme embraces that shift with bright, vibrant semantics — because if you're going to look at code, it shouldn't have to look dull.
 
-**Get it on the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=MaxGB23.funky-theme-vscode) · [Open VSX](https://open-vsx.org/extension/MaxGB23/funky-theme-vscode).**
+**Get it on the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=MaxGB23.funky-theme-vscode) · [Open VSX](https://open-vsx.org/extension/MaxGB23/funky-theme-vscode) · [Zed Extensions](https://zed.dev/extensions/funky-theme).**
+**Terminal AI agents (Beta): [funky-theme-tui](https://github.com/MaxGB23/funky-theme-tui) for Claude Code, OpenCode & Pi — install from repo.**
 
 ---
 
@@ -131,6 +132,13 @@ Settings the maintainer enjoys — not required, but they make the editor feel b
 
 ## 📦 Installation
 
+| Platform | Status |
+|---|---|
+| [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=MaxGB23.funky-theme-vscode) | Published |
+| [Open VSX](https://open-vsx.org/extension/MaxGB23/funky-theme-vscode) (Cursor, Antigravity, VSCodium…) | Published |
+| [Zed Extensions](https://zed.dev/extensions/funky-theme) | Published |
+| [Terminal AI agents](https://github.com/MaxGB23/funky-theme-tui) | Beta — install from repo |
+
 Funky Theme is available on both major VS Code-compatible registries — the **VS Code Marketplace** and **Open VSX** — plus the GitHub Releases `.vsix` for anything else. Pick the path that fits your editor.
 
 ### Option A: VS Code Marketplace (Recommended)
@@ -169,9 +177,11 @@ code --install-extension path/to/funky-theme-vscode-x.x.x.vsix
 
 Funky Theme ships a Zed extension built from the same palette source of truth, with three dark variants: **Funky Dark**, **Funky Darker**, and **Funky Italic**. High Contrast and Mix are not shipped in Zed.
 
-### Installation (local, v0.1)
+### Installation
 
-The Zed extension is not in the official extension registry yet — install it locally with either path:
+Get it directly: **[Zed Extensions](https://zed.dev/extensions/funky-theme)** — open Zed, run `zed: extensions`, search for **"Funky Theme"**, and install. Then pick a Funky variant via the theme picker.
+
+**Manual install (alternative).** If you prefer to sideload or test unreleased changes:
 
 **Option A: copy the theme file.** Copy `zed/themes/funky-theme.json` from this repo into your Zed themes folder:
 
@@ -204,15 +214,6 @@ The integrated editor terminal already ships with Funky Theme's ANSI palette —
 A standalone terminal palette for AI coding agents is being built in its own repo, [`funky-theme-tui`](https://github.com/MaxGB23/funky-theme-tui) — starting with gentle-shell, and with Pi along for the ride since gentle-shell runs on it, plus OpenCode and Claude Code. Two variants are planned, Funky Dark and Funky Darker, plus transparent background variants for people who run a custom terminal background. They are independent palettes — kept visually close to the editor theme, but tuned for the terminal experience, which is a different medium, so small variations per variant are expected. Minimal italics may be used where they aid readability, without a separate italic variant.
 
 > **Status:** WIP — currently around `v0.1.0`; nothing published yet. It will ship to package marketplaces (like Pi packages) once v1 is stable.
-
----
-
-## Roadmap
-
-Forward-looking work that has not shipped yet. It lives here rather than in `CHANGELOG.md` on purpose: the changelog records what each version actually changed, so a roadmap that drifts into a released section misrepresents that version's history.
-
-- **Zed support** — v0.1 shipped (local install, see [Zed support](#zed-support)); registry publication pending.
-- **Terminal-based AI agents** — see [Terminal-based AI Agents](#terminal-based-ai-agents-wip) above; the palette ships from its own repo, `funky-theme-tui`.
 
 ---
 
