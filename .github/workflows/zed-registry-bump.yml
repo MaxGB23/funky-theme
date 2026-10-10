@@ -8,13 +8,14 @@ name: Zed registry bump
 # that version and advancing the submodule gitlink to the tagged commit — no
 # clone of this repo's submodule is needed.
 #
-# Setup (done 2026-10-10):
+# Setup (done 2026-10-10, token type fixed same day):
 # - Fork zed-industries/extensions to MaxGB23/extensions.
-# - Fine-grained PAT on a CLA-signed human account
-#   (https://zed.dev/cla), limited to that fork with
-#   Contents: read/write + Pull requests: read/write,
-#   stored as repo secret ZED_REGISTRY_PAT.
-#   Classic PAT with the `repo` scope works as a fallback.
+# - CLASSIC PAT with the `repo` scope on a CLA-signed human account
+#   (https://zed.dev/cla), stored as repo secret ZED_REGISTRY_PAT.
+#   Must be classic: a fork-scoped fine-grained token cannot open the
+#   cross-repo PR against zed-industries/extensions (it would need access
+#   to the base repo, which we don't own) — verified live: createPullRequest
+#   refused with a fork-scoped fine-grained token.
 # - The commit is authored as the PAT owner: Zed's CLA bot rejects commits
 #   authored by github-actions[bot], which cannot sign the CLA.
 # - Rotation: the current PAT expires 2027-01-08. Expiry fails closed
