@@ -53,11 +53,11 @@ jobs:
       - name: Checkout tagged commit
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.inputs.tag || github.ref }}
+          ref: ${{ inputs.tag || github.ref }}
 
       - name: Verify tag matches zed/extension.toml version
         run: |
-          TAG="${{ github.event.inputs.tag || github.ref_name }}"
+          TAG="${{ inputs.tag || github.ref_name }}"
           case "${TAG}" in
             zed-v*.*.*) ;;
             *) echo "::error::Tag '${TAG}' must look like zed-vX.Y.Z"; exit 1 ;;
@@ -73,7 +73,7 @@ jobs:
       - name: Open version-bump PR against zed-industries/extensions
         env:
           GH_TOKEN: ${{ secrets.ZED_REGISTRY_PAT }}
-          TAG: ${{ github.event.inputs.tag || github.ref_name }}
+          TAG: ${{ inputs.tag || github.ref_name }}
           FORK: MaxGB23/extensions
           UPSTREAM: zed-industries/extensions
         run: |
@@ -141,14 +141,16 @@ jobs:
           # (as was done by hand on the first Add PR #7923).
           OPEN=$(gh api "repos/${UPSTREAM}/pulls?head=MaxGB23:${BRANCH}&state=open" --jq 'length')
           if [ "${OPEN}" = "0" ]; then
-            PR_BODY="Bumps funky-theme to v${VERSION}. Source tag: https://github.com/${GITHUB_REPOSITORY}/tree/${TAG}
-
-- [x] I've read [the contribution guidelines](https://github.com/zed-industries/extensions/blob/main/CONTRIBUTING.md) and followed the relevant guidance for adding or updating my extension."
+            {
+              echo "Bumps funky-theme to v${VERSION}. Source tag: https://github.com/${GITHUB_REPOSITORY}/tree/${TAG}"
+              echo ""
+              echo "- [x] I've read [the contribution guidelines](https://github.com/zed-industries/extensions/blob/main/CONTRIBUTING.md) and followed the relevant guidance for adding or updating my extension."
+            } > pr-body.md
             gh pr create \
               --repo "${UPSTREAM}" \
               --head "MaxGB23:${BRANCH}" \
               --title "Update funky-theme to v${VERSION}" \
-              --body "${PR_BODY}"
+              --body-file pr-body.md
           else
             echo "Registry PR already open for ${BRANCH}; branch was force-pushed, PR refreshed in place."
           fi
