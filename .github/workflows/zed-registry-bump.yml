@@ -1,0 +1,154 @@
+name: Zed registry bump
+
+# Opens (or refreshes) a version-bump PR against zed-industries/extensions
+# so the Zed extension registry picks up a funky-theme release.
+#
+# The registry lists the extension as [funky-theme] in extensions.toml, with a
+# submodule pointing at this repo (path = "zed"). Releasing means bumping
+# that version and advancing the submodule gitlink to the tagged commit — no
+# clone of this repo's submodule is needed.
+#
+# Setup (done 2026-10-10):
+# - Fork zed-industries/extensions to MaxGB23/extensions.
+# - Fine-grained PAT on a CLA-signed human account
+#   (https://zed.dev/cla), limited to that fork with
+#   Contents: read/write + Pull requests: read/write,
+#   stored as repo secret ZED_REGISTRY_PAT.
+#   Classic PAT with the `repo` scope works as a fallback.
+# - The commit is authored as the PAT owner: Zed's CLA bot rejects commits
+#   authored by github-actions[bot], which cannot sign the CLA.
+# - Rotation: the current PAT expires 2027-01-08. Expiry fails closed
+#   (no PR is opened, nothing breaks) — create a new token and update
+#   ZED_REGISTRY_PAT before that date.
+#
+# Trigger: push of tag zed-v* (e.g. zed-v0.1.1). No GitHub Release is created
+# for Zed tags (plan Q4). Can also be dispatched manually to retry a bump for
+# an existing tag — the branch is force-pushed, so an open registry PR
+# updates in place.
+#
+# Registry rules respected: exactly 1 extension per PR, max 3 open PRs
+# (dedupe via the REST pulls list, force-push instead of opening new ones),
+# respond to review within 3 weeks.
+
+on:
+  push:
+    tags:
+      - "zed-v*"
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Zed release tag (e.g. zed-v0.1.1)"
+        required: true
+        type: string
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    concurrency:
+      group: zed-registry-bump-funky-theme
+      cancel-in-progress: false
+    steps:
+      - name: Checkout tagged commit
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.tag || github.ref }}
+
+      - name: Verify tag matches zed/extension.toml version
+        run: |
+          TAG="${{ github.event.inputs.tag || github.ref_name }}"
+          case "${TAG}" in
+            zed-v*.*.*) ;;
+            *) echo "::error::Tag '${TAG}' must look like zed-vX.Y.Z"; exit 1 ;;
+          esac
+          VERSION="${TAG#zed-v}"
+          TOML_VERSION=$(sed -n 's/^version = "\(.*\)"/\1/p' zed/extension.toml | head -n 1)
+          if [ "${TOML_VERSION}" != "${VERSION}" ]; then
+            echo "::error::Tag ${TAG} (version ${VERSION}) does not match zed/extension.toml version '${TOML_VERSION}'"
+            exit 1
+          fi
+          echo "TAG=${TAG} VERSION=${VERSION} verified against zed/extension.toml"
+
+      - name: Open version-bump PR against zed-industries/extensions
+        env:
+          GH_TOKEN: ${{ secrets.ZED_REGISTRY_PAT }}
+          TAG: ${{ github.event.inputs.tag || github.ref_name }}
+          FORK: MaxGB23/extensions
+          UPSTREAM: zed-industries/extensions
+        run: |
+          VERSION="${TAG#zed-v}"
+          BRANCH="funky-theme-v${VERSION}"
+
+          # Fail fast with a clear message if the PAT is missing or expired.
+          if ! LOGIN_CHECK=$(gh api user --jq '.login' 2>/dev/null); then
+            echo "::error::ZED_REGISTRY_PAT is missing or expired (current token expires 2027-01-08). Create a new token and update the repo secret; nothing was pushed."
+            exit 1
+          fi
+
+          # Resolve the tag to its commit, peeling if annotated.
+          SHA=$(gh api "repos/${GITHUB_REPOSITORY}/git/ref/tags/${TAG}" --jq '.object.sha')
+          TYPE=$(gh api "repos/${GITHUB_REPOSITORY}/git/ref/tags/${TAG}" --jq '.object.type')
+          if [ "${TYPE}" = "tag" ]; then
+            SHA=$(gh api "repos/${GITHUB_REPOSITORY}/git/tags/${SHA}" --jq '.object.sha')
+          fi
+          echo "Tag ${TAG} resolves to ${SHA}"
+
+          gh repo sync "${FORK}" --source "${UPSTREAM}" --branch main
+
+          gh auth setup-git
+          git clone --depth 1 "https://github.com/${FORK}.git" extensions-fork
+          cd extensions-fork
+
+          # No-op guard: registry already points at this exact version+commit.
+          REGISTERED_SHA=$(git ls-tree HEAD "extensions/funky-theme" | awk '{print $3}')
+          REGISTERED_VERSION=$(sed -n "/^\[funky-theme\]$/,/^\[/ s/^version = \"\(.*\)\"/\1/p" extensions.toml | head -n 1)
+          if [ "${REGISTERED_VERSION}" = "${VERSION}" ] && [ "${REGISTERED_SHA}" = "${SHA}" ]; then
+            echo "Registry already at funky-theme v${VERSION} (${SHA}); nothing to do."
+            exit 0
+          fi
+
+          git checkout -b "${BRANCH}"
+
+          # Bump the version line within the [funky-theme] section only.
+          sed -i "/^\[funky-theme\]$/,/^\[/ s/^version = \".*\"/version = \"${VERSION}\"/" extensions.toml
+          grep -A5 '^\[funky-theme\]$' extensions.toml | grep -q "version = \"${VERSION}\"" || {
+            echo "::error::Failed to bump funky-theme version in extensions.toml"
+            exit 1
+          }
+
+          # Point the submodule gitlink (mode 160000) at the tagged commit;
+          # the submodule itself never needs to be initialized for this.
+          git update-index --add --cacheinfo "160000,${SHA},extensions/funky-theme"
+
+          # Author as the PAT owner: Zed's CLA bot checks commit authors,
+          # and github-actions[bot] cannot sign the CLA.
+          LOGIN=$(gh api user --jq '.login')
+          USER_ID=$(gh api user --jq '.id')
+          git config user.name "${LOGIN}"
+          git config user.email "${USER_ID}+${LOGIN}@users.noreply.github.com"
+          git add extensions.toml
+          git commit -m "Update funky-theme to v${VERSION}"
+          git push --force -u origin "${BRANCH}"
+
+          # Create the PR unless one is already open for this branch. The
+          # REST pulls list is authoritative; `gh pr list --head` relies on
+          # the search index and can miss just-pushed branches, making a
+          # retry fail on "pull request already exists".
+          # The body carries the registry PR-template checklist pre-checked:
+          # it is a manual confirmation, not an automated check, and PRs
+          # created via API do not include it unless we add it ourselves
+          # (as was done by hand on the first Add PR #7923).
+          OPEN=$(gh api "repos/${UPSTREAM}/pulls?head=MaxGB23:${BRANCH}&state=open" --jq 'length')
+          if [ "${OPEN}" = "0" ]; then
+            PR_BODY="Bumps funky-theme to v${VERSION}. Source tag: https://github.com/${GITHUB_REPOSITORY}/tree/${TAG}
+
+- [x] I've read [the contribution guidelines](https://github.com/zed-industries/extensions/blob/main/CONTRIBUTING.md) and followed the relevant guidance for adding or updating my extension."
+            gh pr create \
+              --repo "${UPSTREAM}" \
+              --head "MaxGB23:${BRANCH}" \
+              --title "Update funky-theme to v${VERSION}" \
+              --body "${PR_BODY}"
+          else
+            echo "Registry PR already open for ${BRANCH}; branch was force-pushed, PR refreshed in place."
+          fi
