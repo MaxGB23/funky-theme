@@ -4,12 +4,13 @@
 
 As terminal agents and AI handle more of the heavy lifting, the IDE is becoming less of a place to write everything and more of a place to review, understand, and refine. Funky Theme embraces that shift with bright, vibrant semantics — because if you're going to look at code, it shouldn't have to look dull.
 
-**Get it on the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=MaxGB23.funky-theme-vscode) · [Open VSX](https://open-vsx.org/extension/MaxGB23/funky-theme-vscode) · [Zed Extensions](https://zed.dev/extensions/funky-theme).**
-**Terminal AI agents (Beta): [funky-theme-tui](https://github.com/MaxGB23/funky-theme-tui) for Claude Code, OpenCode & Pi — install from repo.**
+**📦 Get it on the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=MaxGB23.funky-theme-vscode) · [Open VSX](https://open-vsx.org/extension/MaxGB23/funky-theme-vscode) · [Zed Extensions](https://zed.dev/extensions/funky-theme)**
+
+> 🧪 **AI Coding Agents (Beta):** [funky-theme-tui](https://github.com/MaxGB23/funky-theme-tui) · Claude Code · OpenCode · Pi
 
 ---
 
-## Screenshots
+## 📸 Screenshots
 
 <p align="center"><strong>Funky Dark</strong></p>
 
@@ -25,7 +26,7 @@ As terminal agents and AI handle more of the heavy lifting, the IDE is becoming 
 
 ---
 
-## Variants — Five ways to read the same code
+## 🎨 Variants — Five ways to read the same code
 
 Different developers read code differently. Some want pure color, some want deep night, some need accessibility, some love cursive. There is a Funky variant for each of them — same palette, five experiences.
 
@@ -41,7 +42,7 @@ Five profiles, one palette — every variant keeps the meaning of every color wh
 
 ---
 
-## Color Philosophy
+## 🌈 Color Philosophy
 
 Funky Theme is built around a **semantic, tiered color palette** defined in a single source-of-truth config file. Every color has a name and a reason to exist:
 
@@ -63,7 +64,7 @@ Funky Theme is built around a **semantic, tiered color palette** defined in a si
 
 ---
 
-## Language Support
+## 💻 Language Support
 
 While primarily dedicated to and optimized for **web development** (specifically for workflows using **React, HTML, CSS, JavaScript, TypeScript, Next.js, and Markdown**), it has also been tested and tuned for the following:
 
@@ -89,7 +90,7 @@ Popular dark themes — Dracula Theme, Material Theme, Tokyo Night - often recyc
 
 ---
 
-## Recommended editor settings
+## ⚙️ Recommended editor settings
 
 ### Theme settings
 
@@ -137,7 +138,7 @@ Settings the maintainer enjoys — not required, but they make the editor feel b
 | [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=MaxGB23.funky-theme-vscode) | Published |
 | [Open VSX](https://open-vsx.org/extension/MaxGB23/funky-theme-vscode) (Cursor, Antigravity, VSCodium…) | Published |
 | [Zed Extensions](https://zed.dev/extensions/funky-theme) | Published |
-| [Terminal AI agents](https://github.com/MaxGB23/funky-theme-tui) | Beta — install from repo |
+| [AI Coding Agents](https://github.com/MaxGB23/funky-theme-tui) | Beta — install from repo |
 
 Funky Theme is available on both major VS Code-compatible registries — the **VS Code Marketplace** and **Open VSX** — plus the GitHub Releases `.vsix` for anything else. Pick the path that fits your editor.
 
@@ -173,7 +174,7 @@ code --install-extension path/to/funky-theme-vscode-x.x.x.vsix
 
 ---
 
-## Zed support
+## ⚡ Zed support
 
 Funky Theme ships a Zed extension built from the same palette source of truth, with three dark variants: **Funky Dark**, **Funky Darker**, and **Funky Italic**. High Contrast and Mix are not shipped in Zed.
 
@@ -205,11 +206,11 @@ On macOS wide-gamut displays, Zed is not color-managed, so theme colors can look
 
 ---
 
-## Terminals
+## 🖥️ Terminals
 
 The integrated editor terminal already ships with Funky Theme's ANSI palette — no extra setup required, and it works across shells such as Bash, Zsh, PowerShell, and others. The palette is most noticeable in shells and CLI tools that make extensive use of colored output.
 
-### Terminal-based AI Agents (WIP)
+### Terminal-based AI Agents (BETA)
 
 A standalone terminal palette for AI coding agents is being built in its own repo, [`funky-theme-tui`](https://github.com/MaxGB23/funky-theme-tui) — starting with gentle-shell, and with Pi along for the ride since gentle-shell runs on it, plus OpenCode and Claude Code. Two variants are planned, Funky Dark and Funky Darker, plus transparent background variants for people who run a custom terminal background. They are independent palettes — kept visually close to the editor theme, but tuned for the terminal experience, which is a different medium, so small variations per variant are expected. Minimal italics may be used where they aid readability, without a separate italic variant.
 
@@ -217,7 +218,7 @@ A standalone terminal palette for AI coding agents is being built in its own rep
 
 ---
 
-## Build from source
+## 🛠️ Build from source
 
 > **Note**: You can use `npm` to install dependencies and run scripts, but **`pnpm` is highly recommended** for better security, stricter dependency resolution, and to avoid lockfile conflicts.
 
@@ -238,7 +239,7 @@ pnpm package
 
 ---
 
-## Maintenance & Contributing
+## 🤝 Maintenance & Contributing
 
 Want to tweak colors, add new tokens, or build your own variant on top of Funky Theme?
 
@@ -248,7 +249,7 @@ Want to tweak colors, add new tokens, or build your own variant on top of Funky 
 
 ---
 
-## Author
+## 👻 Author 
 
 **Maximiliano González Ballesteros** — the developer behind Funky Theme.
 
@@ -261,6 +262,6 @@ Special thanks to [danelogotom-dotcom](https://github.com/danelogotom-dotcom) �
 
 ---
 
-## License
+## 📄 License
 
 [MIT](./LICENSE) © Max González Ballesteros (@maxgb23)
