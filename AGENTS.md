@@ -19,6 +19,9 @@ Flujo de testeo manual ANTES de tocar el Source of Truth:
 - **Roadmap y avisos de otros repos van al README**, nunca al CHANGELOG (sección `Roadmap`). Un entry de `Docs` que mentiona `funky-theme-tui` sí es válido: lo que no se permite es contenido forward-looking inlineado bajo `[Unreleased]`.
 - **Nunca tocar secciones ya liberadas del CHANGELOG.** Append-only. Única excepción, en la skill: contenido que nunca fue un cambio versionado, en el commit que además arregla la regla.
 
+### Delegaciones (subagentes)
+- Delega SOLO con `gentle-ai-worker` o el subagente `general`. Por ahora los demas fallan (ej: `explore`).
+
 ## Source of Truth: Convenciones (src/theme-config.js)
 
 - **Orden por keys/scopes relacionados:** al editar `src/theme-config.js`, agrupa las keys de `colors` y los `tokenColors` por zona semántica (Editor, Git, Menús/Listas, Links, Symbol Icons, etc.) y coloca cada nueva propiedad **dentro de su sección correspondiente**, sin salpicar keys sueltas al final. Si el tema ya usa scopes/keys vecinos para un área determinada, coloca la nueva key/scope junto a ellos.
