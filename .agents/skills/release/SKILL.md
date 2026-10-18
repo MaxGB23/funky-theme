@@ -13,6 +13,14 @@ metadata:
 
 Use when the user asks to release, publish, package a new version, generate a `.vsix`, or create a GitHub release for this theme — VS Code channel, Zed channel (`zed-v*`), or both.
 
+## Prereleases (rc/beta/alpha): OFF by default
+
+**The agreed strategy is stable-direct.** The theme is mature, so remaining changes are mini fixes that go straight to a stable release. **Do not publish an `-rc.x` by default or "just in case":** a prerelease tag is never installed by anyone (the markets accept only stable), so it multiplies tags and feed entries without giving a user a chance to reject anything before the stable ships.
+
+**Ask the user only when the release qualifies as a risky batch** — a MAJOR restyle, a palette migration, or a large multi-area color-key batch where an installed-and-rejected prerelease carries real information. Otherwise ship the stable directly.
+
+Prerelease-specific rules below stay in force **only when** a prerelease is explicitly agreed. For a stable-direct release, step 4 (changelog finalize) always runs and step 9's marketplace handoff always applies.
+
 ## Channel router (VS Code ↔ Zed)
 
 This repo ships two independent channels from one source of truth (`docs/zed-support-plan.md` §D5/D8):

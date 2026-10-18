@@ -42,9 +42,8 @@ Flujo de testeo manual ANTES de tocar el Source of Truth:
 - **🚨 NUNCA lanzar un release de memoria:** releer siempre `.agents/skills/release/SKILL.md` y no asumir nada — verificar cada paso contra la skill y el estado real del repo.
 - **SemVer estricto:** consultar la skill para más detalles.
 - **NO borrar releases/tags anteriores**, aunque el repo tenga pocas visitas. Mantienen trazabilidad.
-- **Flujo RC → estable (estrategia por defecto):** cada cambio se saca primero como pre-release `-rc.x` en GitHub (la subida a Marketplace/Open VSX es trabajo humano y SOLO acepta estables — los RCs no se suben a markets). Cuando el lote esté confirmado, se publica el estable y se sube el vsix a los markets UNA vez. Así las subidas manuales se reducen a una por lote estable.
-- **RCs por lote, no por commit:** agrupar varios work units coherentes en un solo `-rc.x`; NO publicar un rc por micro-commit (satura el feed de releases y multiplica los tags).
-- **El estable consolida la línea:** la release estable cierra los RCs y documenta TODO el contenido de la línea (Content boundary de la skill), no solo el delta del último rc.
+- **Estable directo, sin RC (estrategia acordada):** el tema ya está maduro, así que los cambios son mini fixes y se publican directo como estable. **No** sacar pre-releases por inercia: un rc publica un tag que nadie instala (los markets solo aceptan estables) y multiplica tags y entradas de feed sin nada que un usuario pueda rechazar en el medio.
+  - **Cuándo SÍ rc:** solo en lotes grandes y riesgosos donde el usuario pueda instalar el rc y rechazarlo (restyle MAJOR, migración de paleta, lote grande de color keys). Ahí el rc filtra antes de llegar a estable.
 - Respecto al pipeline de la skill `.agents/skills/release/SKILL.md`, confirmar siempre el bump (MAJOR/MINOR/PATCH) con el usuario antes de publicar.
 
 ## Project Skills
