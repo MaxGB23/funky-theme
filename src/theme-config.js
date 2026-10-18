@@ -984,7 +984,7 @@ module.exports = {
     {
       "scope": "invalid.deprecated",
       "settings": {
-        "foreground": palette.fgWhite
+        "foreground": palette.orangeAccent
       }
     },
     // find-in-files

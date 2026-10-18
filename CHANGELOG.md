@@ -4,7 +4,9 @@ All notable changes to the Funky Theme extension will be documented in this file
 
 ## [Unreleased]
 
-_No changes since the last release._
+### Changed
+
+- Deprecated code (`invalid.deprecated`) now renders in the theme's soft orange accent instead of plain white. It was visually indistinguishable from a normal attribute, which read as "disabled" rather than "alert": white still says "this is fine". Orange completes a three-step severity ladder — red (`invalid.illegal`) for broken syntax, yellow for a valid attribute, orange for "works but obsolete" — while staying inside the theme's existing palette.
 
 ## [3.2.2] - 2026-10-08
 

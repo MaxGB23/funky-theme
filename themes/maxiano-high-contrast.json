@@ -742,7 +742,7 @@
     {
       "scope": "invalid.deprecated",
       "settings": {
-        "foreground": "#ffffff"
+        "foreground": "#ffd089"
       }
     },
     {

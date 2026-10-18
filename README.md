@@ -53,7 +53,7 @@ Funky Theme is built around a **semantic, tiered color palette** defined in a si
 - 🟡 **Yellows** — Type names, attribute names (e.g., HTML, CSS, JSX)
 - 🟢 **Greens** — Strings, git untracked, inline code
 - 🔴 **Reds** — Errors, deleted references
-- 🟠 **Oranges** — `new`/operator accents, auxiliary keywords (extends, mod…)
+- 🟠 **Oranges** — `new`/operator accents, auxiliary keywords (extends, mod…), deprecated tokens
 
 **One shared canvas.** Dark themes often reach for deep blues — the familiar default — but blue-heavy darks can feel harsh or fatiguing to some eyes, even at low brightness. All five variants instead share one custom gray-mauve canvas, a friendlier take on deep night — grounded in research across developer communities, theme discussions, and real-world usage patterns. Only Darker goes deeper, and High Contrast keeps the same canvas while approaching accessibility through stronger borders and UI separation, not a darker background.
 
@@ -197,7 +197,7 @@ Then pick a Funky variant in Zed via the theme picker.
 
 On macOS wide-gamut displays, Zed is not color-managed, so theme colors can look muted compared to VS Code — this affects every theme, not just Funky. Upstream issue: [zed-industries/zed#9057](https://github.com/zed-industries/zed/issues/9057).
 
-### Known limitations (v0.1)
+### Known limitations (Zed v0.2.0)
 
 - Around 15 VS Code-only scopes have no Zed equivalent and are dropped: `acejump.*`, `sublimelinter.*`, `brackethighlighter.*`, `*.find-in-files`, and `invalid.*` (extension-specific scopes).
 - High Contrast and Mix variants are not shipped in Zed.
