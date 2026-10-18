@@ -85,6 +85,7 @@ A `zed-v*` tag is invisible to the VS Code pipeline and vice versa. If no tag ma
 - Title is short and meaningful (describes the theme area touched), NOT the version taxonomic label.
 - Headings are always `### Added`, `### Changed`, `### Fixed`, `### Docs` — in that order. Omit a heading (and its bullets) when that category is empty; never emit a heading with `(none)`.
 - Bullets are concrete and technical: name the actual `colorKey` and value, or the actual doc/section changed.
+- The `### Docs` category is a strict exception, not an open door: it ships to the Marketplace and the editor update panel, so it only carries **user-facing and significant** docs (README changes to install/variants/limitations, user-read `docs/`). Never list `AGENTS.md`, `.agents/**`, `docs/how-to-modify-theme.md`, workflow rules, agent tooling, or build/verify scripts — none of that ships with the theme. Never list process metadata either (heading renames, typos, chores). Full rule in `AGENTS.md`; when in doubt, omit the bullet — `git log` preserves the rest.
 - Group related keys in one bullet when they share a purpose (e.g. `editor.wordHighlightBackground`/`...Border`).
 - Use backticks around code identifiers (`editor.*` keys, tokens, file paths).
 - End with a known-issues or "no issues found" line only when relevant: `No issues found after extended testing.`

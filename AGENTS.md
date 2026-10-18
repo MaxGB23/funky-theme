@@ -17,6 +17,11 @@ Flujo de testeo manual ANTES de tocar el Source of Truth:
 - **CHANGELOG `[Unreleased]`: work units que cambian comportamiento (feat/fix/refactor → bump MINOR/PATCH) escriben entry en el MISMO commit.** Commits puramente docs/formatting/chore sin bump de versión son opcionales — si el mensaje convencional ya explica el *why*, no duplicar. Categorías: `Added` / `Changed` / `Fixed` / `Docs` / `Removed`, en inglés. El "por qué" va en la entry: `git log` preserva el *qué* pero no la razón, y esa información se pierde para siempre una vez el contexto se fue. No reconstruir el changelog en release.
 - **CHANGELOG por canal (se publica en markets):** cada entry describe solo el efecto visible en SU plataforma, sin internals del otro canal. Lo compartido (readme, color de paleta que afecta a ambos) va en ambos changelogs.
 - **Roadmap y avisos de otros repos van al README**, nunca al CHANGELOG (sección `Roadmap`). Un entry de `Docs` que mentiona `funky-theme-tui` sí es válido: lo que no se permite es contenido forward-looking inlineado bajo `[Unreleased]`.
+- **El CHANGELOG es para el USUARIO, no para nosotros.** Se lee en el panel de updates del editor y en la página del marketplace: su único trabajo es decir qué cambió **en el tema**. La categoría `Docs` es la excepción estricta, no una puerta abierta:
+  - **Prohibido siempre:** `AGENTS.md`, `.agents/**`, `docs/how-to-modify-theme.md`, reglas de workflow, tooling de agentes, scripts de build/verify. Nada de eso viaja con el tema ni le interesa a quien lo instala. Ocupar una nota de release con esto entrena al lector a saltar entradas.
+  - **Prohibido siempre:** metadatos de proceso (fixes de nombres de sección, reformateos, typos en el changelog, commits de chores). No son cambios del producto.
+  - **Válido solo si es user-facing y significativo:** README con cambio de instalación/variantes/limitaciones, o `docs/` con contenido que un usuario realmente lea. Un fix cosmético de un heading no califica.
+  - Ante la duda, **no va entry**. El `git log` ya preserva el resto.
 - **Nunca tocar secciones ya liberadas del CHANGELOG.** Append-only. Única excepción, en la skill: contenido que nunca fue un cambio versionado, en el commit que además arregla la regla.
 
 ### Delegaciones (subagentes)
