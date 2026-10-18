@@ -20,7 +20,12 @@ Flujo de testeo manual ANTES de tocar el Source of Truth:
 - **Nunca tocar secciones ya liberadas del CHANGELOG.** Append-only. Única excepción, en la skill: contenido que nunca fue un cambio versionado, en el commit que además arregla la regla.
 
 ### Delegaciones (subagentes)
-- Delega SOLO con `gentle-ai-worker` o el subagente `general`. Por ahora los demas fallan (ej: `explore`).
+- Nombres permitidos: `gentle-ai-explore`, `gentle-ai-verify`, `gentle-ai-worker`, `jd-fix-agent`, 
+  `jd-judge-a`, `jd-judge-b`, `review-refuter`, `review-validator`, `review-readability`, 
+  `review-reliability`, `review-resilience`, `review-risk`.
+- Los builtins de OpenCode V2 (`explore`, `general`) están denegados: devuelven 
+  `Permission denied: subagent`. No los uses ni reintentes con otro builtin.
+- Exploración → `gentle-ai-explore`. Verificación → `gentle-ai-verify`.
 
 ## Source of Truth: Convenciones (src/theme-config.js)
 
