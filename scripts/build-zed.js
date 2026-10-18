@@ -22,8 +22,10 @@ const OUT_FILE = path.join(THEMES_DIR, 'funky-theme.json');
 
 // Atenuacion de colores en Darker: espejo de darkerColorAdjustments de build.js
 // (keyed por valor resuelto; amarillos/naranjas luminosos cansan mas sobre el fondo
-// ultra-nocturno). En Zed solo aplica a `syntax`: el tema no expone un bloque de
-// colores de UI, asi que no hay equivalente de los warnings del editor.
+// ultra-nocturno). Se aplica a `syntax` y a `style`, igual que build.js recorre
+// tokenColors y colors: el bloque `style` tambien tiene consumidores del amarillo
+// (warning, warning.border, terminal.ansi.yellow/bright_yellow), y sin esto el
+// mismo amarillo renderizaba a dos intensidades dentro de Darker.
 const darkerColorAdjustments = {
   [palette.yellowBase]: '#e8f09a',
   [palette.yellowLight]: '#fff9ba',
@@ -86,7 +88,10 @@ function applyHexTransform(style, map) {
 function buildStyle(profile) {
   const style = {};
   for (const [key, ref] of Object.entries(zedMap.style)) style[key] = resolveRef(ref);
-  if (profile === 'ultra-nocturno') applyHexTransform(style, zedDarkerBackgrounds);
+  if (profile === 'ultra-nocturno') {
+    applyHexTransform(style, zedDarkerBackgrounds);
+    applyHexTransform(style, darkerColorAdjustments);
+  }
   return style;
 }
 

@@ -82,6 +82,7 @@ Cuando un color aplica a una única variante (p.ej. `quickInput.*` que difiere e
 **Target Zed (compilación a otro editor):**
 - `src/zed-config.js` compone `palette` (importada de `theme-config.js`) en dos piezas: `zedMap` (clave Zed → token de paleta, o key de `colors` con prefijo `colors:`) y `zedDarkerBackgrounds` (subset del transform Darker aplicable a las keys Zed).
 - `scripts/build-zed.js` resuelve esas referencias y genera la familia (`zed/themes/funky-theme.json`): **toda referencia debe resolver o el build falla** — ningún typo pasa inadvertido.
+- El transform de Darker llega en dos piezas, espejo de `build.js` pero sobre el bloque `style` de Zed: `zedDarkerBackgrounds` (fondos) y `darkerColorAdjustments` (colores luminosos). Aplicar solo el primero deja el mismo color a dos intensidades dentro de la variante, porque los consumidores de UI del amarillo (warnings, ANSI del terminal) viven en `style`, no en `syntax`.
 - Si agregas un token nuevo a `palette`, revisa si necesita mapeo en `zedMap` (checklist de cada cambio de paleta); si Zed no tiene destino para ese color, se documenta como limitación y no se mapea.
 
 ---

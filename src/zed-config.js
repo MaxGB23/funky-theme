@@ -118,7 +118,13 @@ const zedMap = {
     'terminal.ansi.bright_cyan': 'cyanTerminal',
     'terminal.ansi.bright_white': 'fgWhite',
 
-    // ── Git / diagnosticos (solo base; .background/.border usan defaults) ──
+    // ── Git / diagnosticos ──
+    // Las 4 severidades del popover de diagnostico SI definen .background/.border:
+    // Zed lo arma con status.<sev>_background/_border y el texto sale de
+    // editor.foreground; si faltan no hereda el color del tema sino el default de
+    // Zed (color base a opacidad total = texto ilegible). El resto de la familia
+    // (created, modified, ...) sigue en defaults. Fondo = superficie elevada
+    // comun; borde = color del propio estado.
     'link_text.hover': 'linkPurple',
     'version_control.added': 'greenBase',
     'version_control.modified': 'cyanVibrant',
@@ -133,10 +139,18 @@ const zedMap = {
     'ignored': 'pinkLight',
     'hidden': 'uiMuted',
     'info': 'uiAccent',
+    'info.background': 'bgElevated',
+    'info.border': 'uiAccent',
     'success': 'greenBase',
     'warning': 'yellowBase',
+    'warning.background': 'bgElevated',
+    'warning.border': 'yellowBase',
     'error': 'errorFg',
+    'error.background': 'bgElevated',
+    'error.border': 'errorFg',
     'hint': 'purpleBright',
+    'hint.background': 'bgElevated',
+    'hint.border': 'purpleBright',
     'predictive': 'uiMuted',
     'unreachable': 'uiInactive',
   },

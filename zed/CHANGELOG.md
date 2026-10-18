@@ -7,7 +7,14 @@ into the root VS Code changelog (plan §D5: each channel versions alone).
 - Changed the base yellow from `#f6ff98` to `#f7ffa1` in Dark and Italic,
   and to `#e8f09a` in Darker — link text, JSON object keys and Markdown list
   markers shared one yellow that read as harsh, and Darker now dims it to suit
-  its deeper background.
+  its deeper background. Dimmed everywhere too: only syntax used to react, so
+  warnings and terminal ANSI yellow kept the full-intensity yellow inside the
+  same Darker variant.
+- Fixed the diagnostic hover popover rendering as a solid yellow block with
+  the near-white popover text unreadable on it; errors and hints had the same
+  problem in their own colours. Those severities now paint the elevated
+  surface as background and keep the status colour as the border, instead of
+  falling back to the status colour as an opaque background.
 
 ## [0.2.0]
 - Added yellow JSON object keys — they no longer fall back to generic white.
