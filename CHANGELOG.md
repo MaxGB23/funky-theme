@@ -4,7 +4,10 @@ All notable changes to the Funky Theme extension will be documented in this file
 
 ## [Unreleased]
 
-_No changes since the last release._
+### Changed
+
+- Softened the base yellow (`yellowBase`) from `#f6ff98` to `#f7ffa1` across all five variants. The brighter value read as harsh, most visibly in High Contrast, where it is the background against which everything else is judged.
+- Darker now attenuates that yellow to `#e8f09a` on the ultra-nocturnal background. It previously inherited the full-intensity value while every other bright yellow was dimmed, because the Darker adjustment map was only applied to syntax colors and never to the UI color block. `editorWarning.foreground`, `list.warningForeground`, `terminal.ansiYellow` and `terminal.ansiBrightYellow` now dim along with the syntax colors (links and lists in Markdown, JSON object keys), so a single yellow no longer renders at two different intensities in the same variant.
 
 ## [3.2.3] - 2026-10-17
 

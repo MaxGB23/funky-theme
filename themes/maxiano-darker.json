@@ -37,7 +37,7 @@
     "minimap.selectionHighlight": "#8c8eff45",
     "editorGroupHeader.tabsBackground": "#121018",
     "editorError.foreground": "#ff8282",
-    "editorWarning.foreground": "#f6ff98",
+    "editorWarning.foreground": "#e8f09a",
     "editorHint.foreground": "#eaa9fc",
     "activityBar.background": "#121018",
     "activityBar.foreground": "#ffffff",
@@ -73,7 +73,7 @@
     "terminal.ansiBrightBlack": "#6272a4",
     "terminal.ansiBrightRed": "#ff8282",
     "terminal.ansiBrightGreen": "#ffa8e6",
-    "terminal.ansiBrightYellow": "#f6ff98",
+    "terminal.ansiBrightYellow": "#e8f09a",
     "terminal.ansiBrightBlue": "#c792ea",
     "terminal.ansiBrightMagenta": "#ffa8e6",
     "terminal.ansiBrightCyan": "#a4ffff",
@@ -81,7 +81,7 @@
     "terminal.ansiBlack": "#121018",
     "terminal.ansiRed": "#ff8282",
     "terminal.ansiGreen": "#b9ffba",
-    "terminal.ansiYellow": "#f6ff98",
+    "terminal.ansiYellow": "#e8f09a",
     "terminal.ansiBlue": "#bd93f9",
     "terminal.ansiMagenta": "#ffa8e6",
     "terminal.ansiCyan": "#a4ffff",
@@ -157,7 +157,7 @@
     "list.hoverBackground": "#201d2a80",
     "list.inactiveSelectionBackground": "#201d2a",
     "list.inactiveSelectionForeground": "#ffffff",
-    "list.warningForeground": "#f6ff98",
+    "list.warningForeground": "#e8f09a",
     "list.errorForeground": "#ff8282",
     "list.highlightForeground": "#ffa8e6",
     "pickerGroup.foreground": "#b2b3ff",
@@ -474,7 +474,7 @@
     {
       "scope": "support.type.property-name.json",
       "settings": {
-        "foreground": "#f6ff98"
+        "foreground": "#e8f09a"
       }
     },
     {
@@ -553,7 +553,7 @@
     {
       "scope": "string.other.link.title.markdown",
       "settings": {
-        "foreground": "#f6ff98"
+        "foreground": "#e8f09a"
       }
     },
     {
@@ -566,7 +566,7 @@
     {
       "scope": "string.other.link.description.title.markdown",
       "settings": {
-        "foreground": "#f6ff98"
+        "foreground": "#e8f09a"
       }
     },
     {
@@ -590,7 +590,7 @@
     {
       "scope": "beginning.punctuation.definition.list, punctuation.definition.list.begin.markdown",
       "settings": {
-        "foreground": "#f6ff98"
+        "foreground": "#e8f09a"
       }
     },
     {

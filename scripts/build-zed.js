@@ -20,11 +20,12 @@ const ZED_DIR = path.join(ROOT, 'zed');
 const THEMES_DIR = path.join(ZED_DIR, 'themes');
 const OUT_FILE = path.join(THEMES_DIR, 'funky-theme.json');
 
-// Atenuacion de sintaxis en Darker: espejo de darkerSyntaxAdjustments de
-// build.js (keyed por valor resuelto; amarillos/naranjas luminosos cansan
-// mas sobre el fondo ultra-nocturno). En la practica afecta a los tokens
-// mapeados a yellowLight (attribute, enum, type, ...).
-const darkerSyntaxAdjustments = {
+// Atenuacion de colores en Darker: espejo de darkerColorAdjustments de build.js
+// (keyed por valor resuelto; amarillos/naranjas luminosos cansan mas sobre el fondo
+// ultra-nocturno). En Zed solo aplica a `syntax`: el tema no expone un bloque de
+// colores de UI, asi que no hay equivalente de los warnings del editor.
+const darkerColorAdjustments = {
+  [palette.yellowBase]: '#e8f09a',
   [palette.yellowLight]: '#fff9ba',
   [palette.orangeAccent]: '#ffd18e',
 };
@@ -102,7 +103,7 @@ function buildSyntax(profile) {
     }
     if (profile === 'ultra-nocturno') {
       const c = entry.color.toLowerCase();
-      for (const [base, adj] of Object.entries(darkerSyntaxAdjustments)) {
+      for (const [base, adj] of Object.entries(darkerColorAdjustments)) {
         if (c.startsWith(base.toLowerCase())) {
           entry.color = adj + entry.color.slice(base.length);
           break;

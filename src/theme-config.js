@@ -53,7 +53,7 @@ const palette = {
   orangeBase: "#ffb86c",   // orange-base (Reemplaza a '#ffcb6b') - HTML y CSS attribute names, git conflicting/changed y sublimelinter warning (los warnings del editor son yellowBase)
   orangeAccent: "#ffd089", // orange-accent - keyword.operator/other/control.new y constant.other.reference.link.markdown (naranja compartido: new y md link consistente, claro y de baja fatiga)
   orangeSoft: "#ffb488",   // orange-soft - keyword.other (extends, package, auxiliares). Candidato a más usos
-  yellowBase: "#f6ff98",   // yellow-base - Markdown (links y listas) y warnings/terminal (colors)
+  yellowBase: "#f7ffa1",   // yellow-base - Markdown (links y listas) y warnings/terminal (colors)
   yellowLight: "#fff9b7",  // yellow-light - Entity types, classes, support types y attribute names
   yellowVibrant: "#ffde25", // yellow-vibrant - editorCursor, extensionIcon.starForeground y editorBracketHighlight.foreground1 (amarillo dorado, fuerza de icono)
   bracketGold: "#ffd700",  // bracket-gold - SIN USOS: aguarda un nuevo rol (fallback meta.brace movido a yellowVibrant 2026-09-18)

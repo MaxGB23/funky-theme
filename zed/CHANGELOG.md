@@ -4,6 +4,10 @@ Independent history of the Zed extension (`zed/extension.toml`). Never merged
 into the root VS Code changelog (plan §D5: each channel versions alone).
 
 ## [Unreleased]
+- Changed the base yellow from `#f6ff98` to `#f7ffa1` in Dark and Italic,
+  and to `#e8f09a` in Darker — link text, JSON object keys and Markdown list
+  markers shared one yellow that read as harsh, and Darker now dims it to suit
+  its deeper background.
 
 ## [0.2.0]
 - Added yellow JSON object keys — they no longer fall back to generic white.

@@ -38,12 +38,21 @@ const darkerBackgrounds = {
   [palette.guideMid]: '#544f64' // editorIndentGuide.activeBackground1 -> ultra-nocturno
 };
 
-// Mapa de atenuación de colores de sintaxis en Darker: los colores luminosos
-// (amarillos y naranjas claros) cansan más sobre el fondo ultra-nocturno, así
-// que se sustituyen por versiones ligeramente más apagadas SOLO en esta variante.
+// Mapa de atenuación de colores en Darker: los colores luminosos (amarillos y
+// naranjas claros) cansan más sobre el fondo ultra-nocturno, así que se sustituyen
+// por versiones ligeramente más apagadas SOLO en esta variante.
+//
+// Se aplica a los DOS bloques (el `colors` de UI y los `tokenColors` de sintaxis),
+// porque el amarillo aparece en ambos: sin recorrer `colors`, el warning del editor
+// y el terminal se quedaban en el valor intenso mientras la sintaxis ya bajaba, y esa
+// asimetría es justo lo que este mapa existe para evitar.
+//
 // Keyed por token de paleta (igual que darkerBackgrounds) para seguir a la paleta
-// si el token cambia de valor.
-const darkerSyntaxAdjustments = {
+// si el token cambia de valor. Seguro por construcción: cada rol con una intensidad
+// distinta tiene su propio token (el cursor usa yellowVibrant, no yellowBase), así que
+// el match por valor nunca alcanza un color que deba permanecer brillante.
+const darkerColorAdjustments = {
+  [palette.yellowBase]: '#e8f09a',   // amarillo base -> versión apagada (Markdown links/listas y warnings)
   [palette.yellowLight]: '#fff9ba',  // amarillo luminoso -> amarillo atenuado
   [palette.orangeAccent]: '#ffd18e'  // naranja claro -> naranja atenuado
 };
@@ -78,15 +87,22 @@ variants.forEach(variant => {
     theme.colors['quickInput.foreground'] = palette.fgWhite;
     theme.colors['quickInputTitle.background'] = darkerBackgrounds[palette.bgDeep];
 
-    // Atenuar colores de sintaxis luminosos sobre el fondo ultra-nocturno
+    // Atenuar colores luminosos sobre el fondo ultra-nocturno, en UI y en sintaxis
+    const applyDarkerAdjustment = (color) => {
+      const c = color.toLowerCase();
+      for (const [base, adjusted] of Object.entries(darkerColorAdjustments)) {
+        if (c.startsWith(base.toLowerCase())) return adjusted + color.slice(base.length);
+      }
+      return color;
+    };
+
+    Object.keys(theme.colors).forEach(k => {
+      theme.colors[k] = applyDarkerAdjustment(theme.colors[k]);
+    });
+
     theme.tokenColors.forEach(token => {
-      const color = token.settings && token.settings.foreground;
-      if (!color) return;
-      for (const [base, adjusted] of Object.entries(darkerSyntaxAdjustments)) {
-        if (color.toLowerCase().startsWith(base.toLowerCase())) {
-          token.settings.foreground = adjusted + color.slice(base.length);
-          break;
-        }
+      if (token.settings && token.settings.foreground) {
+        token.settings.foreground = applyDarkerAdjustment(token.settings.foreground);
       }
     });
   }

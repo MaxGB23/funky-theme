@@ -72,7 +72,7 @@ Cuando un color aplica a una única variante (p.ej. `quickInput.*` que difiere e
 **Reglas de build.js:**
 - Usa los tokens que importa de la paleta (`palette.uiAccentStrong`, `palette.bgDeep`, …) en vez de repetir hex.
 - El mapa `darkerBackgrounds` (variante Darker) está keyed por token: los overrides de fondo y su transform se mantienen sincronizados aunque cambie el valor de `bgBase`/`bgDeep`/`bgElevated`.
-- El mapa `darkerSyntaxAdjustments` (también Darker) atenúa colores de sintaxis luminosos sobre el fondo ultra-nocturno (amarillo/naranja claros cansan más): keyed por token de paleta, recorre `tokenColors` y sustituye el foreground. Si quieres que un color luminoso se atenúe en Darker, añádelo aquí — NO en el source compartido.
+- El mapa `darkerColorAdjustments` (también Darker) atenúa colores luminosos sobre el fondo ultra-nocturno (amarillo/naranja claros cansan más): keyed por token de paleta, se aplica por valor tanto al bloque `colors` de UI como a los `tokenColors` de sintaxis, preservando el sufijo alpha. Recorrer ambos evita que un color quede intenso en la UI mientras la sintaxis ya bajó. Si quieres que un color luminoso se atenúe en Darker, añádelo aquí — NO en el source compartido.
 - Si un color vale distinto entre variantes: define el base en `theme-config.js` (compartido) y solo los overrides por variante en `build.js`.
 
 **Perfiles tipográficos (italic/bold, resueltos en `build.js`):**
