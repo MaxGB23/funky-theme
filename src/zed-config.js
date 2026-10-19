@@ -105,10 +105,13 @@ const zedMap = {
     // divergir: antes derivaba solo bright_black, asi que cualquier cambio en VS Code dejaba
     // Zed medio-alineado (1 slot nuevo y 15 viejos), peor que no tocarlo.
     // bright_foreground se queda en el token: es el texto en negrita del terminal, no una key ANSI.
+    // dim_foreground tiene token propio (textDim) y no reusa uiInactive: ese gris es el mute de
+    // UI (hover_line_number, text.muted, icon.muted, unreachable) y el texto tenue del terminal es
+    // otro rol; textDim esta calibrado por contraste sobre el fondo del terminal.
     'terminal.background': 'colors:terminal.background',
     'terminal.foreground': 'colors:terminal.foreground',
     'terminal.bright_foreground': 'fgWhite',
-    'terminal.dim_foreground': 'uiInactive',
+    'terminal.dim_foreground': 'textDim',
     'terminal.ansi.black': 'colors:terminal.ansiBlack',
     'terminal.ansi.red': 'colors:terminal.ansiRed',
     'terminal.ansi.green': 'colors:terminal.ansiGreen',

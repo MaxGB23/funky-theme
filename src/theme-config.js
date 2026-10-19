@@ -14,6 +14,7 @@ const palette = {
   fgBase: "#f8f8f2",       // fg-base (Reemplaza los 5 "blancos cian": '#eeffff', '#f7f7f7', '#eefcfe', etc.)
   fgWhite: "#ffffff",      // fg-white - Blanco puro para meta tags, clases, html tags y terminal.ansiBrightWhite
   textTui: "#eff0eb",      // text-tui - Cuerpo del terminal (terminal.foreground + ansiWhite). Es el #eff0eb testeado en terminal por funky-theme-tui, un paso por debajo de fgBase a propósito: el texto del agente no compite con el de identificadores
+  textDim: "#8e8ea7",      // text-dim - Texto tenue del terminal de Zed (terminal.dim_foreground): 5.1:1 sobre bgDeep, el mismo piso que uiInactive. El dim del TUI (uiMuted #606685) cae a 2.9:1 y por eso no puede ser texto tenue
   fgMuted: "#d8d8d8",      // fg-muted - SIN USOS (0 referencias). Los comentarios usan literal alfa #d8d8d8f1; mantener solo si se decide reactivarlo
 
   // === Grises de UI e Invisibles ===

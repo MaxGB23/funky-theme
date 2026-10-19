@@ -111,6 +111,7 @@ Los colores reutilizados viven como variables en `const palette`. Además de los
 | `guideMidDim` | `#625e74d1` | Guías activas/hover de Zed (`editor.*` y `panel.*`): `guideMid` con alpha, para no engrosar el trazo; VS Code y HC siguen con `guideMid` opaco |
 | `searchMatch` | `#c792ea35` | Wash de los matches de búsqueda en Zed (en Darker baja a `#c792ea30`); VS Code todavía usa su propio par `#c792ea30`/`#c792ea20` |
 | `textTui` | `#eff0eb` | Cuerpo del terminal (`terminal.foreground` y `ansiWhite`): el valor testeado en terminal por `funky-theme-tui`, un paso por debajo de `fgBase` para que el texto del agente no compita con el de identificadores |
+| `textDim` | `#8e8ea7` | Texto tenue del terminal de Zed (`terminal.dim_foreground`): 5.1:1 sobre `bgDeep`, el mismo piso de contraste que `uiInactive`. El dim del TUI (`uiMuted` `#606685`) cae a 2.9:1 y no sirve para texto tenue |
 | `errorTui` | `#ff718f` | `terminal.ansiBrightRed` (solo terminal): el rojo testeado en terminal por `funky-theme-tui`, más rosado que `errorFg`, que lee distinto sobre fondo oscuro |
 
 **Regla de paleta:** crea una variable SOLO para valores que se repiten (≥2 usos) o con identidad semántica clara. Los de un solo uso se dejan literales en su regla.
