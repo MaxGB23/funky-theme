@@ -10,11 +10,28 @@ into the root VS Code changelog (plan §D5: each channel versions alone).
   its deeper background. Dimmed everywhere too: only syntax used to react, so
   warnings and terminal ANSI yellow kept the full-intensity yellow inside the
   same Darker variant.
+- Changed search match highlights from the flat grey-purple to the purple wash
+  VS Code 3.2.0 moved this role to (`#c792ea35`, dimmed to `#c792ea30` in
+  Darker) — the old value predated that change and read as a different colour
+  family from the rest of the theme.
+- Changed the editor and file-tree indent guides to translucent tones (and their
+  active/hover variants with them) so they stop competing with the code they sit
+  behind; the single column ruler stays solid. Darker keeps its deeper guide
+  colours and now carries the same transparencies.
 - Fixed the diagnostic hover popover rendering as a solid yellow block with
   the near-white popover text unreadable on it; errors and hints had the same
-  problem in their own colours. Those severities now paint the elevated
-  surface as background and keep the status colour as the border, instead of
-  falling back to the status colour as an opaque background.
+  problem in their own colours. Every severity now paints the elevated surface
+  as background and keeps the status colour as the border, instead of falling
+  back to the status colour as an opaque background.
+- Fixed Vim's `:!cmd` output block painting the rows it covers with an opaque
+  light grey that hid the code underneath; it now uses the panel surface colour
+  with the status colour as its outline.
+- Fixed merge-conflicted files in the project panel painting pink, the colour
+  git-ignored files use; conflicts now carry the theme's conflict orange.
+- Fixed named constants rendering in the numeric pink; they now use the same
+  near-white as variables, which is what they get in the VS Code theme. Pink
+  stays for the values that are pink there (numbers, `true`/`false`,
+  `None`/`nil`/`undefined`).
 
 ## [0.2.0]
 - Added yellow JSON object keys — they no longer fall back to generic white.

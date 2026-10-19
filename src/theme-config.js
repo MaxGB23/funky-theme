@@ -18,7 +18,13 @@ const palette = {
   // === Grises de UI e Invisibles ===
   uiMuted: "#606685",      // ui-muted (Reemplaza a '#5a657c','#65737e','#546e7a') - Bordes, guías y tokens secundarios
   uiInactive: "#8b8f9e",   // ui-inactive - Texto UI inactivo: panelTitle y tabs inactivos
-  guideMid: "#625e74",     // guide-mid - Guía activa del editor + guías del árbol y bordes de tabla; en HC la guía base del editor y sus bordes fuertes suben a uiAccentStrong
+  guideMid: "#625e74",
+  // Alphas de las guias SOLO en Zed: mismo hex base que guideMid y #464254f5, pero
+  // atenuados porque se repiten en cada nivel del editor y del arbol. VS Code mantiene
+  // los suyos (su #464254f5 se subio en 3.1.2 a proposito para destacar la guia activa).
+  guideDim: "#46425490",     // editor.indent_guide + panel.indent_guide
+  guideRuler: "#464254ff",   // editor.wrap_guide (ruler de columna: una sola linea, sin alpha)
+  guideMidDim: "#625e74d1",  // editor.indent_guide_active + panel.indent_guide_active/hover     // guide-mid - Guía activa del editor + guías del árbol y bordes de tabla; en HC la guía base del editor y sus bordes fuertes suben a uiAccentStrong
   greyLight: "#cbcbcb",    // grey-light - Delimitadores de code blocks de Markdown
   purpleGrey: "#a9b1de",   // purple-grey - Puntuación y meta de Markdown
   linkPurple: "#b2b3ff",   // link-purple - Links y pickerGroup foreground
@@ -88,6 +94,7 @@ const palette = {
   accentFaint: "#8c8eff2a", // fondos tenues — wordHighlight(Strong)Background, bracketMatch.background
   controlBorder: "#8c8eff33", // overviewRuler rangeHighlightForeground (base variants), textPreformat y HC literal
   searchBackground: "#5f569580", // búsqueda/hover — hoverHighlight, findMatchBackground
+  searchMatch: "#c792ea35", // search-match wash - Zed lo usa en 35 (en Darker baja a #c792ea30; 40 era mucho); VS Code sigue en su par #c792ea30/#c792ea20 hasta que se decida el valor final
   scrollbarTrack: "#24212eea", // track del scrollbar — 1 uso: scrollbar.shadow (token de infraestructura tras el fondo transparente, como bgScrollbar)
   matchBorder: "#a599efff", // bordes de match — bracketMatch.border, findMatch.border
   hoverSurface: "#2e2a3a80", // superficies hover — toolbar.hoverBackground, list.hoverBackground

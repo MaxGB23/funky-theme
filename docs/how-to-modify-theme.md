@@ -106,7 +106,10 @@ Los colores reutilizados viven como variables en `const palette`. Además de los
 | `linkPurple` | `#b2b3ff` | Links y `pickerGroup.foreground` |
 | `uiInactive` | `#8b8f9e` | Título de panel y tabs inactivos |
 | `guideMid` | `#625e74` | Guía activa del editor, guías del árbol y bordes de tabla (en Darker se oscurecen a `#544f64`; en HC suben a `uiAccentStrong` con la guía base del editor) |
-| `searchMatch` | `#c792ea40` | Wash de los matches de búsqueda en Zed (en Darker baja a `#c792ea30`); VS Code todavía usa su propio par `#c792ea30`/`#c792ea20` |
+| `guideDim` | `#46425490` | Guías de indentación atenuadas: `editor.indent_guide` y `panel.indent_guide` de Zed (VS Code sigue con su `#464254f5`) |
+| `guideRuler` | `#464254ff` | `editor.wrap_guide` de Zed (ruler de columna, una sola línea, sin alpha) |
+| `guideMidDim` | `#625e74d1` | Guías activas/hover de Zed (`editor.*` y `panel.*`): `guideMid` con alpha, para no engrosar el trazo; VS Code y HC siguen con `guideMid` opaco |
+| `searchMatch` | `#c792ea35` | Wash de los matches de búsqueda en Zed (en Darker baja a `#c792ea30`); VS Code todavía usa su propio par `#c792ea30`/`#c792ea20` |
 
 **Regla de paleta:** crea una variable SOLO para valores que se repiten (≥2 usos) o con identidad semántica clara. Los de un solo uso se dejan literales en su regla.
 

@@ -30,10 +30,10 @@ const zedMap = {
     'editor.active_line_number': 'purpleDim',
     'editor.hover_line_number': 'uiInactive',
     'editor.invisible': 'uiMuted',
-    'editor.wrap_guide': 'colors:editorIndentGuide.background1',
+    'editor.wrap_guide': 'guideRuler',
     'editor.active_wrap_guide': 'greyLight',
-    'editor.indent_guide': 'colors:editorIndentGuide.background1',
-    'editor.indent_guide_active': 'guideMid',
+    'editor.indent_guide': 'guideDim',
+    'editor.indent_guide_active': 'guideMidDim',
     'editor.document_highlight.read_background': 'accentFaint',
     'editor.document_highlight.write_background': 'accentSelection',
 
@@ -81,13 +81,17 @@ const zedMap = {
     'tab.active_background': 'bgElevated',
 
     // Busqueda / paneles / scrollbar
-    'search.match_background': 'searchBackground',
+    // Wash de matches: mismo rol que el findMatchHighlight de VS Code 3.2.0 (searchMatch).
+    // El match activo va opaco a proposito: Zed no tiene key de borde para el search, asi
+    // que el relleno (el mismo color que VS Code usa como borde) es lo que lo identifica
+    // de un vistazo frente a los demas matches.
+    'search.match_background': 'searchMatch',
     'search.active_match_background': 'matchBorder',
     'panel.background': 'bgDeep',
     'panel.focused_border': 'uiAccentStrong',
-    'panel.indent_guide': 'colors:editorIndentGuide.background1',
-    'panel.indent_guide_active': 'guideMid',
-    'panel.indent_guide_hover': 'guideMid',
+    'panel.indent_guide': 'guideDim',
+    'panel.indent_guide_active': 'guideMidDim',
+    'panel.indent_guide_hover': 'guideMidDim',
     'pane.focused_border': 'uiAccentStrong',
     'scrollbar.thumb.background': 'colors:scrollbarSlider.background',
     'scrollbar.thumb.hover_background': 'colors:scrollbarSlider.hoverBackground',
@@ -119,16 +123,22 @@ const zedMap = {
     'terminal.ansi.bright_white': 'fgWhite',
 
     // ── Git / diagnosticos ──
-    // Las 4 severidades del popover de diagnostico SI definen .background/.border:
-    // Zed lo arma con status.<sev>_background/_border y el texto sale de
-    // editor.foreground; si faltan no hereda el color del tema sino el default de
-    // Zed (color base a opacidad total = texto ilegible). El resto de la familia
-    // (created, modified, ...) sigue en defaults. Fondo = superficie elevada
-    // comun; borde = color del propio estado.
+    // El popover de diagnostico de Zed pinta status.<sev>_background/_border y
+    // escribe encima con editor.foreground: si faltan, Zed NO hereda el color del
+    // tema. Solo deriva <x>_background (25% del propio fg) para deleted/created/
+    // modified/conflict/error/hidden (theme::apply_status_color_defaults); el resto
+    // de las familias cae al default de Zed a opacidad total (ilegible) y ningun
+    // _border se deriva nunca. Fondo = superficie elevada comun; borde = color del
+    // propio estado.
     'link_text.hover': 'linkPurple',
     'version_control.added': 'greenBase',
     'version_control.modified': 'cyanVibrant',
     'version_control.deleted': 'pinkAccent',
+    // conflict: sin esta key Zed cae a status.ignored y el conflicto sale rosa, igual
+    // que los ignorados (VS Code usa orangeBase en gitDecoration.conflictingResource).
+    // renamed queda sin mapear a proposito: VS Code tampoco define decoracion de rename
+    // y el fallback de Zed (status.modified = cyanVibrant) ya coincide con la nuestra.
+    'version_control.conflict': 'orangeBase',
     'version_control.word_added': 'colors:diffEditor.insertedTextBackground',
     'version_control.word_deleted': 'colors:diffEditor.removedTextBackground',
     'created': 'greenBase',
@@ -137,6 +147,8 @@ const zedMap = {
     'conflict': 'orangeBase',
     'renamed': 'cyanAccent',
     'ignored': 'pinkLight',
+    'ignored.background': 'bgElevated',
+    'ignored.border': 'pinkLight',
     'hidden': 'uiMuted',
     'info': 'uiAccent',
     'info.background': 'bgElevated',
@@ -153,6 +165,11 @@ const zedMap = {
     'hint.border': 'purpleBright',
     'predictive': 'uiMuted',
     'unreachable': 'uiInactive',
+    // El bloque de salida de `:!cmd` (vim) se pinta con la superficie de los paneles
+    // de terminal (mismo token que terminal.background y panel.background); sin esto
+    // caia al gris claro opaco de Zed y tapaba el texto del buffer.
+    'unreachable.background': 'bgDeep',
+    'unreachable.border': 'uiInactive',
   },
 
   // ── Sintaxis (tiers preservados: keyword vs keyword.control, etc.) ──
@@ -164,7 +181,13 @@ const zedMap = {
     // fgMuted reactiva su rol: base sin alpha del comentario VS Code (#d8d8d8f1)
     'comment': 'fgMuted',
     'comment.doc': 'fgMuted',
-    'constant': 'pinkLight',
+    // VS Code separa la familia: numeros/lenguaje/character en rosa, y las constantes
+    // NOMBRADAS (variable.other.constant) caen a `variable` -> fgBase (#f8f8f2).
+    // Zed tiene un solo token `constant`, asi que toma el rol nombrado, y el builtin
+    // (None/nil/undefined/NaN, en VS Code constant.language) queda pinneado en rosa:
+    // un nombre punteado que no exista se registra como capture propio (SyntaxTheme::merge).
+    'constant': 'fgBase',
+    'constant.builtin': 'pinkLight',
     'constructor': 'blueMethod',
     'embedded': 'fgBase',
     'emphasis': { color: 'cyanVibrant', font_style: 'italic' },
@@ -253,8 +276,13 @@ const zedDarkerBackgrounds = {
   [palette.bgBase]: '#181520',
   [palette.bgDeep]: '#121018',
   [palette.bgElevated]: '#201d2a',
+  // Entradas por PREFIJO (no hex completo) para las guias: conservan el alpha de cada
+  // key, asi que los alphas nuevos de Zed viajan solos (ruler opaco, indent atenuados)
+  // y si mañana cambian, no hay que tocar el valor de aca.
   '#464254': '#3a374a',
-  [palette.guideMid]: '#544f64',
+  '#625e74': '#544f64',
+  // El wash del search baja un paso en Darker (35 -> 30), como el resto de los fondos
+  [palette.searchMatch]: '#c792ea30',
 };
 
 module.exports = { zedMap, zedDarkerBackgrounds };
