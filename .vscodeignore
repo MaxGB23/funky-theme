@@ -10,4 +10,5 @@
 !themes/
 !themes/*.json
 !public/images/tsx-code.png
-!public/images/functions-darker.png
+!public/images/functions-darker-ts.png
+!public/images/funky-theme-dark-italic.png

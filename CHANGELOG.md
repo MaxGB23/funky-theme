@@ -10,6 +10,10 @@ All notable changes to the Funky Theme extension will be documented in this file
 - Darker now attenuates that yellow to `#e8f09a` on the ultra-nocturnal background. It previously inherited the full-intensity value while every other bright yellow was dimmed, because the Darker adjustment map was only applied to syntax colors and never to the UI color block. `editorWarning.foreground`, `list.warningForeground`, `terminal.ansiYellow` and `terminal.ansiBrightYellow` now dim along with the syntax colors (links and lists in Markdown, JSON object keys), so a single yellow no longer renders at two different intensities in the same variant.
 - Rebuilt the 16 terminal ANSI colours on the Funky TUI palette the agent CLIs are tuned against, so `git`, `fzf`, prompts and any tool that falls back to ANSI-16 paint the same colour the TUI themes show. The old set was not merely off-palette: `terminal.ansiBrightGreen` was pink, both blues were purple, `terminal.ansiBlack` was the terminal background itself (black text rendered invisible), `terminal.ansiBrightBlack` was the only colour in the theme living outside the palette, and cyan, yellow, red and green had no normal/bright distinction at all. Each slot now carries the colour its name claims.
 
+### Docs
+
+- README: the screenshots section now shows Funky Dark Italic next to Dark and Darker, so the cursive variant is no longer the only one users have to imagine from the text, and the Darker shot was recaptured with TypeScript code.
+
 ## [3.2.3] - 2026-10-17
 
 ### Changed
