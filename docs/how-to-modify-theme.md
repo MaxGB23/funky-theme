@@ -110,8 +110,16 @@ Los colores reutilizados viven como variables en `const palette`. Además de los
 | `guideRuler` | `#464254ff` | `editor.wrap_guide` de Zed (ruler de columna, una sola línea, sin alpha) |
 | `guideMidDim` | `#625e74d1` | Guías activas/hover de Zed (`editor.*` y `panel.*`): `guideMid` con alpha, para no engrosar el trazo; VS Code y HC siguen con `guideMid` opaco |
 | `searchMatch` | `#c792ea35` | Wash de los matches de búsqueda en Zed (en Darker baja a `#c792ea30`); VS Code todavía usa su propio par `#c792ea30`/`#c792ea20` |
+| `textTui` | `#eff0eb` | Cuerpo del terminal (`terminal.foreground` y `ansiWhite`): el valor testeado en terminal por `funky-theme-tui`, un paso por debajo de `fgBase` para que el texto del agente no compita con el de identificadores |
+| `errorTui` | `#ff718f` | `terminal.ansiBrightRed` (solo terminal): el rojo testeado en terminal por `funky-theme-tui`, más rosado que `errorFg`, que lee distinto sobre fondo oscuro |
 
 **Regla de paleta:** crea una variable SOLO para valores que se repiten (≥2 usos) o con identidad semántica clara. Los de un solo uso se dejan literales en su regla.
+
+### Paleta ANSI del terminal
+
+Los 16 slots ANSI viven en el bloque `colors` de `theme-config.js` y siguen el vocabulario de `funky-theme-tui`: dentro del terminal, las herramientas que caen a ANSI-16 (git, fzf, prompts, CLIs sin truecolor) pintan el mismo color que los temas del TUI. Por eso el par normal/brillante de cada familia puede quedar muy cerca en luminancia —en red y green el "bright" es incluso un paso más oscuro—: el criterio es la coherencia con el TUI, no el orden de brillo. `ansiBlack`/`ansiBrightBlack` son literales propios del tema (el TUI no tiene rol para ellos).
+
+**Zed deriva las 16 keys del JSON de VS Code** (`'terminal.ansi.x': 'colors:terminal.ansiX'`) en lugar de apuntar a tokens propios, para que una sola fuente gobierne los dos canales: al tocar la paleta ANSI no hay que editar `zed-config.js`.
 
 ### Colores con alpha (8 dígitos hex)
 

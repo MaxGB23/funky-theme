@@ -12,7 +12,8 @@ const palette = {
 
   // === Claros (Foreground principal) ===
   fgBase: "#f8f8f2",       // fg-base (Reemplaza los 5 "blancos cian": '#eeffff', '#f7f7f7', '#eefcfe', etc.)
-  fgWhite: "#ffffff",      // fg-white - Blanco puro para meta tags, clases y html tags
+  fgWhite: "#ffffff",      // fg-white - Blanco puro para meta tags, clases, html tags y terminal.ansiBrightWhite
+  textTui: "#eff0eb",      // text-tui - Cuerpo del terminal (terminal.foreground + ansiWhite). Es el #eff0eb testeado en terminal por funky-theme-tui, un paso por debajo de fgBase a propósito: el texto del agente no compite con el de identificadores
   fgMuted: "#d8d8d8",      // fg-muted - SIN USOS (0 referencias). Los comentarios usan literal alfa #d8d8d8f1; mantener solo si se decide reactivarlo
 
   // === Grises de UI e Invisibles ===
@@ -32,8 +33,8 @@ const palette = {
   // === Colores de Sintaxis (Accents Tiered Palette) ===
 
   // Cyans (Attributes, Numbers)
-  cyanDim: "#80ecff",      // cyan-dim (Reemplaza a '#8ceaff') - Puntuación general, constant.other.color y literales (umbrella `punctuation`); group punctuation de regex cae aquí
-  cyanAccent: "#96e7ff",   // cyan-accent - Functions, git modified, regex, escapes
+  cyanDim: "#80ecff",      // cyan-dim (Reemplaza a '#8ceaff') - Puntuación general, constant.other.color y literales (umbrella `punctuation`); group punctuation de regex cae aquí. También terminal.ansiBrightCyan
+  cyanAccent: "#96e7ff",   // cyan-accent - Functions, git modified, regex, escapes y terminal.ansiCyan
   cyanVibrant: "#6df5fa",  // cyan-vibrant - Markdown bold, italic e interfaces
 
   // Rojos (Errors, Tags de cierre, Variables mutadas)
@@ -41,42 +42,43 @@ const palette = {
 
   // Rosas (Keywords, Control Flow, Parameters)
   pinkBase: "#ff8bee",     // pink-base (Reemplaza la masacre de 5 rosas: '#ffacf5', '#feb3e8', '#ffa6f9', '#ff92df', '#ff78f8') - SIN USOS: aguarda un nuevo rol (decidido 2026-09-11)
-  pinkLight: "#ffa8e6",    // pink-light - Git ignored, constantes numéricas y parámetros
+  pinkLight: "#ffa8e6",    // pink-light - Git ignored, constantes numéricas, parámetros y terminal.ansiMagenta
   pinkAccent: "#ff87c5",   // pink-accent - Tags HTML/SGM y git deleted markers
   pinkVibrant: "#ff8ddb",  // pink-vibrant - Headings de Markdown
-  pinkTerminal: "#ff55a4", // pink-terminal - Solo decoraciones de git deleted; el ANSI red/bright-red usa pinkAccent
+  pinkTerminal: "#ff55a4", // pink-terminal - Solo decoraciones de git deleted (sin rol ANSI: el rojo del terminal es errorFg/errorTui)
 
   // Rojo de errores (squiggly, gutter markers, error markers)
-  errorFg: "#ff8282",      // error-foreground - list.errorForeground, editorError.foreground
+  errorFg: "#ff8282",      // error-foreground - list.errorForeground, editorError.foreground y terminal.ansiRed
+  errorTui: "#ff718f",     // error-tui - terminal.ansiBrightRed: el rojo testeado en terminal por funky-theme-tui (más rosado que errorFg, que lee distinto sobre fondo oscuro)
 
   // Morados (Operators, Support Classes, Flujo/Control)
-  purpleDim: "#c792ea",    // purple-dim (Reemplaza a '#d6acff') - keyword genérico, editorLineNumber activa, markup.changed y ansiBrightBlue de terminal (los operadores viven en operatorBlue)
-  purpleBase: "#bd93f9",   // purple-base (Reemplaza a '#cca2e8') - terminal.ansiBlue
-  purpleBright: "#eaa9fc", // purple-bright - support.class, variable.language (this) y keyword.control (flujo)
+  purpleDim: "#c792ea",    // purple-dim (Reemplaza a '#d6acff') - keyword genérico, editorLineNumber activa y markup.changed (los operadores viven en operatorBlue; el azul del terminal, en blueMethod/operatorBlue)
+  purpleBase: "#bd93f9",   // purple-base (Reemplaza a '#cca2e8') - SIN USOS desde 2026-10-19: el terminal.ansiBlue pasó a blueMethod; aguarda un nuevo rol
+  purpleBright: "#eaa9fc", // purple-bright - support.class, variable.language (this), keyword.control (flujo) y terminal.ansiBrightMagenta
   purpleSoft: "#b7b5ff",   // purple-soft - SIN USOS: aguarda un nuevo rol (lavanda liberada 2026-09-15 al mover storage.modifier a operatorBlue)
 
   // Naranjas & Amarillos (Strings, Functions, Warnings)
   orangeBase: "#ffb86c",   // orange-base (Reemplaza a '#ffcb6b') - HTML y CSS attribute names, git conflicting/changed y sublimelinter warning (los warnings del editor son yellowBase)
   orangeAccent: "#ffd089", // orange-accent - keyword.operator/other/control.new y constant.other.reference.link.markdown (naranja compartido: new y md link consistente, claro y de baja fatiga)
   orangeSoft: "#ffb488",   // orange-soft - keyword.other (extends, package, auxiliares). Candidato a más usos
-  yellowBase: "#f7ffa1",   // yellow-base - Markdown (links y listas) y warnings/terminal (colors)
-  yellowLight: "#fff9b7",  // yellow-light - Entity types, classes, support types y attribute names
+  yellowBase: "#f7ffa1",   // yellow-base - Markdown (links y listas), warnings del editor y terminal.ansiYellow (en Darker bajan a #e8f09a)
+  yellowLight: "#fff9b7",  // yellow-light - Entity types, classes, support types, attribute names y terminal.ansiBrightYellow (en Darker bajan a #fff9ba)
   yellowVibrant: "#ffde25", // yellow-vibrant - editorCursor, extensionIcon.starForeground y editorBracketHighlight.foreground1 (amarillo dorado, fuerza de icono)
   bracketGold: "#ffd700",  // bracket-gold - SIN USOS: aguarda un nuevo rol (fallback meta.brace movido a yellowVibrant 2026-09-18)
 
   // Verdes (Classes, RegEx, Strings exitosos)
-  greenBase: "#8bffa8",    // green-base (Reemplaza a '#8affc4', '#c7ffc8', '#b9ffba')
-  greenAccent: "#b9ffba",  // green-accent - Strings, unquoted labels y git untracked
+  greenBase: "#8bffa8",    // green-base (Reemplaza a '#8affc4', '#c7ffc8', '#b9ffba') y terminal.ansiBrightGreen
+  greenAccent: "#b9ffba",  // green-accent - Strings, unquoted labels, git untracked y terminal.ansiGreen
 
   // === UI Accent & Surfaces ===
   uiAccent: "#8c8eff",     // ui-accent - Botones, focusBorder y activityBarBadge
   bgScrollbar: "#4e4b59",  // bg-scrollbar - SIN USOS como token: solo es la base de los sliders alfa literales #4e4b5980/a0/c0 (scrollbarSlider.*)
 
   // === Azules de Métodos ===
-  blueMethod: "#82aaff",    // blue-method - Métodos JS/CS/Go, source.json values y decorators (azul de métodos)
-  operatorBlue: "#9abfff",  // operator-blue - keyword.operator (símbolos). storage.modifier y cuantificadores regex usan blueSoft (variante más clara)
+  blueMethod: "#82aaff",    // blue-method - Métodos JS/CS/Go, source.json values, decorators (azul de métodos) y terminal.ansiBlue
+  operatorBlue: "#9abfff",  // operator-blue - keyword.operator (símbolos) y terminal.ansiBrightBlue. storage.modifier y cuantificadores regex usan blueSoft (variante más clara)
   blueSoft: "#a1caff",      // blue-soft - storage.modifier y keyword.operator.quantifier.regexp (variante clara del azul operador; antes literal)
-  cyanTerminal: "#a4ffff",  // cyan-terminal - ANSI cyan del terminal (ansiCyan, ansiBrightCyan) y meta.disable-markdown punctuation
+  cyanTerminal: "#a4ffff",  // cyan-terminal - Token legacy: fue el cyan del terminal (ansiCyan/ansiBrightCyan) hasta 2026-10-19, cuando pasó a cyanAccent/cyanDim. Se conserva por su único uso actual: meta.disable-markdown punctuation
 
   // === Verdes Material / Naranjas / Terracota ===
   greenMaterial: "#c3e88d", // green-material - Git insertions, find-in-files filename y algunos strings (verde Material)
@@ -200,24 +202,30 @@ module.exports = {
     "editorGutter.deletedBackground": palette.pinkAccent,
 
     // ── Terminal (ANSI) ───────────────────────────────────────────────────────────────
+    // Las 16 keys siguen el vocabulario de funky-theme-tui para que los agentes que caen a
+    // los slots ANSI (git, fzf, prompts, CLIs sin truecolor) pinten el mismo color que el TUI.
+    // El par normal/brillante queda del mismo valor que el TUI en cada familia; la inversión
+    // de luminancia en red/green es deliberada (probada en vivo, no es un descuido).
+    // black/brightBlack son literales propios (el TUI no tiene rol para ellos): antes ansiBlack
+    // era el fondo del terminal, así que el texto "negro" salía invisible.
     "terminal.background": palette.bgDeep,
-    "terminal.foreground": palette.fgBase,
-    "terminal.ansiBrightBlack": "#6272a4",
-    "terminal.ansiBrightRed": palette.errorFg,
-    "terminal.ansiBrightGreen": palette.pinkLight,
-    "terminal.ansiBrightYellow": palette.yellowBase,
-    "terminal.ansiBrightBlue": palette.purpleDim,
-    "terminal.ansiBrightMagenta": palette.pinkLight,
-    "terminal.ansiBrightCyan": palette.cyanTerminal,
+    "terminal.foreground": palette.textTui,
+    "terminal.ansiBrightBlack": "#c2c2c2",
+    "terminal.ansiBrightRed": palette.errorTui,
+    "terminal.ansiBrightGreen": palette.greenBase,
+    "terminal.ansiBrightYellow": palette.yellowLight,
+    "terminal.ansiBrightBlue": palette.operatorBlue,
+    "terminal.ansiBrightMagenta": palette.purpleBright,
+    "terminal.ansiBrightCyan": palette.cyanDim,
     "terminal.ansiBrightWhite": palette.fgWhite,
-    "terminal.ansiBlack": palette.bgDeep,
+    "terminal.ansiBlack": "#8e8e8e",
     "terminal.ansiRed": palette.errorFg,
     "terminal.ansiGreen": palette.greenAccent,
     "terminal.ansiYellow": palette.yellowBase,
-    "terminal.ansiBlue": palette.purpleBase,
+    "terminal.ansiBlue": palette.blueMethod,
     "terminal.ansiMagenta": palette.pinkLight,
-    "terminal.ansiCyan": palette.cyanTerminal,
-    "terminal.ansiWhite": palette.fgBase,
+    "terminal.ansiCyan": palette.cyanAccent,
+    "terminal.ansiWhite": palette.textTui,
 
     // ── Title Bar / Menubar ───────────────────────────────────────────────────────────
     "titleBar.activeBackground": palette.bgDeep,

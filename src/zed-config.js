@@ -99,28 +99,32 @@ const zedMap = {
     'scrollbar.track.background': 'colors:scrollbar.background',
     'scrollbar.track.border': 'colors:scrollbar.background',
 
-    // ── Terminal (16 ANSI via tokens; dim_* se omiten = default de Zed) ──
-    'terminal.background': 'bgDeep',
-    'terminal.foreground': 'fgBase',
+    // ── Terminal (16 ANSI derivados del JSON de VS Code; dim_* se omiten = default de Zed) ──
+    // Las 16 keys se resuelven via `colors:` (no por token propio) para que el bloque ANSI de
+    // theme-config.js sea la unica fuente de la paleta de terminal y los dos canales no puedan
+    // divergir: antes derivaba solo bright_black, asi que cualquier cambio en VS Code dejaba
+    // Zed medio-alineado (1 slot nuevo y 15 viejos), peor que no tocarlo.
+    // bright_foreground se queda en el token: es el texto en negrita del terminal, no una key ANSI.
+    'terminal.background': 'colors:terminal.background',
+    'terminal.foreground': 'colors:terminal.foreground',
     'terminal.bright_foreground': 'fgWhite',
     'terminal.dim_foreground': 'uiInactive',
-    'terminal.ansi.black': 'bgDeep',
-    'terminal.ansi.red': 'errorFg',
-    'terminal.ansi.green': 'greenAccent',
-    'terminal.ansi.yellow': 'yellowBase',
-    'terminal.ansi.blue': 'purpleBase',
-    'terminal.ansi.magenta': 'pinkLight',
-    'terminal.ansi.cyan': 'cyanTerminal',
-    'terminal.ansi.white': 'fgBase',
-    // Literal de un solo uso via colors (gris propio del ANSI brillante)
+    'terminal.ansi.black': 'colors:terminal.ansiBlack',
+    'terminal.ansi.red': 'colors:terminal.ansiRed',
+    'terminal.ansi.green': 'colors:terminal.ansiGreen',
+    'terminal.ansi.yellow': 'colors:terminal.ansiYellow',
+    'terminal.ansi.blue': 'colors:terminal.ansiBlue',
+    'terminal.ansi.magenta': 'colors:terminal.ansiMagenta',
+    'terminal.ansi.cyan': 'colors:terminal.ansiCyan',
+    'terminal.ansi.white': 'colors:terminal.ansiWhite',
     'terminal.ansi.bright_black': 'colors:terminal.ansiBrightBlack',
-    'terminal.ansi.bright_red': 'errorFg',
-    'terminal.ansi.bright_green': 'pinkLight',
-    'terminal.ansi.bright_yellow': 'yellowBase',
-    'terminal.ansi.bright_blue': 'purpleDim',
-    'terminal.ansi.bright_magenta': 'pinkLight',
-    'terminal.ansi.bright_cyan': 'cyanTerminal',
-    'terminal.ansi.bright_white': 'fgWhite',
+    'terminal.ansi.bright_red': 'colors:terminal.ansiBrightRed',
+    'terminal.ansi.bright_green': 'colors:terminal.ansiBrightGreen',
+    'terminal.ansi.bright_yellow': 'colors:terminal.ansiBrightYellow',
+    'terminal.ansi.bright_blue': 'colors:terminal.ansiBrightBlue',
+    'terminal.ansi.bright_magenta': 'colors:terminal.ansiBrightMagenta',
+    'terminal.ansi.bright_cyan': 'colors:terminal.ansiBrightCyan',
+    'terminal.ansi.bright_white': 'colors:terminal.ansiBrightWhite',
 
     // ── Git / diagnosticos ──
     // El popover de diagnostico de Zed pinta status.<sev>_background/_border y

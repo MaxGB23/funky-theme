@@ -32,6 +32,13 @@ into the root VS Code changelog (plan §D5: each channel versions alone).
   near-white as variables, which is what they get in the VS Code theme. Pink
   stays for the values that are pink there (numbers, `true`/`false`,
   `None`/`nil`/`undefined`).
+- Changed the 16 terminal ANSI colours to the Funky TUI palette, so the
+  terminal matches what the agent CLIs draw: bright green was pink, both blues
+  were purple, and black was the terminal background itself, which made black
+  text invisible. All 16 slots are now derived from the VS Code colour block
+  instead of the theme's own tokens — only bright black used to be derived, so
+  any palette change left this channel half-aligned, with one slot updated and
+  fifteen left behind.
 
 ## [0.2.0]
 - Added yellow JSON object keys — they no longer fall back to generic white.
