@@ -4,7 +4,9 @@ All notable changes to the Funky Theme extension will be documented in this file
 
 ## [Unreleased]
 
-_No changes since the last release._
+### Changed
+
+- The packaged extension is about 550 KB lighter to download. The README screenshots are stored as indexed PNGs, with no visible change in the images.
 
 ## [3.2.4] - 2026-10-20
 
