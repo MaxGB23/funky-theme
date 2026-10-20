@@ -4,6 +4,10 @@ Independent history of the Zed extension (`zed/extension.toml`). Never merged
 into the root VS Code changelog (plan §D5: each channel versions alone).
 
 ## [Unreleased]
+
+_No changes since the last release._
+
+## [0.2.1]
 - Changed the base yellow from `#f6ff98` to `#f7ffa1` in Dark and Italic,
   and to `#e8f09a` in Darker — link text, JSON object keys and Markdown list
   markers shared one yellow that read as harsh, and Darker now dims it to suit
@@ -39,6 +43,9 @@ into the root VS Code changelog (plan §D5: each channel versions alone).
   instead of the theme's own tokens — only bright black used to be derived, so
   any palette change left this channel half-aligned, with one slot updated and
   fifteen left behind.
+- Changed the terminal's dim text to a tone calibrated against the terminal
+  background instead of reusing the UI's muted grey, which was tuned for
+  surfaces and sat too close to the regular foreground.
 
 ## [0.2.0]
 - Added yellow JSON object keys — they no longer fall back to generic white.
