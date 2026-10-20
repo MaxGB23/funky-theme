@@ -28,7 +28,7 @@ This repo ships two independent channels from one source of truth (`docs/zed-sup
 | Channel | Version file | Changelog | Tag | Distributes via |
 |---|---|---|---|---|
 | VS Code | `package.json` | `CHANGELOG.md` | `vX.Y.Z` | GitHub Release + vsix → manual Marketplace/Open VSX |
-| Zed | `zed/extension.toml` | `zed/CHANGELOG.md` | `zed-vX.Y.Z` (annotated) | Local install (v0.1); Zed registry PR post-v0.1 |
+| Zed | `zed/extension.toml` | `zed/CHANGELOG.md` | `zed-vX.Y.Z` (annotated) | Local install + registry PR opened by CI on tag push (this skill verifies that run) |
 
 **Route first:** VS Code-only change → VS Code pipeline below. Zed-only change (mapping, `extension.toml`, `build-zed.js`) → Zed channel (§Zed channel release). Shared-source change (`palette`, `colors`) → rebuild BOTH targets, then each channel releases only if ITS artefact changed (`themes/*.json` vs `zed/themes/*.json`); a channel whose artefact is byte-identical neither bumps nor tags (D8). RCs exist only on VS Code and never bump Zed.
 
@@ -145,11 +145,19 @@ A `zed-v*` tag is invisible to the VS Code pipeline and vice versa. If no tag ma
 2. `node scripts/build-zed.js` — must print 3 variants + validation PASS.
 3. Finalize `zed/CHANGELOG.md`: rename `## [Unreleased]` → `## [<version>]`, prepend a fresh empty `## [Unreleased]`. Consume the block, never rewrite it.
 4. Commit (conventional, English) + push; tag annotated `zed-v<version>` on pushed HEAD recording the coetaneous VS Code version in the tag message; push the tag. **No GitHub Release for `zed-v*`** (decided Q4) — source of truth is the tag + `zed/CHANGELOG.md`.
-5. Distribution for v0.1 = local install (README). Registry PRs are a separate post-v0.1 flow (human first PR, then Actions) and are never part of this skill.
+5. **Verify the registry automation — the release is NOT done while that run is red.** Pushing the `zed-v*` tag triggers `.github/workflows/zed-registry-bump.yml`, which opens (or refreshes) the version-bump PR against `zed-industries/extensions`. Never open that PR by hand: the workflow owns it, and a manual PR races its dedupe. Immediately after the tag push, check the run:
+   ```bash
+   gh run list --workflow=zed-registry-bump.yml --limit 1
+   ```
+   Green → capture the PR URL and report it. Red → report the failing step and the run URL; the tag exists but the registry never saw it, so the channel is unreleased from the user's point of view. Known break (hit on `zed-v0.2.1`): `gh repo sync` aborts with ``Upstream commits contain workflow changes, which require the `workflow` scope`` — the classic PAT behind `ZED_REGISTRY_PAT` carries `repo` only, and the fork is stale enough that syncing it imports workflow files from upstream. Fix = add the `workflow` scope to that **classic** PAT (fine-grained cannot open the cross-repo PR) and update the secret, then re-dispatch the bump for the existing tag — it is idempotent (force-push + PR dedupe, no duplicate PR, no new tag):
+   ```bash
+   gh workflow run zed-registry-bump.yml -f tag=zed-v<version>
+   ```
+6. Distribution for v0.1 = local install (README). The first registry PR was opened by hand (`#7923`); every release after that runs through the workflow, so this skill verifies the automation instead of redoing it.
 
 ## Output Contract
 
-Return: release URL, tag, attached vsix name/size, commits shipped, changelog commit, and (for stable releases) confirmation the marketplace handoff message was delivered.
+Return: release URL, tag, attached vsix name/size, commits shipped, changelog commit, and (for stable releases) confirmation the marketplace handoff message was delivered. For the Zed channel: the registry PR URL, or the failing run URL if the automation did not reach it.
 
 ## References
 
