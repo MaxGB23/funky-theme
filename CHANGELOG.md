@@ -4,6 +4,10 @@ All notable changes to the Funky Theme extension will be documented in this file
 
 ## [Unreleased]
 
+_No changes since the last release._
+
+## [3.2.4] - 2026-10-20
+
 ### Changed
 
 - Softened the base yellow (`yellowBase`) from `#f6ff98` to `#f7ffa1` across all five variants. The brighter value read as harsh, most visibly in High Contrast, where it is the background against which everything else is judged.
