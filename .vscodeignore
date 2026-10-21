@@ -9,6 +9,6 @@
 !CHANGELOG.md
 !themes/
 !themes/*.json
-!public/images/tsx-code.png
-!public/images/functions-darker-ts.png
+!public/images/funky-theme-dark-tsx.png
+!public/images/funky-theme-darker-ts.png
 !public/images/funky-theme-dark-italic.png

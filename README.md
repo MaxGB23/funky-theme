@@ -15,19 +15,19 @@ As terminal agents and AI handle more of the heavy lifting, the IDE is becoming 
 <p align="center"><strong>Funky Dark</strong></p>
 
 <p align="center">
-  <img src="public/images/tsx-code.png" alt="Funky Dark — TSX code" width="80%">
+  <img src="public/images/funky-theme-dark-tsx.png" alt="Funky Dark — TSX code" width="85%">
 </p>
 
 <p align="center"><strong>Funky Darker</strong></p>
 
 <p align="center">
-  <img src="public/images/functions-darker-ts.png" alt="Funky Darker — TypeScript code" width="80%">
+  <img src="public/images/funky-theme-darker-ts.png" alt="Funky Darker — TypeScript code" width="85%">
 </p>
 
 <p align="center"><strong>Funky Dark Italic</strong></p>
 
 <p align="center">
-  <img src="public/images/funky-theme-dark-italic.png" alt="Funky Dark Italic — TSX code" width="80%">
+  <img src="public/images/funky-theme-dark-italic.png" alt="Funky Dark Italic — TSX code" width="85%">
 </p>
 
 ---
