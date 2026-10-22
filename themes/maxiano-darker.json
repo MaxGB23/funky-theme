@@ -340,6 +340,12 @@
       }
     },
     {
+      "scope": "keyword.other.important",
+      "settings": {
+        "foreground": "#f38ba9"
+      }
+    },
+    {
       "scope": "keyword.other.import, keyword.other.directive, keyword.other.using, keyword.other.use, keyword.other.namespace, keyword.other.package, keyword.other.include, keyword.other.require, keyword.other.module",
       "settings": {
         "foreground": "#96e7ff"

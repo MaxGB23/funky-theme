@@ -40,6 +40,7 @@ const palette = {
 
   // Rojos (Errors, Tags de cierre, Variables mutadas)
   redBase: "#ff5555",      // red-base (Reemplaza a '#ff6e6e', '#f07178', '#ff5370')
+  redSoft: "#f38ba9",      // red-soft - Alerta de declaración: CSS !important (css/scss/less/sass/stylus). NO es color de error (para eso están errorFg/errorTui): es el rojo desaturado que avisa que una declaración rompe la cascada sin leerse como falla. Vive en la familia roja a propósito — es un code smell, no estructura — y más apagado que errorTui (81% de saturación vs 100%) para que no compita con el rojo de terminal
 
   // Rosas (Keywords, Control Flow, Parameters)
   pinkBase: "#ff8bee",     // pink-base (Reemplaza la masacre de 5 rosas: '#ffacf5', '#feb3e8', '#ffa6f9', '#ff92df', '#ff78f8') - SIN USOS: aguarda un nuevo rol (decidido 2026-09-11)
@@ -557,6 +558,17 @@ module.exports = {
       "scope": "keyword.other",
       "settings": {
         "foreground": palette.orangeSoft
+      }
+    },
+    // Excepción al mapa cromático: CSS `!important` no es un keyword.other auxiliar.
+    // Rompe la cascada de forma explícita, así que tiene semántica propia (alerta, no
+    // estructura) y sale de la familia naranja, donde se confundía con los attribute names
+    // vecinos (orangeBase). El prefijo cubre css/scss/less/sass/stylus. `!default` de SCSS
+    // se queda en coral: escribe un valor por defecto de módulo, no rompe ninguna cascada.
+    {
+      "scope": "keyword.other.important",
+      "settings": {
+        "foreground": palette.redSoft
       }
     },
     // Parte superior del archivo (imports, namespaces): los sub-scopes estructurales de

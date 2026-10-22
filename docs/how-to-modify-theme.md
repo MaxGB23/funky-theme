@@ -113,6 +113,7 @@ Los colores reutilizados viven como variables en `const palette`. Además de los
 | `textTui` | `#eff0eb` | Cuerpo del terminal (`terminal.foreground` y `ansiWhite`): el valor testeado en terminal por `funky-theme-tui`, un paso por debajo de `fgBase` para que el texto del agente no compita con el de identificadores |
 | `textDim` | `#8e8ea7` | Texto tenue del terminal de Zed (`terminal.dim_foreground`): 5.1:1 sobre `bgDeep`, el mismo piso de contraste que `uiInactive`. El dim del TUI (`uiMuted` `#606685`) cae a 2.9:1 y no sirve para texto tenue |
 | `errorTui` | `#ff718f` | `terminal.ansiBrightRed` (solo terminal): el rojo testeado en terminal por `funky-theme-tui`, más rosado que `errorFg`, que lee distinto sobre fondo oscuro |
+| `redSoft` | `#f38ba9` | `!important` de CSS (css/scss/less/sass/stylus): alerta de declaración, **no** color de error — desaturado a propósito para avisar sin alarmar y no competir con `errorFg`/`errorTui` |
 
 **Regla de paleta:** crea una variable SOLO para valores que se repiten (≥2 usos) o con identidad semántica clara. Los de un solo uso se dejan literales en su regla.
 
@@ -143,6 +144,7 @@ El rol del token en el código decide su familia cromática. Es una GUÍA — no
 | **Referencia** | Punteros al contexto actual | Morado claro (`#eaa9fc`) | `this`, `super`, `self` |
 | **Auxiliar** | Palabras estructurales que no controlan el flujo | Coral (`#ffb488`) | `extends` (JS/TS, Java, PHP), `mod`/`pub` (p.ej. Rust) |
 | **Creación** | Operadores de instanciación | Naranja claro (`#ffd089`) | `new` |
+| **Alerta** | Marcadores que rompen la cascada o anulan el flujo normal | Rojo suave (`#f38ba9`) | `!important` (CSS, SCSS, Less, Sass, Stylus) |
 
 La meta es la legibilidad por escaneo: distinguir de un vistazo *dónde pasa algo* (flujo) de *dónde se declara algo* (estructura) — por luminosidad dentro de la misma familia morada, no por cambio de color. Flujo y Referencia comparten tono a propósito: ambos son "tokens activos", a diferencia de la estructura estática.
 

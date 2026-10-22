@@ -7,6 +7,7 @@ All notable changes to the Funky Theme extension will be documented in this file
 ### Changed
 
 - The packaged extension is about 550 KB lighter to download. The README screenshots are stored as indexed PNGs, with no visible change in the images.
+- CSS `!important` now renders in a soft red (`#f38ba9`) instead of the generic auxiliary-keyword coral (`#ffb488`). Inside a declaration block the coral shared its hue family with the attribute names around it, so the single token that changes how a rule wins the cascade was among the least visible things on the line. The red is deliberately desaturated and stays below `errorFg`/`errorTui` intensity: it flags the override without reading as a failure, which is why it does not use the error red.
 
 ## [3.2.4] - 2026-10-20
 
