@@ -378,7 +378,7 @@
             "font_weight": null
           },
           "type.builtin": {
-            "color": "#c792eaff",
+            "color": "#fff9b7ff",
             "font_style": null,
             "font_weight": null
           },
@@ -791,7 +791,7 @@
             "font_weight": null
           },
           "type.builtin": {
-            "color": "#c792eaff",
+            "color": "#fff9baff",
             "font_style": null,
             "font_weight": null
           },
@@ -1204,7 +1204,7 @@
             "font_weight": null
           },
           "type.builtin": {
-            "color": "#c792eaff",
+            "color": "#fff9b7ff",
             "font_style": "italic",
             "font_weight": null
           },

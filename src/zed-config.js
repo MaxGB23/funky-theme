@@ -246,8 +246,11 @@ const zedMap = {
     'text.literal': 'greenAccent',
     'title': { color: 'pinkVibrant', font_weight: 700 },
     'type': 'yellowLight',
-    // Primitivos (int/string/...) vs tipos propios: igual que keyword.type en VS Code
-    'type.builtin': 'purpleDim',
+    // Primitivos (int/string/...) comparten el amarillo de `type`, igual que
+    // support.type en VS Code: en TS/JS un primitivo en posicion de tipo
+    // (`string`, `number`) matchea support.type y no keyword.type, y Zed no
+    // tiene storage.type/keyword.type separado para dividir el rol.
+    'type.builtin': 'yellowLight',
     'variable': 'fgBase',
     'variable.parameter': 'pinkLight',
     'variable.special': 'purpleBright',

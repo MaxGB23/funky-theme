@@ -4,8 +4,11 @@ Independent history of the Zed extension (`zed/extension.toml`). Never merged
 into the root VS Code changelog (plan §D5: each channel versions alone).
 
 ## [Unreleased]
-
-_No changes since the last release._
+- Changed built-in types (`string`, `number`, `int`) from purple to the same
+  yellow as every other type — in VS Code a primitive in type position matches
+  `support.type` (yellow), and Zed has no separate `storage.type`/
+  `keyword.type` scope to split the role, so purple put the primitives in a
+  colour family of their own.
 
 ## [0.2.1]
 - Changed the base yellow from `#f6ff98` to `#f7ffa1` in Dark and Italic,
