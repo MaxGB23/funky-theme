@@ -20,7 +20,7 @@ const palette = {
   // === Grises de UI e Invisibles ===
   uiMuted: "#606685",      // ui-muted (Reemplaza a '#5a657c','#65737e','#546e7a') - Bordes, guías y tokens secundarios
   uiInactive: "#8b8f9e",   // ui-inactive - Texto UI inactivo: panelTitle y tabs inactivos
-  guideMid: "#625e74",     // guide-mid - Guías del árbol y bordes de tabla; en HC, guía base del editor (y sus bordes fuertes suben a uiAccentStrong)
+  guideMid: "#625e74",     // guide-mid - Guías del árbol y bordes de tabla; en HC, guía base del editor (la activa y las del árbol pasan a fgBase, y los bordes de tabla a uiAccentStrong)
   // Alphas de las guías en Zed: mismo hex base que guideMid y #464254, pero
   // atenuados porque se repiten en cada nivel del editor y del árbol. VS Code tiene
   // sus propios alphas (#46425470 / #625e74c1, más opacos en Darker): cada canal los
@@ -174,8 +174,9 @@ module.exports = {
     "sideBarSectionHeader.border": palette.bgBase,
     // Guías del árbol y bordes de tabla en guideMid: la guía activa del editor
     // comparte el mismo hex base con su propio alpha (#625e74c1), para que indent,
-    // árbol y tablas se lean como una sola estructura. HC los sube a uiAccentStrong
-    // (bordes fuertes); Darker los oscurece vía darkerBackgrounds.
+    // árbol y tablas se lean como una sola estructura. HC sube la guía activa y las
+    // del árbol a fgBase y los bordes de tabla a uiAccentStrong; Darker los oscurece
+    // vía darkerBackgrounds.
     "tree.indentGuidesStroke": palette.guideMid,
     "tree.tableColumnsBorder": palette.guideMid,
     "tree.tableOddRowsBackground": palette.bgElevated,

@@ -105,10 +105,10 @@ Los colores reutilizados viven como variables en `const palette`. Además de los
 | `terracotta` | `#c17e70` | Verificación de números, find-in-files |
 | `linkPurple` | `#b2b3ff` | Links y `pickerGroup.foreground` |
 | `uiInactive` | `#8b8f9e` | Título de panel y tabs inactivos |
-| `guideMid` | `#625e74` | Guías del árbol y bordes de tabla (en Darker se oscurecen a `#544f64`; en HC, guía base del editor y bordes fuertes con `uiAccentStrong`) |
+| `guideMid` | `#625e74` | Guías del árbol y bordes de tabla (en Darker se oscurecen a `#544f64`) y guía base del editor en HC (allí la activa y las del árbol pasan a `fgBase`, y los bordes de tabla a `uiAccentStrong`) |
 | `guideDim` | `#46425490` | Guías de indentación atenuadas: `editor.indent_guide` y `panel.indent_guide` de Zed (VS Code usa su propio `#46425470`, y `#3a374a80` en Darker) |
 | `guideRuler` | `#464254ff` | `editor.wrap_guide` de Zed (ruler de columna, una sola línea, sin alpha) |
-| `guideMidDim` | `#625e74d1` | Guías activas/hover de Zed (`editor.*` y `panel.*`): `guideMid` con alpha, para no engrosar el trazo; VS Code base usa `#625e74c1` (`#544f64d1` en Darker), y HC sigue opaco con `guideMid`/`uiAccentStrong` |
+| `guideMidDim` | `#625e74d1` | Guías activas/hover de Zed (`editor.*` y `panel.*`): `guideMid` con alpha, para no engrosar el trazo; VS Code base usa `#625e74c1` (`#544f64d1` en Darker), y HC sigue opaco con `guideMid`/`fgBase` |
 | `searchMatch` | `#c792ea35` | Wash de los matches de búsqueda en Zed (en Darker baja a `#c792ea30`); VS Code todavía usa su propio par `#c792ea30`/`#c792ea20` |
 | `textTui` | `#eff0eb` | Cuerpo del terminal (`terminal.foreground` y `ansiWhite`): el valor testeado en terminal por `funky-theme-tui`, un paso por debajo de `fgBase` para que el texto del agente no compita con el de identificadores |
 | `textDim` | `#8e8ea7` | Texto tenue del terminal de Zed (`terminal.dim_foreground`): 5.1:1 sobre `bgDeep`, el mismo piso de contraste que `uiInactive`. El dim del TUI (`uiMuted` `#606685`) cae a 2.9:1 y no sirve para texto tenue |

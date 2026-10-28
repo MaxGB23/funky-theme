@@ -7,6 +7,7 @@ All notable changes to the Funky Theme extension will be documented in this file
 ### Changed
 
 - Editor indent guides are now translucent in every dark variant (`#46425470`, with the active guide at `#625e74c1`), and Darker carries its own, more opaque pair (`#3a374a80` / `#544f64d1`). The old solid `#464254f5` column drew a hard grid over the code and competed with the text at every nesting level; the active guide keeps more weight than the rest so the eye still finds the current block, and Darker raises both alphas because the same values disappear on its deeper background. Tree guides and High Contrast keep their solid strokes.
+- High Contrast now paints the active editor indent guide and the tree guides in the body white (`#f8f8f2`) instead of the purple accent. The accent is the variant's main colour, but on a guide line it competed with the strong sidebar borders and read as decoration rather than structure; white separates nesting from the surrounding chrome while keeping the contrast the variant exists for. Table column borders keep the accent.
 
 ## [3.3.0] - 2026-10-22
 

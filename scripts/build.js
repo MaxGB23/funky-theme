@@ -185,8 +185,9 @@ variants.forEach(variant => {
     theme.colors['terminalStickyScroll.background'] = palette.bgDeep;
     theme.colors['terminalStickyScrollHover.background'] = palette.bgElevated;
     theme.colors['terminalStickyScroll.border'] = palette.uiAccentStrong;
-    // Guías de indentación de árbol claras en HC
-    theme.colors['tree.indentGuidesStroke'] = palette.uiAccentStrong;
+    // Guías de indentación de árbol en el blanco del cuerpo en HC: con el accent
+    // se confundían con los bordes intensos del sidebar
+    theme.colors['tree.indentGuidesStroke'] = palette.fgBase;
     // Paneles y tabs inactivos: HC excluido de los nuevos valores compartidos (mantiene defaults de VS Code)
     delete theme.colors['panel.background'];
     delete theme.colors['panel.border'];
@@ -212,9 +213,10 @@ variants.forEach(variant => {
     // inputOption.activeBorder no aplica en HC
     delete theme.colors['inputOption.activeBorder'];
     // Secondary buttons: HC hereda los valores base (#313244 / fgWhite / #3f3c4f) — coinciden con la propuesta probada
-    // Indent guides HC: guía base con guideMid y activa con el accent completo
+    // Indent guides HC: guía base con guideMid; la activa va en el blanco del
+    // cuerpo (fgBase) en lugar del accent, que competía con los bordes del sidebar
     theme.colors['editorIndentGuide.background1'] = palette.guideMid;
-    theme.colors['editorIndentGuide.activeBackground1'] = palette.uiAccentStrong;
+    theme.colors['editorIndentGuide.activeBackground1'] = palette.fgBase;
     theme.colors['tree.tableColumnsBorder'] = palette.uiAccentStrong;
     theme.colors['peekView.border'] = palette.uiAccentStrong;
     theme.colors['list.activeSelectionBackground'] = '#8c8eff33';
