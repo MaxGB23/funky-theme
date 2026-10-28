@@ -9,6 +9,11 @@ into the root VS Code changelog (plan §D5: each channel versions alone).
   `support.type` (yellow), and Zed has no separate `storage.type`/
   `keyword.type` scope to split the role, so purple put the primitives in a
   colour family of their own.
+- Changed constructor names from the shared method blue to the operator blue
+  (`#9abfff`) — in Java VS Code does not paint constructors with `#82aaff`
+  (that blue only covers JS methods and the JS constructor reference), and Zed
+  has few keys, so the constructor colour was picked by eye against the
+  `#a1caff` VS Code leaves around Java constructors.
 
 ## [0.2.1]
 - Changed the base yellow from `#f6ff98` to `#f7ffa1` in Dark and Italic,

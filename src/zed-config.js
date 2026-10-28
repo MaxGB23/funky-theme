@@ -195,7 +195,11 @@ const zedMap = {
     // un nombre punteado que no exista se registra como capture propio (SyntaxTheme::merge).
     'constant': 'fgBase',
     'constant.builtin': 'pinkLight',
-    'constructor': 'blueMethod',
+    // Constructores: azul de operadores (#9abfff), un paso mas oscuro que
+    // blueSoft (#a1caff) y decidido a ojo en Zed sobre Java. blueMethod
+    // (#82aaff) en VS Code cubre metodos JS y variable.function.constructor,
+    // no las declaraciones de constructor de Java, asi que no servia aca.
+    'constructor': 'operatorBlue',
     'embedded': 'fgBase',
     'emphasis': { color: 'cyanVibrant', font_style: 'italic' },
     'emphasis.strong': { color: 'cyanVibrant', font_weight: 700 },
