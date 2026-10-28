@@ -35,7 +35,7 @@ const darkerBackgrounds = {
   // Guías de indentación del editor: no son tokens del mapa previo (uno es literal, el otro token nuevo)
   '#464254': '#3a374a',      // editorIndentGuide.background1 -> ultra-nocturno
   '#444156': '#3f3c4f',      // menu.separatorBackground -> ultra-nocturno
-  [palette.guideMid]: '#544f64' // editorIndentGuide.activeBackground1 -> ultra-nocturno
+  [palette.guideMid]: '#544f64' // guías del árbol y bordes de tabla; la guía activa fija su alpha después
 };
 
 // Mapa de atenuación de colores en Darker: los colores luminosos (amarillos y
@@ -81,6 +81,12 @@ variants.forEach(variant => {
     theme.colors['diffEditor.removedLineBackground'] = '#ff000018';
     theme.colors['diffEditor.insertedTextBackground'] = '#8c8eff28';
     theme.colors['diffEditor.removedTextBackground'] = '#ff000028';
+    // Guías de indentación: sobre el fondo ultra-nocturno el alpha base se pierde,
+    // así que Darker sube la opacidad de las dos keys. El transform de prefijo solo
+    // oscurece el hex y conserva el alpha (#46425470 -> #3a374a70), de modo que estos
+    // valores no se pueden derivar de darkerBackgrounds.
+    theme.colors['editorIndentGuide.background1'] = '#3a374a80';
+    theme.colors['editorIndentGuide.activeBackground1'] = '#544f64d1';
     theme.colors['editor.findMatchHighlightBackground'] = '#c792ea20';
     theme.colors['editor.findMatchHighlightBorder'] = '#c792ea20';
     // QuickInput (Command Palette / Quick Open) Darker

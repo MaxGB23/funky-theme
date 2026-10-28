@@ -20,13 +20,14 @@ const palette = {
   // === Grises de UI e Invisibles ===
   uiMuted: "#606685",      // ui-muted (Reemplaza a '#5a657c','#65737e','#546e7a') - Bordes, guías y tokens secundarios
   uiInactive: "#8b8f9e",   // ui-inactive - Texto UI inactivo: panelTitle y tabs inactivos
-  guideMid: "#625e74",
-  // Alphas de las guias SOLO en Zed: mismo hex base que guideMid y #464254f5, pero
-  // atenuados porque se repiten en cada nivel del editor y del arbol. VS Code mantiene
-  // los suyos (su #464254f5 se subio en 3.1.2 a proposito para destacar la guia activa).
+  guideMid: "#625e74",     // guide-mid - Guías del árbol y bordes de tabla; en HC, guía base del editor (y sus bordes fuertes suben a uiAccentStrong)
+  // Alphas de las guías en Zed: mismo hex base que guideMid y #464254, pero
+  // atenuados porque se repiten en cada nivel del editor y del árbol. VS Code tiene
+  // sus propios alphas (#46425470 / #625e74c1, más opacos en Darker): cada canal los
+  // calibra aparte porque el trazo no se aprecia igual.
   guideDim: "#46425490",     // editor.indent_guide + panel.indent_guide
   guideRuler: "#464254ff",   // editor.wrap_guide (ruler de columna: una sola linea, sin alpha)
-  guideMidDim: "#625e74d1",  // editor.indent_guide_active + panel.indent_guide_active/hover     // guide-mid - Guía activa del editor + guías del árbol y bordes de tabla; en HC la guía base del editor y sus bordes fuertes suben a uiAccentStrong
+  guideMidDim: "#625e74d1",  // editor.indent_guide_active + panel.indent_guide_active/hover
   greyLight: "#cbcbcb",    // grey-light - Delimitadores de code blocks de Markdown
   purpleGrey: "#a9b1de",   // purple-grey - Puntuación y meta de Markdown
   linkPurple: "#b2b3ff",   // link-purple - Links y pickerGroup foreground
@@ -116,9 +117,10 @@ module.exports = {
     "editorCursor.foreground": palette.yellowVibrant,
     "editor.lineHighlightBackground": palette.bgElevated,
     "editor.lineHighlightBorder": palette.bgElevated,
-    // Guías de indentación: fondo #464254f5 (literal con alpha f5) y línea activa guideMid (token, compartida con HC)
-    "editorIndentGuide.background1": "#464254f5",
-    "editorIndentGuide.activeBackground1": palette.guideMid,
+    // Guías de indentación: base #46425470 y activa #625e74c1 (literales con alpha;
+    // Darker fija los suyos en build.js porque necesita más opacidad)
+    "editorIndentGuide.background1": "#46425470",
+    "editorIndentGuide.activeBackground1": "#625e74c1",
     "editor.selectionBackground": palette.accentSelection,
     "selection.background": palette.uiAccentStrong,
     // Highlights de selección/palabras: alpha sobre el accent para distinguirlos del selection real (#8c8eff45) y de brackets/tags (#8c8eff2a); Darker sube los fdos a #8c8eff30 (build.js)
@@ -170,9 +172,10 @@ module.exports = {
     "sideBarSectionHeader.background": palette.bgBase,
     "sideBarSectionHeader.foreground": palette.fgWhite,
     "sideBarSectionHeader.border": palette.bgBase,
-    // Guías del árbol y bordes de tabla en guideMid: comparten color con la guía activa
-    // del editor para que indent, árbol y tablas se lean como una sola estructura. HC los
-    // sube a uiAccentStrong (bordes fuertes); Darker los oscurece vía darkerBackgrounds.
+    // Guías del árbol y bordes de tabla en guideMid: la guía activa del editor
+    // comparte el mismo hex base con su propio alpha (#625e74c1), para que indent,
+    // árbol y tablas se lean como una sola estructura. HC los sube a uiAccentStrong
+    // (bordes fuertes); Darker los oscurece vía darkerBackgrounds.
     "tree.indentGuidesStroke": palette.guideMid,
     "tree.tableColumnsBorder": palette.guideMid,
     "tree.tableOddRowsBackground": palette.bgElevated,
